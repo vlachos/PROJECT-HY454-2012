@@ -161,3 +161,8 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+
+
+#ingnore allegro folder
+allegro-5.0.8-msvc-10.0/
