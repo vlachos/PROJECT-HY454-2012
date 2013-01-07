@@ -79,10 +79,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\bubble_main.cpp" />
+    <ClCompile Include="..\src\Bitmap.cpp" />
+    <ClCompile Include="..\src\Bubble_Main.cpp" />
+    <ClCompile Include="..\src\Dim.cpp" />
+    <ClCompile Include="..\src\Index.cpp" />
+    <ClCompile Include="..\src\Tile_Layer.cpp" />
+    <ClCompile Include="..\src\Tile_Bitmap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\bubble_main.h" />
+    <ClInclude Include="..\include\Bitmap.h" />
+    <ClInclude Include="..\include\Dim.h" />
+    <ClInclude Include="..\include\Index.h" />
+    <ClInclude Include="..\include\Tile_layer.h" />
+    <ClInclude Include="..\include\Tile_Bitmap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

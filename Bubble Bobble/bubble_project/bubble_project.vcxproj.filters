@@ -13,15 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\terrain">
+      <UniqueIdentifier>{b57bb4bd-b994-4e9d-922e-4f81dd6d3709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\terrain">
+      <UniqueIdentifier>{ebb5abb2-5ebb-43ce-8073-e8bb533ca61a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\bubble_main.cpp">
+    <ClCompile Include="..\src\Bitmap.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Dim.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Index.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Tile_Bitmap.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bubble_Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Tile_Layer.cpp">
+      <Filter>Source Files\terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\bubble_main.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\include\Bitmap.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Dim.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Index.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Tile_layer.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Tile_Bitmap.h">
+      <Filter>Header Files\terrain</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
