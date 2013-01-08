@@ -15,6 +15,6 @@ second row:
 1,0: (0,8) - (8,16) -> bot left part of big brick
 1,1: (8,8) - (16,16) -> bot right part of big brick
 1,2: (16,8) - (24,16) -> shadow right of break
-1,3: (24,8) - (32,16) -> first shadow bottom of break (only for brick rows from left to right)
+1,3: (24,8) - (32,16) -> empty tile
 1,4: (32,8) - (40,16) -> last shadow bottom of break (only for brick rows from left to right)
-1,5: (40,8) - (48,16) -> empty tile
+1,5: (40,8) - (48,16) -> first shadow(corner) bottom of break (only for brick rows from left to right)
