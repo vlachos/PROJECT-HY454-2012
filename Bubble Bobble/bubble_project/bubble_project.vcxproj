@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Administrator\Documents\GitHub\PROJECT-HY454-2012\Bubble Bobble\include;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\Administrator\Documents\GitHub\PROJECT-HY454-2012\Bubble Bobble\src;$(SourcePath)</SourcePath>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
+    <SourcePath>..\src;$(SourcePath)</SourcePath>
     <OutDir>..\lib\debug</OutDir>
     <IntDir>..\obj\debug</IntDir>
   </PropertyGroup>
@@ -47,8 +47,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>..\obj\release</IntDir>
-    <IncludePath>C:\Users\Administrator\Documents\GitHub\PROJECT-HY454-2012\Bubble Bobble\include;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\Administrator\Documents\GitHub\PROJECT-HY454-2012\Bubble Bobble\src;$(SourcePath)</SourcePath>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
+    <SourcePath>..\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
