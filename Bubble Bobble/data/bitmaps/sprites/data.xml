@@ -1,0 +1,97 @@
+16x16
+box0 = 5, 15
+
+<data>
+	<sprites>
+		<Bubwalk frames=7>
+			<bbox box=0> <dx> 6 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+			<bbox box=1> <dx> 27 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+			<bbox box=2> <dx> 48 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+			<bbox box=3> <dx> 69 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+			<bbox box=4> <dx> 90 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+			<bbox box=5> <dx> 110 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+			<bbox box=6> <dx> 130 </dx> <dy> 16 </dy> <height> 17 </height> <width> 17 </width> </bbox>
+		</Bubwalk>
+		<Bubbubble frames=6>
+			<bbox box=0> <dx> 10 </dx> <dy> 1054 </dy> <height> 7 </height> <width> 5 </width> </bbox>
+			<bbox box=1> <dx> 26 </dx> <dy> 1053 </dy> <height> 9 </height> <width> 9 </width> </bbox>
+			<bbox box=2> <dx> 43 </dx> <dy> 1051 </dy> <height> 13 </height> <width> 11 </width> </bbox>
+			<bbox box=3> <dx> 61 </dx> <dy> 1050 </dy> <height> 15 </height> <width> 11 </width> </bbox>
+			<bbox box=4> <dx> 78 </dx> <dy> 1051 </dy> <height> 13 </height> <width> 13 </width> </bbox>
+			<bbox box=5> <dx> 96 </dx> <dy> 1050 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+		</Bubbubble>
+		<Bubopenmouth frames=8>
+			<bbox box=0> <dx> 6 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=1> <dx> 27 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=2> <dx> 48 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=3> <dx> 69 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=4> <dx> 90 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=5> <dx> 111 </dx> <dy> 36 </dy> <height> 15 </height> <width> 17 </width> </bbox>
+			<bbox box=6> <dx> 133 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=7> <dx> 154 </dx> <dy> 36 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+		</Bubopenmouth>
+		<zenchanwalk frames=4>
+			<bbox box=0> <dx> 6 </dx> <dy> 246 </dy> <height> 14 </height> <width> 14 </width> </bbox>
+			<bbox box=1> <dx> 24 </dx> <dy> 245 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=2> <dx> 43 </dx> <dy> 246 </dy> <height> 14 </height> <width> 14 </width> </bbox>
+			<bbox box=3> <dx> 62 </dx> <dy> 245 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+		</zenchanwalk>
+		<zenchaninbubble frames=3>
+			<bbox box=0> <dx> 304 </dx> <dy> 245 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+			<bbox box=1> <dx> 322 </dx> <dy> 245 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+			<bbox box=2> <dx> 340 </dx> <dy> 245 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+		</zenchaninbubble>
+		<zenchanangry frames=4>
+			<bbox box=0> <dx> 81 </dx> <dy> 246 </dy> <height> 14 </height> <width> 14 </width> </bbox>
+			<bbox box=1> <dx> 99 </dx> <dy> 245 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=2> <dx> 117 </dx> <dy> 246 </dy> <height> 14 </height> <width> 14 </width> </bbox>
+			<bbox box=3> <dx> 134 </dx> <dy> 245 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+		</zenchanangry>
+		<mightawalk frames=5>
+			<bbox box=0> <dx> 5 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=1> <dx> 24 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=2> <dx> 43 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=3> <dx> 62 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=4> <dx> 81 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+		</mightawalk>
+		<mightaangry frames=5>
+			<bbox box=0> <dx> 215 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=1> <dx> 236 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=2> <dx> 256 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=3> <dx> 276 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=4> <dx> 296 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+		</mightaangry>
+		<mightainbubble frames=3>
+			<bbox box=0> <dx> 137 </dx> <dy> 299 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+			<bbox box=1> <dx> 155 </dx> <dy> 299 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+			<bbox box=2> <dx> 173 </dx> <dy> 299 </dy> <height> 15 </height> <width> 13 </width> </bbox>
+		</mightainbubble>
+		<mightaangryfirebubble frames=5>
+			<bbox box=0> <dx> 317 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=1> <dx> 338 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=2> <dx> 359 </dx> <dy> 278 </dy> <height> 15 </height> <width> 17 </width> </bbox>
+			<bbox box=3> <dx> 381 </dx> <dy> 278 </dy> <height> 15 </height> <width> 20 </width> </bbox>
+			<bbox box=4> <dx> 408 </dx> <dy> 278 </dy> <height> 15 </height> <width> 22 </width> </bbox>
+		</mightaangryfirebubble>
+		<mightafirebubble frames=5>
+			<bbox box=0> <dx> 100 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=1> <dx> 120 </dx> <dy> 278 </dy> <height> 15 </height> <width> 15 </width> </bbox>
+			<bbox box=2> <dx> 140 </dx> <dy> 278 </dy> <height> 15 </height> <width> 17 </width> </bbox>
+			<bbox box=3> <dx> 162 </dx> <dy> 278 </dy> <height> 15 </height> <width> 20 </width> </bbox>
+			<bbox box=4> <dx> 187 </dx> <dy> 278 </dy> <height> 15 </height> <width> 22 </width> </bbox>
+		</mightafirebubble>
+		<mightabubble frames=6>
+			<bbox box=0> <dx> 6 </dx> <dy> 299 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=1> <dx> 24 </dx> <dy> 299 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=2> <dx> 41 </dx> <dy> 299 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=3> <dx> 78 </dx> <dy> 299 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=4> <dx> 96 </dx> <dy> 299 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+			<bbox box=5> <dx> 114 </dx> <dy> 299 </dy> <height> 15 </height> <width> 14 </width> </bbox>
+		</mightabubble>
+		
+	</sprites>
+	<animation>
+	
+	</animation>
+
+</data>
