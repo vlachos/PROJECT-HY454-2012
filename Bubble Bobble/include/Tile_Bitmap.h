@@ -1,17 +1,17 @@
 #include <string>
-#include <iostream>
 #include <allegro5\allegro.h>
 
 #define MAX_WIDTH 8
 #define MAX_HEIGHT 8
-typedef ALLEGRO_BITMAP Bitmap;
+
+typedef ALLEGRO_BITMAP* Bitmap;
 typedef unsigned char Index;
 typedef unsigned int Dim;
 
 class Tile {
 	private:
 	unsigned int	tileTransparency[MAX_WIDTH * MAX_HEIGHT / 32 + 1];
-	Bitmap tiles;
+	Bitmap	tiles;
 
 	bool	IsTileTransparent (Dim row, Dim col) const;
 	bool	LoadTransparencyInfo (const std::string & path);
