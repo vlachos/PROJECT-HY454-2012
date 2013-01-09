@@ -21,15 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Bitmap.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Dim.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Index.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Tile_Bitmap.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
@@ -41,15 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Bitmap.h">
-      <Filter>Header Files\terrain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Dim.h">
-      <Filter>Header Files\terrain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Index.h">
-      <Filter>Header Files\terrain</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Tile_layer.h">
       <Filter>Header Files\terrain</Filter>
     </ClInclude>
