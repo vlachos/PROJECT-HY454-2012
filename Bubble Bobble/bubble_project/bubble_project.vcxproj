@@ -84,7 +84,7 @@
     <ClCompile Include="..\src\Tile_Bitmap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Tile_layer.h" />
+    <ClInclude Include="..\include\Tile_Layer.h" />
     <ClInclude Include="..\include\Tile_Bitmap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
