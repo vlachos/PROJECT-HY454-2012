@@ -19,6 +19,12 @@
     <Filter Include="Source Files\terrain">
       <UniqueIdentifier>{ebb5abb2-5ebb-43ce-8073-e8bb533ca61a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sprites_parser">
+      <UniqueIdentifier>{bd81a826-e9cf-4a3f-9e5d-f9221ac0335b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sprites_parser">
+      <UniqueIdentifier>{e8d77273-ce1f-4253-94e5-bf8ecbf32990}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Tile_Bitmap.cpp">
@@ -30,6 +36,9 @@
     <ClCompile Include="..\src\Tile_Layer.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Sprites_Parser.cpp">
+      <Filter>Source Files\sprites_parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Tile_Bitmap.h">
@@ -37,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="..\include\Tile_Layer.h">
       <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rapidxml.hpp">
+      <Filter>Header Files\sprites_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Sprites_Parser.h">
+      <Filter>Header Files\sprites_parser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -80,10 +80,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Bubble_Main.cpp" />
+    <ClCompile Include="..\src\Sprites_Parser.cpp" />
     <ClCompile Include="..\src\Tile_Layer.cpp" />
     <ClCompile Include="..\src\Tile_Bitmap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\rapidxml.hpp" />
+    <ClInclude Include="..\include\Sprites_Parser.h" />
     <ClInclude Include="..\include\Tile_Layer.h" />
     <ClInclude Include="..\include\Tile_Bitmap.h" />
   </ItemGroup>
