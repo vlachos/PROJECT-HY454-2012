@@ -83,7 +83,6 @@
     <ClCompile Include="..\src\Sprites_Parser.cpp" />
     <ClCompile Include="..\src\Tile_Layer.cpp" />
     <ClCompile Include="..\src\Tile_Bitmap.cpp" />
-    <ClCompile Include="src\test_display.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\rapidxml.hpp" />
