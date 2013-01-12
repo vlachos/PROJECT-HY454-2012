@@ -47,6 +47,7 @@ void Draw_Terrain(const char* bitmap_path){
 	ALLEGRO_DISPLAY *display = 0;
 	ALLEGRO_BITMAP *tile_bitmap = 0;
 	ALLEGRO_BITMAP *a_stage = 0;
+	ALLEGRO_EVENT_QUEUE *event_queue = 0;
 	unsigned int source_x = 0, source_y = 0;
 	boolean tile_is_empty = true;
 
@@ -123,9 +124,29 @@ void Draw_Terrain(const char* bitmap_path){
 		}
 	}
 	al_set_target_bitmap(al_get_backbuffer(display));
-
 	al_draw_bitmap(a_stage, 0, 0, 0);
 	al_flip_display();
+	
+	event_queue = al_create_event_queue();
+	if(!event_queue) {
+        fprintf(stderr, "failed to create event_queue!\n");
+		al_destroy_bitmap(tile_bitmap);
+		al_destroy_bitmap(a_stage);
+		al_destroy_display(display);
+        std::exit;
+	}
+	al_register_event_source(event_queue, al_get_display_event_source(display));
+	while(1){
+		ALLEGRO_EVENT ev;
+		al_wait_for_event(event_queue, &ev);
+		if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			al_destroy_bitmap(tile_bitmap);
+			al_destroy_bitmap(a_stage);
+			al_destroy_display(display);
+			al_destroy_event_queue(event_queue);
+			break;
+		}
+	}
 }
 
 void run_terrain_test(){
@@ -133,7 +154,6 @@ void run_terrain_test(){
 
 	Load_Terrain_Text(STAGE1_PATH);
 	Draw_Terrain(TILE_BITMAP_PATH);
-	getchar();
 }
 
 int main(int argc, char **argv){
