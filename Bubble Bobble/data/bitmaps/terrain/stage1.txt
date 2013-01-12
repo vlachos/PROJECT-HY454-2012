@@ -1,5 +1,4 @@
-32	28
-
+32 26
 c e b b b b b b b j a a a b b b b b b j a a a b b b b b b b c e
 d f l g g g g g g k a a a i g g g g g k a a a i g g g g g g d f
 c e h a a a a a a a a a a a a a a a a a a a a a a a a a a a c e

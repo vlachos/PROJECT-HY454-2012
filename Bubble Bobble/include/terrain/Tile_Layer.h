@@ -1,6 +1,3 @@
-#ifndef	TILELAYER_H
-#define	TILELAYER_H
-
 #include <stdio.h>
 #include <iostream>
 #include <allegro5\allegro.h>
@@ -29,5 +26,3 @@ class Tile_Layer {
 		void WriteMap (FILE* fp);
 		bool ReadMap (FILE* fp);
 };
-
-#endif

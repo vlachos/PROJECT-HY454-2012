@@ -165,5 +165,5 @@ pip-log.txt
 
 
 #ingnore allegro folder
-allegro-5.0.8-msvc-10.0/
+allegro5
 allegro.log/

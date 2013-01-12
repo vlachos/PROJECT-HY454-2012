@@ -1,110 +1,146 @@
 #include <stdio.h>
-#include <allegro5/allegro.h>
- 
-const float FPS = 60;
-const int SCREEN_W = 640;
-const int SCREEN_H = 480;
-const int BOUNCER_SIZE = 32;
- 
+#include <iostream>
+#include <fstream>
+#include <assert.h>
+#include <allegro5\allegro5.h> 
+#include <allegro5\allegro_native_dialog.h> 
+#include <allegro5\allegro_image.h>
+
+const int TILE_SIZE = 8;
+
+const char* TERRAIN_DATA_PATH = "..\\data\\terrain_data";
+const char*	STAGE1_PATH = "..\\data\\terrain_data\\stage1.txt";
+const char* TILE_BITMAP_PATH = "..\\data\\terrain_data\\tile_bitmap.png";
+
+#define SCREEN_W 800
+#define SCREEN_H 600
+unsigned char **terrain;
+unsigned int terrain_x, terrain_y;
+
+
+unsigned char get_terrain_tile(int row, int col){
+	return terrain[row][col];
+}
+
+void Load_Terrain_Text(const char* filename){
+	unsigned int load_counter_x = 0, load_counter_y = 0;
+
+	std::ifstream openfile(STAGE1_PATH);
+	if (openfile.is_open()){
+		openfile >> terrain_x >> terrain_y;
+		std::cout << terrain_x << terrain_y;
+		terrain = new unsigned char *[terrain_y];
+
+		for (int i=0; i<terrain_y; ++i){
+			terrain[i] = new unsigned char [terrain_x];
+			for (int j=0; j<terrain_x; ++j){
+				openfile >> terrain[i][j];
+				assert( terrain[i][j] >= 'a' && terrain[i][j] <='l'  );
+			}
+		}
+		openfile.close();
+	}
+}
+
+void Draw_Terrain(const char* bitmap_path){
+
+	ALLEGRO_DISPLAY *display = 0;
+	ALLEGRO_BITMAP *a_stage = 0;
+	unsigned int source_x, source_y;
+
+	/*init*/
+			std::cout << "Hello";
+	if(!al_init())
+		al_show_native_message_box(NULL, "Error", NULL, "Could not Initialize Allegro", NULL, NULL); 
+
+	display = al_create_display(SCREEN_W, SCREEN_H);
+	if(!display)
+		al_show_native_message_box(NULL, "Error", NULL, "Could not create Allegro Display", NULL, NULL);
+
+	al_set_window_position(display, 200, 200);
+	al_install_keyboard();
+	al_init_image_addon();
+	a_stage = al_load_bitmap(bitmap_path);
+
+	/*display each tile based on the already readen stage1.txt*/
+	for (int i=0; i<terrain_x; ++i){
+		for (int j=0; j<terrain_y; ++j){
+			switch ( get_terrain_tile(j,i)){
+				case 'a':
+					source_x = 0;
+					source_y = 0;
+					break;
+				case 'b':
+					source_x = 0;
+					source_y = 8;
+					break;
+				case 'c':
+					source_x = 8;
+					source_y = 0;
+					break;
+				case 'd':
+					source_x = 8;
+					source_y = 8;
+					break;
+				case 'e':
+					source_x = 16;
+					source_y = 0;
+					break;
+				case 'f':
+					source_x = 16;
+					source_y = 8;
+					break;
+				case 'g':
+					source_x = 24;
+					source_y = 0;
+					break;
+				case 'h':
+					source_x = 24;
+					source_y = 8;
+					break;
+				case 'i':
+					source_x = 32;
+					source_y = 0;
+					break;
+				case 'j':
+					source_x = 32;
+					source_y = 8;
+					break;
+				case 'k':
+					source_x = 40;
+					source_y = 0;
+					break;
+				case 'l':
+					source_x = 40;
+					source_y = 8;
+					break;
+				default:
+					al_show_native_message_box(NULL, "Error", NULL,
+						"Unrecognized tile, program terminated.", NULL, NULL);
+					std::exit;
+					break;
+
+				
+
+			}
+			al_draw_bitmap_region(a_stage, source_x, source_y, TILE_SIZE, TILE_SIZE,
+									  i, j, NULL);
+			al_flip_display();
+			//al_clear_to_color(al_map_rgb(0, 0, 0));
+			//std::cout <<  get_terrain_tile(i,j);
+		}
+		std::cout <<  '\n';
+	}
+}
+
+void run_terrain_test(){
+	ALLEGRO_BITMAP *stage1;
+
+	Load_Terrain_Text(STAGE1_PATH);
+	Draw_Terrain(TILE_BITMAP_PATH);
+	getchar();
+}
+
 int main(int argc, char **argv){
-   ALLEGRO_DISPLAY *display = NULL;
-   ALLEGRO_EVENT_QUEUE *event_queue = NULL;
-   ALLEGRO_TIMER *timer = NULL;
-   ALLEGRO_BITMAP *bouncer = NULL;
-   float bouncer_x = SCREEN_W / 2.0 - BOUNCER_SIZE / 2.0;
-   float bouncer_y = SCREEN_H / 2.0 - BOUNCER_SIZE / 2.0;
-   float bouncer_dx = -4.0, bouncer_dy = 4.0;
-   bool redraw = true;
- 
-   if(!al_init()) {
-      fprintf(stderr, "failed to initialize allegro!\n");
-      return -1;
-   }
- 
-   timer = al_create_timer(1.0 / FPS);
-   if(!timer) {
-      fprintf(stderr, "failed to create timer!\n");
-      return -1;
-   }
- 
-   display = al_create_display(SCREEN_W, SCREEN_H);
-   if(!display) {
-      fprintf(stderr, "failed to create display!\n");
-      al_destroy_timer(timer);
-      return -1;
-   }
- 
-   bouncer = al_create_bitmap(BOUNCER_SIZE, BOUNCER_SIZE);
-   if(!bouncer) {
-      fprintf(stderr, "failed to create bouncer bitmap!\n");
-      al_destroy_display(display);
-      al_destroy_timer(timer);
-      return -1;
-   }
- 
-   al_set_target_bitmap(bouncer);
- 
-   al_clear_to_color(al_map_rgb(255, 0, 255));
- 
-   al_set_target_bitmap(al_get_backbuffer(display));
- 
-   event_queue = al_create_event_queue();
-   if(!event_queue) {
-      fprintf(stderr, "failed to create event_queue!\n");
-      al_destroy_bitmap(bouncer);
-      al_destroy_display(display);
-      al_destroy_timer(timer);
-      return -1;
-   }
- 
-   al_register_event_source(event_queue, al_get_display_event_source(display));
- 
-   al_register_event_source(event_queue, al_get_timer_event_source(timer));
- 
-   al_clear_to_color(al_map_rgb(0,0,0));
- 
-   al_flip_display();
- 
-   al_start_timer(timer);
- 
-   while(1)
-   {
-      ALLEGRO_EVENT ev;
-      al_wait_for_event(event_queue, &ev);
- 
-      if(ev.type == ALLEGRO_EVENT_TIMER) {
-         if(bouncer_x < 0 || bouncer_x > SCREEN_W - BOUNCER_SIZE) {
-            bouncer_dx = -bouncer_dx;
-         }
- 
-         if(bouncer_y < 0 || bouncer_y > SCREEN_H - BOUNCER_SIZE) {
-            bouncer_dy = -bouncer_dy;
-         }
- 
-         bouncer_x += bouncer_dx;
-         bouncer_y += bouncer_dy;
- 
-         redraw = true;
-      }
-      else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-         break;
-      }
- 
-      if(redraw && al_is_event_queue_empty(event_queue)) {
-         redraw = false;
- 
-         al_clear_to_color(al_map_rgb(0,0,0));
- 
-         al_draw_bitmap(bouncer, bouncer_x, bouncer_y, 0);
- 
-         al_flip_display();
-      }
-   }
- 
-   al_destroy_bitmap(bouncer);
-   al_destroy_timer(timer);
-   al_destroy_display(display);
-   al_destroy_event_queue(event_queue);
- 
-   return 0;
+	run_terrain_test();
 }

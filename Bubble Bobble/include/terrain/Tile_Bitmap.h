@@ -1,5 +1,5 @@
-#ifndef	TILEBITMAP_H
-#define	TILEBITMAP_H
+#ifndef	SPRITESPARSER_H
+#define	SPRITESPARSER_H
 
 #include <string>
 #include <allegro5\allegro.h>
