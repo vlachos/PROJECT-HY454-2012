@@ -27,34 +27,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Tile_Bitmap.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\Bubble_Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Tile_Layer.cpp">
+      <Filter>Source Files\terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Sprites_Parser.cpp">
       <Filter>Source Files\sprites_parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\terrain\Tile_Bitmap.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\terrain\Tile_Layer.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\terrain\test_display.cpp">
+    <ClCompile Include="src\test_display.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\Tile_Bitmap.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Tile_Layer.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
     <ClInclude Include="..\include\rapidxml.hpp">
       <Filter>Header Files\sprites_parser</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Sprites_Parser.h">
       <Filter>Header Files\sprites_parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\terrain\Tile_Layer.h">
-      <Filter>Header Files\terrain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\terrain\Tile_Bitmap.h">
-      <Filter>Header Files\terrain</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
