@@ -80,15 +80,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Bubble_Main.cpp" />
-    <ClCompile Include="..\src\sprites_parser\Sprites_Parser.cpp" />
+    <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\Tile_Bitmap.cpp" />
     <ClCompile Include="..\src\terrain\Tile_Layer.cpp" />
+    <ClCompile Include="..\src\utilities\Metrics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
-    <ClInclude Include="..\include\sprites_parser\Sprites_Parser.h" />
+    <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\Tile_Bitmap.h" />
     <ClInclude Include="..\include\terrain\Tile_Layer.h" />
+    <ClInclude Include="..\include\utilities\MemoryManage.h" />
+    <ClInclude Include="..\include\utilities\Metrics.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\bitmaps\sprites\data.xml" />

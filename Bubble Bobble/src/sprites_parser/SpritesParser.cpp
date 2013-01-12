@@ -1,4 +1,4 @@
-#include "Sprites_Parser.h"
+#include "SpritesParser.h"
 
 #include <iostream>
 #include <fstream>
@@ -8,7 +8,7 @@
 
 static char * xmlFilePath = "..\\data\\bitmaps\\sprites\\data.xml";
 SpriteParser * SpriteParser::singletonPtr = (SpriteParser*) 0;
-rapidxml::xml_node<> * SpriteParser::root_node = (rapidxml::xml_node<> *) 0;
+rapidxml::xml_node<> * SpriteParser::rootNode = (rapidxml::xml_node<> *) 0;
 std::vector<char> SpriteParser::buffer;
 int SpriteParser::spritesSize = -1;
 
@@ -21,19 +21,19 @@ SpriteParser::SpriteParser(void){
 
 	//parse
 	doc.parse<0>( &buffer[0] );
-	root_node = doc.first_node("sprites");
-	assert( root_node );
-	const char * s = root_node->first_attribute("format")->value();
+	rootNode = doc.first_node("sprites");
+	assert( rootNode );
+	const char * s = rootNode->first_attribute("format")->value();
 	assert( s );
 
-	if(!strcmp(s, spriteParserSpecifications::strspritesSize[ (int) spriteParserSpecifications::spritesSize_sixteen ])){
-		spritesSize = (int) spriteParserSpecifications::spritesSize_sixteen;
+	if(!strcmp(s, SpriteParserSpecifications::strSpritesSize[ (int) SpriteParserSpecifications::spritesSize_sixteen ])){
+		spritesSize = (int) SpriteParserSpecifications::spritesSize_sixteen;
 	}else
-	if(!strcmp(s, spriteParserSpecifications::strspritesSize[ (int) spriteParserSpecifications::spritesSize_thirtytwo ])){
-		spritesSize = (int) spriteParserSpecifications::spritesSize_thirtytwo;
+	if(!strcmp(s, SpriteParserSpecifications::strSpritesSize[ (int) SpriteParserSpecifications::spritesSize_thirtytwo ])){
+		spritesSize = (int) SpriteParserSpecifications::spritesSize_thirtytwo;
 	}else
-	if(!strcmp(s, spriteParserSpecifications::strspritesSize[ (int) spriteParserSpecifications::spritesSize_sixtyfour ])){
-		spritesSize = (int) spriteParserSpecifications::spritesSize_sixtyfour;
+	if(!strcmp(s, SpriteParserSpecifications::strSpritesSize[ (int) SpriteParserSpecifications::spritesSize_sixtyfour ])){
+		spritesSize = (int) SpriteParserSpecifications::spritesSize_sixtyfour;
 	}else
 		assert(false);
 }
@@ -44,7 +44,7 @@ SpriteParser::SpriteParser(void){
 
 SpriteParser::~SpriteParser(void){
 	spritesSize = -1;
-	root_node = (rapidxml::xml_node<> *) 0;
+	rootNode = (rapidxml::xml_node<> *) 0;
 	buffer.clear();
 }
 
@@ -53,13 +53,13 @@ SpriteParser::~SpriteParser(void){
 * now i just print for testing
 */
 
-std::vector<char> * SpriteParser::getSprite(const std::string& id){
+std::vector<char> * SpriteParser::GetSprite(const std::string& id){
 	rapidxml::xml_node<> * spriteNode;
 	std::vector<char> * bboxies = (std::vector<char> *) 0;
 	int totalFrames;
 
-	assert(root_node);
-	spriteNode = root_node->first_node(id.c_str());
+	assert(rootNode);
+	spriteNode = rootNode->first_node(id.c_str());
 
 	if(spriteNode){
 		char * _totalFrames = spriteNode->first_attribute("frames")->value();

@@ -1,11 +1,15 @@
 # sxetika me ta names twn classes
 
-class:  KEFALAIA_ME_KATW_PAVLES
+class:  ThisIsAnExample
 
-method: Print_Message_Hello
+method: ThisIsAnExample
 
-var: mikra_me_pavla
+var: thisIsAnExample
 
-define: ->class
+define: -> THIS_IS_AN_EXAMPLE
 
-folders: mikra_katw_pavles
+enum -> ThisIsAnExample
+
+namespaces -> ThisIsAnExample
+
+folders: this_is_an_example

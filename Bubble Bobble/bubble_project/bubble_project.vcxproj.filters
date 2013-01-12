@@ -37,6 +37,12 @@
     <Filter Include="Resource Files\bitmaps\terrain">
       <UniqueIdentifier>{df998a73-3c34-468d-be11-a6c7e53e059e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utilities">
+      <UniqueIdentifier>{106e850c-b223-40ce-a45a-c68dc77a5d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utilities">
+      <UniqueIdentifier>{47ddbb51-0690-420b-a8ab-489ff133f9f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Bubble_Main.cpp">
@@ -48,8 +54,11 @@
     <ClCompile Include="..\src\terrain\Tile_Layer.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\sprites_parser\Sprites_Parser.cpp">
+    <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp">
       <Filter>Source Files\sprites_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utilities\Metrics.cpp">
+      <Filter>Source Files\utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,8 +71,14 @@
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
       <Filter>Header Files\sprites_parser</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\sprites_parser\Sprites_Parser.h">
+    <ClInclude Include="..\include\utilities\Metrics.h">
+      <Filter>Header Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sprites_parser\SpritesParser.h">
       <Filter>Header Files\sprites_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\utilities\MemoryManage.h">
+      <Filter>Header Files\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
