@@ -19,8 +19,8 @@ c e h a a a i g g g g g g g g g g g g g g g g g g g g g g g c e
 d f h a a a a a a a a a a a a a a a a a a a a a a a a a a a d f
 c e h a a a a a a a a a a a a a a a a a a a a a a a a a a a c e
 d f h a a a a a a a a a a a a a a a a a a a a a a a a a a a d f
-c e h a b b b b b b b b b b a j a b b b b b b b b b b a j a c e
-d f h a i g g g g g g g g g a k a i g g g g g g g g g a k a d f
+c e h a b b b b b b b b b b j a a b b b b b b b b b b j a a c e
+d f h a i g g g g g g g g g k a a i g g g g g g g g g k a a d f
 c e h a a a a a a a a a a a a a a a a a a a a a a a a a a a c e
 d f h a a a a a a a a a a a a a a a a a a a a a a a a a a a d f
 c e h a a a a a a a a a a a a a a a a a a a a a a a a a a a c e

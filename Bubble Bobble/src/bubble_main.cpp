@@ -8,12 +8,12 @@
 
 const int TILE_SIZE = 8;
 
-const char* TERRAIN_DATA_PATH = "..\\data\\terrain_data";
-const char*	STAGE1_PATH = "..\\data\\terrain_data\\stage1.txt";
-const char* TILE_BITMAP_PATH = "..\\data\\terrain_data\\tile_bitmap.png";
+const char* TERRAIN_DATA_PATH = "..\\data\\bitmaps\\terrain";
+const char*	STAGE1_PATH = "..\\data\\bitmaps\\terrain\\stage1.txt";
+const char* TILE_BITMAP_PATH = "..\\data\\bitmaps\\terrain\\tile_bitmap.png";
 
-#define SCREEN_W 800
-#define SCREEN_H 600
+#define SCREEN_W 512
+#define SCREEN_H 416
 unsigned char **terrain;
 unsigned int terrain_x, terrain_y;
 
@@ -28,7 +28,7 @@ void Load_Terrain_Text(const char* filename){
 	std::ifstream openfile(STAGE1_PATH);
 	if (openfile.is_open()){
 		openfile >> terrain_x >> terrain_y;
-		std::cout << terrain_x << terrain_y;
+
 		terrain = new unsigned char *[terrain_y];
 
 		for (int i=0; i<terrain_y; ++i){
@@ -45,11 +45,12 @@ void Load_Terrain_Text(const char* filename){
 void Draw_Terrain(const char* bitmap_path){
 
 	ALLEGRO_DISPLAY *display = 0;
+	ALLEGRO_BITMAP *tile_bitmap = 0;
 	ALLEGRO_BITMAP *a_stage = 0;
-	unsigned int source_x, source_y;
+	unsigned int source_x = 0, source_y = 0;
+	boolean tile_is_empty = true;
 
 	/*init*/
-			std::cout << "Hello";
 	if(!al_init())
 		al_show_native_message_box(NULL, "Error", NULL, "Could not Initialize Allegro", NULL, NULL); 
 
@@ -60,77 +61,71 @@ void Draw_Terrain(const char* bitmap_path){
 	al_set_window_position(display, 200, 200);
 	al_install_keyboard();
 	al_init_image_addon();
-	a_stage = al_load_bitmap(bitmap_path);
 
+	a_stage = al_create_bitmap(SCREEN_W,SCREEN_H);
+	al_set_target_bitmap(a_stage);
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+
+	tile_bitmap = al_load_bitmap(bitmap_path);
 	/*display each tile based on the already readen stage1.txt*/
 	for (int i=0; i<terrain_x; ++i){
 		for (int j=0; j<terrain_y; ++j){
 			switch ( get_terrain_tile(j,i)){
 				case 'a':
-					source_x = 0;
-					source_y = 0;
+					tile_is_empty = false;
 					break;
 				case 'b':
 					source_x = 0;
-					source_y = 8;
 					break;
 				case 'c':
-					source_x = 8;
-					source_y = 0;
+					source_x = 16;
 					break;
 				case 'd':
-					source_x = 8;
-					source_y = 8;
+					source_x = 32;
 					break;
 				case 'e':
-					source_x = 16;
-					source_y = 0;
+					source_x = 48;
 					break;
 				case 'f':
-					source_x = 16;
-					source_y = 8;
+					source_x = 64;
 					break;
 				case 'g':
-					source_x = 24;
-					source_y = 0;
+					source_x = 80;
 					break;
 				case 'h':
-					source_x = 24;
-					source_y = 8;
+					source_x = 96;
 					break;
 				case 'i':
-					source_x = 32;
-					source_y = 0;
+					source_x = 112;
 					break;
 				case 'j':
-					source_x = 32;
-					source_y = 8;
+					source_x = 128;
 					break;
 				case 'k':
-					source_x = 40;
-					source_y = 0;
+					source_x = 144;
 					break;
 				case 'l':
-					source_x = 40;
-					source_y = 8;
+					source_x = 160;
 					break;
 				default:
 					al_show_native_message_box(NULL, "Error", NULL,
 						"Unrecognized tile, program terminated.", NULL, NULL);
 					std::exit;
 					break;
-
-				
-
 			}
-			al_draw_bitmap_region(a_stage, source_x, source_y, TILE_SIZE, TILE_SIZE,
-									  i, j, NULL);
-			al_flip_display();
-			//al_clear_to_color(al_map_rgb(0, 0, 0));
-			//std::cout <<  get_terrain_tile(i,j);
+			if (tile_is_empty){
+				al_draw_bitmap_region(tile_bitmap, source_x, source_y, 2*TILE_SIZE, 2*TILE_SIZE,
+									  i*2*TILE_SIZE, j*2*TILE_SIZE, NULL);
+			}
+			else{
+				tile_is_empty = true;
+			}
 		}
-		std::cout <<  '\n';
 	}
+	al_set_target_bitmap(al_get_backbuffer(display));
+
+	al_draw_bitmap(a_stage, 0, 0, 0);
+	al_flip_display();
 }
 
 void run_terrain_test(){
