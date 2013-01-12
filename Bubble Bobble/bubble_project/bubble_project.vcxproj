@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\include;$(IncludePath)</IncludePath>
-    <SourcePath>..\src;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\terrain;..\include;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\terrain;..\src;$(SourcePath)</SourcePath>
     <OutDir>..\lib\debug</OutDir>
     <IntDir>..\obj\debug</IntDir>
   </PropertyGroup>
@@ -81,15 +81,15 @@
   <ItemGroup>
     <ClCompile Include="..\src\Bubble_Main.cpp" />
     <ClCompile Include="..\src\Sprites_Parser.cpp" />
-    <ClCompile Include="..\src\Tile_Layer.cpp" />
-    <ClCompile Include="..\src\Tile_Bitmap.cpp" />
-    <ClCompile Include="src\test_display.cpp" />
+    <ClCompile Include="..\src\terrain\test_display.cpp" />
+    <ClCompile Include="..\src\terrain\Tile_Bitmap.cpp" />
+    <ClCompile Include="..\src\terrain\Tile_Layer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\rapidxml.hpp" />
     <ClInclude Include="..\include\Sprites_Parser.h" />
-    <ClInclude Include="..\include\Tile_Layer.h" />
-    <ClInclude Include="..\include\Tile_Bitmap.h" />
+    <ClInclude Include="..\include\terrain\Tile_Bitmap.h" />
+    <ClInclude Include="..\include\terrain\Tile_Layer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
