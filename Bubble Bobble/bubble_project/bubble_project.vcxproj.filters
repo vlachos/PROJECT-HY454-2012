@@ -57,9 +57,6 @@
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp">
       <Filter>Source Files\sprites_parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\utilities\Metrics.cpp">
-      <Filter>Source Files\utilities</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\terrain\Tile_Bitmap.h">

@@ -83,7 +83,6 @@
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\Tile_Bitmap.cpp" />
     <ClCompile Include="..\src\terrain\Tile_Layer.cpp" />
-    <ClCompile Include="..\src\utilities\Metrics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />

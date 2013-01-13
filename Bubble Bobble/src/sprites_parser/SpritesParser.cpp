@@ -4,12 +4,16 @@
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
-#include <assert.h>
+#include "MemoryManage.h"
+#include "Metrics.h"
+
+#define ALIGN_SIZE(a) ( (a) << spritesSize )
 
 static char * xmlFilePath = "..\\data\\bitmaps\\sprites\\data.xml";
 SpriteParser * SpriteParser::singletonPtr = (SpriteParser*) 0;
 rapidxml::xml_node<> * SpriteParser::rootNode = (rapidxml::xml_node<> *) 0;
 std::vector<char> SpriteParser::buffer;
+char * SpriteParser::bitmapName = ( char *) 0;
 int SpriteParser::spritesSize = -1;
 
 SpriteParser::SpriteParser(void){
@@ -22,20 +26,26 @@ SpriteParser::SpriteParser(void){
 	//parse
 	doc.parse<0>( &buffer[0] );
 	rootNode = doc.first_node("sprites");
-	assert( rootNode );
-	const char * s = rootNode->first_attribute("format")->value();
-	assert( s );
+	DASSERT( rootNode );
+	DNEWPTR( const char, s);
+	s = rootNode->first_attribute("format")->value();
+	DASSERT( s );
 
-	if(!strcmp(s, SpriteParserSpecifications::strSpritesSize[ (int) SpriteParserSpecifications::spritesSize_sixteen ])){
-		spritesSize = (int) SpriteParserSpecifications::spritesSize_sixteen;
+	bitmapName = rootNode->first_attribute("bitmap")->value();
+	DASSERT(bitmapName);
+
+	using namespace SpriteParserSpecifications;
+
+	if(!strcmp(s, strSpritesSize[ EnumToInt( spritesSize_sixteen ) ])){
+		spritesSize = EnumToInt( spritesSize_sixteen );
 	}else
-	if(!strcmp(s, SpriteParserSpecifications::strSpritesSize[ (int) SpriteParserSpecifications::spritesSize_thirtytwo ])){
-		spritesSize = (int) SpriteParserSpecifications::spritesSize_thirtytwo;
+	if(!strcmp(s, strSpritesSize[ EnumToInt( spritesSize_thirtytwo ) ])){
+		spritesSize = EnumToInt( spritesSize_thirtytwo );
 	}else
-	if(!strcmp(s, SpriteParserSpecifications::strSpritesSize[ (int) SpriteParserSpecifications::spritesSize_sixtyfour ])){
-		spritesSize = (int) SpriteParserSpecifications::spritesSize_sixtyfour;
+	if(!strcmp(s, strSpritesSize[ EnumToInt( spritesSize_sixtyfour ) ])){
+		spritesSize = EnumToInt( spritesSize_sixtyfour );
 	}else
-		assert(false);
+		DASSERT(false);
 }
 
 /**
@@ -44,44 +54,54 @@ SpriteParser::SpriteParser(void){
 
 SpriteParser::~SpriteParser(void){
 	spritesSize = -1;
-	rootNode = (rapidxml::xml_node<> *) 0;
+	unullify( rootNode );
 	buffer.clear();
 }
 
-/**
-* i will do it std::vector<Rect>, when we create Rect!
-* now i just print for testing
-*/
+char * SpriteParser::GetBitmapName(void){
+	DASSERT(bitmapName);
+	return bitmapName;
+}
 
-std::vector<char> * SpriteParser::GetSprite(const std::string& id){
-	rapidxml::xml_node<> * spriteNode;
-	std::vector<char> * bboxies = (std::vector<char> *) 0;
+std::vector<Rect> SpriteParser::GetSprite(const char * id){
+	DNEWPTR(rapidxml::xml_node<>, spriteNode);
 	int totalFrames;
 
-	assert(rootNode);
-	spriteNode = rootNode->first_node(id.c_str());
+	DASSERT(rootNode);
+	spriteNode = rootNode->first_node(id);
+
+	std::vector<Rect> rects;
 
 	if(spriteNode){
-		char * _totalFrames = spriteNode->first_attribute("frames")->value();
-		assert( _totalFrames );
+		DNEWPTR( char,  _totalFrames);
+		_totalFrames = spriteNode->first_attribute("frames")->value();
+		DASSERT( _totalFrames );
 
 		totalFrames = atoi( _totalFrames );
-		assert( totalFrames > 0 );
+		DASSERT( totalFrames > 0 );
 
 		int index=0;
 		for ( rapidxml::xml_node<> * bbox = spriteNode->first_node("bbox"); bbox; bbox = bbox->next_sibling(), ++index ) {
-			std::cout << "\n========";
-			rapidxml::xml_node<> * dx = bbox->first_node("dx");
-			std::cout << dx->value();
-			rapidxml::xml_node<> * dy = bbox->first_node("dy");
-			std::cout << dy->value();
-			rapidxml::xml_node<> * h = bbox->first_node("h");
-			std::cout << h->value();
-			rapidxml::xml_node<> * w = bbox->first_node("w");
-			std::cout << w->value();
+
+			DNEWPTR(rapidxml::xml_node<>, dx);
+			dx = bbox->first_node("dx");
+
+			DNEWPTR(rapidxml::xml_node<>, dy);
+			dy = bbox->first_node("dy");
+
+			DNEWPTR(rapidxml::xml_node<>, h);
+			h = bbox->first_node("h");
+
+			DNEWPTR(rapidxml::xml_node<>, w);
+			w = bbox->first_node("w");
+
+			DASSERT( dx && dx->value() && dy && dy->value() && h && h->value() && w && w->value() );
+			Rect rect( ALIGN_SIZE( StringToDim( dx->value() ) ), ALIGN_SIZE( StringToDim( dy->value()) ), 
+						ALIGN_SIZE( StringToDim( h->value() ) ), ALIGN_SIZE(  StringToDim( w->value()) ) );
+			rects.push_back( rect );
 		}
-		assert( index > 0 );
+		DASSERT( index == totalFrames && rects.size() == index);
 	}
 
-	return bboxies;
+	return rects;
 }

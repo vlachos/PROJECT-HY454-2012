@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sprites format="16x16">
+<sprites format="32x32" bitmap="sprites.png">
 	<Bubwalk frames="7">
 		<bbox box="0"> <dx> 6 </dx> <dy> 16 </dy> <h> 17 </h> <w> 17 </w> </bbox>
 		<bbox box="1"> <dx> 27 </dx> <dy> 16 </dy> <h> 17 </h> <w> 17 </w> </bbox>

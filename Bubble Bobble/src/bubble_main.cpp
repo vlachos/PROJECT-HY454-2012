@@ -158,4 +158,5 @@ void run_terrain_test(){
 
 int main(int argc, char **argv){
 	run_terrain_test();
+	system( "pause" );
 }
