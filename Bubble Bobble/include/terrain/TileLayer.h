@@ -7,12 +7,12 @@
 
 typedef unsigned char Index;
 typedef unsigned int Dim;
-typedef std::pair<Dim, Dim> Tile_Coordinates;
+typedef std::pair<Dim, Dim> TileCoordinates;
 
-class Tile_Layer {
+class TileLayer {
 
 	public:
-		Tile_Layer();
+		TileLayer();
 
 	private:
 		Index map[MAX_HEIGHT][MAX_WIDTH];
@@ -21,7 +21,7 @@ class Tile_Layer {
 
 		void SetTile (Dim col, Dim row, Index index);
 		Index GetTile (Dim col, Dim row);
-		const Tile_Coordinates GetTileCoordinates (Dim mx, Dim my) const;
+		const TileCoordinates GetTileCoordinates (Dim mx, Dim my) const;
 
 		void WriteMap (FILE* fp);
 		bool ReadMap (FILE* fp);

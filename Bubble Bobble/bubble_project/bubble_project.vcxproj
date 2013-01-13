@@ -81,14 +81,14 @@
   <ItemGroup>
     <ClCompile Include="..\src\Bubble_Main.cpp" />
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
-    <ClCompile Include="..\src\terrain\Tile_Bitmap.cpp" />
-    <ClCompile Include="..\src\terrain\Tile_Layer.cpp" />
+    <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
+    <ClCompile Include="..\src\terrain\TileLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
     <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
-    <ClInclude Include="..\include\terrain\Tile_Bitmap.h" />
-    <ClInclude Include="..\include\terrain\Tile_Layer.h" />
+    <ClInclude Include="..\include\terrain\TileBitmap.h" />
+    <ClInclude Include="..\include\terrain\TileLayer.h" />
     <ClInclude Include="..\include\utilities\MemoryManage.h" />
     <ClInclude Include="..\include\utilities\Metrics.h" />
   </ItemGroup>
@@ -97,7 +97,9 @@
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
     <None Include="..\data\bitmaps\terrain\stage1.txt" />
-    <None Include="..\data\bitmaps\terrain\tile_bitmap.png" />
+    <None Include="..\data\bitmaps\terrain\tile_bitmap_16x16.png" />
+    <None Include="..\data\bitmaps\terrain\tile_bitmap_32x32.png" />
+    <None Include="..\data\bitmaps\terrain\tile_bitmap_8x8.png" />
     <None Include="..\data\soundtrack\bubble-bobble-01-amiga-credits.mp3" />
     <None Include="..\data\soundtrack\bubble-bobble-02-ecran-titre.mp3" />
     <None Include="..\data\soundtrack\bubble-bobble-03-the-story-begin.mp3" />

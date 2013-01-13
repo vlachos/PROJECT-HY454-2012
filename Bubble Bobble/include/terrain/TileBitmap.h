@@ -11,14 +11,14 @@ typedef ALLEGRO_BITMAP* Bitmap;
 typedef unsigned char Index;
 typedef unsigned int Dim;
 
-class Tile_Bitmap {
+class TileBitmap {
 
 	public:
-		Tile_Bitmap();
+		TileBitmap();
 
 	private:
 		Bitmap tiles;
-		bool tileTransparency[MAX_WIDTH * MAX_HEIGHT / 32 + 1];
+		bool TileTransparency[MAX_WIDTH * MAX_HEIGHT / 32 + 1];
 	
 
 		bool IsTileTransparent (Dim row, Dim col) const;

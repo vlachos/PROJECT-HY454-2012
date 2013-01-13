@@ -1,26 +1,3 @@
-
-- REGARDING TILE BITMAP
-
-
-The tile bitmap contains 1 row of 11 tiles per stage that are needed
-to build a tile based terrain of the bubble bobble game.
-
-each tile has width = 16, height = 16
-
-starting pixel:
-(0,0) -> small brick
-(16,0) -> top left part of big brick
-(32,0) -> bot left part of big brick
-(48,0) -> top right part of big brick
-(64,0) -> bot right part of big brick
-(80,0) -> main horizontal shadow
-(96,0) -> main vertical shadow
-(112,0) -> first horizontal shadow (right) \_
-(128,0) -> last vertical shadow(right) \
-(144,0) -> last horizontal shadow (left) -
-(160,0) -> corner shadow |-
- 
-
 - TRANSPARENCY
 
 1)All shadows are transparent
@@ -46,3 +23,24 @@ i: first horizontal shadow (right) \_
 j: last vertical shadow(right) \						    |
 k: last horizontal shadow (left) -
 l: corner shadow |-
+
+
+
+- REGARDING TILE BITMAP (16x16)  -> for 8x8 div 2 and 32 x 32 mul 2
+The tile bitmap contains 1 row of 11 tiles per stage that are needed
+to build a tile based terrain of the bubble bobble game.
+
+each tile has width = 16, height = 16
+
+starting pixel:
+(0,0) -> small brick
+(16,0) -> top left part of big brick
+(32,0) -> bot left part of big brick
+(48,0) -> top right part of big brick
+(64,0) -> bot right part of big brick
+(80,0) -> main horizontal shadow
+(96,0) -> main vertical shadow
+(112,0) -> first horizontal shadow (right) \_
+(128,0) -> last vertical shadow(right) \
+(144,0) -> last horizontal shadow (left) -
+(160,0) -> corner shadow |-

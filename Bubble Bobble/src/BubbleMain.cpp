@@ -6,14 +6,14 @@
 #include <allegro5\allegro_native_dialog.h> 
 #include <allegro5\allegro_image.h>
 
-const int TILE_SIZE = 8;
+const int TILE_SIZE = /*2**/16;
 
 const char* TERRAIN_DATA_PATH = "..\\data\\bitmaps\\terrain";
 const char*	STAGE1_PATH = "..\\data\\bitmaps\\terrain\\stage1.txt";
-const char* TILE_BITMAP_PATH = "..\\data\\bitmaps\\terrain\\tile_bitmap.png";
+const char* TILE_BITMAP_PATH = "..\\data\\bitmaps\\terrain\\tile_bitmap_16x16.png";// <-----  32x32
 
-#define SCREEN_W 512
-#define SCREEN_H 416
+#define SCREEN_W /*2**/512
+#define SCREEN_H /*2**/416
 unsigned char **terrain;
 unsigned int terrain_x, terrain_y;
 
@@ -30,7 +30,6 @@ void Load_Terrain_Text(const char* filename){
 		openfile >> terrain_x >> terrain_y;
 
 		terrain = new unsigned char *[terrain_y];
-
 		for (int i=0; i<terrain_y; ++i){
 			terrain[i] = new unsigned char [terrain_x];
 			for (int j=0; j<terrain_x; ++j){
@@ -59,7 +58,7 @@ void Draw_Terrain(const char* bitmap_path){
 	if(!display)
 		al_show_native_message_box(NULL, "Error", NULL, "Could not create Allegro Display", NULL, NULL);
 
-	al_set_window_position(display, 200, 200);
+	al_set_window_position(display, 0, 0);
 	al_install_keyboard();
 	al_init_image_addon();
 
@@ -115,8 +114,8 @@ void Draw_Terrain(const char* bitmap_path){
 					break;
 			}
 			if (tile_is_empty){
-				al_draw_bitmap_region(tile_bitmap, source_x, source_y, 2*TILE_SIZE, 2*TILE_SIZE,
-									  i*2*TILE_SIZE, j*2*TILE_SIZE, NULL);
+				al_draw_bitmap_region(tile_bitmap, /*2**/source_x, source_y, TILE_SIZE, TILE_SIZE,
+									  i*TILE_SIZE, j*TILE_SIZE, NULL);
 			}
 			else{
 				tile_is_empty = true;
@@ -146,6 +145,7 @@ void Draw_Terrain(const char* bitmap_path){
 			al_destroy_event_queue(event_queue);
 			break;
 		}
+
 	}
 }
 

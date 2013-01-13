@@ -48,23 +48,17 @@
     <ClCompile Include="..\src\Bubble_Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\terrain\Tile_Bitmap.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\terrain\Tile_Layer.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp">
       <Filter>Source Files\sprites_parser</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\terrain\TileBitmap.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\terrain\TileLayer.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\terrain\Tile_Bitmap.h">
-      <Filter>Header Files\terrain</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\terrain\Tile_Layer.h">
-      <Filter>Header Files\terrain</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
       <Filter>Header Files\sprites_parser</Filter>
     </ClInclude>
@@ -76,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="..\include\utilities\MemoryManage.h">
       <Filter>Header Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\terrain\TileBitmap.h">
+      <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\terrain\TileLayer.h">
+      <Filter>Header Files\terrain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +124,13 @@
     <None Include="..\data\bitmaps\terrain\stage1.txt">
       <Filter>Resource Files\bitmaps\terrain</Filter>
     </None>
-    <None Include="..\data\bitmaps\terrain\tile_bitmap.png">
+    <None Include="..\data\bitmaps\terrain\tile_bitmap_8x8.png">
+      <Filter>Resource Files\bitmaps\terrain</Filter>
+    </None>
+    <None Include="..\data\bitmaps\terrain\tile_bitmap_16x16.png">
+      <Filter>Resource Files\bitmaps\terrain</Filter>
+    </None>
+    <None Include="..\data\bitmaps\terrain\tile_bitmap_32x32.png">
       <Filter>Resource Files\bitmaps\terrain</Filter>
     </None>
   </ItemGroup>
