@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\include;..\include\utilities;..\include\sprites_parser;..\include\terrain;$(IncludePath)</IncludePath>
-    <SourcePath>..\src;..\src\utilities;..\src\sprites_parser;..\src\terrain;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\sprites_parser;..\include\terrain;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\sprites_parser;..\src\terrain;$(SourcePath)</SourcePath>
     <OutDir>..\lib\debug</OutDir>
     <IntDir>..\obj\debug</IntDir>
   </PropertyGroup>
@@ -47,8 +47,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>..\obj\release</IntDir>
-    <IncludePath>..\include;..\include\utilities;..\include\sprites_parser;..\include\terrain;$(IncludePath)</IncludePath>
-    <SourcePath>..\src;..\src\utilities;..\src\sprites_parser;..\src\terrain;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\sprites_parser;..\include\terrain;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\sprites_parser;..\src\terrain;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,12 +79,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\animations\Animation.cpp" />
+    <ClCompile Include="..\src\animations\AnimationFilm.cpp" />
+    <ClCompile Include="..\src\animations\AnimationFilmHolder.cpp" />
+    <ClCompile Include="..\src\animations\FlashAnimation.cpp" />
+    <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
+    <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
+    <ClCompile Include="..\src\animations\MovingPathAnimation.cpp" />
+    <ClCompile Include="..\src\animators\Animator.cpp" />
+    <ClCompile Include="..\src\animators\AnimatorHolder.cpp" />
+    <ClCompile Include="..\src\animators\FlashAnimator.cpp" />
+    <ClCompile Include="..\src\animators\FrameRangeAnimator.cpp" />
+    <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
+    <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
     <ClCompile Include="..\src\terrain\TileLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\animations\Animation.h" />
+    <ClInclude Include="..\include\animations\AnimationFilm.h" />
+    <ClInclude Include="..\include\animations\AnimationFilmHolder.h" />
+    <ClInclude Include="..\include\animations\FlashAnimation.h" />
+    <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />
+    <ClInclude Include="..\include\animations\MovingAnimation.h" />
+    <ClInclude Include="..\include\animations\MovingPathAnimation.h" />
+    <ClInclude Include="..\include\animators\Animator.h" />
+    <ClInclude Include="..\include\animators\AnimatorHolder.h" />
+    <ClInclude Include="..\include\animators\FlashAnimator.h" />
+    <ClInclude Include="..\include\animators\FrameRangeAnimator.h" />
+    <ClInclude Include="..\include\animators\MovingAnimator.h" />
+    <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
     <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\TileBitmap.h" />

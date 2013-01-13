@@ -43,6 +43,18 @@
     <Filter Include="Source Files\utilities">
       <UniqueIdentifier>{47ddbb51-0690-420b-a8ab-489ff133f9f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\animators">
+      <UniqueIdentifier>{210ec77f-5550-40b9-8f60-ea3ade612927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\animations">
+      <UniqueIdentifier>{1349816b-1e6b-4a6e-8def-f88563a1c412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animations">
+      <UniqueIdentifier>{90a8faee-ee13-4920-9b40-53e9acffc7da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\animators">
+      <UniqueIdentifier>{1a1c8d36-bc14-403e-9feb-d73b3f5e8182}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp">
@@ -56,6 +68,45 @@
     </ClCompile>
     <ClCompile Include="..\src\BubbleMain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\Animation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\AnimationFilm.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\AnimationFilmHolder.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\FlashAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\MovingAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\MovingPathAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\Animator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\AnimatorHolder.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\FlashAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\FrameRangeAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\MovingAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\MovingPathAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +127,45 @@
     </ClInclude>
     <ClInclude Include="..\include\terrain\TileLayer.h">
       <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\Animation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\AnimationFilm.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\AnimationFilmHolder.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\FlashAnimation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\FrameRangeAnimation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\MovingAnimation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\MovingPathAnimation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\Animator.h">
+      <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\AnimatorHolder.h">
+      <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\FlashAnimator.h">
+      <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\FrameRangeAnimator.h">
+      <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\MovingAnimator.h">
+      <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\MovingPathAnimator.h">
+      <Filter>Header Files\animators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
