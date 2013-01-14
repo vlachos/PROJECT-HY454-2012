@@ -22,7 +22,6 @@ SpriteParser::SpriteParser(void){
 	std::ifstream theFile (xmlFilePath);
 	buffer = std::vector<char>((std::istreambuf_iterator<char>(theFile)), std::istreambuf_iterator<char>());
 	buffer.push_back('\0');
-
 	//parse
 	doc.parse<0>( &buffer[0] );
 	rootNode = doc.first_node("sprites");

@@ -82,6 +82,7 @@
     <ClCompile Include="..\src\animations\Animation.cpp" />
     <ClCompile Include="..\src\animations\AnimationFilm.cpp" />
     <ClCompile Include="..\src\animations\AnimationFilmHolder.cpp" />
+    <ClCompile Include="..\src\animations\BitmapLoader.cpp" />
     <ClCompile Include="..\src\animations\FlashAnimation.cpp" />
     <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
@@ -93,6 +94,7 @@
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
+    <ClCompile Include="..\src\Sprite.cpp" />
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
     <ClCompile Include="..\src\terrain\TileLayer.cpp" />
@@ -101,6 +103,7 @@
     <ClInclude Include="..\include\animations\Animation.h" />
     <ClInclude Include="..\include\animations\AnimationFilm.h" />
     <ClInclude Include="..\include\animations\AnimationFilmHolder.h" />
+    <ClInclude Include="..\include\animations\BitmapLoader.h" />
     <ClInclude Include="..\include\animations\FlashAnimation.h" />
     <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />
     <ClInclude Include="..\include\animations\MovingAnimation.h" />
@@ -111,12 +114,14 @@
     <ClInclude Include="..\include\animators\FrameRangeAnimator.h" />
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
+    <ClInclude Include="..\include\Sprite.h" />
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
     <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\TileBitmap.h" />
     <ClInclude Include="..\include\terrain\TileLayer.h" />
     <ClInclude Include="..\include\utilities\MemoryManage.h" />
     <ClInclude Include="..\include\utilities\Metrics.h" />
+    <ClInclude Include="..\include\utilities\utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\bitmaps\sprites\data.xml" />

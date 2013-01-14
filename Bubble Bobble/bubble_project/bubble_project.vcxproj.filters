@@ -108,6 +108,12 @@
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp">
       <Filter>Source Files\animators</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\BitmapLoader.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
@@ -166,6 +172,15 @@
     </ClInclude>
     <ClInclude Include="..\include\animators\MovingPathAnimator.h">
       <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\utilities\utilities.h">
+      <Filter>Header Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\BitmapLoader.h">
+      <Filter>Header Files\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

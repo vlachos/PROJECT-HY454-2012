@@ -1,6 +1,10 @@
-#include <allegro5\allegro.h>
+#ifndef FLASHANIMATOR_H
+#define FLASHANIMATOR_H
+
 #include "Animator.h"
 
 class FlashAnimator : public Animator{
 
 };
+
+#endif
