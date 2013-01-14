@@ -13,5 +13,3 @@ enum -> ThisIsAnExample
 namespaces -> ThisIsAnExample
 
 folders: this_is_an_example
-
-**constructor and deconstructor on top of class
