@@ -17,6 +17,12 @@ struct PathEntry {
 
 class MovingPathAnimation : public Animation{
 	std::list<PathEntry> path;
+
+public:
+	MovingPathAnimation (const std::list<PathEntry>& _path, animid_t id);
+	const std::list<PathEntry>& GetPath (void) const;
+    void SetPath (const std::list<PathEntry>& p);
+    Animation* Clone (animid_t newId) const;
 };
 
 #endif

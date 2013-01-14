@@ -2,6 +2,7 @@
 #define	METRICS_H
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include "MemoryManage.h"
 
