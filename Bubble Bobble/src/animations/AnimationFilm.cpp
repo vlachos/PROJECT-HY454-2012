@@ -1,5 +1,6 @@
 #include "AnimationFilm.h"
 #include <assert.h>
+#include <allegro5\allegro.h>
 
 
 AnimationFilm :: AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, const std::string& _id)
@@ -39,5 +40,5 @@ void AnimationFilm :: DisplayFrame (Bitmap dest, const Point& at, byte frameNo) 
 	assert(&at);
 	assert(frameNo);
 
-	
+	// Here is masked blit
 }

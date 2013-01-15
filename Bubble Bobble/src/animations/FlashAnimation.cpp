@@ -9,7 +9,7 @@ FlashAnimation :: FlashAnimation (frame_t n, delay_t show, delay_t hide,animid_t
 		assert(id);
 }
 
-void FlashAnimation :: SetRepetitions (frame_t n) {
+void FlashAnimation :: SetRepetitions (frame_t n){
 	assert(n);
 	repetitions = n; 
 }
@@ -19,7 +19,7 @@ frame_t FlashAnimation :: GetRepetitions (void) const{
 	return repetitions; 
 }
     
-void FlashAnimation :: SetHideDeay (delay_t d) {
+void FlashAnimation :: SetHideDeay (delay_t d){
 	assert(d);
 	hideDelay = d; 
 }
@@ -39,7 +39,7 @@ delay_t FlashAnimation :: GetShowDeay (void) const{
 	return showDelay; 
 }
 	
-Animation* FlashAnimation :: Clone (animid_t newId) const {
+Animation* FlashAnimation :: Clone (animid_t newId) const{
 	assert(newId);
 	assert(newId>=0);
 	return new FlashAnimation(repetitions, hideDelay, showDelay, newId); 
