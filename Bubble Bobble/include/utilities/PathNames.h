@@ -4,35 +4,20 @@
 #include <string>
 
 #define BUBBLE_PATH ".."
-	#define DATA_FOLDER "data"
-		#define SOUNDTRACK_FOLDER "soundtrack"
+#define DATA_FOLDER "data"
 
-		#define BITMAPS_FOLDER "bitmaps"
-			#define SPRITES_FOLDER "sprites"
-			#define TERRAIN_FOLDER "terrain"
+#define SOUNDTRACK_FOLDER "soundtrack"
 
-std::string AppendToPath(std::string aPath, std::string aFile){
-	return aPath.append("\\").append(aFile);
-}
+#define BITMAPS_FOLDER "bitmaps"
+#define SPRITES_FOLDER "sprites"
+#define TERRAIN_FOLDER "terrain"
 
-std::string GetDataPath(){
-	return AppendToPath(BUBBLE_PATH, DATA_FOLDER);
-}
+std::string AppendToPath(std::string aPath, std::string aFile);
 
-std::string GetSoundtrackDataPath(){
-	return AppendToPath(GetDataPath(), SOUNDTRACK_FOLDER);
-}
-
-std::string GetBitmapDataPath(){
-	return AppendToPath(GetDataPath(), BITMAPS_FOLDER);
-}
-
-std::string GetTerrainBitmapDataPath(){
-	return AppendToPath(GetBitmapDataPath(), TERRAIN_FOLDER);
-}
-
-std::string GetSpritesBitmapDataPath(){
-	return AppendToPath(GetBitmapDataPath(), SPRITES_FOLDER);
-}
+std::string GetDataPath();
+std::string GetSoundtrackDataPath();
+std::string GetBitmapDataPath();
+std::string GetTerrainBitmapDataPath();
+std::string GetSpritesBitmapDataPath();
 
 #endif

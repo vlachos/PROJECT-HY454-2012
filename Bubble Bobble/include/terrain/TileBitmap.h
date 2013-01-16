@@ -3,7 +3,7 @@
 
 #include <TerrainUtilities.h>
 #include <Metrics.h>
-//#include <PathNames.h>
+#include <PathNames.h>
 #include <allegro5\allegro.h>
 
 #define MAX_WIDTH 11

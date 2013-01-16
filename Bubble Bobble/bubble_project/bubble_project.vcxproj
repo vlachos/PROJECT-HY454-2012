@@ -99,6 +99,7 @@
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
     <ClCompile Include="..\src\terrain\TileLayer.cpp" />
+    <ClCompile Include="..\src\utilities\PathNames.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\animations\Animation.h" />
