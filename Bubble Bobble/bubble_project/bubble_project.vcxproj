@@ -96,6 +96,7 @@
     <ClCompile Include="..\src\BubbleMain.cpp" />
     <ClCompile Include="..\src\Sprite.cpp" />
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
+    <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
     <ClCompile Include="..\src\terrain\TileLayer.cpp" />
   </ItemGroup>
@@ -117,10 +118,12 @@
     <ClInclude Include="..\include\Sprite.h" />
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
     <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
+    <ClInclude Include="..\include\terrain\TerrainUtilities.h" />
     <ClInclude Include="..\include\terrain\TileBitmap.h" />
     <ClInclude Include="..\include\terrain\TileLayer.h" />
     <ClInclude Include="..\include\utilities\MemoryManage.h" />
     <ClInclude Include="..\include\utilities\Metrics.h" />
+    <ClInclude Include="..\include\utilities\PathNames.h" />
     <ClInclude Include="..\include\utilities\utilities.h" />
   </ItemGroup>
   <ItemGroup>

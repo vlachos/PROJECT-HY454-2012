@@ -1,15 +1,14 @@
-#ifndef	SPRITESPARSER_H
-#define	SPRITESPARSER_H
+#ifndef	TILEBITMAP_H
+#define	TILEBITMAP_H
 
-#include <string>
+#include <TerrainUtilities.h>
+#include <Metrics.h>
+//#include <PathNames.h>
 #include <allegro5\allegro.h>
 
-#define MAX_WIDTH 6
-#define MAX_HEIGHT 2
+#define MAX_WIDTH 11
+#define MAX_HEIGHT 1
 
-typedef ALLEGRO_BITMAP* Bitmap;
-typedef unsigned char Index;
-typedef unsigned int Dim;
 
 class TileBitmap {
 
@@ -18,9 +17,9 @@ class TileBitmap {
 
 	private:
 		Bitmap tiles;
-		bool TileTransparency[MAX_WIDTH * MAX_HEIGHT / 32 + 1];
+		bool tileTransparency[MAX_WIDTH * MAX_HEIGHT / 32 + 1];
 	
-
+	private:
 		bool IsTileTransparent (Dim row, Dim col) const;
 		bool LoadTransparencyInfo (const std::string& path);
 		void ProduceTransparencyInfo (void);
@@ -28,7 +27,7 @@ class TileBitmap {
 		bool LoadTiles (const std::string& path);
 
 	public:
-		void PutTile (Bitmap bubble_bitmap, Dim x, Dim y, Index tile) const;
+		void PutTile (Bitmap BubbleBitmap, Dim x, Dim y, Index tile) const;
 		Index GetPointedTile (Dim x, Dim y) const;
 };
 
