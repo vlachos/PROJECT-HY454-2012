@@ -37,7 +37,8 @@ const Rect AnimationFilm :: GetFrameBox (byte frameNo) const {
     
 void AnimationFilm :: DisplayFrame (Bitmap dest, const Point& at, byte frameNo) const{
 	assert(dest);
-	assert(&at);
+	assert(at.GetX());
+	assert(at.GetY());
 	assert(frameNo);
 
 	// Here is masked blit

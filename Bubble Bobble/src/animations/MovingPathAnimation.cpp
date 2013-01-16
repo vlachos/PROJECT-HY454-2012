@@ -3,19 +3,19 @@
 
 MovingPathAnimation :: MovingPathAnimation (const std::list<PathEntry>& _path, animid_t id)
 	:path(_path), Animation(id){
-		assert(&_path);
+		assert(!_path.empty());
 		assert(id);
 
 }
 	
 const std::list<PathEntry>& MovingPathAnimation :: GetPath (void) const{
-	assert(&path);
+	assert(!path.empty());
 	return path; 
 }
 
 void MovingPathAnimation :: SetPath (const std::list<PathEntry>& p){
-	assert(&p);
-	assert(&path);
+	assert(!p.empty());
+	assert(!path.empty());
 	path.clear(); 
 	path = p; 
 }
