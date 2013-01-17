@@ -108,17 +108,17 @@
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp">
       <Filter>Source Files\animators</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\animations\BitmapLoader.cpp">
-      <Filter>Source Files\animations</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\src\utilities\PathNames.cpp">
       <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\Sprite.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\BitmapLoader.cpp">
+      <Filter>Source Files\animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,20 +179,20 @@
     <ClInclude Include="..\include\animators\MovingPathAnimator.h">
       <Filter>Header Files\animators</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\utilities\utilities.h">
       <Filter>Header Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\animations\BitmapLoader.h">
-      <Filter>Header Files\animations</Filter>
     </ClInclude>
     <ClInclude Include="..\include\utilities\PathNames.h">
       <Filter>Header Files\utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\include\terrain\TerrainUtilities.h">
       <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\Sprite.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\BitmapLoader.h">
+      <Filter>Header Files\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

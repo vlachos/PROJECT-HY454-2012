@@ -87,6 +87,7 @@
     <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingPathAnimation.cpp" />
+    <ClCompile Include="..\src\animations\Sprite.cpp" />
     <ClCompile Include="..\src\animators\Animator.cpp" />
     <ClCompile Include="..\src\animators\AnimatorHolder.cpp" />
     <ClCompile Include="..\src\animators\FlashAnimator.cpp" />
@@ -94,7 +95,6 @@
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
-    <ClCompile Include="..\src\Sprite.cpp" />
     <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
@@ -110,13 +110,13 @@
     <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />
     <ClInclude Include="..\include\animations\MovingAnimation.h" />
     <ClInclude Include="..\include\animations\MovingPathAnimation.h" />
+    <ClInclude Include="..\include\animations\Sprite.h" />
     <ClInclude Include="..\include\animators\Animator.h" />
     <ClInclude Include="..\include\animators\AnimatorHolder.h" />
     <ClInclude Include="..\include\animators\FlashAnimator.h" />
     <ClInclude Include="..\include\animators\FrameRangeAnimator.h" />
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
-    <ClInclude Include="..\include\Sprite.h" />
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
     <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\TerrainUtilities.h" />
