@@ -20,7 +20,6 @@ class BitmapLoader{
 		
 		static Bitmap GetBitmap(const std::string & path);
 		static Bitmap LoadBitmap(const std::string & path);
-		static void DestroyBitmap(Bitmap bitmap);
 
 		BitmapLoader(void) {}
 		~BitmapLoader(void);

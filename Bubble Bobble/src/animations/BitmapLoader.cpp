@@ -43,9 +43,3 @@ Bitmap BitmapLoader::LoadBitmap(const std::string & path){
 	DASSERT( b );
 	return b;
 }
-
-void BitmapLoader::DestroyBitmap(Bitmap bitmap){
-	DASSERT( bitmap );
-	al_destroy_bitmap(bitmap);
-}
-

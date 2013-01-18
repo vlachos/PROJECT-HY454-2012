@@ -6,6 +6,7 @@
 #include <string>
 #include "MemoryManage.h"
 
+typedef unsigned char byte;
 typedef unsigned int Dim;
 
 template <typename T>
