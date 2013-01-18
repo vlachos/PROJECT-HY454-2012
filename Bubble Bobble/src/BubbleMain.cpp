@@ -18,7 +18,6 @@ const char* TILE_BITMAP_16 = "tile_bitmap_16x16.png";// <-----  32x32
 unsigned char **terrain;
 unsigned int terrain_x, terrain_y;
 
-
 unsigned char get_terrain_tile(int row, int col){
 	return terrain[row][col];
 }
