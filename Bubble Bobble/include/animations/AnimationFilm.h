@@ -14,6 +14,7 @@ class AnimationFilm{
     std::string	id;
 
 public:
+	AnimationFilm();
 	AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, const std::string& _id);
     byte GetTotalFrames (void) 	const;
     Bitmap GetBitmap (void) const;

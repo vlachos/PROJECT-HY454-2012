@@ -34,7 +34,9 @@ class SpriteParser{
 		static void				SingletonDestroy (void) { delete singletonPtr; singletonPtr = 0; }
 		
 		static std::vector<Rect> GetSprite(const char * id);
-		static char * GetBitmapName(void);
+		static char * GetBitmapName(const char * id);
+		static char * GetNext(void);
+		static int GetTotalSprites();
 
 	private:
 		static SpriteParser*	singletonPtr;

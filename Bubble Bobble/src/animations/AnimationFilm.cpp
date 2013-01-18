@@ -1,45 +1,47 @@
 #include "AnimationFilm.h"
-#include <assert.h>
+#include "MemoryManage.h"
 #include <allegro5\allegro.h>
 
+AnimationFilm :: AnimationFilm()
+	:bitmap(0),boxes(0),id(0){}
 
 AnimationFilm :: AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, const std::string& _id)
 	: bitmap(_bitmap), boxes(_boxes), id(_id){
 
-		assert(_bitmap);
-		assert(!(_boxes.empty()));
-		assert((!_id.empty()));
+		DASSERT(_bitmap);
+		DASSERT(!(_boxes.empty()));
+		DASSERT((!_id.empty()));
 }
     
 byte AnimationFilm :: GetTotalFrames (void) const{
-	assert(!(boxes.empty()));
+	DASSERT(!(boxes.empty()));
 
 	return boxes.size(); 
 }
     
 Bitmap AnimationFilm :: GetBitmap (void) const {
-	assert(bitmap);
+	DASSERT(bitmap);
 
 	return bitmap; 
 }
     
 const std::string AnimationFilm :: GetId (void) const {
-	assert(!(id.empty()));
+	DASSERT(!(id.empty()));
 
 	return id; 
 }
     
 const Rect AnimationFilm :: GetFrameBox (byte frameNo) const { 
-	assert(boxes.size()>frameNo); 
+	DASSERT(boxes.size()>frameNo); 
 
 	return boxes[frameNo]; 
 }
     
 void AnimationFilm :: DisplayFrame (Bitmap dest, const Point& at, byte frameNo) const{
-	assert(dest);
-	assert(at.GetX());
-	assert(at.GetY());
-	assert(frameNo);
+	DASSERT(dest);
+	DASSERT(at.GetX());
+	DASSERT(at.GetY());
+	DASSERT(frameNo);
 
 	// Here is masked blit
 }

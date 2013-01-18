@@ -47,9 +47,9 @@ SpriteParser::SpriteParser(void){
 		DASSERT(false);
 }
 
-/**
-*	root_node is not needed to delete because it is just pointing to the buffer.
-*/
+
+//	root_node is not needed to delete because it is just pointing to the buffer.
+
 
 SpriteParser::~SpriteParser(void){
 	spritesSize = -1;
@@ -57,7 +57,7 @@ SpriteParser::~SpriteParser(void){
 	buffer.clear();
 }
 
-char * SpriteParser::GetBitmapName(void){
+char * SpriteParser::GetBitmapName(const char * id){
 	DASSERT(bitmapName);
 	return bitmapName;
 }
@@ -103,4 +103,16 @@ std::vector<Rect> SpriteParser::GetSprite(const char * id){
 	}
 
 	return rects;
+}
+
+char* SpriteParser :: GetNext(void){
+	char* next;
+
+	return next;
+}
+
+int SpriteParser :: GetTotalSprites(){
+	int totalSprites=0;
+
+	return totalSprites;
 }

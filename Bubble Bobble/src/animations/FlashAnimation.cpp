@@ -1,46 +1,46 @@
 #include "FlashAnimation.h"
-#include <assert.h>
+#include "MemoryManage.h"
 
 FlashAnimation :: FlashAnimation (frame_t n, delay_t show, delay_t hide,animid_t id ) 
 	:repetitions(n), hideDelay(hide), showDelay(show), Animation(id){
-		assert(n);
-		assert(show);
-		assert(hide);
-		assert(id);
+		DASSERT(n);
+		DASSERT(show);
+		DASSERT(hide);
+		DASSERT(id);
 }
 
 void FlashAnimation :: SetRepetitions (frame_t n){
-	assert(n);
+	DASSERT(n);
 	repetitions = n; 
 }
 
 frame_t FlashAnimation :: GetRepetitions (void) const{
-	assert(repetitions);
+	DASSERT(repetitions);
 	return repetitions; 
 }
     
 void FlashAnimation :: SetHideDeay (delay_t d){
-	assert(d);
+	DASSERT(d);
 	hideDelay = d; 
 }
     
 delay_t FlashAnimation :: GetHideDeay (void) const{
-	assert(hideDelay);
+	DASSERT(hideDelay);
 	return hideDelay; 
 }
     
 void FlashAnimation :: SetShowDeay (delay_t d){
-	assert(d);
+	DASSERT(d);
 	showDelay = d; 
 }
     
 delay_t FlashAnimation :: GetShowDeay (void) const{
-	assert(showDelay);
+	DASSERT(showDelay);
 	return showDelay; 
 }
 	
 Animation* FlashAnimation :: Clone (animid_t newId) const{
-	assert(newId);
-	assert(newId>=0);
+	DASSERT(newId);
+	DASSERT(newId>=0);
 	return new FlashAnimation(repetitions, hideDelay, showDelay, newId); 
 }
