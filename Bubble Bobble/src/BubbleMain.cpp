@@ -54,7 +54,7 @@ void Draw_Terrain(std::string bitmapPath){
 	ALLEGRO_BITMAP *tile_bitmap = 0;
 	ALLEGRO_BITMAP *a_stage = 0;
 	ALLEGRO_EVENT_QUEUE *event_queue = 0;
-	unsigned int source_x = 0, source_y = 0;
+	unsigned int source_x = 0, source_y = 10*16; // ->  0 - 10
 	boolean tile_is_empty = false;
 
 	/*init*/

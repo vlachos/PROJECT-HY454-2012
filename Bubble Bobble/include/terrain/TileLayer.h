@@ -17,6 +17,7 @@ class TileLayer {
 
 	public:
 		TileLayer();
+		~TileLayer();
 
 	private:
 		Index map[MAX_HEIGHT][MAX_WIDTH];

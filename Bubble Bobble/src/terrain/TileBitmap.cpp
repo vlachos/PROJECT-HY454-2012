@@ -5,6 +5,9 @@
 	TileBitmap::TileBitmap(){
 		tiles = 0;
 	}
+	TileBitmap::~TileBitmap(){
+		tiles = 0;
+	}
 
 	/*private*/
 	bool TileBitmap::IsTileTransparent (Dim row, Dim col) const{

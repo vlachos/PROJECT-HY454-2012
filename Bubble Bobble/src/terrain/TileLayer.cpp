@@ -4,6 +4,9 @@
 	TileLayer::TileLayer(){
 	}
 
+	TileLayer::~TileLayer(){
+	}
+
 	/*private*/
 	void TileLayer::SetTile (Dim col, Dim row, Index index){
 	}

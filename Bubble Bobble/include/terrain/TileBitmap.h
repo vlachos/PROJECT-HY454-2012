@@ -14,6 +14,7 @@ class TileBitmap {
 
 	public:
 		TileBitmap();
+		~TileBitmap();
 
 	private:
 		Bitmap tiles;
