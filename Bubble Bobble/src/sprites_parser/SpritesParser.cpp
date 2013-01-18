@@ -9,14 +9,19 @@
 
 #define ALIGN_SIZE(a) ( (a) << spritesSize )
 
-static char * xmlFilePath = "..\\data\\bitmaps\\sprites\\data.xml";
-SpriteParser * SpriteParser::singletonPtr = (SpriteParser*) 0;
+//static char * xmlFilePath = "..\\data\\bitmaps\\sprites\\data.xml";
+//SpriteParser * SpriteParser::singletonPtr = (SpriteParser*) 0;
+const char * SpriteParser::xmlFilePath;
+SpriteParser * SpriteParser::singletonPtr;
 rapidxml::xml_node<> * SpriteParser::rootNode = (rapidxml::xml_node<> *) 0;
 std::vector<char> SpriteParser::buffer;
 char * SpriteParser::bitmapName = ( char *) 0;
 int SpriteParser::spritesSize = -1;
+int SpriteParser::totalSprites = -1;
 
-SpriteParser::SpriteParser(void){
+SpriteParser::SpriteParser(const char * path){
+	
+	xmlFilePath=path;
 	rapidxml::xml_document<> doc;
 	//open path and read
 	std::ifstream theFile (xmlFilePath);
@@ -26,9 +31,17 @@ SpriteParser::SpriteParser(void){
 	doc.parse<0>( &buffer[0] );
 	rootNode = doc.first_node("sprites");
 	DASSERT( rootNode );
-	DNEWPTR( const char, s);
+
+	DNEWPTR( const char, s );
 	s = rootNode->first_attribute("format")->value();
 	DASSERT( s );
+
+	DNEWPTR( char,  _totalSprites );
+	_totalSprites = rootNode->first_attribute("totalSprites")->value();
+	DASSERT( _totalSprites );
+
+	totalSprites = atoi( _totalSprites );
+	DASSERT( totalSprites > 0 );
 
 	bitmapName = rootNode->first_attribute("bitmap")->value();
 	DASSERT(bitmapName);
@@ -105,14 +118,24 @@ std::vector<Rect> SpriteParser::GetSprite(const char * id){
 	return rects;
 }
 
-char* SpriteParser :: GetNext(void){
-	char* next;
-
-	return next;
-}
 
 int SpriteParser :: GetTotalSprites(){
 	int totalSprites=0;
 
 	return totalSprites;
+}
+
+rapidxml::xml_node<> * SpriteParser::SpriteParserIterator::iteratorSpriteNode = ( rapidxml::xml_node<> * )0;
+int SpriteParser::SpriteParserIterator::remainningSprites = -1;
+
+void SpriteParser::SpriteParserIterator::StartIterator() { 
+	iteratorSpriteNode = rootNode->first_node(); 
+	remainningSprites = totalSprites; 
+}
+bool SpriteParser::SpriteParserIterator::HasNext(void) { return remainningSprites!=0; }
+char * SpriteParser::SpriteParserIterator::GetNext(void) { 
+	char * name = iteratorSpriteNode->name();   
+	iteratorSpriteNode = iteratorSpriteNode->next_sibling(); 
+	--remainningSprites;
+	return name;
 }

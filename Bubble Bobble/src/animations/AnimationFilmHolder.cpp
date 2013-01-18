@@ -6,8 +6,8 @@
 
 AnimationFilmHolder :: AnimationFilmHolder (const char* path){
 	DASSERT(path);
-
-	SpriteParser::SingletonCreate();//orisma to path
+	/*
+	SpriteParser::SingletonCreate( path );
 	BitmapLoader::SingletonCreate();
 	Bitmap bitmap;
 	char* id;
@@ -23,7 +23,7 @@ AnimationFilmHolder :: AnimationFilmHolder (const char* path){
 		filmMap[id] = film;
 	}
 	DASSERT( i==SpritesNum );
-
+	*/
 } // Decoder constructor.
     
 AnimationFilmHolder :: ~AnimationFilmHolder(){ 
