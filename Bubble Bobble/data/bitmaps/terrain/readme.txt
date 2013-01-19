@@ -1,8 +1,7 @@
-- TRANSPARENCY
-
-1)All shadows are transparent
-2)all parts of big brick are not transparent
-3)small brick is only transparent from bottom
+- solidity
+1)All shadows are not solid
+2)all parts of big brick are solid
+3)small brick can get passed from bottom even if they are solid
 
 
 - REGARDING TEXTS

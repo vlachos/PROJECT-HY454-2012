@@ -5,13 +5,15 @@
 #include <Metrics.h>
 #include <allegro5\allegro.h>
 
-#define MAX_WIDTH 32
-#define MAX_HEIGHT 26
-
 typedef std::pair<Dim, Dim> Coordinates;
 
 enum HorizScroll { Left = -1, HorizIntact = 0, Right = +1 };
 enum VertScroll  { Up = -1, VertIntact = 0, Down = +1 };
+
+#define MAX_WIDTH 32
+#define MAX_HEIGHT 26
+#define VIEW_WINDOW_WIDTH 512
+#define VIEW_WINDOW_HEIGHT 416
 
 class TileLayer {
 
@@ -21,23 +23,27 @@ class TileLayer {
 
 	private:
 		Index map[MAX_HEIGHT][MAX_WIDTH];
+		Bitmap layer;
+		Rect viewWindow;
 
 	public:
-		void SetTile (Dim col, Dim row, Index index);
+		bool ReadMap (std::string aPath);
+		bool ReadStage (std::string aPath);
+		void WriteMap (std::string aPath);
+
+		void Display (Display_t at, const Rect& displayArea);
+
+		void SetTile (Dim col, Dim row, Index indx);
 		Index GetTile (Dim col, Dim row);
 		const Coordinates GetTileCoordinates (Dim mx, Dim my) const;
+
+		void Scroll (HorizScroll h, VertScroll v);
 
 		void SetViewWindow (const Rect&);
 		const Rect	GetViewWindow (void) const;
 
-		void Display (Bitmap at, const Rect& displayArea);
-
-		void Scroll (HorizScroll h, VertScroll v);
 		bool CanScroll (HorizScroll h) const;
 		bool CanScroll (VertScroll v) const;
-
-		void WriteMap (FILE* fp);
-		bool ReadMap (FILE* fp);
 };
 
 #endif

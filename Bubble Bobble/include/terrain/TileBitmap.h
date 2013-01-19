@@ -6,9 +6,8 @@
 #include <PathNames.h>
 #include <allegro5\allegro.h>
 
-#define MAX_WIDTH 11
-#define MAX_HEIGHT 1
-
+#define MAX_WIDTH 256
+#define MAX_HEIGHT 256
 
 class TileBitmap {
 
@@ -18,18 +17,20 @@ class TileBitmap {
 
 	private:
 		Bitmap tiles;
-		bool tileTransparency[MAX_WIDTH * MAX_HEIGHT / 32 + 1];
+		bool tileTransparency[MAX_WIDTH * MAX_HEIGHT / TILE_SIZE + 1];
 	
 	private:
-		bool IsTileTransparent (Dim row, Dim col) const;
-		bool LoadTransparencyInfo (const std::string& path);
-		void ProduceTransparencyInfo (void);
-		bool WriteTransparencyInfo (const std::string& path);
-		bool LoadTiles (const std::string& path);
-
+		bool LoadTiles (const std::string& aPath);
 	public:
-		void PutTile (Bitmap BubbleBitmap, Dim x, Dim y, Index tile) const;
+		void SetTargetBitmapAndClear(Bitmap aTargetBitmap, unsigned int R, unsigned int B, unsigned int G);
+		void PutTile (Bitmap aBitmap, Dim sourceX, Dim sourceY, Index tileIndx) const;
 		Index GetPointedTile (Dim x, Dim y) const;
+
+	private:
+		bool IsTileTransparent (Dim row, Dim col) const;
+		bool LoadTransparencyInfo (const std::string& aPath);
+		void ProduceTransparencyInfo (void);
+		bool WriteTransparencyInfo (const std::string& aPath);
 };
 
 #endif
