@@ -25,15 +25,4 @@ Dim GetRow (Index indx);
 Dim TileX (Index indx);
 Dim TileY (Index indx);
 
-/*index points to pixels*/
-typedef unsigned short int Index2; // [MSB X][LSB Y]
-
-#define	TILEX_MASK	0xFF00
-#define	TILEX_SHIFT	8
-#define	TILEY_MASK	0x00FF
-
-Index MakeIndex2 (byte row, byte col);
-Dim TileX2 (Index2 index);
-Dim TileY2 (Index2 index);
-
 #endif

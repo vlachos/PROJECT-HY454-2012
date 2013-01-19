@@ -10,8 +10,8 @@ typedef std::pair<Dim, Dim> Coordinates;
 enum HorizScroll { Left = -1, HorizIntact = 0, Right = +1 };
 enum VertScroll  { Up = -1, VertIntact = 0, Down = +1 };
 
-#define MAX_WIDTH 32
-#define MAX_HEIGHT 26
+#define TILE_LAYER_WIDTH 32
+#define TILE_LAYER_HEIGHT 26
 #define VIEW_WINDOW_WIDTH 512
 #define VIEW_WINDOW_HEIGHT 416
 
@@ -22,7 +22,7 @@ class TileLayer {
 		~TileLayer();
 
 	private:
-		Index map[MAX_HEIGHT][MAX_WIDTH];
+		Index map[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
 		Bitmap layer;
 		Rect viewWindow;
 
@@ -37,11 +37,10 @@ class TileLayer {
 		Index GetTile (Dim col, Dim row);
 		const Coordinates GetTileCoordinates (Dim mx, Dim my) const;
 
-		void Scroll (HorizScroll h, VertScroll v);
-
 		void SetViewWindow (const Rect&);
 		const Rect	GetViewWindow (void) const;
 
+		void Scroll (HorizScroll h, VertScroll v);
 		bool CanScroll (HorizScroll h) const;
 		bool CanScroll (VertScroll v) const;
 };

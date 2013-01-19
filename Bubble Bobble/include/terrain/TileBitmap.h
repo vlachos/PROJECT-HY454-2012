@@ -6,8 +6,8 @@
 #include <PathNames.h>
 #include <allegro5\allegro.h>
 
-#define MAX_WIDTH 256
-#define MAX_HEIGHT 256
+#define TILE_BITMAP_WIDTH 16
+#define TILE_BITMAP_HEIGHT 16
 
 class TileBitmap {
 
@@ -17,7 +17,6 @@ class TileBitmap {
 
 	private:
 		Bitmap tiles;
-		bool tileTransparency[MAX_WIDTH * MAX_HEIGHT / TILE_SIZE + 1];
 	
 	private:
 		bool LoadTiles (const std::string& aPath);
