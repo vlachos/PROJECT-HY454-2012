@@ -1,10 +1,10 @@
 #ifndef	ANIMATIONFILM_H
 #define	ANIMATIONFILM_H
 
-#include <vector>
 #include "Metrics.h"
 #include "utilities.h"
 #include <string>
+#include <vector>
 
 
 
@@ -16,6 +16,7 @@ class AnimationFilm{
 public:
 	AnimationFilm();
 	AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, const std::string& _id);
+	~AnimationFilm();
     byte GetTotalFrames (void) 	const;
     Bitmap GetBitmap (void) const;
     const std::string 	GetId (void) const;

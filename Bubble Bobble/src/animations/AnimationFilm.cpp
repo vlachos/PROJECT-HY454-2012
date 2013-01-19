@@ -3,7 +3,7 @@
 #include <allegro5\allegro.h>
 
 AnimationFilm :: AnimationFilm()
-	:bitmap(0),boxes(0),id(0){}
+	:bitmap(0) {}
 
 AnimationFilm :: AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, const std::string& _id)
 	: bitmap(_bitmap), boxes(_boxes), id(_id){
@@ -11,6 +11,12 @@ AnimationFilm :: AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, 
 		DASSERT(_bitmap);
 		DASSERT(!(_boxes.empty()));
 		DASSERT((!_id.empty()));
+}
+
+AnimationFilm ::~AnimationFilm(){
+	boxes.clear();
+	unullify( bitmap ); // only bitmap loader can delte a bitmap 
+	id.clear();
 }
     
 byte AnimationFilm :: GetTotalFrames (void) const{

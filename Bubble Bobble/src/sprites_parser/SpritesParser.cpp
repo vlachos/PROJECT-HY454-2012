@@ -1,6 +1,5 @@
 #include "SpritesParser.h"
 
-#include <iostream>
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
@@ -15,7 +14,7 @@ const char * SpriteParser::xmlFilePath;
 SpriteParser * SpriteParser::singletonPtr;
 rapidxml::xml_node<> * SpriteParser::rootNode = (rapidxml::xml_node<> *) 0;
 std::vector<char> SpriteParser::buffer;
-char * SpriteParser::bitmapName = ( char *) 0;
+std::string SpriteParser::bitmapName("..\\data\\bitmaps\\sprites\\");
 int SpriteParser::spritesSize = -1;
 int SpriteParser::totalSprites = -1;
 
@@ -43,8 +42,10 @@ SpriteParser::SpriteParser(const char * path){
 	totalSprites = atoi( _totalSprites );
 	DASSERT( totalSprites > 0 );
 
-	bitmapName = rootNode->first_attribute("bitmap")->value();
-	DASSERT(bitmapName);
+	char * _bitmapName = rootNode->first_attribute("bitmap")->value();
+	DASSERT(_bitmapName);
+
+	bitmapName += std::string(_bitmapName);
 
 	using namespace SpriteParserSpecifications;
 
@@ -63,49 +64,50 @@ SpriteParser::SpriteParser(const char * path){
 
 //	root_node is not needed to delete because it is just pointing to the buffer.
 
-
 SpriteParser::~SpriteParser(void){
 	spritesSize = -1;
 	unullify( rootNode );
 	buffer.clear();
 }
 
-char * SpriteParser::GetBitmapName(const char * id){
-	DASSERT(bitmapName);
-	return bitmapName;
+std::string SpriteParser::GetBitmapName(const std::string & id){
+	return 	bitmapName;
 }
 
-std::vector<Rect> SpriteParser::GetSprite(const char * id){
+std::vector<Rect> SpriteParser::GetSprite(const std::string & id){
 	DNEWPTR(rapidxml::xml_node<>, spriteNode);
 	int totalFrames;
 
 	DASSERT(rootNode);
-	spriteNode = rootNode->first_node(id);
-
+	spriteNode = rootNode->first_node(id.c_str());
+	
 	std::vector<Rect> rects;
 
 	if(spriteNode){
 		DNEWPTR( char,  _totalFrames);
 		_totalFrames = spriteNode->first_attribute("frames")->value();
 		DASSERT( _totalFrames );
-
+		
 		totalFrames = atoi( _totalFrames );
 		DASSERT( totalFrames > 0 );
 
 		int index=0;
 		for ( rapidxml::xml_node<> * bbox = spriteNode->first_node("bbox"); bbox; bbox = bbox->next_sibling(), ++index ) {
 
-			DNEWPTR(rapidxml::xml_node<>, dx);
-			dx = bbox->first_node("dx");
+			DNEWPTR(rapidxml::xml_attribute<>, currBox);
+			currBox = bbox->first_attribute("box");
 
-			DNEWPTR(rapidxml::xml_node<>, dy);
-			dy = bbox->first_node("dy");
+			DNEWPTR(rapidxml::xml_attribute<>, dx);
+			dx = bbox->first_attribute("x");
+			
+			DNEWPTR(rapidxml::xml_attribute<>, dy);
+			dy = bbox->first_attribute("y");
 
-			DNEWPTR(rapidxml::xml_node<>, h);
-			h = bbox->first_node("h");
+			DNEWPTR(rapidxml::xml_attribute<>, h);
+			h = bbox->first_attribute("h");
 
-			DNEWPTR(rapidxml::xml_node<>, w);
-			w = bbox->first_node("w");
+			DNEWPTR(rapidxml::xml_attribute<>, w);
+			w = bbox->first_attribute("w");
 
 			DASSERT( dx && dx->value() && dy && dy->value() && h && h->value() && w && w->value() );
 			Rect rect( ALIGN_SIZE( StringToDim( dx->value() ) ), ALIGN_SIZE( StringToDim( dy->value()) ), 
@@ -120,8 +122,7 @@ std::vector<Rect> SpriteParser::GetSprite(const char * id){
 
 
 int SpriteParser :: GetTotalSprites(){
-	int totalSprites=0;
-
+	DASSERT( totalSprites>0 );
 	return totalSprites;
 }
 
@@ -129,13 +130,24 @@ rapidxml::xml_node<> * SpriteParser::SpriteParserIterator::iteratorSpriteNode = 
 int SpriteParser::SpriteParserIterator::remainningSprites = -1;
 
 void SpriteParser::SpriteParserIterator::StartIterator() { 
+	DASSERT(rootNode && rootNode->first_node() && totalSprites>0);
 	iteratorSpriteNode = rootNode->first_node(); 
 	remainningSprites = totalSprites; 
 }
-bool SpriteParser::SpriteParserIterator::HasNext(void) { return remainningSprites!=0; }
+
+bool SpriteParser::SpriteParserIterator::HasNext(void) { 
+	DASSERT( ( remainningSprites>1 && iteratorSpriteNode->next_sibling() ) ||
+			 ( remainningSprites==1 && !iteratorSpriteNode->next_sibling() ) ||
+			   remainningSprites==0 && !iteratorSpriteNode	);
+	return remainningSprites!=0; 
+}
+
 char * SpriteParser::SpriteParserIterator::GetNext(void) { 
-	char * name = iteratorSpriteNode->name();   
+	DASSERT( HasNext() );
+	char * name = iteratorSpriteNode->name();  
+	DASSERT( name );
 	iteratorSpriteNode = iteratorSpriteNode->next_sibling(); 
 	--remainningSprites;
+
 	return name;
 }

@@ -37,8 +37,8 @@ class SpriteParser{
 				{ delete singletonPtr; singletonPtr = 0; }
 		
 
-		static std::vector<Rect> GetSprite(const char * id);
-		static char * GetBitmapName(const char * id);
+		static std::vector<Rect> GetSprite(const std::string & id);
+		static std::string GetBitmapName(const std::string & id);
 		static int GetTotalSprites();
 
 	private:
@@ -46,7 +46,7 @@ class SpriteParser{
 		static rapidxml::xml_node<> * rootNode;
 		static std::vector<char> buffer;
 		static const char *xmlFilePath;
-		static char * bitmapName;
+		static std::string bitmapName;
 		static int spritesSize;
 		static int totalSprites;
 

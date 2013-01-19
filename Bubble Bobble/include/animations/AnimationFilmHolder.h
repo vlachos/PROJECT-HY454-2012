@@ -3,13 +3,14 @@
 
 #include "AnimationFilm.h"
 #include <string>
+#include <vector>
 #include <map>
 
 class AnimationFilmHolder{
 	typedef std::map<std::string, AnimationFilm*> FilmMap;
     
 	FilmMap	filmMap;
-    AnimationFilm*	filmMem; // Мыс єс films allocated as array
+    std::vector <AnimationFilm>	filmMem; // Мыс єс films allocated as array
     
 public:
 	AnimationFilmHolder (const char* path); // Decoder constructor.
