@@ -21,7 +21,7 @@
 				tilesSolidity[i][j] = EmptyOrShadow;
 			}
 		}
-		tiles->~TileBitmap();
+		delete tiles;
 		//DDELETE(viewWindow);
 	}
 

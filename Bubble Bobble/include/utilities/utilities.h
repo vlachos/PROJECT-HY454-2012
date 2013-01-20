@@ -7,6 +7,9 @@
 #define BB_BLACK al_map_rgb(0, 0 ,0)
 
 typedef ALLEGRO_BITMAP* Bitmap;
-typedef ALLEGRO_DISPLAY* Display_t;
+typedef ALLEGRO_DISPLAY* Display;
+typedef ALLEGRO_TIMER* Timer;
+typedef ALLEGRO_EVENT_QUEUE* EventQueue;
+typedef ALLEGRO_KEYBOARD_STATE KeyBoardState;
 
 #endif
