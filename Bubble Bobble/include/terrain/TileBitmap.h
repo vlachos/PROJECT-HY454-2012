@@ -5,6 +5,7 @@
 #include <Metrics.h>
 #include <PathNames.h>
 #include <allegro5\allegro.h>
+#include <allegro5\allegro_image.h>
 
 #define TILE_BITMAP_WIDTH 16
 #define TILE_BITMAP_HEIGHT 16
@@ -22,7 +23,7 @@ class TileBitmap {
 		bool LoadTiles (const std::string& aPath);
 	public:
 		void SetTargetBitmapAndClear(Bitmap aTargetBitmap, unsigned int R, unsigned int B, unsigned int G);
-		void PutTile (Bitmap aBitmap, Dim sourceX, Dim sourceY, Index tileIndx) const;
+		void PutTile (Bitmap aBitmap, Dim destX, Dim destY, Index tileIndx) const;
 		Index GetPointedTile (Dim x, Dim y) const;
 
 	private:

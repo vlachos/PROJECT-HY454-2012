@@ -2,8 +2,10 @@
 #define	TILELAYER_H
 
 #include <TerrainUtilities.h>
+#include <TileBitmap.h>
 #include <Metrics.h>
 #include <allegro5\allegro.h>
+#include <allegro5\allegro_image.h>
 
 typedef std::pair<Dim, Dim> Coordinates;
 
@@ -14,16 +16,20 @@ enum VertScroll  { Up = -1, VertIntact = 0, Down = +1 };
 #define TILE_LAYER_HEIGHT 26
 #define VIEW_WINDOW_WIDTH 512
 #define VIEW_WINDOW_HEIGHT 416
+#define VIEW_WINDOW_TILE_WIDTH 32
+#define VIEW_WINDOW_TILE_HEIGHT 26
 
-class TileLayer {
+class TileLayer{
 
 	public:
 		TileLayer();
+		TileLayer(TileBitmap* aTileBitmap);
 		~TileLayer();
 
 	private:
+		TileBitmap* tiles;
 		Index map[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
-		Bitmap layer;
+		bool tilesSolidity[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
 		Rect viewWindow;
 
 	public:
@@ -31,11 +37,12 @@ class TileLayer {
 		bool ReadStage (std::string aPath);
 		void WriteMap (std::string aPath);
 
-		void Display (Display_t at, const Rect& displayArea);
+		void Display (Bitmap at);
 
 		void SetTile (Dim col, Dim row, Index indx);
 		Index GetTile (Dim col, Dim row);
 		const Coordinates GetTileCoordinates (Dim mx, Dim my) const;
+		const bool isSolid(Dim x, Dim y) const;
 
 		void SetViewWindow (const Rect&);
 		const Rect	GetViewWindow (void) const;

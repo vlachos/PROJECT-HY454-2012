@@ -120,9 +120,6 @@
     <ClCompile Include="..\src\animations\BitmapLoader.cpp">
       <Filter>Source Files\animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\terrain\Terrain.cpp">
-      <Filter>Source Files\terrain</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
@@ -196,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="..\include\animations\BitmapLoader.h">
       <Filter>Header Files\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\terrain\Terrain.h">
-      <Filter>Header Files\terrain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

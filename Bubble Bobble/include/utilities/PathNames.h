@@ -17,16 +17,19 @@
 const std::string stagePrefix = "stage";
 const std::string stagePostfix = "_info.txt";
 
-std::string AppendToPath(std::string aPath, std::string aFile);
+namespace BubblePathnames{
 
-std::string GetDataPath();
-std::string GetSoundtrackDataPath();
-std::string GetBitmapDataPath();
-std::string GetSpritesBitmapDataPath();
-std::string GetTerrainBitmapDataPath();
-std::string GetTilesBitmap();
-std::string GetActionLayerInfo(unsigned int stageLevel);
-std::string GetStageInfo(unsigned int stageLevel);
+	extern std::string AppendToPath(std::string aPath, std::string aFile);
 
+	extern std::string GetDataPath();
+	extern std::string GetSoundtrackDataPath();
+	extern std::string GetBitmapDataPath();
+	extern std::string GetSpritesBitmapDataPath();
+	extern std::string GetTerrainBitmapDataPath();
+	extern std::string GetTilesBitmap();
+	extern std::string GetActionLayerInfo();
+	extern std::string GetStageInfo(unsigned int stageLevel);
+
+}
 
 #endif

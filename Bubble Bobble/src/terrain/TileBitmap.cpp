@@ -3,7 +3,7 @@
 
 	/*constructor and destructor*/
 	TileBitmap::TileBitmap(){
-		LoadTiles (GetTilesBitmap() );
+		LoadTiles (BubblePathnames::GetTilesBitmap() );
 		DASSERT(tiles );
 	}
 
@@ -15,7 +15,7 @@
 	bool TileBitmap::LoadTiles (const std::string& aPath ){
 		DASSERT(GetFileAttributesA(aPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 
-		if (tiles = al_load_bitmap((char*) aPath.c_str()) )
+		if (tiles = al_load_bitmap((char*)aPath.c_str()) )
 			return true;
 		else
 			return false;
@@ -29,15 +29,13 @@
 		al_clear_to_color(al_map_rgb(R, G, B));
 	}
 
-	void TileBitmap::PutTile (Bitmap aBitmap, Dim sourceX, Dim sourceY, Index tileIndx) const{
+	void TileBitmap::PutTile (Bitmap aBitmap, Dim destX, Dim destY, Index tileIndx) const{
 		DASSERT(aBitmap == al_get_target_bitmap() );
-		DASSERT(sourceX >= 0 && sourceX <= (TILE_BITMAP_WIDTH - TILE_SIZE) );
-		DASSERT(sourceY >= 0 && sourceY <= (TILE_BITMAP_HEIGHT - TILE_SIZE) );
 		DASSERT(tileIndx>=0 && tileIndx<256 );
 
-		if (tileIndx){
-			al_draw_bitmap_region(aBitmap, sourceX, sourceY, TILE_SIZE, TILE_SIZE,
-											TileX(tileIndx), TileY(tileIndx), NULL);
+		if (tileIndx != 0){
+			al_draw_bitmap_region(tiles, TileX(tileIndx), TileY(tileIndx), TILE_SIZE, TILE_SIZE,
+											destX, destY, NULL);
 		}
 	}
 
