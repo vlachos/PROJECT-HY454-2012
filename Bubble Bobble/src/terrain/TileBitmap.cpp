@@ -8,7 +8,7 @@
 	}
 
 	TileBitmap::~TileBitmap(){
-		DDELETE(tiles);
+		al_destroy_bitmap(tiles);
 	}
 
 	/*tiles Bitmap*/

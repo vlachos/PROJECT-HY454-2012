@@ -164,6 +164,6 @@ pip-log.txt
 
 
 
-#ingnore allegro folder
+#ignore allegro
 allegro5
-allegro.log/
+allegro.log
