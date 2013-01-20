@@ -3,10 +3,10 @@
 
 #include "utilities.h"
 #include "Animator.h"
-#include <list>
+#include <vector>
 
 class AnimatorHolder{
-	static std::list<Animator*> running, suspended;
+	static std::vector<Animator*> running, suspended;
 
 public:
 	static void Register (Animator* a);

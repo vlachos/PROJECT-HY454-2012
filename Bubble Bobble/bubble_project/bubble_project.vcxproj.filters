@@ -120,6 +120,9 @@
     <ClCompile Include="..\src\animations\BitmapLoader.cpp">
       <Filter>Source Files\animations</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animators\EventCallbacks.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
@@ -193,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="..\include\animations\BitmapLoader.h">
       <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\EventCallbacks.h">
+      <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Main.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

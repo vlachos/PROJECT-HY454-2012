@@ -12,11 +12,14 @@
 #include "AnimationFilm.h"
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
-#include <TileBitmap.h>
-#include <TileLayer.h>
+#include "EventCallbacks.h"
+#include "TileBitmap.h"
+#include "TileLayer.h"
+#include "Main.h"
 
 
 const float FPS = 60;
+unsigned int gameTime=0;
 
 unsigned int CurrTime (void){
     SYSTEMTIME st;
@@ -25,6 +28,10 @@ unsigned int CurrTime (void){
 	return st.wMilliseconds + st.wSecond*1000 + 
 			st.wMinute*60*1000 + st.wHour*3600*1000 + 
 			st.wDay*24*3600*1000;
+}
+
+unsigned int GetGameTime (void){
+	return gameTime;
 }
 
 
@@ -103,12 +110,14 @@ int Draw_Terrain(){
 
 	TileLayer* terrain = init_terrain();
 	AnimationFilmHolder afh("..\\data\\bitmaps\\sprites\\data.xml");
-	FrameRangeAnimation *fra=new FrameRangeAnimation(0,6,-2,0,100,false,1);
+	FrameRangeAnimation *fra=new FrameRangeAnimation(0,7,-2,0,100,false,1);
 	Sprite *sprite=new Sprite(400,50,false,afh.GetFilm("Bubopenmouth"), terrain);
-	FrameRangeAnimator *frtor=new FrameRangeAnimator();
- 
+	FrameRangeAnimator *frtor=new FrameRangeAnimator(); 
+
+	frtor->SetOnFinish( EventCallbacks::BubbleWalkStop, 0 );
    al_start_timer(timer);
-   unsigned int   gameTime = CurrTime();
+
+    gameTime = CurrTime();
 
 	frtor->Start(sprite,fra,gameTime);
 	AnimatorHolder::Register(frtor);
@@ -123,7 +132,6 @@ int Draw_Terrain(){
       if(ev.type == ALLEGRO_EVENT_TIMER) {
 
 		 unsigned int   nowTime = CurrTime();
-		  
 		 AnimatorHolder::Progress(nowTime);
 
 		 al_set_target_bitmap(palette);

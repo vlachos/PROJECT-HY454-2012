@@ -5,7 +5,7 @@ void Sprite::Display(Bitmap dest){
 		frameBox.GetWidth(), frameBox.GetHeigth(), x, y, 0);
 }
 
-static bool isSolidTerrain(const TileLayer * tileLayer, Dim _x, Dim _y){
+static bool isSolidTerrain(const TileLayer * tileLayer, Dim x, Dim y, Dim _x, Dim _y){
 	if(_y>0){
 		return tileLayer->isSolid(x+_x, y+_y, BBUp);
 	}else

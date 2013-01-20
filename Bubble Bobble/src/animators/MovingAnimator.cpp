@@ -22,6 +22,7 @@ void MovingAnimator :: Progress (timestamp_t currTime){
 		else
 			lastTime += anim->GetDelay();
 	}
+
 }
 
 void MovingAnimator :: Start (Sprite* s, MovingAnimation* a, timestamp_t t){

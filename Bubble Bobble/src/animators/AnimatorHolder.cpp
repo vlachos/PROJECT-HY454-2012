@@ -4,8 +4,8 @@
 #include "AnimatorHolder.h"
 #include "MemoryManage.h"
 
-std::list<Animator*> AnimatorHolder::running;
-std::list<Animator*> AnimatorHolder::suspended;
+std::vector<Animator*> AnimatorHolder::running;
+std::vector<Animator*> AnimatorHolder::suspended;
 
 void AnimatorHolder :: Register (Animator* a){
 	DASSERT(a);
@@ -17,34 +17,45 @@ void AnimatorHolder :: Cancel (Animator* a){
 	DASSERT(!suspended.empty());
 	DASSERT(a);
 
-	suspended.remove(a); 
+	std::vector<Animator*>::iterator it = std::find(suspended.begin(), suspended.end(), a);
+	DASSERT( it != suspended.end() ); 
+	suspended.erase(it); 
+
 }
 
 void AnimatorHolder :: MarkAsRunning (Animator* a){
 	DASSERT(!suspended.empty());
 	DASSERT(a);
 
-	suspended.remove(a); running.push_back(a); 
+	std::vector<Animator*>::iterator it = std::find(suspended.begin(), suspended.end(), a);
+	DASSERT( it != suspended.end() ); 
+	suspended.erase(it); 
+
+	running.push_back(a); 
 }
 
 void AnimatorHolder :: MarkAsSuspended (Animator* a){
 	DASSERT(!running.empty());
 	DASSERT(a);
 
-	running.remove(a); suspended.push_back(a); 
+	std::vector<Animator*>::iterator it = std::find(running.begin(), running.end(), a);
+	DASSERT( it != running.end() ); 
+	running.erase(it); 
+
+	suspended.push_back(a); 
 }
 
 void AnimatorHolder :: Progress (timestamp_t currTime){
 	DASSERT(currTime>=0);
 	DASSERT(!running.empty());
-
-	for (std::list<Animator*>::iterator it = running.begin(); it != running.end(); it++)
-		(*it)->Progress(currTime);
+	for (int i=0; i<running.size(); ++i)
+		running[i]->Progress(currTime);
 }
 
 
 void AnimatorHolder :: Display(Bitmap at){
-	for (std::list<Animator*>::iterator it = running.begin(); it != running.end(); it++){
-		(*it)->Display(at);
-	}
+
+	for (int i=0; i<running.size(); ++i)
+		running[i]->Display(at);
+	
 }

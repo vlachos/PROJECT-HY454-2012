@@ -1,6 +1,6 @@
 #include "Animator.h"
 #include <assert.h>
-
+#include <iostream>
 /*Protected*/
 void Animator::NotifyStopped (void){
 	if(onFinish)
