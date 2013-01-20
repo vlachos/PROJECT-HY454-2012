@@ -22,14 +22,12 @@ static bool isSolidTerrain(const TileLayer * tileLayer, Dim x, Dim y, Dim _x, Di
 }
 
 void Sprite::Move( Dim _x, Dim _y ){
-		x += _x;
-		y += _y;
-	/*
-	bool canMove = isSolidTerrain(tileLayer, x+_x, y+_y);
-	if(canMove){
-		x += _x;
-		y += _y;
+	bool canNotMove = isSolidTerrain(tileLayer, x, y, _x, _y);
 
+	if(!canNotMove){
+		x += _x;
+		y += _y;
+		
 		if(gravityAddicted){
 			bool overSolidTerrain = isSolidTerrain(tileLayer, x+(frameBox.GetWidth()/2), y-frameBox.GetHeigth());
 			if(overSolidTerrain){
@@ -43,7 +41,7 @@ void Sprite::Move( Dim _x, Dim _y ){
 			   NotifyStartFalling(); 
 			}
 		}
-	}*/
+	}
 }
 
 bool Sprite::CollisionCheck( Sprite * s ){
