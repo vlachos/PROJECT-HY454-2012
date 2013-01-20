@@ -1,6 +1,7 @@
 #ifndef ANIMATOR_H
 #define ANIMATOR_H
 
+#include "MemoryManage.h"
 #include "utilities.h"
 
 typedef unsigned long timestamp_t;
@@ -11,7 +12,7 @@ enum animatorstate_t {
 	ANIMATOR_STOPPED  = 2
 };
 
-class Animator{
+class Animator : public LatelyDestroyable{
 public:
 	typedef void (*FinishCallback)(Animator*,void*);
 

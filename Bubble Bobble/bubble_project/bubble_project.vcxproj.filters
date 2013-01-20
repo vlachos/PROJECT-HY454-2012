@@ -126,6 +126,9 @@
     <ClCompile Include="..\src\utilities\utilities.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\utilities\MemoryManage.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">

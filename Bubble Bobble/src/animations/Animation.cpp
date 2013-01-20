@@ -1,7 +1,6 @@
 #include "Animation.h"
-#include "MemoryManage.h"
 
-Animation :: Animation (animid_t _id) : id(_id) {
+Animation :: Animation (animid_t _id) : LatelyDestroyable(),  id(_id) {
 	DASSERT(_id>0);
 }
 
@@ -10,5 +9,7 @@ animid_t Animation :: GetId (void) {
 	return id; 
 }
 
+
 Animation :: ~Animation() {
+
 }

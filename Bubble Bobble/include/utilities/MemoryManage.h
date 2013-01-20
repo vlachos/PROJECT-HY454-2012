@@ -1,6 +1,7 @@
 #ifndef	MEMORYMANAGE_H
 #define	MEMORYMANAGE_H
 
+#include <list>
 #include <assert.h>
 
 //will add gui effect in future
@@ -42,5 +43,35 @@ template <class T> void udelete (T*& p)
 
 template <class T> void udeleteasarray (T*& p) 
 	{ DASSERT(p); DDELARR((T*) p); unullify(p); }
+
+//////////DestructionManager
+
+class LatelyDestroyable;
+class DestructionManager {
+	static std::list<LatelyDestroyable*> dead;
+public:
+	static void Register (LatelyDestroyable* o);
+	static void Commit (void);
+};
+class LatelyDestroyable {
+	friend class DestructionManager;
+	bool alive;
+	bool inDestruction;
+	
+	class Delete : public std::unary_function<LatelyDestroyable*, void>
+		{ public: void operator()(LatelyDestroyable* o) const; };
+	friend class Delete;
+public:
+	bool IsAlive (void) const { return alive; }
+	void Destroy (void) { 
+		if (alive) {
+			alive = false; 
+			DestructionManager::Register(this);
+		}
+	}
+	LatelyDestroyable (void) : alive(true), inDestruction(false){}
+	virtual ~LatelyDestroyable() { assert(inDestruction); }
+};
+
 
 #endif

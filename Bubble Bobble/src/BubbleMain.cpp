@@ -19,7 +19,9 @@ int BubbleMain::DrawTerrain(){
 
 			actionLayer->Display(palette);
 			AnimatorHolder::Display(palette);
- 
+			
+			DestructionManager::Commit();
+			
 			redraw = true;
 
 			SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));

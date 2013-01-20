@@ -15,4 +15,8 @@ typedef ALLEGRO_KEYBOARD_STATE KeyBoardState;
 extern unsigned int GetGameTime(void);
 extern unsigned int GetCurrTime (void);
 extern void SetGameTime(unsigned int time);
+
+
+
+
 #endif

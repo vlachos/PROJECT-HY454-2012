@@ -1,6 +1,8 @@
 #include "utilities.h"
 
 
+/////////////////////time handling
+
 static unsigned int nowTime=0;
 static unsigned int gameTime=0;
 
@@ -20,3 +22,5 @@ unsigned int GetCurrTime (void){
 void SetGameTime(unsigned int time){
 	gameTime=time;
 }
+
+

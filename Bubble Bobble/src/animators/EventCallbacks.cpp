@@ -21,8 +21,8 @@ void  EventCallbacks::BubbleWalkStop(Animator* animator, void* args){
 
 	animid_t id = danim->GetId();
 
-	delete danim;
-	delete anim;
+	danim->Destroy();
+	anim->Destroy();
 
 	MovingAnimation *ma = new MovingAnimation(0,0,100,true,id);
 	sprite->SetFrame(0);

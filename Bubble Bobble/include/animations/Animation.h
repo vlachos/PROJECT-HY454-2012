@@ -1,11 +1,14 @@
 #ifndef	ANIMATION_H
 #define	ANIMATION_H
 
+#include "MemoryManage.h"
+#include "utilities.h" 
+
 typedef signed char	offset_t;
 typedef unsigned short	delay_t;
 typedef unsigned short	animid_t;
 
-class Animation{
+class Animation : public LatelyDestroyable{
 	animid_t id;
 	
 public:
