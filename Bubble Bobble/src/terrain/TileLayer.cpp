@@ -18,7 +18,7 @@
 		for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 			for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){		
 				map[i][j] = 0;
-				tilesSolidity[i][j] = false;
+				tilesSolidity[i][j] = EmptyOrShadow;
 			}
 		}
 		tiles->~TileBitmap();
@@ -51,10 +51,13 @@
 					openfile >> nextIndex;
 					map[i][j] = nextIndex;
 					if (map[i][j] == 0 || map[i][j] > SOLID_THRESHOLD){
-						tilesSolidity[i][j] = false;
+						tilesSolidity[i][j] = EmptyOrShadow;
+					}
+					else if (map[i][j] == 1){
+						tilesSolidity[i][j] = SmallBrick;
 					}
 					else{
-						tilesSolidity[i][j] = true;
+						tilesSolidity[i][j] = BigBrick;
 					}
 					DASSERT( map[i][j] >= 0 && map[i][j] < TILES_BITMAP_SIZE*TILES_BITMAP_SIZE  );
 				}
@@ -72,7 +75,7 @@
 		if (openfile.is_open()){
 			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
-					openfile << (int)map[i][j];
+					openfile << (int)map[i][j] << "("<< (int)tilesSolidity[i][j] << ")";
 					openfile << "\t";
 				}
 				openfile << "\n";
@@ -89,7 +92,6 @@
 		DASSERT(viewWindow.GetY() >= 0 &&
 			    viewWindow.GetY() <= (TILE_LAYER_HEIGHT - viewWindow.GetHeigth()) );
 
-		Bitmap prevTargetBitmap = al_get_target_bitmap();
 		al_set_target_bitmap(at);
 		al_clear_to_color(al_map_rgb(0,0,0));
 
@@ -104,8 +106,6 @@
 				tiles->PutTile(at, XYCoordinates.first, XYCoordinates.second, GetTile(i, j) );
 			}
 		}
-
-		al_set_target_bitmap(prevTargetBitmap);
 	}
 
 	void TileLayer::SetTile (Dim row, Dim col, Index indx){
@@ -137,10 +137,27 @@
 		return std::make_pair(MUL_TILE_SIZE(row), MUL_TILE_SIZE(col) );
 	}
 
-	const bool TileLayer::isSolid(Dim x, Dim y) const{
-		Coordinates tileCoordinates = GetTileCoordinates(x,y);
+	const bool TileLayer::isSolid(Dim x, Dim y, BBmovement move) const{
 
-		return tilesSolidity[tileCoordinates.first][tileCoordinates.second];
+		DASSERT(move>=-1 && move <=2);
+
+		Coordinates tileCoordinates = GetTileCoordinates(x,y);
+		DASSERT(tilesSolidity[tileCoordinates.first][tileCoordinates.second] >= -1 &&
+				tilesSolidity[tileCoordinates.first][tileCoordinates.second]<=1);
+
+		switch (tilesSolidity[tileCoordinates.first][tileCoordinates.second]){
+			case EmptyOrShadow:
+				return false;
+			case SmallBrick:
+				if (move == BBUp)
+					return false;
+				else
+					return true;
+			case BigBrick:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 	/*view window*/

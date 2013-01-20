@@ -28,13 +28,25 @@ unsigned int CurrTime (void){
 }
 
 
-int Draw_Terrain(std::string bitmapPath){
+TileLayer* init_terrain(){
+	DNEWPTR(TileLayer, actionLayer);
+	DNEWPTR(TileBitmap, tilesBitmap);
+	tilesBitmap = DNEW(TileBitmap);
+	actionLayer = DNEWCLASS(TileLayer, (tilesBitmap) );
+	
+	actionLayer->ReadStage(BubblePathnames::GetStageInfo(1));
+	actionLayer->WriteMap(BubblePathnames::GetTestActionLayerInfo() );
+
+	return actionLayer;
+}
+
+
+int Draw_Terrain(){
    ALLEGRO_DISPLAY *display = NULL;
    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
    ALLEGRO_TIMER *timer = NULL;
    ALLEGRO_BITMAP *palette = NULL;
-
-   
+     
  
    if(!al_init()) {
       fprintf(stderr, "failed to initialize allegro!\n");
@@ -89,10 +101,10 @@ int Draw_Terrain(std::string bitmapPath){
  
    al_flip_display();
 
-   
+	TileLayer* terrain = init_terrain();
 	AnimationFilmHolder afh("..\\data\\bitmaps\\sprites\\data.xml");
-	FrameRangeAnimation *fra=new FrameRangeAnimation(0,6,-2,0,30,false,1);
-	Sprite *sprite=new Sprite(400,50,false,afh.GetFilm("Bubwalk"));
+	FrameRangeAnimation *fra=new FrameRangeAnimation(0,6,-2,0,100,false,1);
+	Sprite *sprite=new Sprite(400,50,false,afh.GetFilm("Bubopenmouth"));
 	FrameRangeAnimator *frtor=new FrameRangeAnimator();
  
    al_start_timer(timer);
@@ -117,6 +129,7 @@ int Draw_Terrain(std::string bitmapPath){
 		 al_set_target_bitmap(palette);
 		 al_clear_to_color(BB_BLACK);
 
+		 terrain->Display(palette);
 		 AnimatorHolder::Display(palette);
  
          redraw = true;
@@ -129,16 +142,11 @@ int Draw_Terrain(std::string bitmapPath){
  
       if(redraw && al_is_event_queue_empty(event_queue)) {
          redraw = false;
- std::cout << "display" << palette <<"\n";
 
  al_set_target_bitmap(al_get_backbuffer(display));
          
-  std::cout << "display" << palette <<"\n";
          al_draw_bitmap(palette, 0, 0, 0);
-		 std::cout << "display" << palette <<"\n";
          al_flip_display();
-		 
-		  std::cout << "display" << palette <<"\n";
       }
    }
  
@@ -147,54 +155,16 @@ int Draw_Terrain(std::string bitmapPath){
    al_destroy_display(display);
    al_destroy_event_queue(event_queue);
  
+   std::cout << terrain->isSolid(0, 0, BBUp);
+   std::cout << terrain->isSolid(50, 0, BBUp);
+   std::cout << terrain->isSolid(50, 0, BBLeft);
+   std::cout << terrain->isSolid(50, 0, BBDown);
+   std::cout << terrain->isSolid(50, 0, BBRight);
+
    return 0;
 }
 
-
-
-Bitmap run_terrain_test(){
-	DNEWPTR(TileLayer, actionLayer);
-	DNEWPTR(TileBitmap, tilesBitmap);
-	
-	
-    if(!al_init()) {
-		fprintf(stderr, "failed to initialize allegro!\n");
-		return 0;
-	}
-	al_init_image_addon();
-
-
-	tilesBitmap = DNEW(TileBitmap);
-	actionLayer = DNEWCLASS(TileLayer, (tilesBitmap) );
-	
-	actionLayer->ReadStage(BubblePathnames::GetStageInfo(1));
-	actionLayer->WriteMap(BubblePathnames::AppendToPath(BubblePathnames::GetTerrainBitmapDataPath(), "action_layer_info.txt" ) );
-
-	Display_t display = al_create_display(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
-	if(!display) {
-		fprintf(stderr, "failed to create display!\n");
-		al_destroy_display(display);
-		return 0;
-	}
-
-	Rect viewWindow(0,0,512,416);
-	Bitmap bubbleBitmap = al_create_bitmap(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
-	if(!bubbleBitmap) {
-		fprintf(stderr, "failed to create bouncer bitmap!\n");
-		return 0;
-	}	
-
-	al_set_target_bitmap(al_get_backbuffer(display));
-	actionLayer->Display(bubbleBitmap);
-	al_draw_bitmap(bubbleBitmap,0,0,0);
-	al_flip_display();
-
-	return bubbleBitmap;
-}
-
 int main(int argc, char **argv){
-	run_terrain_test();
-	Draw_Terrain("");
-
+	Draw_Terrain();
 	system( "pause" );
 }

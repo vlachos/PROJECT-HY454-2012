@@ -40,6 +40,7 @@ Bitmap BitmapLoader::GetBitmap(const std::string & path){
 Bitmap BitmapLoader::LoadBitmap(const std::string & path){
 	Bitmap b;
 	b = al_load_bitmap( path.c_str() );
+	al_convert_mask_to_alpha(b, BB_ELECTRIC_BLUE);
 	DASSERT( b );
 	return b;
 }
