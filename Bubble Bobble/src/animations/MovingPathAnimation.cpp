@@ -4,7 +4,7 @@
 MovingPathAnimation :: MovingPathAnimation (const std::list<PathEntry>& _path, animid_t id)
 	:path(_path), Animation(id){
 		DASSERT(!_path.empty());
-		DASSERT(id);
+		DASSERT(id>0);
 
 }
 	
@@ -21,6 +21,6 @@ void MovingPathAnimation :: SetPath (const std::list<PathEntry>& p){
 }
 
 Animation* MovingPathAnimation :: Clone (animid_t newId) const{ 
-	DASSERT(newId);
+	DASSERT(newId>0);
 	return new MovingPathAnimation(path, newId); 
 }

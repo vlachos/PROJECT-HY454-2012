@@ -29,7 +29,7 @@ class Sprite{
 		Rect			frameBox;
 		Dim				x,y;
 		bool			isVisible, gravityAddicted, isFalling;
-		AnimationFilm *	currFilm;
+		const AnimationFilm *	currFilm;
 
 		std::list<SpriteStartFallingListener *> spriteStartFallingListener;
 		std::list<SpriteStopFallingListener *> spriteStopFallingListener;
@@ -76,7 +76,7 @@ class Sprite{
 		void AddStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.push_back( sl ); }
 		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.remove( sl ); }
 
-		Sprite(Dim _x, Dim _y, bool _gravityAddicted, AnimationFilm * film): 
+		Sprite(Dim _x, Dim _y, bool _gravityAddicted, const AnimationFilm * film): 
 			x(_x), y(_y), currFilm(film), isVisible(true){
 
 			isFalling = false;

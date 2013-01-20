@@ -1,20 +1,17 @@
 #include "FrameRangeAnimator.h"
 #include <assert.h>
+#include "MemoryManage.h"
 
 FrameRangeAnimator :: FrameRangeAnimator (void) 
 	:sprite((Sprite*) 0), anim((FrameRangeAnimation*) 0), currFrame(0xFF){
-		assert(sprite);
-		assert(anim);
-		assert(currFrame);
 }
 
 FrameRangeAnimator :: ~FrameRangeAnimator(){}
 
 void FrameRangeAnimator :: Progress (timestamp_t currTime){
-	assert(currTime);
-	assert(anim);
-	assert(lastTime);
-	assert(currFrame);
+	DASSERT(currTime>=0);
+	DASSERT(anim);
+	DASSERT(lastTime<currTime);
 
 	while (currTime > lastTime && currTime - lastTime >= anim->GetDelay()){
 
@@ -23,8 +20,8 @@ void FrameRangeAnimator :: Progress (timestamp_t currTime){
 	    else
 			++currFrame;
 
-	    //sprite->Move(anim->GetDx(), anim->GetDy());
-	    //sprite->SetFrame(currFrame);
+	    sprite->Move(anim->GetDx(), anim->GetDy());
+	    sprite->SetFrame(currFrame);
 	    lastTime += anim->GetDelay();
 
 	    if (currFrame == anim->GetEndFrame() && !anim->GetContinuous()){
@@ -36,13 +33,17 @@ void FrameRangeAnimator :: Progress (timestamp_t currTime){
 }
 
 void FrameRangeAnimator :: Start (Sprite* s, FrameRangeAnimation* a, timestamp_t t){
-	assert(s);
-	assert(a);
-	assert(t);
+	DASSERT(s);
+	DASSERT(a);
+	DASSERT(t>=0);
 
 	sprite = s;
 	anim = a;
 	lastTime = t;
 	state = ANIMATOR_RUNNING;
-	//sprite->SetFrame(currFrame = anim->GetStartFrame());
+	sprite->SetFrame(currFrame = anim->GetStartFrame());
+}
+
+void FrameRangeAnimator::Display(Bitmap at){
+	sprite->Display(at);
 }

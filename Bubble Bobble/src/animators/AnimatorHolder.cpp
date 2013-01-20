@@ -1,44 +1,50 @@
-#include "AnimatorHolder.h"
 #include <algorithm>
 #include <assert.h>
+#include <iostream>
+#include "AnimatorHolder.h"
+#include "MemoryManage.h"
 
 std::list<Animator*> AnimatorHolder::running;
 std::list<Animator*> AnimatorHolder::suspended;
 
 void AnimatorHolder :: Register (Animator* a){
-	assert(!suspended.empty());
-	assert(a);
+	DASSERT(a);
 
 	suspended.push_back(a); 
 }
 	
 void AnimatorHolder :: Cancel (Animator* a){
-	assert(!suspended.empty());
-	assert(a);
+	DASSERT(!suspended.empty());
+	DASSERT(a);
 
 	suspended.remove(a); 
 }
 
 void AnimatorHolder :: MarkAsRunning (Animator* a){
-	assert(!suspended.empty());
-	assert(!running.empty());
-	assert(a);
+	DASSERT(!suspended.empty());
+	DASSERT(a);
 
 	suspended.remove(a); running.push_back(a); 
 }
 
 void AnimatorHolder :: MarkAsSuspended (Animator* a){
-	assert(!suspended.empty());
-	assert(!running.empty());
-	assert(a);
+	DASSERT(!running.empty());
+	DASSERT(a);
 
 	running.remove(a); suspended.push_back(a); 
 }
 
 void AnimatorHolder :: Progress (timestamp_t currTime){
-	assert(currTime);
-	assert(!running.empty());
+	DASSERT(currTime>=0);
+	DASSERT(!running.empty());
 
 	for (std::list<Animator*>::iterator it = running.begin(); it != running.end(); it++)
 		(*it)->Progress(currTime);
+}
+
+
+void AnimatorHolder :: Display(Bitmap at){
+	for (std::list<Animator*>::iterator it = running.begin(); it != running.end(); it++){
+		(*it)->Display(at);
+	}
 }

@@ -1,7 +1,6 @@
 #include "sprite.h"
 
 void Sprite::Display(Bitmap dest){
-	al_set_target_bitmap(dest);
 	al_draw_bitmap_region(currFilm->GetBitmap(), frameBox.GetX(), frameBox.GetY(), 
 		frameBox.GetWidth(), frameBox.GetHeigth(), x, y, 0);
 }

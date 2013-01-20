@@ -26,13 +26,10 @@ bool Animator :: HasFinished (void) const{
 }
 
 void Animator :: TimeShift (timestamp_t offset){
-	assert(offset);
 	lastTime += offset; 
 }
 
 void Animator :: SetOnFinish (FinishCallback f, void* c=(void*) 0){ 
-	assert(f);
-	assert(c);
 
 	onFinish = f; 
 	finishClosure = c; 

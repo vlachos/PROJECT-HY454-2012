@@ -1,6 +1,8 @@
 #ifndef ANIMATOR_H
 #define ANIMATOR_H
 
+#include "utilities.h"
+
 typedef unsigned long timestamp_t;
 
 enum animatorstate_t {
@@ -14,6 +16,7 @@ public:
 	typedef void (*FinishCallback)(Animator*,void*);
 
 protected:
+
 	timestamp_t	lastTime;
 	animatorstate_t	state;
 	FinishCallback	onFinish;
@@ -27,6 +30,7 @@ public:
 	bool HasFinished (void) const;
 	virtual void TimeShift (timestamp_t offset);
 	virtual void Progress (timestamp_t currTime)=0;
+	virtual void Display(Bitmap at)=0;
 	void SetOnFinish (FinishCallback f, void* c); 
 };
 

@@ -43,11 +43,11 @@ const Rect AnimationFilm :: GetFrameBox (byte frameNo) const {
 	return boxes[frameNo]; 
 }
     
-void AnimationFilm :: DisplayFrame (Bitmap dest, const Point& at, byte frameNo) const{
+/*void AnimationFilm :: DisplayFrame (Bitmap dest, const Point& at, byte frameNo) const{
 	DASSERT(dest);
-	DASSERT(at.GetX());
-	DASSERT(at.GetY());
-	DASSERT(frameNo);
+	DASSERT(at.GetX()>=0);
+	DASSERT(at.GetY()>=0);
+	DASSERT(frameNo>=0);
 
 	// Here is masked blit
-}
+}*/

@@ -15,7 +15,7 @@ T* _DNOTNULL (T* p) {
 	DASSERT(p);
 	return p;
 }
-
+ 
 struct ddestructors {
 	template <typename T>
 	static void udeletesubstitute(T* p) 

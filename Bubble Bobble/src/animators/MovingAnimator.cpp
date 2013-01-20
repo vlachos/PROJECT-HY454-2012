@@ -3,19 +3,17 @@
 
 MovingAnimator :: MovingAnimator (void)
 	: sprite((Sprite*) 0), anim((MovingAnimation*) 0){
-		assert(sprite);
-		assert(anim);
 }
 
 MovingAnimator :: ~MovingAnimator(){}
 
 void MovingAnimator :: Progress (timestamp_t currTime){
-	assert(currTime);
-	assert(anim);
-	assert(lastTime);
+	DASSERT(currTime>=0);
+	DASSERT(anim);
+	DASSERT(lastTime<currTime);
 
 	while (currTime > lastTime && currTime - lastTime >= anim->GetDelay()){
-		//sprite->Move(anim->GetDx(), anim->GetDy());
+		sprite->Move(anim->GetDx(), anim->GetDy());
 		if (!anim->GetContinuous()) {
 			state = ANIMATOR_FINISHED;
 			NotifyStopped();
@@ -27,12 +25,16 @@ void MovingAnimator :: Progress (timestamp_t currTime){
 }
 
 void MovingAnimator :: Start (Sprite* s, MovingAnimation* a, timestamp_t t){
-	assert(s);
-	assert(a);
-	assert(t);
+	DASSERT(s);
+	DASSERT(a);
+	DASSERT(t>=0);
 
 	sprite = s;
 	anim = a;
 	lastTime = t;
 	state = ANIMATOR_RUNNING;
+}
+
+void MovingAnimator ::Display(Bitmap at){
+	sprite->Display(at);
 }

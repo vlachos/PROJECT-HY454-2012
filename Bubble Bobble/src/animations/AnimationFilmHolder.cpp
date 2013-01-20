@@ -57,12 +57,12 @@ AnimationFilmHolder :: ~AnimationFilmHolder(){
 	BitmapLoader::SingletonDestroy();
 }
     
-const AnimationFilm& AnimationFilmHolder :: GetFilm (const std::string id) const{
+const AnimationFilm* AnimationFilmHolder :: GetFilm (const std::string id) const{
 	DASSERT(!(filmMap.empty()));
 	DASSERT(!(id.empty()));
 
 	FilmMap::const_iterator i = filmMap.find(id);
 
 	DASSERT(i!=filmMap.end());
-	return *i->second;
+	return i->second;
 }

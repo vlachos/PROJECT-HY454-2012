@@ -2,11 +2,11 @@
 #include "MemoryManage.h"
 
 Animation :: Animation (animid_t _id) : id(_id) {
-	DASSERT(_id>=0);
+	DASSERT(_id>0);
 }
 
 animid_t Animation :: GetId (void) {
-	DASSERT(id);
+	DASSERT(id>0);
 	return id; 
 }
 
