@@ -101,6 +101,7 @@
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
     <ClCompile Include="..\src\terrain\TileLayer.cpp" />
     <ClCompile Include="..\src\utilities\PathNames.cpp" />
+    <ClCompile Include="..\src\utilities\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\animations\Animation.h" />
@@ -119,7 +120,7 @@
     <ClInclude Include="..\include\animators\FrameRangeAnimator.h" />
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
-    <ClInclude Include="..\include\Main.h" />
+    <ClInclude Include="..\include\BubbleMain.h" />
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp" />
     <ClInclude Include="..\include\sprites_parser\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\TerrainUtilities.h" />

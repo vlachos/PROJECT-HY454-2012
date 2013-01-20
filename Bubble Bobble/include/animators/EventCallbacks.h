@@ -9,7 +9,7 @@
 #include "MovingAnimator.h"
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
-#include "Main.h"
+#include "utilities.h"
 
 namespace EventCallbacks{
 

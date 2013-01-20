@@ -123,6 +123,9 @@
     <ClCompile Include="..\src\animators\EventCallbacks.cpp">
       <Filter>Source Files\animators</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\utilities\utilities.cpp">
+      <Filter>Source Files\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
@@ -200,7 +203,7 @@
     <ClInclude Include="..\include\animators\EventCallbacks.h">
       <Filter>Header Files\animators</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Main.h">
+    <ClInclude Include="..\include\BubbleMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

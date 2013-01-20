@@ -12,4 +12,7 @@ typedef ALLEGRO_TIMER* Timer;
 typedef ALLEGRO_EVENT_QUEUE* EventQueue;
 typedef ALLEGRO_KEYBOARD_STATE KeyBoardState;
 
+extern unsigned int GetGameTime(void);
+extern unsigned int GetCurrTime (void);
+extern void SetGameTime(unsigned int time);
 #endif
