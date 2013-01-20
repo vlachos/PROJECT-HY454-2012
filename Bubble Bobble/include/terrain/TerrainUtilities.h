@@ -8,6 +8,7 @@ typedef unsigned char Index;
 
 #define TILE_SIZE 16
 #define TILES_BITMAP_SIZE 16
+#define SOLID_THRESHOLD 92
 
 /*masks for 16 x 16 tiles bitmap*/
 #define	ROW_MASK	0x0F
@@ -17,12 +18,15 @@ typedef unsigned char Index;
 #define MUL_TILE_SIZE(i)	((i)<<4)
 #define DIV_TILE_SIZE(i)	((i)>>4)
 
-Index MakeIndex (Dim x, Dim y);
+namespace TerrainU{
 
-Dim GetCol (Index indx);
-Dim GetRow (Index indx);
+	Index MakeIndex (Dim x, Dim y);
 
-Dim TileX (Index indx);
-Dim TileY (Index indx);
+	Dim GetCol (Index indx);
+	Dim GetRow (Index indx);
+
+	Dim TileX (Index indx);
+	Dim TileY (Index indx);
+}
 
 #endif

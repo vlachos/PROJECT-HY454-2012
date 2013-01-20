@@ -39,9 +39,10 @@ class TileLayer{
 
 		void Display (Bitmap at);
 
-		void SetTile (Dim col, Dim row, Index indx);
-		Index GetTile (Dim col, Dim row);
-		const Coordinates GetTileCoordinates (Dim mx, Dim my) const;
+		void SetTile (Dim row, Dim col, Index indx);
+		Index GetTile (Dim row, Dim col);
+		const Coordinates GetTileCoordinates (Dim x, Dim y) const;
+		const Coordinates GetXYCoordinates (Dim row, Dim col) const;
 		const bool isSolid(Dim x, Dim y) const;
 
 		void SetViewWindow (const Rect&);

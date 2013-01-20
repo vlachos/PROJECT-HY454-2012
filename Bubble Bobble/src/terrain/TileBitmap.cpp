@@ -34,13 +34,13 @@
 		DASSERT(tileIndx>=0 && tileIndx<256 );
 
 		if (tileIndx != 0){
-			al_draw_bitmap_region(tiles, TileX(tileIndx), TileY(tileIndx), TILE_SIZE, TILE_SIZE,
+			al_draw_bitmap_region(tiles, TerrainU::TileX(tileIndx), TerrainU::TileY(tileIndx), TILE_SIZE, TILE_SIZE,
 											destX, destY, NULL);
 		}
 	}
 
 	Index TileBitmap::GetPointedTile (Dim x, Dim y) const{
-		return MakeIndex(x,y);
+		return TerrainU::MakeIndex(x,y);
 	}
 
 	/*tiles Transparency*/

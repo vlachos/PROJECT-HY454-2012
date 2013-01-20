@@ -68,7 +68,7 @@ int Draw_Terrain(std::string bitmapPath){
 
    al_set_target_bitmap(palette);
  
-   al_clear_to_color(al_map_rgb(0, 0, 0));
+   al_clear_to_color(BB_BLACK);
  
    al_set_target_bitmap(al_get_backbuffer(display));
  
@@ -85,7 +85,7 @@ int Draw_Terrain(std::string bitmapPath){
  
    al_register_event_source(event_queue, al_get_timer_event_source(timer));
  
-   al_clear_to_color(al_map_rgb(0,0,0));
+   al_clear_to_color(BB_BLACK);
  
    al_flip_display();
 
@@ -115,7 +115,8 @@ int Draw_Terrain(std::string bitmapPath){
 		 AnimatorHolder::Progress(nowTime);
 
 		 al_set_target_bitmap(palette);
-		  al_clear_to_color(al_map_rgb(0,0,0));
+		 al_clear_to_color(BB_BLACK);
+
 		 AnimatorHolder::Display(palette);
  
          redraw = true;
@@ -151,14 +152,14 @@ int Draw_Terrain(std::string bitmapPath){
 
 
 
-int run_terrain_test(){
+Bitmap run_terrain_test(){
 	DNEWPTR(TileLayer, actionLayer);
 	DNEWPTR(TileBitmap, tilesBitmap);
 	
 	
     if(!al_init()) {
 		fprintf(stderr, "failed to initialize allegro!\n");
-		return -1;
+		return 0;
 	}
 	al_init_image_addon();
 
@@ -173,24 +174,26 @@ int run_terrain_test(){
 	if(!display) {
 		fprintf(stderr, "failed to create display!\n");
 		al_destroy_display(display);
-		return -1;
+		return 0;
 	}
 
 	Rect viewWindow(0,0,512,416);
 	Bitmap bubbleBitmap = al_create_bitmap(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
 	if(!bubbleBitmap) {
 		fprintf(stderr, "failed to create bouncer bitmap!\n");
-		return -1;
+		return 0;
 	}	
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 	actionLayer->Display(bubbleBitmap);
-
+	al_draw_bitmap(bubbleBitmap,0,0,0);
 	al_flip_display();
+
+	return bubbleBitmap;
 }
 
 int main(int argc, char **argv){
-	//run_terrain_test();
+	run_terrain_test();
 	Draw_Terrain("");
 
 	system( "pause" );

@@ -34,6 +34,10 @@ std::string BubblePathnames::GetActionLayerInfo(){
 	return AppendToPath(GetTerrainBitmapDataPath(), ACTION_LAYER_INFO);
 }
 
+std::string BubblePathnames::GetTestActionLayerInfo(){
+	return AppendToPath(GetTerrainBitmapDataPath(), TEST_INFO);
+}
+
 std::string BubblePathnames::GetStageInfo(unsigned int stageLevel){
 	DASSERT(stageLevel > 0 && stageLevel <=11);
 

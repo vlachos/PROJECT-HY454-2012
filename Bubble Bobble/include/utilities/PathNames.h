@@ -14,8 +14,10 @@
 
 #define TILES_BITMAP_16 "tiles_bitmap_16x16.png"
 #define ACTION_LAYER_INFO "action_layer_info.txt"
+#define TEST_INFO "test_terrain_info.txt"
 const std::string stagePrefix = "stage";
 const std::string stagePostfix = "_info.txt";
+
 
 namespace BubblePathnames{
 
@@ -28,6 +30,7 @@ namespace BubblePathnames{
 	extern std::string GetTerrainBitmapDataPath();
 	extern std::string GetTilesBitmap();
 	extern std::string GetActionLayerInfo();
+	extern std::string GetTestActionLayerInfo();
 	extern std::string GetStageInfo(unsigned int stageLevel);
 
 }
