@@ -12,17 +12,11 @@
 #include "AnimationFilm.h"
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
+#include <TileBitmap.h>
+#include <TileLayer.h>
+
 
 const float FPS = 60;
-
-const int TILE_SIZE = /*2**/16;
-
-const char* TERRAIN_DATA_PATH = "..\\data\\bitmaps\\terrain";
-const char*	STAGE1_TXT = "stage1.txt";
-const char* TILE_BITMAP_16 = "tile_bitmap_16x16.png";// <-----  32x32
-
-#define SCREEN_W /*2**/512
-#define SCREEN_H /*2**/416
 
 unsigned int CurrTime (void){
     SYSTEMTIME st;
@@ -53,14 +47,14 @@ int Draw_Terrain(std::string bitmapPath){
       return -1;
    }
  
-   display = al_create_display(SCREEN_W, SCREEN_H);
+   display = al_create_display(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
    if(!display) {
       fprintf(stderr, "failed to create display!\n");
       al_destroy_timer(timer);
       return -1;
    }
 
-   palette = al_create_bitmap(SCREEN_W, SCREEN_H);
+   palette = al_create_bitmap(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
    if(!palette) {
       fprintf(stderr, "failed to create bouncer bitmap!\n");
       al_destroy_display(display);
@@ -155,7 +149,48 @@ int Draw_Terrain(std::string bitmapPath){
    return 0;
 }
 
+
+
+int run_terrain_test(){
+	DNEWPTR(TileLayer, actionLayer);
+	DNEWPTR(TileBitmap, tilesBitmap);
+	
+	
+    if(!al_init()) {
+		fprintf(stderr, "failed to initialize allegro!\n");
+		return -1;
+	}
+	al_init_image_addon();
+
+
+	tilesBitmap = DNEW(TileBitmap);
+	actionLayer = DNEWCLASS(TileLayer, (tilesBitmap) );
+	
+	actionLayer->ReadStage(BubblePathnames::GetStageInfo(1));
+	actionLayer->WriteMap(BubblePathnames::AppendToPath(BubblePathnames::GetTerrainBitmapDataPath(), "action_layer_info.txt" ) );
+
+	Display_t display = al_create_display(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
+	if(!display) {
+		fprintf(stderr, "failed to create display!\n");
+		al_destroy_display(display);
+		return -1;
+	}
+
+	Rect viewWindow(0,0,512,416);
+	Bitmap bubbleBitmap = al_create_bitmap(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
+	if(!bubbleBitmap) {
+		fprintf(stderr, "failed to create bouncer bitmap!\n");
+		return -1;
+	}	
+
+	al_set_target_bitmap(al_get_backbuffer(display));
+	actionLayer->Display(bubbleBitmap);
+
+	al_flip_display();
+}
+
 int main(int argc, char **argv){
+	//run_terrain_test();
 	Draw_Terrain("");
 
 	system( "pause" );
