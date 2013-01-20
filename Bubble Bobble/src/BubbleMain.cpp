@@ -104,7 +104,7 @@ int Draw_Terrain(){
 	TileLayer* terrain = init_terrain();
 	AnimationFilmHolder afh("..\\data\\bitmaps\\sprites\\data.xml");
 	FrameRangeAnimation *fra=new FrameRangeAnimation(0,6,-2,0,100,false,1);
-	Sprite *sprite=new Sprite(400,50,false,afh.GetFilm("Bubopenmouth"));
+	Sprite *sprite=new Sprite(400,50,false,afh.GetFilm("Bubopenmouth"), terrain);
 	FrameRangeAnimator *frtor=new FrameRangeAnimator();
  
    al_start_timer(timer);

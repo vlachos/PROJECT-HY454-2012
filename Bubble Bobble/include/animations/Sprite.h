@@ -8,7 +8,7 @@
 #include "utilities.h"
 #include "AnimationFilm.h"
 #include "Sprite.h"
-
+#include "TileLayer.h"
 
 
 
@@ -30,6 +30,7 @@ class Sprite{
 		Dim				x,y;
 		bool			isVisible, gravityAddicted, isFalling;
 		const AnimationFilm *	currFilm;
+		const TileLayer *		tileLayer;
 
 		std::list<SpriteStartFallingListener *> spriteStartFallingListener;
 		std::list<SpriteStopFallingListener *> spriteStopFallingListener;
@@ -76,8 +77,8 @@ class Sprite{
 		void AddStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.push_back( sl ); }
 		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.remove( sl ); }
 
-		Sprite(Dim _x, Dim _y, bool _gravityAddicted, const AnimationFilm * film): 
-			x(_x), y(_y), currFilm(film), isVisible(true){
+		Sprite(Dim _x, Dim _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer): 
+			x(_x), y(_y), currFilm(film), isVisible(true), tileLayer(_tileLayer){
 
 			isFalling = false;
 			gravityAddicted = _gravityAddicted;
