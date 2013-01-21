@@ -1,9 +1,9 @@
 #ifndef	TILEBITMAP_H
 #define	TILEBITMAP_H
 
-#include <TerrainUtilities.h>
-#include <Metrics.h>
-#include <PathNames.h>
+#include "TerrainUtilities.h"
+#include "Metrics.h"
+#include "PathNames.h"
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_image.h>
 

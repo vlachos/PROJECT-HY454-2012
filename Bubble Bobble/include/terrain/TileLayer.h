@@ -1,9 +1,9 @@
 #ifndef	TILELAYER_H
 #define	TILELAYER_H
 
-#include <TerrainUtilities.h>
-#include <TileBitmap.h>
-#include <Metrics.h>
+#include "TerrainUtilities.h"
+#include "TileBitmap.h"
+#include "Metrics.h"
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_image.h>
 
@@ -29,7 +29,7 @@ class TileLayer{
 		~TileLayer();
 
 	private:
-		TileBitmap* tiles;
+		TileBitmap* tilesBitmap;
 		Index map[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
 		Solidity_t tilesSolidity[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
 		Rect viewWindow;

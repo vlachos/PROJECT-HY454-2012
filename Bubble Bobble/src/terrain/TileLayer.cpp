@@ -6,11 +6,11 @@
 	TileLayer::TileLayer(){}
 
 	TileLayer::TileLayer(TileBitmap* aTileBitmap){
-		tiles = aTileBitmap;
-		DNEWPTR(Rect, viewWindow);
-		viewWindow = DNEWCLASS(Rect, (0, 0, VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT) );
-
-		DASSERT(viewWindow);
+		tilesBitmap = aTileBitmap;
+		viewWindow.SetX(0);
+		viewWindow.SetY(0);
+		viewWindow.SetWidth(VIEW_WINDOW_WIDTH);
+		viewWindow.SetHeigth(VIEW_WINDOW_HEIGHT);
 	}
 
 	TileLayer::~TileLayer(){
@@ -21,8 +21,7 @@
 				tilesSolidity[i][j] = EmptyOrShadow;
 			}
 		}
-		delete tiles;
-		//DDELETE(viewWindow);
+		delete tilesBitmap;
 	}
 
 	/*layer info*/
@@ -103,7 +102,7 @@
 				DASSERT(XYCoordinates.first >= 0 && XYCoordinates.first <= (VIEW_WINDOW_WIDTH - TILE_SIZE) );
 				DASSERT(XYCoordinates.second >= 0 && XYCoordinates.second <= (VIEW_WINDOW_HEIGHT - TILE_SIZE) );
 
-				tiles->PutTile(at, XYCoordinates.first, XYCoordinates.second, GetTile(i, j) );
+				tilesBitmap->PutTile(at, XYCoordinates.first, XYCoordinates.second, GetTile(i, j) );
 			}
 		}
 	}

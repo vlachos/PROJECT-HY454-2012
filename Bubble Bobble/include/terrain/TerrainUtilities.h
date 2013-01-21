@@ -1,8 +1,8 @@
 #ifndef TERRAINUTILITIES_H
 #define TERRAINUTILITIES_H
 
-#include <Metrics.h>
-#include <utilities.h>
+#include "Metrics.h"
+#include "utilities.h"
 
 typedef unsigned char Index;
 

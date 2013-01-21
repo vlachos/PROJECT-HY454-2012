@@ -1,5 +1,6 @@
 #include "BubbleMain.h"
 
+<<<<<<< HEAD
 int BubbleMain::DrawTerrain(){
 
 	while(1)
@@ -43,7 +44,10 @@ int BubbleMain::DrawTerrain(){
    return 0;
 }
 
+=======
+>>>>>>> updated main
 
+/* Initialization */
 bool BubbleMain::InitAllegro(){
 
 	if(!al_init()) {
@@ -118,13 +122,83 @@ void BubbleMain::InitGameEngine(){
 	redraw = true;
 }
 
+
+/* Game Loop */
+void BubbleMain::ManageGameLoop(){
+
+	using namespace BubbleMain;
+
+	while (1){
+		ALLEGRO_EVENT ev;
+		al_wait_for_event(event_queue, &ev);
+		al_get_keyboard_state(&keyState);
+
+		if(ev.type == ALLEGRO_EVENT_TIMER) {
+
+			timestamp_t nowTime = GetCurrTime();
+			
+			Rendering();
+			InputManagement();
+			AnimationProgress(nowTime);
+			ArtificialIntelligence();
+			CollisionChecking();
+			CommitDestructions();
+			FPSCalculation();
+			SystemLoopDispatching();
+
+			SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));
+		}
+		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			break;
+		}
+	}
+}
+
 void BubbleMain::Rendering(){
+
+	al_set_target_bitmap(palette);
+	al_clear_to_color(BB_BLACK);
+
+	actionLayer->Display(palette);
+	AnimatorHolder::Display(palette);
+ 
+	if(al_is_event_queue_empty(event_queue)) {
+		al_set_target_bitmap(al_get_backbuffer(display));
+		al_draw_bitmap(palette, 0, 0, 0);
+		al_flip_display();
+	}
 }
 
-void BubbleMain::InputManagement(){
+bool BubbleMain::InputManagement(){
+
+	if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
+		std::cout << "pressing Up\n";
+		return true;
+	}
+	else if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
+		std::cout << "pressing Down\n";
+		return true;
+	}
+	else if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
+		std::cout << "pressing Right\n";
+		return true;
+	}
+	else if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
+		std::cout << "pressing Left\n";
+		return true;
+	}
+	else if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
+		std::cout << "pressing Space\n";
+		return true;
+	}
+	else{
+		std::cout << "pressing nothing\n";
+		return false;
+	}
 }
 
-void BubbleMain::AnimationProgress(){
+void BubbleMain::AnimationProgress(timestamp_t timeNow){
+	AnimatorHolder::Progress(timeNow);
 }
 
 void BubbleMain::ArtificialIntelligence(){
@@ -142,6 +216,7 @@ void BubbleMain::FPSCalculation(){
 void BubbleMain::SystemLoopDispatching(){
 }
 
+/* Game Termination */
 void BubbleMain::GameOver(){
 
    delete afh;
@@ -161,32 +236,8 @@ int main(int argc, char **argv){
 	if (InitAllegro() ){
 		actionLayer = InitTerrain();
 		InitGameEngine();
-		DrawTerrain();
+		ManageGameLoop();
 		GameOver();
 	}
-
-/*
-		while (1){
-		   Rendering();
-		   InputManagement();
-		   AnimationProgress();
-		   ArtificialIntelligence();
-		   CollisionChecking();
-		   CommitDestructions();
-		   FPSCalculation();
-		   SystemLoopDispatching();
-		}
-*/
-/*
-if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
-}
-else if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
-}
-else if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
-}
-else if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
-}
-*/
-
 	system( "pause" );
 }

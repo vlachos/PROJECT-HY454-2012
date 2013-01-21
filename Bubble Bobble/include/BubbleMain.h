@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <windows.h>
-#include <PathNames.h>
+#include "PathNames.h"
 #include "FrameRangeAnimation.h"
 #include "AnimationFilmHolder.h"
 #include "AnimationFilm.h"
@@ -37,9 +37,11 @@ namespace BubbleMain{
 	extern TileLayer* InitTerrain();
 	extern void InitGameEngine();
 
+	extern void ManageGameLoop();
+
 	extern void Rendering();
-	extern void InputManagement();
-	extern void AnimationProgress();
+	extern bool InputManagement();
+	extern void AnimationProgress(timestamp_t timeNow);
 	extern void ArtificialIntelligence();
 	extern void CollisionChecking();
 	extern void CommitDestructions();
