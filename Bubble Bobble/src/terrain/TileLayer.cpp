@@ -18,7 +18,8 @@
 		for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 			for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){		
 				map[i][j] = 0;
-				tilesSolidity[i][j] = EmptyOrShadow;
+				tilesSolidity[i][j][true] = false;
+				tilesSolidity[i][j][false] = false;
 			}
 		}
 		delete tilesBitmap;
@@ -49,14 +50,18 @@
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
 					openfile >> nextIndex;
 					map[i][j] = nextIndex;
-					if (map[i][j] == 0 || map[i][j] > SOLID_THRESHOLD){
-						tilesSolidity[i][j] = EmptyOrShadow;
-					}
-					else if (map[i][j] == 1){
-						tilesSolidity[i][j] = SmallBrick;
-					}
-					else{
-						tilesSolidity[i][j] = BigBrick;
+					/*empty or shadow*/
+					if (map[i][j] == 0 || map[i][j] >= BIG_BRICK_THRESHOLD){
+						tilesSolidity[i][j][true] = false;
+						tilesSolidity[i][j][false] = false;
+					}/*small brick*/
+					else if (map[i][j] < SMALL_BRICK_THRESHOLD){
+						tilesSolidity[i][j][true] = false;
+						tilesSolidity[i][j][false] = true;
+					}/*big brick*/
+					else if (map[i][j] >= SMALL_BRICK_THRESHOLD && map[i][j] <= BIG_BRICK_THRESHOLD){
+						tilesSolidity[i][j][true] = true;
+						tilesSolidity[i][j][false] = true;
 					}
 					DASSERT( map[i][j] >= 0 && map[i][j] < TILES_BITMAP_SIZE*TILES_BITMAP_SIZE  );
 				}
@@ -136,27 +141,13 @@
 		return std::make_pair(MUL_TILE_SIZE(row), MUL_TILE_SIZE(col) );
 	}
 
-	const bool TileLayer::isSolid(Dim x, Dim y, BBmovement move) const{
-
-		DASSERT(move>=-1 && move <=2);
+	const bool TileLayer::isSolid(Dim x, Dim y, BBMovementIsUp moveUp) const{
 
 		Coordinates tileCoordinates = GetTileCoordinates(x,y);
-		DASSERT(tilesSolidity[tileCoordinates.first][tileCoordinates.second] >= -1 &&
-				tilesSolidity[tileCoordinates.first][tileCoordinates.second]<=1);
 
-		switch (tilesSolidity[tileCoordinates.first][tileCoordinates.second]){
-			case EmptyOrShadow:
-				return false;
-			case SmallBrick:
-				if (move == BBUp)
-					return false;
-				else
-					return true;
-			case BigBrick:
-				return true;
-			default:
-				return false;
-		}
+		return tilesSolidity[tileCoordinates.first]
+							[tileCoordinates.second]
+							[moveUp];
 	}
 
 	/*view window*/

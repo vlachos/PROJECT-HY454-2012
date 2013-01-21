@@ -8,7 +8,6 @@ typedef unsigned char Index;
 
 #define TILE_SIZE 16
 #define TILES_BITMAP_SIZE 16
-#define SOLID_THRESHOLD 92
 
 /*masks for 16 x 16 tiles bitmap*/
 #define	ROW_MASK	0x0F

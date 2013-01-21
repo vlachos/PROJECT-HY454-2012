@@ -7,18 +7,10 @@ void Sprite::Display(Bitmap dest){
 
 static bool isSolidTerrain(const TileLayer * tileLayer, Dim x, Dim y, Dim _x, Dim _y){
 	if(_y>0){
-		return tileLayer->isSolid(x+_x, y+_y, BBUp);
-	}else
-	if(_y<0){
-		return tileLayer->isSolid(x+_x, y+_y, BBDown);
-	}else
-	if(_x>0){
-		return tileLayer->isSolid(x+_x, y+_y, BBRight);
-	}else 
-	if(_x<0){
-		return tileLayer->isSolid(x+_x, y+_y, BBLeft);
+		return tileLayer->isSolid(x+_x, y+_y, true);
+	}else{
+		return tileLayer->isSolid(x+_x, y+_y, false);
 	}
-	return true;
 }
 
 void Sprite::Move( Dim _x, Dim _y ){

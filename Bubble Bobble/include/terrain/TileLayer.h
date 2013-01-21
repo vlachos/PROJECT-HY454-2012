@@ -7,12 +7,12 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_image.h>
 
-typedef std::pair<Dim, Dim> Coordinates;
-
 enum HorizScroll {Left = -1, HorizIntact = 0, Right = +1 };
 enum VertScroll {Up = -1, VertIntact = 0, Down = +1 };
-enum Solidity_t {BigBrick = -1, SmallBrick = 0, EmptyOrShadow = +1};
-enum BBmovement {BBLeft = -1, BBUp = 0, BBDown = +1, BBRight = +2 };
+
+typedef std::pair<Dim, Dim> Coordinates;
+typedef bool BBMovementIsUp;
+#define MAX_SEPARATED_MOVEMENTS 2
 
 #define TILE_LAYER_WIDTH 32
 #define TILE_LAYER_HEIGHT 26
@@ -20,6 +20,9 @@ enum BBmovement {BBLeft = -1, BBUp = 0, BBDown = +1, BBRight = +2 };
 #define VIEW_WINDOW_HEIGHT 416
 #define VIEW_WINDOW_TILE_WIDTH 32
 #define VIEW_WINDOW_TILE_HEIGHT 26
+
+#define SMALL_BRICK_THRESHOLD 16
+#define BIG_BRICK_THRESHOLD 64
 
 class TileLayer{
 
@@ -31,7 +34,7 @@ class TileLayer{
 	private:
 		TileBitmap* tilesBitmap;
 		Index map[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
-		Solidity_t tilesSolidity[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
+		bool tilesSolidity[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH][MAX_SEPARATED_MOVEMENTS];
 		Rect viewWindow;
 
 	public:
@@ -45,7 +48,7 @@ class TileLayer{
 		Index GetTile (Dim row, Dim col);
 		const Coordinates GetTileCoordinates (Dim x, Dim y) const;
 		const Coordinates GetXYCoordinates (Dim row, Dim col) const;
-		const bool isSolid(Dim x, Dim y, BBmovement move) const;
+		const bool isSolid(Dim x, Dim y, BBMovementIsUp moveUp) const;
 
 		void SetViewWindow (const Rect&);
 		const Rect	GetViewWindow (void) const;
