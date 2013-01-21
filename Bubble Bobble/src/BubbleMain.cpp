@@ -1,51 +1,5 @@
 #include "BubbleMain.h"
 
-<<<<<<< HEAD
-int BubbleMain::DrawTerrain(){
-
-	while(1)
-	{
-		ALLEGRO_EVENT ev;
-		al_wait_for_event(event_queue, &ev);
-		al_get_keyboard_state(&keyState);
-
-		if(ev.type == ALLEGRO_EVENT_TIMER) {
-
-			timestamp_t nowTime = GetCurrTime();
-		  
-			AnimatorHolder::Progress(nowTime);
-
-			al_set_target_bitmap(palette);
-			al_clear_to_color(BB_BLACK);
-
-			actionLayer->Display(palette);
-			AnimatorHolder::Display(palette);
-			
-			DestructionManager::Commit();
-			
-			redraw = true;
-
-			SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));
-		}
-		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-			break;
-		}
-
-		if(redraw && al_is_event_queue_empty(event_queue)) {
-			redraw = false;
-
-			al_set_target_bitmap(al_get_backbuffer(display));
-         
-			al_draw_bitmap(palette, 0, 0, 0);
-			al_flip_display();
-		}
-   }
-
-   return 0;
-}
-
-=======
->>>>>>> updated main
 
 /* Initialization */
 bool BubbleMain::InitAllegro(){
