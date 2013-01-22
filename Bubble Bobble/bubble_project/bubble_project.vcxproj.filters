@@ -19,12 +19,6 @@
     <Filter Include="Source Files\terrain">
       <UniqueIdentifier>{ebb5abb2-5ebb-43ce-8073-e8bb533ca61a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\sprites_parser">
-      <UniqueIdentifier>{bd81a826-e9cf-4a3f-9e5d-f9221ac0335b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sprites_parser">
-      <UniqueIdentifier>{e8d77273-ce1f-4253-94e5-bf8ecbf32990}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\soundtrack">
       <UniqueIdentifier>{283cc061-c480-4bea-81d5-88a7174a9e76}</UniqueIdentifier>
     </Filter>
@@ -55,11 +49,14 @@
     <Filter Include="Source Files\animators">
       <UniqueIdentifier>{1a1c8d36-bc14-403e-9feb-d73b3f5e8182}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\parsers">
+      <UniqueIdentifier>{325b6956-9e59-4a4f-bc3c-228fb3735ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\parsers">
+      <UniqueIdentifier>{619130e0-3376-48c0-be1f-7eba0edd53b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\sprites_parser\SpritesParser.cpp">
-      <Filter>Source Files\sprites_parser</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\terrain\TileBitmap.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
@@ -129,16 +126,13 @@
     <ClCompile Include="..\src\utilities\MemoryManage.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\parsers\SpritesParser.cpp">
+      <Filter>Source Files\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\sprites_parser\rapidxml.hpp">
-      <Filter>Header Files\sprites_parser</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\utilities\Metrics.h">
       <Filter>Header Files\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\sprites_parser\SpritesParser.h">
-      <Filter>Header Files\sprites_parser</Filter>
     </ClInclude>
     <ClInclude Include="..\include\utilities\MemoryManage.h">
       <Filter>Header Files\utilities</Filter>
@@ -208,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="..\include\BubbleMain.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\parsers\rapidxml.hpp">
+      <Filter>Header Files\parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\parsers\SpritesParser.h">
+      <Filter>Header Files\parsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

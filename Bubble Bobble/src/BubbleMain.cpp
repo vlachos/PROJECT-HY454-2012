@@ -146,7 +146,7 @@ bool BubbleMain::InputManagement(){
 		return true;
 	}
 	else{
-		std::cout << "pressing nothing\n";
+		//std::cout << "pressing nothing\n";
 		return false;
 	}
 }

@@ -26,17 +26,20 @@ AnimationFilmHolder :: AnimationFilmHolder (const char* path){
 	int SpritesNum = SpriteParser::GetTotalSprites();
 	DASSERT( SpritesNum>0 );
 	filmMem = std::vector <AnimationFilm>(SpritesNum);
-
-	SpriteParser::SpriteParserIterator::StartIterator();
+	
 	int i = 0;
-	while( SpriteParser::SpriteParserIterator::HasNext() ){
-		std::string id = SpriteParser::SpriteParserIterator::GetNext();
+	for(SpriteParser::spritesName::const_iterator namesIterator =  SpriteParser::GetSpritesNameIteratorBegin(); 
+			namesIterator!=SpriteParser::GetSpritesNameIteratorEnd(); 
+			++namesIterator, ++i){
+
+		std::string id = *namesIterator;
 		Bitmap bitmap = BitmapLoader::Load( SpriteParser::GetBitmapName( id ) );
 		DASSERT( bitmap );
 		std::vector<Rect> bx = SpriteParser::GetSprite(id);
 		AnimationFilm* a =	DNEWCLASS( AnimationFilm, (bitmap, bx, id ) );
 		filmMap[id] = a;
-		filmMem[i++] = *a;
+		filmMem[i] = *a;
+
 	}
 	DASSERT( i==SpritesNum );
 	

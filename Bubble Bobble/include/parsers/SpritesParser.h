@@ -2,6 +2,7 @@
 #define	SPRITESPARSER_H
 
 #include <vector>
+#include <map>
 #include <sstream>
 
 #include "rapidxml.hpp"
@@ -30,7 +31,8 @@ namespace SpriteParserSpecifications {
 
 class SpriteParser{
 	public:
-
+		typedef std::map< std::string, std::vector<Rect> > spritesMap;
+		typedef std::vector<std::string> spritesName;
 		static void				SingletonCreate (const char * path) 
 				{ singletonPtr = new SpriteParser(path); }
 		static void				SingletonDestroy (void) 
@@ -41,30 +43,18 @@ class SpriteParser{
 		static std::string GetBitmapName(const std::string & id);
 		static int GetTotalSprites();
 
+		static spritesName::const_iterator GetSpritesNameIteratorBegin();
+		static spritesName::const_iterator GetSpritesNameIteratorEnd();
+
 	private:
 		static SpriteParser*	singletonPtr;
-		static rapidxml::xml_node<> * rootNode;
-		static std::vector<char> buffer;
+		static spritesMap map; 
+		static spritesName SpritesName;
 		static const char *xmlFilePath;
 		static std::string bitmapName;
-		static int spritesSize;
-		static int totalSprites;
 
 		SpriteParser(const char * path);
 		~SpriteParser(void);
-
-	public:
-		class SpriteParserIterator{
-
-			private:
-				static rapidxml::xml_node<> * iteratorSpriteNode;
-				static int remainningSprites;
-
-			public:
-				static void StartIterator();
-				static bool HasNext(void);
-				static char * GetNext(void);
-		};
 };
 
 #endif
