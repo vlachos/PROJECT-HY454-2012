@@ -129,6 +129,9 @@
     <ClCompile Include="..\src\parsers\SpritesParser.cpp">
       <Filter>Source Files\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\parsers\AnimationsParser.cpp">
+      <Filter>Source Files\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -209,6 +212,9 @@
     <ClInclude Include="..\include\parsers\SpritesParser.h">
       <Filter>Header Files\parsers</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\parsers\AnimationsParser.h">
+      <Filter>Header Files\parsers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\soundtrack\bubble-bobble-01-amiga-credits.mp3">
@@ -244,9 +250,6 @@
     <None Include="..\data\soundtrack\bubble-bobble-11-enter-your-initials.mp3">
       <Filter>Resource Files\soundtrack</Filter>
     </None>
-    <None Include="..\data\bitmaps\sprites\data.xml">
-      <Filter>Resource Files\bitmaps\sprites</Filter>
-    </None>
     <None Include="..\data\bitmaps\sprites\sprites.png">
       <Filter>Resource Files\bitmaps\sprites</Filter>
     </None>
@@ -264,6 +267,12 @@
     </None>
     <None Include="..\data\bitmaps\terrain\tile_bitmap_32x32.png">
       <Filter>Resource Files\bitmaps\terrain</Filter>
+    </None>
+    <None Include="..\data\bitmaps\sprites\sprites_data.xml">
+      <Filter>Resource Files\bitmaps\sprites</Filter>
+    </None>
+    <None Include="..\data\bitmaps\sprites\animation_data.xml">
+      <Filter>Resource Files\bitmaps\sprites</Filter>
     </None>
   </ItemGroup>
 </Project>

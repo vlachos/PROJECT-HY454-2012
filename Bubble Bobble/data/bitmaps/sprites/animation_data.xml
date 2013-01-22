@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animations totalAnimations="1">
+  <Bubopenmouth type="FrameRangeAnimation" dx="-2" dy="0" delay="100" start="0" end="6" continue="true" />
+</animations>

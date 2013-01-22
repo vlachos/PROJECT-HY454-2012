@@ -61,7 +61,7 @@ TileLayer* BubbleMain::InitTerrain(){
 
 void BubbleMain::InitGameEngine(){
 
-	afh = new AnimationFilmHolder("..\\data\\bitmaps\\sprites\\data.xml");
+	afh = new AnimationFilmHolder("..\\data\\bitmaps\\sprites\\sprites_data.xml");
 	FrameRangeAnimation *fra=new FrameRangeAnimation(0,6,-2,0,100,true,1);
 	Sprite *sprite=new Sprite(150,50,false,afh->GetFilm("Bubopenmouth"), actionLayer);
 	FrameRangeAnimator *frtor=new FrameRangeAnimator();

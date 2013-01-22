@@ -96,6 +96,7 @@
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
+    <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
     <ClInclude Include="..\include\BubbleMain.h" />
+    <ClInclude Include="..\include\parsers\AnimationsParser.h" />
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\TerrainUtilities.h" />
@@ -133,7 +135,8 @@
     <ClInclude Include="..\include\utilities\utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\bitmaps\sprites\data.xml" />
+    <None Include="..\data\bitmaps\sprites\animation_data.xml" />
+    <None Include="..\data\bitmaps\sprites\sprites_data.xml" />
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
     <None Include="..\data\bitmaps\terrain\stage1.txt" />

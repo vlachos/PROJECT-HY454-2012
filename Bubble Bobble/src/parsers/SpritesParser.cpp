@@ -11,7 +11,7 @@
 
 const char *				SpriteParser::xmlFilePath;
 SpriteParser *				SpriteParser::singletonPtr;
-std::string					SpriteParser::bitmapName("..\\data\\bitmaps\\sprites\\");
+std::string					SpriteParser::bitmapName;
 SpriteParser::spritesMap	SpriteParser::map;
 SpriteParser::spritesName	SpriteParser::SpritesName;
 
@@ -88,7 +88,7 @@ SpriteParser::SpriteParser(const char * path){
 	_bitmapName = rootNode->first_attribute("bitmap")->value();
 	DASSERT(_bitmapName);
 
-	bitmapName += std::string(_bitmapName);
+	bitmapName = std::string( _bitmapName );
 
 	using namespace SpriteParserSpecifications;
 
