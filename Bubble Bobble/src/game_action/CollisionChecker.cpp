@@ -34,6 +34,26 @@ void CollisionChecker::Register (Sprite* s1, Sprite* s2, void* Args, CollisionCa
 	DASSERT(CollisionPairs.size() == oldSize + 1);
 }
 
+void CollisionChecker::Cancel (Sprite* s){
+	DASSERT(s);
+	unsigned int oldSize = CollisionPairs.size();
+
+	for (CollisionPairsList::const_iterator aPair = CollisionPairs.begin(),
+										end = CollisionPairs.end(); 
+										aPair != end; 
+										++aPair) {
+
+		if (s == (*aPair).master || s == (*aPair).slave){
+			std::cout << "Delete Bitch !!! \n";
+			CollisionPairs.erase(aPair);
+			DASSERT(CollisionPairs.size() == oldSize - 1);
+		}
+		else{
+			DASSERT(CollisionPairs.size() == oldSize);
+		}
+	}
+}
+
 void CollisionChecker::Cancel (Sprite* s1, Sprite* s2){
 	DASSERT(s1); DASSERT(s2);
 	unsigned int oldSize = CollisionPairs.size();
