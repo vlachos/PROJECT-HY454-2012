@@ -16,6 +16,7 @@ namespace AnimationHolderDelete{
 
 }
 
+static void t(void (*tt)(void)){}
 // Decoder constructor.
 AnimationFilmHolder :: AnimationFilmHolder (const char* path){
 	DASSERT(path);

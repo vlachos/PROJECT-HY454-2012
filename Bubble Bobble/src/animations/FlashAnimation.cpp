@@ -9,6 +9,10 @@ FlashAnimation :: FlashAnimation (frame_t n, delay_t show, delay_t hide,animid_t
 		DASSERT(id>0);
 }
 
+FlashAnimation :: ~FlashAnimation(void){
+	repetitions=hideDelay=showDelay=-1;
+}
+
 void FlashAnimation :: SetRepetitions (frame_t n){
 	DASSERT(n>=0);
 	repetitions = n; 

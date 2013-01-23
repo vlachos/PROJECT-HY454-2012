@@ -10,6 +10,7 @@ class MovingAnimation : public Animation{
 
 public:
 	MovingAnimation (offset_t _dx, offset_t _dy, delay_t _delay, bool c, animid_t _id);
+	~MovingAnimation();
 	offset_t GetDx (void) const;
     void SetDx (offset_t v);
     offset_t GetDy (void) const;

@@ -11,7 +11,8 @@ class FlashAnimation : public Animation{
     delay_t	showDelay;
 
 public:
-	FlashAnimation (frame_t n, delay_t show, delay_t hide,animid_t id );
+	FlashAnimation (frame_t n, delay_t show, delay_t hide, animid_t id );
+	~FlashAnimation(void);
 	void SetRepetitions (frame_t n);
     frame_t GetRepetitions (void) const;
     void SetHideDeay (delay_t d);

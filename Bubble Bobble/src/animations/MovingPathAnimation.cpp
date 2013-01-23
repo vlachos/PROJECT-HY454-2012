@@ -1,11 +1,15 @@
 #include "MovingPathAnimation.h"
 #include "MemoryManage.h"
 
-MovingPathAnimation :: MovingPathAnimation (const std::list<PathEntry>& _path, animid_t id)
+MovingPathAnimation :: MovingPathAnimation (const std::list<PathEntry> _path, animid_t id)
 	:path(_path), Animation(id){
 		DASSERT(!_path.empty());
 		DASSERT(id>0);
 
+}
+
+MovingPathAnimation :: ~MovingPathAnimation(void){
+	path.clear();
 }
 	
 const std::list<PathEntry>& MovingPathAnimation :: GetPath (void) const{

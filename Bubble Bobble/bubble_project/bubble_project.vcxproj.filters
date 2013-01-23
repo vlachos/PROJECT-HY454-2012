@@ -132,6 +132,9 @@
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp">
       <Filter>Source Files\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animations\FrameListAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="..\include\parsers\AnimationsParser.h">
       <Filter>Header Files\parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\FrameListAnimation.h">
+      <Filter>Header Files\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

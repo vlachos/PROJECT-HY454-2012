@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "MemoryManage.h"
-#include "Metrics.h"
 
 #define ALIGN_SIZE(a, s) ( (a) << (s) )
 

@@ -2,16 +2,44 @@
 
 #include <algorithm>
 #include <fstream>
+#include <list>
 #include <string.h>
 #include <stdlib.h>
+
 #include "MemoryManage.h"
-#include "Metrics.h"
+#include "MovingAnimation.h"
+#include "FrameRangeAnimation.h"
+#include "FrameListAnimation.h"
+#include "MovingPathAnimation.h"
+#include "FlashAnimation.h"
 
 AnimationsParser*					AnimationsParser::singletonPtr;
 AnimationsParser::animationsMap		AnimationsParser::map; 
 AnimationsParser::animationsName	AnimationsParser::animName;
 const char *						AnimationsParser::xmlFilePath;
 
+
+static int GetGetIntAtrr(rapidxml::xml_node<>* anim, const char * atrr ){				
+	rapidxml::xml_attribute<>* getter = anim->first_attribute(atrr);	
+	DASSERT( getter );						
+	return atoi( getter->value() )	;
+}
+
+static bool GetGetBoolAtrr(rapidxml::xml_node<>* anim, const char * atrr ){							
+		rapidxml::xml_attribute<>* getter = (anim)->first_attribute(atrr);
+		DASSERT( getter );
+
+		bool cont;
+		if( !strcmp( getter->value(), "true" ) ){
+			cont = true;
+		}else 
+		if( !strcmp( getter->value(), "false" ) ){
+			cont = false;
+		}else
+			DASSERT(false);
+
+		return cont;
+}
 
 namespace AnimationLoaderDelete{
 
@@ -25,7 +53,63 @@ namespace AnimationLoaderDelete{
 
 
 static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
-	return 0;
+	DASSERT( anim );
+
+	DNEWPTR(rapidxml::xml_attribute<>, type);
+	type = anim->first_attribute("type");
+	DASSERT(type);
+
+	DNEWPTR(char, strType);
+	strType = type->value();
+	DASSERT(strType);
+
+	DNEWPTR(Animation, retVal);
+
+	if( !strcmp(strType, "MovingAnimation") ){
+		retVal = new MovingAnimation( GetGetIntAtrr( anim, "dx" ), GetGetIntAtrr( anim, "dy" ), 
+								GetGetIntAtrr( anim, "delay" ), GetGetBoolAtrr( anim, "continue" ), 1);
+	}else
+	if( !strcmp(strType, "FrameRangeAnimation") ){
+		retVal = new FrameRangeAnimation(GetGetIntAtrr( anim, "start" ), GetGetIntAtrr( anim, "end" ),
+								GetGetIntAtrr( anim, "dx" ), GetGetIntAtrr( anim, "dy" ), 
+								GetGetIntAtrr( anim, "delay" ), GetGetBoolAtrr( anim, "continue" ), 1);
+	}else
+	if( !strcmp(strType, "FrameListAnimation") ){		
+		int _listSize = GetGetIntAtrr( anim, "listSize" );
+		DASSERT( _listSize > 0 );
+
+		std::list<frame_t> frames;
+		int index=0;
+		for ( rapidxml::xml_node<> * bbox = anim->first_node("list"); bbox; bbox = bbox->next_sibling(), ++index ) {
+			frames.push_back( GetGetIntAtrr( bbox, "frame" ) );
+		}
+		DASSERT( index == _listSize && frames.size() == index);
+
+		retVal = new FrameListAnimation( frames, GetGetIntAtrr( anim, "dx" ), GetGetIntAtrr( anim, "dy" ), 
+								GetGetIntAtrr( anim, "delay" ), GetGetBoolAtrr( anim, "continue" ), 1);
+	}else
+	if( !strcmp(strType, "MovingPathAnimation") ){
+		int _listSize = GetGetIntAtrr( anim, "listSize" );
+		DASSERT( _listSize > 0 );
+
+		std::list<PathEntry> paths;
+		int index=0;
+		for ( rapidxml::xml_node<> * bbox = anim->first_node("list"); bbox; bbox = bbox->next_sibling(), ++index ) {
+			PathEntry pathentry( GetGetIntAtrr( anim, "dx" ), GetGetIntAtrr( anim, "dy" ),
+								 GetGetIntAtrr( anim, "frame" ), GetGetIntAtrr( anim, "delay" ) );
+			paths.push_back( pathentry );
+		}
+		DASSERT( index == _listSize && paths.size() == index);
+
+		retVal = new MovingPathAnimation( paths, 1);
+	}else
+	if( !strcmp(strType, "FlashAnimation") ){
+		retVal = new FlashAnimation( GetGetIntAtrr( anim, "repetitions" ), GetGetIntAtrr( anim, "showDelay" ),
+								 GetGetIntAtrr( anim, "hideDelay" ), 1 );
+	}else
+		DASSERT(false);
+
+	return retVal;
 }
 
 AnimationsParser::AnimationsParser(const char * path){
@@ -51,7 +135,7 @@ AnimationsParser::AnimationsParser(const char * path){
 	DASSERT( totalAnimations > 0 );
 
 	for(rapidxml::xml_node<>* iterate = rootNode->first_node(); iterate; iterate = iterate->next_sibling()){
-		Animation* animation = GetCurrentAnimation(iterate);
+		Animation* animation = GetCurrentAnimation( iterate );
 		DASSERT( animation );
 		animName.push_back( iterate->name() );
 		map[ iterate->name() ] = animation;

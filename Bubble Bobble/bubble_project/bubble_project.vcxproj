@@ -84,6 +84,7 @@
     <ClCompile Include="..\src\animations\AnimationFilmHolder.cpp" />
     <ClCompile Include="..\src\animations\BitmapLoader.cpp" />
     <ClCompile Include="..\src\animations\FlashAnimation.cpp" />
+    <ClCompile Include="..\src\animations\FrameListAnimation.cpp" />
     <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingPathAnimation.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="..\include\animations\AnimationFilmHolder.h" />
     <ClInclude Include="..\include\animations\BitmapLoader.h" />
     <ClInclude Include="..\include\animations\FlashAnimation.h" />
+    <ClInclude Include="..\include\animations\FrameListAnimation.h" />
     <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />
     <ClInclude Include="..\include\animations\MovingAnimation.h" />
     <ClInclude Include="..\include\animations\MovingPathAnimation.h" />
@@ -135,8 +137,12 @@
     <ClInclude Include="..\include\utilities\utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\bitmaps\sprites\animation_data.xml" />
-    <None Include="..\data\bitmaps\sprites\sprites_data.xml" />
+    <None Include="..\data\bitmaps\sprites\animation_data.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\data\bitmaps\sprites\sprites_data.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
     <None Include="..\data\bitmaps\terrain\stage1.txt" />

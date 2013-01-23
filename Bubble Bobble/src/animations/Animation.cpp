@@ -11,5 +11,5 @@ animid_t Animation :: GetId (void) {
 
 
 Animation :: ~Animation() {
-
+	id = -1;
 }

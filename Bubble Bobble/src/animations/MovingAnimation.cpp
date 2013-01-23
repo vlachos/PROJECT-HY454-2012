@@ -7,6 +7,11 @@ MovingAnimation :: MovingAnimation (offset_t _dx, offset_t _dy, delay_t _delay, 
 		DASSERT(_id>0);
 }
 
+MovingAnimation ::~MovingAnimation(){
+	dx=dy=0;
+	delay=-1;
+}
+
 offset_t MovingAnimation :: GetDx (void) const{
 	return dx; 
 }

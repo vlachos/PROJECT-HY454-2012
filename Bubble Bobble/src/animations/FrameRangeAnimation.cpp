@@ -9,6 +9,10 @@ FrameRangeAnimation :: FrameRangeAnimation (frame_t s, frame_t e, offset_t dx, o
 		DASSERT(id>0);
 }
 
+FrameRangeAnimation :: ~FrameRangeAnimation(void){
+	start=end=-1;
+}
+
 frame_t FrameRangeAnimation ::	GetStartFrame (void) const{
 	DASSERT(start>=0);
 	return start; 
