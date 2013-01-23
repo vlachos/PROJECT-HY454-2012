@@ -55,6 +55,12 @@
     <Filter Include="Source Files\parsers">
       <UniqueIdentifier>{619130e0-3376-48c0-be1f-7eba0edd53b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game_action">
+      <UniqueIdentifier>{54978e8e-2741-4077-81d2-8bfb6e8361c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game_action">
+      <UniqueIdentifier>{2c89113d-031a-4a78-824e-f5fca6e697ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\terrain\TileBitmap.cpp">
@@ -134,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="..\src\animations\FrameListAnimation.cpp">
       <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\BubAnimator.cpp">
+      <Filter>Source Files\game_action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="..\include\animations\FrameListAnimation.h">
       <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\BubAnimator.h">
+      <Filter>Header Files\game_action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

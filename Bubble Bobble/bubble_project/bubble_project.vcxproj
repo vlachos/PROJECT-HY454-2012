@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
-    <SourcePath>..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\game_action;..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\game_action;..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
     <OutDir>..\lib\debug</OutDir>
     <IntDir>..\obj\debug</IntDir>
   </PropertyGroup>
@@ -47,8 +47,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>..\obj\release</IntDir>
-    <IncludePath>..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
-    <SourcePath>..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\game_action;..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\game_action;..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,6 +97,7 @@
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
+    <ClCompile Include="..\src\game_action\BubAnimator.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
@@ -125,6 +126,7 @@
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
     <ClInclude Include="..\include\BubbleMain.h" />
+    <ClInclude Include="..\include\game_action\BubAnimator.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />

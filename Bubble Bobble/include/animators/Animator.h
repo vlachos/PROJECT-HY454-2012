@@ -12,6 +12,11 @@ enum animatorstate_t {
 	ANIMATOR_STOPPED  = 2
 };
 
+enum animatorType_t {
+	unkwownAnimator_t,
+	bubWalkingAnimator_t
+};
+
 class Animator : public LatelyDestroyable{
 public:
 	typedef void (*FinishCallback)(Animator*,void*);
@@ -33,6 +38,7 @@ public:
 	virtual void Progress (timestamp_t currTime)=0;
 	virtual void Display(Bitmap at)=0;
 	void SetOnFinish (FinishCallback f, void* c); 
+	virtual enum animatorType_t GetAnimatorType(void);
 };
 
 #endif

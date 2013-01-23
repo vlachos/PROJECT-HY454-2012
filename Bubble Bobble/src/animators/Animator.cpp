@@ -34,3 +34,7 @@ void Animator :: SetOnFinish (FinishCallback f, void* c=(void*) 0){
 	onFinish = f; 
 	finishClosure = c; 
 }
+
+enum animatorType_t Animator ::GetAnimatorType(void){
+	return unkwownAnimator_t;
+}

@@ -59,12 +59,11 @@ TileLayer* BubbleMain::InitTerrain(){
 }
 
 void BubbleMain::InitGameEngine(){
-
+	AnimationsParser::SingletonCreate("..\\data\\bitmaps\\sprites\\animation_data.xml");
 	afh = new AnimationFilmHolder("..\\data\\bitmaps\\sprites\\sprites_data.xml");
-	FrameRangeAnimation *fra=new FrameRangeAnimation(0,6,-2,0,100,false,1);
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalk");
 	Sprite *sprite=new Sprite(150,50,false,afh->GetFilm("Bubwalk"), actionLayer);
-	FrameRangeAnimator *frtor=new FrameRangeAnimator();
-	frtor->SetOnFinish(EventCallbacks::BubbleWalkStop, 0 ); 
+	BubWalkingAnimator *frtor=new BubWalkingAnimator();
 
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
@@ -190,6 +189,6 @@ int main(int argc, char **argv){
 		InitGameEngine();
 		ManageGameLoop();
 		GameOver();
-	}*/
+	}
 	system( "pause" );
 }

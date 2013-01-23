@@ -9,6 +9,8 @@
 #include "AnimationFilm.h"
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
+#include "BubAnimator.h"
+#include "AnimationsParser.h"
 #include "TileBitmap.h"
 #include "TileLayer.h"
 #include "utilities.h"
