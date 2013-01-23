@@ -144,6 +144,12 @@
     <ClCompile Include="..\src\game_action\BubAnimator.cpp">
       <Filter>Source Files\game_action</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\CollisionChecker.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\terrain\Terrain.cpp">
+      <Filter>Source Files\terrain</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -232,6 +238,12 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\BubAnimator.h">
       <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\CollisionChecker.h">
+      <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\terrain\Terrain.h">
+      <Filter>Header Files\terrain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

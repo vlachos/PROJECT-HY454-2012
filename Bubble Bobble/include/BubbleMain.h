@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include "PathNames.h"
+#include "utilities.h"
 #include "FrameRangeAnimation.h"
 #include "AnimationFilmHolder.h"
 #include "AnimationFilm.h"
@@ -11,9 +12,7 @@
 #include "AnimatorHolder.h"
 #include "BubAnimator.h"
 #include "AnimationsParser.h"
-#include "TileBitmap.h"
-#include "TileLayer.h"
-#include "utilities.h"
+#include "Terrain.h"
 #include "EventCallbacks.h"
 #include <allegro5\allegro5.h> 
 #include <allegro5\allegro_native_dialog.h> 
@@ -25,7 +24,6 @@ EventQueue event_queue = NULL;
 Timer timer = NULL;
 KeyBoardState keyState;
 
-TileLayer *actionLayer;
 AnimationFilmHolder* afh;
 
 const float FPS = 60;
@@ -36,7 +34,6 @@ namespace BubbleMain{
 	extern int DrawTerrain();
 
 	extern bool InitAllegro();
-	extern TileLayer* InitTerrain();
 	extern void InitGameEngine();
 
 	extern void ManageGameLoop();

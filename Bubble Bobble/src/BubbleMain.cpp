@@ -46,23 +46,14 @@ bool BubbleMain::InitAllegro(){
 	return true;
 }
 
-TileLayer* BubbleMain::InitTerrain(){
-	DNEWPTR(TileLayer, actionLayer);
-	DNEWPTR(TileBitmap, tilesBitmap);
-	tilesBitmap = DNEW(TileBitmap);
-	actionLayer = DNEWCLASS(TileLayer, (tilesBitmap) );
-	
-	actionLayer->ReadStage(BubblePathnames::GetStageInfo(1));
-	actionLayer->WriteMap(BubblePathnames::GetTestActionLayerInfo() );
-
-	return actionLayer;
-}
-
 void BubbleMain::InitGameEngine(){
+
+	Terrain::SingeltonCreate();
+
 	AnimationsParser::SingletonCreate("..\\data\\bitmaps\\sprites\\animation_data.xml");
 	afh = new AnimationFilmHolder("..\\data\\bitmaps\\sprites\\sprites_data.xml");
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalk");
-	Sprite *sprite=new Sprite(150,50,false,afh->GetFilm("Bubwalk"), actionLayer);
+	Sprite *sprite=new Sprite(150,50,false,afh->GetFilm("Bubwalk"), Terrain::GetActionLayer());
 	BubWalkingAnimator *frtor=new BubWalkingAnimator();
 
 	al_start_timer(timer);
@@ -111,7 +102,7 @@ void BubbleMain::Rendering(){
 	al_set_target_bitmap(palette);
 	al_clear_to_color(BB_BLACK);
 
-	actionLayer->Display(palette);
+	Terrain::DisplayTerrain(palette);
 	AnimatorHolder::Display(palette);
  
 	if(al_is_event_queue_empty(event_queue)) {
@@ -172,7 +163,7 @@ void BubbleMain::SystemLoopDispatching(){
 void BubbleMain::GameOver(){
 
    delete afh;
-   delete actionLayer;
+   Terrain::SingeltonCleanUp();
 
    al_destroy_bitmap(palette);
    al_destroy_timer(timer);
@@ -185,7 +176,6 @@ int main(int argc, char **argv){
 	using namespace BubbleMain;
 
 	if (InitAllegro() ){
-		actionLayer = InitTerrain();
 		InitGameEngine();
 		ManageGameLoop();
 		GameOver();

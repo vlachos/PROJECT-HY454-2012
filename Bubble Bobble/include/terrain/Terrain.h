@@ -6,16 +6,24 @@
 
 class Terrain {
 
-	public:
+	private:
 		Terrain();
 		~Terrain();
 
 	private:
-		TileBitmap* tiles;
-		TileLayer* actionLayer;
+		static Terrain* terrain;
+		static TileLayer* actionLayer;
 
 	public:
-		void InitializeTerrain();
+		static void SingeltonCreate();
+
+	public:
+		static TileLayer* GetActionLayer();
+		static void DisplayTerrain(Bitmap at);
+
+	public:
+		static void SingeltonCleanUp(); 
+
 };
 
 #endif

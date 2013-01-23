@@ -1,22 +1,36 @@
 #include <Terrain.h>
 
-	/*constructor and destructor*/
-	Terrain::Terrain(){
-		DNEWPTR(TileBitmap, tiles);
-		tiles = DNEWCLASS(TileBitmap,() );
-		DNEWPTR(TileLayer, actionLayer);
-		actionLayer = DNEWCLASS(TileLayer,() );
+Terrain* Terrain::terrain;
+TileLayer* Terrain::actionLayer;
 
-		DASSERT(tiles);
-		DASSERT(actionLayer);
-	}
-	Terrain::~Terrain(){
-		tiles->~TileBitmap();
-		actionLayer->~TileLayer();
-	}
+/*constructor and destructor*/
+Terrain::Terrain(){
+	actionLayer = DNEWCLASS(TileLayer,() );
+	DASSERT(actionLayer);
+}
+Terrain::~Terrain(){
+	delete actionLayer;
+}
 
-	void Terrain::InitializeTerrain(){
-		actionLayer->ReadStage("");
-		actionLayer->WriteMap("");
-		//actionLayer->Display();
-	}
+void Terrain::SingeltonCreate(){
+	terrain = DNEWCLASS(Terrain,() );
+
+	DNEWPTR(TileBitmap, tilesBitmap);
+	tilesBitmap = DNEW(TileBitmap);
+	actionLayer = DNEWCLASS(TileLayer, (tilesBitmap) );
+
+	actionLayer->ReadStage(BubblePathnames::GetStageInfo(1));
+	actionLayer->WriteMap(BubblePathnames::GetTestActionLayerInfo() );
+}
+
+TileLayer* Terrain::GetActionLayer(){
+	return Terrain::actionLayer;
+}
+
+void Terrain::DisplayTerrain(Bitmap at){
+	actionLayer->Display(at);
+}
+
+void Terrain::SingeltonCleanUp(){
+	delete terrain;
+}
