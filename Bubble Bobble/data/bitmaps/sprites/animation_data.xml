@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animations totalAnimations="2">
+<animations totalAnimations="5">
   <BubStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <Bubopenmouth type="FrameRangeAnimation" dx="-2" dy="0" delay="100" continue="false" start="0" end="6"  />
 

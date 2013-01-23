@@ -45,7 +45,7 @@ namespace AnimationLoaderDelete{
 
 	struct DeleteAnimation{
 		void operator()(std::pair<std::string, Animation*> _pair){
-			delete _pair.second;
+			_pair.second->Destroy();
 		}
 	};
 
@@ -77,7 +77,7 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 	if( !strcmp(strType, "FrameListAnimation") ){		
 		int _listSize = GetGetIntAtrr( anim, "listSize" );
 		DASSERT( _listSize > 0 );
-
+		
 		std::list<frame_t> frames;
 		int index=0;
 		for ( rapidxml::xml_node<> * bbox = anim->first_node("list"); bbox; bbox = bbox->next_sibling(), ++index ) {
@@ -91,12 +91,15 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 	if( !strcmp(strType, "MovingPathAnimation") ){
 		int _listSize = GetGetIntAtrr( anim, "listSize" );
 		DASSERT( _listSize > 0 );
-
+		
 		std::list<PathEntry> paths;
 		int index=0;
+
 		for ( rapidxml::xml_node<> * bbox = anim->first_node("list"); bbox; bbox = bbox->next_sibling(), ++index ) {
-			PathEntry pathentry( GetGetIntAtrr( anim, "dx" ), GetGetIntAtrr( anim, "dy" ),
-								 GetGetIntAtrr( anim, "frame" ), GetGetIntAtrr( anim, "delay" ) );
+
+			PathEntry pathentry( GetGetIntAtrr( bbox, "dx" ), GetGetIntAtrr( bbox, "dy" ),
+								 GetGetIntAtrr( bbox, "frame" ), GetGetIntAtrr( bbox, "delay" ) );
+
 			paths.push_back( pathentry );
 		}
 		DASSERT( index == _listSize && paths.size() == index);
@@ -109,12 +112,14 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 	}else
 		DASSERT(false);
 
+	DASSERT( retVal );
 	return retVal;
 }
 
 AnimationsParser::AnimationsParser(const char * path){
 
 	xmlFilePath = path;
+	
 	rapidxml::xml_document<> doc;
 	//open path and read
 	std::ifstream theFile (xmlFilePath);
@@ -159,7 +164,7 @@ AnimationsParser::~AnimationsParser(){
 Animation * AnimationsParser::GetAnimation(const std::string & id){
 	AnimationsParser::animationsMap::const_iterator i = map.find(id);
 	DASSERT( i!=map.end() );
-	return i->second->Clone(0);
+	return i->second->Clone(1);
 }
 
 AnimationsParser::animationsName::const_iterator AnimationsParser::GetAnimationsNameIteratorBegin(){

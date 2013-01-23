@@ -8,6 +8,7 @@ MovingAnimation :: MovingAnimation (offset_t _dx, offset_t _dy, delay_t _delay, 
 }
 
 MovingAnimation ::~MovingAnimation(){
+	//~Animation();
 	dx=dy=0;
 	delay=-1;
 }

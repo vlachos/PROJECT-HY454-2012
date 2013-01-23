@@ -1,6 +1,5 @@
 #include "BubbleMain.h"
 
-
 /* Initialization */
 bool BubbleMain::InitAllegro(){
 
@@ -184,7 +183,6 @@ void BubbleMain::GameOver(){
 
 
 int main(int argc, char **argv){
-
 	using namespace BubbleMain;
 
 	if (InitAllegro() ){
@@ -192,6 +190,6 @@ int main(int argc, char **argv){
 		InitGameEngine();
 		ManageGameLoop();
 		GameOver();
-	}
+	}*/
 	system( "pause" );
 }
