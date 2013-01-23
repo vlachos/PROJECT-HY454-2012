@@ -3,34 +3,33 @@
 #include "AnimationsParser.h"
 #include "AnimatorHolder.h"
 
-BubWalkingAnimator::BubWalkingAnimator(void){
-	//this->SetOnFinish( OnFinishCallback , 0);
+BubWalkingAnimator::BubWalkingAnimator(void) {
+	this->SetOnFinish( OnFinishCallback , (void*)this);
 }
 
-
 void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
-	DASSERT( anim && !args);
-	DASSERT( anim==this );
+	DASSERT( anim && args);
+	BubWalkingAnimator * _this = (BubWalkingAnimator*)args;
+	DASSERT( anim==_this );
 	timestamp_t timestamp = GetGameTime();
 	DASSERT( timestamp>0 );
-	std::cout<<"in on finish\n";
-	AnimatorHolder::MarkAsSuspended(this);
-	AnimatorHolder::Cancel(this);
+	AnimatorHolder::MarkAsSuspended(_this);
+	AnimatorHolder::Cancel(_this);
 
-	DASSERT( GetAnimation() );
-	DASSERT( GetSprite() );
+	DASSERT( _this->GetAnimation() );
+	DASSERT( _this->GetSprite() );
 
-	animid_t id = GetAnimation()->GetId();
+	animid_t id = _this->GetAnimation()->GetId();
 
-	GetAnimation()->Destroy();
-	this->Destroy(); //meta
+	_this->GetAnimation()->Destroy();
+	_this->Destroy(); //meta
 
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
-	GetSprite()->SetFrame(0);
+	_this->GetSprite()->SetFrame(0);
 
 	BubStandAnimator* mar = new BubStandAnimator();
 	mar->SetOnFinish(BubStandAnimator::OnFinishCallback, 0);
-	mar->Start(GetSprite(), ma, timestamp);
+	mar->Start(_this->GetSprite(), ma, timestamp);
 	
 	AnimatorHolder::Register(mar);
 	AnimatorHolder::MarkAsRunning(mar);

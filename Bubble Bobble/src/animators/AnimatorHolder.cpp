@@ -59,3 +59,12 @@ void AnimatorHolder :: Display(Bitmap at){
 		running[i]->Display(at);
 	
 }
+
+
+std::vector<Animator*> AnimatorHolder:: GetAnimators(enum animatorType_t type){
+	std::vector<Animator*> animators;
+	for(std::vector<Animator*>::const_iterator ci = running.begin(); ci != running.end(); ++ci){
+		animators.push_back( *ci );
+	}
+	return animators;
+}

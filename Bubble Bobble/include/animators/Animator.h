@@ -14,7 +14,9 @@ enum animatorstate_t {
 
 enum animatorType_t {
 	unkwownAnimator_t,
-	bubWalkingAnimator_t
+	BubStandAnimator_t,
+	bubWalkAnimator_t,
+	
 };
 
 class Animator : public LatelyDestroyable{
