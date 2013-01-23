@@ -16,6 +16,7 @@ enum animatorType_t {
 	unkwownAnimator_t,
 	BubStandAnimator_t,
 	bubWalkAnimator_t,
+	bubfallingAnimator_t
 	
 };
 

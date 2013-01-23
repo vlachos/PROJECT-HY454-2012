@@ -6,22 +6,17 @@ void Sprite::Display(Bitmap dest){
 }
 
 static bool isSolidTerrain(const TileLayer * tileLayer, Dim x, Dim y, Dim _x, Dim _y){
-	if(_y>0){
-		return tileLayer->isSolid(x+_x, y+_y, true);
-	}else{
-		return tileLayer->isSolid(x+_x, y+_y, false);
-	}
+	return tileLayer->isSolid(x+_x, y+_y, _y<0);
 }
-
+static int i=0;
 void Sprite::Move( Dim _x, Dim _y ){
 	bool canNotMove = isSolidTerrain(tileLayer, x, y, _x, _y);
-
+	
 	if(!canNotMove){
 		x += _x;
 		y += _y;
-		/*
 		if(gravityAddicted){
-			bool overSolidTerrain = isSolidTerrain(tileLayer, x+(frameBox.GetWidth()/2), y-frameBox.GetHeigth());
+			bool overSolidTerrain = isSolidTerrain(tileLayer, x+(frameBox.GetWidth()/2), y+frameBox.GetHeigth(), 0, 1);
 			if(overSolidTerrain){
 				if(isFalling){
 					isFalling = false;
@@ -30,10 +25,10 @@ void Sprite::Move( Dim _x, Dim _y ){
 			}else
 			if (!isFalling) {
 			   isFalling = true; 
+			   
 			   NotifyStartFalling(); 
 			}
 		}
-		*/
 	}
 }
 

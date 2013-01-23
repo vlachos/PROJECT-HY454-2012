@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animations totalAnimations="6">
+<animations totalAnimations="8">
   <BubStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <Bubopenmouth type="FrameRangeAnimation" dx="-2" dy="0" delay="100" continue="false" start="0" end="6"  />
-  <Bubwalk type="FrameRangeAnimation" dx="-2" dy="0" delay="80" continue="false" start="0" end="6"  />
-
+  <Bubwalkleft type="FrameRangeAnimation" dx="-2" dy="0" delay="80" continue="true" start="0" end="6"  />
+  <Bubwalkright type="FrameRangeAnimation" dx="2" dy="0" delay="80" continue="true" start="0" end="6"  />
+  <BubFalling type="MovingAnimation" dx="0" dy="2" delay="80" continue="true"/>
 
   
   

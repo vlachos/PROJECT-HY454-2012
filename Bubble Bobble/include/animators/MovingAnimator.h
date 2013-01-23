@@ -14,6 +14,13 @@ class MovingAnimator : public Animator{
 public:
 	MovingAnimator (void);
 	~MovingAnimator();
+
+	MovingAnimation* GetAnimation(void)
+		{ return anim; }
+
+	Sprite* GetSprite(void)
+		{ return sprite; }
+
 	void Progress (timestamp_t currTime);
 	void Start (Sprite* s, MovingAnimation* a, timestamp_t t);
 	void Display(Bitmap at);

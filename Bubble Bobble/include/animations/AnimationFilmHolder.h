@@ -7,15 +7,21 @@
 #include <map>
 
 class AnimationFilmHolder{
+private:
 	typedef std::map<std::string, AnimationFilm*> FilmMap;
     
-	FilmMap	filmMap;
-    std::vector <AnimationFilm>	filmMem; // Мыс єс films allocated as array
-    
-public:
+	static FilmMap	filmMap;
+    static std::vector <AnimationFilm>	filmMem; // Мыс єс films allocated as array
+	static AnimationFilmHolder * singletonPtr;
 	AnimationFilmHolder (const char* path); // Decoder constructor.
     ~AnimationFilmHolder();
-    const AnimationFilm* GetFilm (const std::string id) const;
+public:
+	static void				SingletonCreate (const char * path) 
+			{ singletonPtr = new AnimationFilmHolder(path); }
+	static void				SingletonDestroy (void) 
+			{ delete singletonPtr; singletonPtr = 0; }
+
+    static const AnimationFilm* GetFilm (const std::string id);
 };
 
 #endif

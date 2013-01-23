@@ -12,16 +12,16 @@
 
 
 
-class Sprite{
+class Sprite : public LatelyDestroyable{
 	public:
 		class SpriteStartFallingListener{
 			public:
-				virtual void operator()(Sprite * sprite) const = 0;
+				virtual void OnStartFalling(Sprite * sprite) = 0;
 		};
 
 		class SpriteStopFallingListener{
 			public:
-				virtual void operator()(Sprite * sprite) const = 0;
+				virtual void OnStopFalling(Sprite * sprite) = 0;
 		};
 
 	private:
@@ -38,15 +38,22 @@ class Sprite{
 		void NotifyStopFalling() {	
 			std::list<SpriteStopFallingListener *>::const_iterator iterator;
 			for (iterator = spriteStopFallingListener.begin(); iterator != spriteStopFallingListener.end(); ++iterator) {
-				(*(*iterator))(this);
+				DASSERT( *iterator );
+				(*iterator)->OnStopFalling(this);
 			}
 		}
 
 		void NotifyStartFalling(){	
 			std::list<SpriteStartFallingListener *>::const_iterator iterator;
+			std::cout<<"out falling\n";
 			for (iterator = spriteStartFallingListener.begin(); iterator != spriteStartFallingListener.end(); ++iterator) {
-				(*(*iterator))(this);
+				std::cout<<"in falling\n";
+				DASSERT( *iterator );
+				std::cout<<"in falling1\n";
+				(*iterator)->OnStartFalling(this);
+				std::cout<<"in falling2\n";
 			}
+			std::cout<<"out falling2\n";
 		}
 
 	public:
@@ -57,9 +64,10 @@ class Sprite{
 			}
 		}
 
-		Dim GetX(void) { return x; }
-		Dim GetY(void) { return y; }
-		Rect GetFrameBox(void){ return frameBox; }
+		const TileLayer * GetTileLayer(void) const { return tileLayer; }
+		Dim GetX(void) const { return x; }
+		Dim GetY(void) const { return y; }
+		Rect GetFrameBox(void) const{ return frameBox; }
 		byte GetFrame(void) const { return frameNo; }
 		void SetVisibility(bool v) { isVisible = v; }
 		bool IsVisible(void) const { return isVisible; }

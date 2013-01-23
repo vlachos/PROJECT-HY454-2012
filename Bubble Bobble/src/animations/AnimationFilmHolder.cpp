@@ -6,6 +6,10 @@
 #include "MemoryManage.h"
 #include "BitmapLoader.h"
 
+AnimationFilmHolder * AnimationFilmHolder::singletonPtr = (AnimationFilmHolder*)0;
+AnimationFilmHolder::FilmMap AnimationFilmHolder::filmMap;
+std::vector <AnimationFilm> AnimationFilmHolder::filmMem;
+
 namespace AnimationHolderDelete{
 
 	struct DeleteAnimation{
@@ -16,7 +20,6 @@ namespace AnimationHolderDelete{
 
 }
 
-static void t(void (*tt)(void)){}
 // Decoder constructor.
 AnimationFilmHolder :: AnimationFilmHolder (const char* path){
 	DASSERT(path);
@@ -61,7 +64,7 @@ AnimationFilmHolder :: ~AnimationFilmHolder(){
 	BitmapLoader::SingletonDestroy();
 }
     
-const AnimationFilm* AnimationFilmHolder :: GetFilm (const std::string id) const{
+const AnimationFilm* AnimationFilmHolder :: GetFilm (const std::string id){
 	DASSERT(!(filmMap.empty()));
 	DASSERT(!(id.empty()));
 
