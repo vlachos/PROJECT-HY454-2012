@@ -24,8 +24,6 @@ EventQueue event_queue = NULL;
 Timer timer = NULL;
 KeyBoardState keyState;
 
-AnimationFilmHolder* afh;
-
 const float FPS = 60;
 bool redraw = true;
 

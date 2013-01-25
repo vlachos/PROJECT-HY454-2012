@@ -1,3 +1,4 @@
+
 #ifndef	SPRITESPARSER_H
 #define	SPRITESPARSER_H
 

@@ -2,7 +2,7 @@
 
 void Sprite::Display(Bitmap dest){
 	al_draw_bitmap_region(currFilm->GetBitmap(), frameBox.GetX(), frameBox.GetY(), 
-		frameBox.GetWidth(), frameBox.GetHeigth(), x, y, 0);
+		frameBox.GetWidth(), frameBox.GetHeigth(), x, y, (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
 }
 
 static bool isSolidTerrain(const TileLayer * tileLayer, Dim x, Dim y, Dim _x, Dim _y){

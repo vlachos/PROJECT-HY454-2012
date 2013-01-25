@@ -51,11 +51,12 @@ void BubbleMain::InitGameEngine(){
 	Terrain::SingeltonCreate();
 
 	AnimationsParser::SingletonCreate("..\\data\\bitmaps\\sprites\\animation_data.xml");
-	afh = new AnimationFilmHolder("..\\data\\bitmaps\\sprites\\sprites_data.xml");
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalk");
-	Sprite *sprite=new Sprite(150,50,false,afh->GetFilm("Bubwalk"), Terrain::GetActionLayer());
+	AnimationFilmHolder::SingletonCreate("..\\data\\bitmaps\\sprites\\sprites_data.xml");
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalkleft");
+	Sprite *sprite=new Sprite(150,50,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
 	BubWalkingAnimator *frtor=new BubWalkingAnimator();
-
+	sprite->AddStartFallingListener(frtor);
+	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 
@@ -162,7 +163,8 @@ void BubbleMain::SystemLoopDispatching(){
 /* Game Termination */
 void BubbleMain::GameOver(){
 
-   delete afh;
+	AnimationsParser::SingletonDestroy();
+	AnimationFilmHolder::SingletonDestroy();
    Terrain::SingeltonCleanUp();
 
    al_destroy_bitmap(palette);

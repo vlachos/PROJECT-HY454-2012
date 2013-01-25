@@ -10,8 +10,6 @@
 #include "Sprite.h"
 #include "TileLayer.h"
 
-
-
 class Sprite : public LatelyDestroyable{
 	public:
 		class SpriteStartFallingListener{
@@ -28,7 +26,7 @@ class Sprite : public LatelyDestroyable{
 		byte			frameNo;
 		Rect			frameBox;
 		Dim				x,y;
-		bool			isVisible, gravityAddicted, isFalling;
+		bool			isVisible, gravityAddicted, isFalling, goesLeft;
 		const AnimationFilm *	currFilm;
 		const TileLayer *		tileLayer;
 
@@ -45,15 +43,10 @@ class Sprite : public LatelyDestroyable{
 
 		void NotifyStartFalling(){	
 			std::list<SpriteStartFallingListener *>::const_iterator iterator;
-			std::cout<<"out falling\n";
 			for (iterator = spriteStartFallingListener.begin(); iterator != spriteStartFallingListener.end(); ++iterator) {
-				std::cout<<"in falling\n";
 				DASSERT( *iterator );
-				std::cout<<"in falling1\n";
 				(*iterator)->OnStartFalling(this);
-				std::cout<<"in falling2\n";
 			}
-			std::cout<<"out falling2\n";
 		}
 
 	public:
@@ -64,7 +57,8 @@ class Sprite : public LatelyDestroyable{
 			}
 		}
 
-		const TileLayer * GetTileLayer(void) const { return tileLayer; }
+		bool GoesLeft() const { return goesLeft; }
+		void SetGoesLeft( bool _goesLeft ) { goesLeft = _goesLeft; }
 		Dim GetX(void) const { return x; }
 		Dim GetY(void) const { return y; }
 		Rect GetFrameBox(void) const{ return frameBox; }
@@ -85,8 +79,8 @@ class Sprite : public LatelyDestroyable{
 		void AddStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.push_back( sl ); }
 		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.remove( sl ); }
 
-		Sprite(Dim _x, Dim _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer): 
-			x(_x), y(_y), currFilm(film), isVisible(true), tileLayer(_tileLayer){
+		Sprite(Dim _x, Dim _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft): 
+			x(_x), y(_y), currFilm(film), isVisible(true), tileLayer(_tileLayer), goesLeft(goesLeft){
 
 			isFalling = false;
 			gravityAddicted = _gravityAddicted;
@@ -94,30 +88,5 @@ class Sprite : public LatelyDestroyable{
 			SetFrame(0);
 		}
 };
-
-/*
-using the listeners...
-
-class outer{
-	private:
-		class Tmp : public Sprite::SpriteStartFallingListener{
-			private:
-				outer * r;
-			public:
-				void operator()(Sprite * sprite)
-					{ r->todo(sprite); }
-				Tmp (outer * _r): r(_r){}
-		};
-		Tmp * tmp;
-	public:
-		void todo(Sprite * sprite);
-		outer(Sprite * sprite){
-			//sprite->AddStartFallingListener(  );
-			//tmp = new Tmp(this);
-		}
-};
-
-
-*/
 
 #endif

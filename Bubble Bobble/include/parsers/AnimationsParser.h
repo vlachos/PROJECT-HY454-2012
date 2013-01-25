@@ -34,4 +34,5 @@ class AnimationsParser{
 		~AnimationsParser(void);
 };
 
+
 #endif
