@@ -150,6 +150,9 @@
     <ClCompile Include="..\src\terrain\Terrain.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\ZenChanAnimator.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -245,6 +248,9 @@
     <ClInclude Include="..\include\terrain\Terrain.h">
       <Filter>Header Files\terrain</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\game_action\ZenChanAnimator.h">
+      <Filter>Header Files\game_action</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\soundtrack\bubble-bobble-01-amiga-credits.mp3">
@@ -298,10 +304,10 @@
     <None Include="..\data\bitmaps\terrain\tile_bitmap_32x32.png">
       <Filter>Resource Files\bitmaps\terrain</Filter>
     </None>
-    <None Include="..\data\bitmaps\sprites\sprites_data.xml">
+    <None Include="..\data\bitmaps\sprites\info\animation_data.xml">
       <Filter>Resource Files\bitmaps\sprites</Filter>
     </None>
-    <None Include="..\data\bitmaps\sprites\animation_data.xml">
+    <None Include="..\data\bitmaps\sprites\info\sprites_data.xml">
       <Filter>Resource Files\bitmaps\sprites</Filter>
     </None>
   </ItemGroup>

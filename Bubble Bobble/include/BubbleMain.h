@@ -11,6 +11,7 @@
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
 #include "BubAnimator.h"
+#include "ZenChanAnimator.h"
 #include "AnimationsParser.h"
 #include "Terrain.h"
 #include "EventCallbacks.h"

@@ -99,6 +99,7 @@
     <ClCompile Include="..\src\BubbleMain.cpp" />
     <ClCompile Include="..\src\game_action\BubAnimator.cpp" />
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp" />
+    <ClCompile Include="..\src\game_action\ZenChanAnimator.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\Terrain.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="..\include\BubbleMain.h" />
     <ClInclude Include="..\include\game_action\BubAnimator.h" />
     <ClInclude Include="..\include\game_action\CollisionChecker.h" />
+    <ClInclude Include="..\include\game_action\ZenChanAnimator.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />
@@ -143,12 +145,8 @@
     <ClInclude Include="..\include\utilities\utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\bitmaps\sprites\animation_data.xml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="..\data\bitmaps\sprites\sprites_data.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="..\data\bitmaps\sprites\info\animation_data.xml" />
+    <None Include="..\data\bitmaps\sprites\info\sprites_data.xml" />
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
     <None Include="..\data\bitmaps\terrain\stage1.txt" />

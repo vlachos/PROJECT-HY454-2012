@@ -57,6 +57,11 @@ void BubbleMain::InitGameEngine(){
 	Sprite *bubSprite=new Sprite(150,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
 	BubWalkingAnimator *bubWalkanimator=new BubWalkingAnimator();
 	bubSprite->AddStartFallingListener(bubWalkanimator);
+
+	MovingAnimation *zenChanAnimation = (MovingAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
+	Sprite *zenChanSprite=new Sprite(100,79,true,AnimationFilmHolder::GetFilm("zenchanwalk"), Terrain::GetActionLayer(), true);
+	ZenChanStandAnimator * zenChanAnimator = new ZenChanStandAnimator();
+	zenChanSprite->AddStartFallingListener(zenChanAnimator);
 	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
@@ -64,6 +69,11 @@ void BubbleMain::InitGameEngine(){
 	bubWalkanimator->Start(bubSprite, bubWalkanimation, GetGameTime());
 	AnimatorHolder::Register(bubWalkanimator);
 	AnimatorHolder::MarkAsRunning(bubWalkanimator);
+
+	zenChanAnimator->Start(zenChanSprite, zenChanAnimation, GetGameTime());
+	AnimatorHolder::Register(zenChanAnimator);
+	AnimatorHolder::MarkAsRunning(zenChanAnimator);
+
 	redraw = true;
 }
 

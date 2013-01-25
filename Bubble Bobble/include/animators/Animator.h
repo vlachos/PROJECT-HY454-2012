@@ -14,10 +14,10 @@ enum animatorstate_t {
 
 enum animatorType_t {
 	unkwownAnimator_t,
-	BubStandAnimator_t,
+	bubStandAnimator_t,
 	bubWalkAnimator_t,
-	bubfallingAnimator_t
-	
+	bubFallingAnimator_t,
+	zenChanStandAnimator_t
 };
 
 class Animator : public LatelyDestroyable{

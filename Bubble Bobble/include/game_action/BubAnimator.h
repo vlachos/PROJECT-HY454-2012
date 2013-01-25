@@ -11,7 +11,7 @@ class BubStandAnimator : public MovingAnimator{
 		BubStandAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
-			{ return BubStandAnimator_t; }
+			{ return bubStandAnimator_t; }
 
 		static void OnFinishCallback(Animator*, void*);
 };
@@ -34,7 +34,7 @@ class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFalli
 		BubFallingAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
-			{ return bubfallingAnimator_t; }
+			{ return bubFallingAnimator_t; }
 
 		void OnStopFalling(Sprite * sprite);
 };
