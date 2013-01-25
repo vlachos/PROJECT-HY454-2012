@@ -52,17 +52,18 @@ void BubbleMain::InitGameEngine(){
 
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalkleft");
-	Sprite *sprite=new Sprite(150,50,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
-	BubWalkingAnimator *frtor=new BubWalkingAnimator();
-	sprite->AddStartFallingListener(frtor);
+
+	FrameRangeAnimation *bubWalkanimation= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalkleft");
+	Sprite *bubSprite=new Sprite(150,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
+	BubWalkingAnimator *bubWalkanimator=new BubWalkingAnimator();
+	bubSprite->AddStartFallingListener(bubWalkanimator);
 	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 
-	frtor->Start(sprite,fra,GetGameTime());
-	AnimatorHolder::Register(frtor);
-	AnimatorHolder::MarkAsRunning(frtor);
+	bubWalkanimator->Start(bubSprite, bubWalkanimation, GetGameTime());
+	AnimatorHolder::Register(bubWalkanimator);
+	AnimatorHolder::MarkAsRunning(bubWalkanimator);
 	redraw = true;
 }
 
