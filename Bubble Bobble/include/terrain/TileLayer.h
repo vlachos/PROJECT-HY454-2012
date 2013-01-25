@@ -11,8 +11,9 @@ enum HorizScroll {Left = -1, HorizIntact = 0, Right = +1 };
 enum VertScroll {Up = -1, VertIntact = 0, Down = +1 };
 
 typedef std::pair<Dim, Dim> Coordinates;
-typedef bool BBMovementIsUp;
-#define MAX_SEPARATED_MOVEMENTS 2
+
+enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1};
+#define BB_MOVEMENTS 3
 
 #define TILE_LAYER_WIDTH 32
 #define TILE_LAYER_HEIGHT 26
@@ -34,7 +35,7 @@ class TileLayer{
 	private:
 		TileBitmap* tilesBitmap;
 		Index map[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH];
-		bool tilesSolidity[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH][MAX_SEPARATED_MOVEMENTS];
+		bool tilesSolidity[TILE_LAYER_HEIGHT][TILE_LAYER_WIDTH][BB_MOVEMENTS];
 		Rect viewWindow;
 
 	public:
@@ -48,7 +49,7 @@ class TileLayer{
 		Index GetTile (Dim row, Dim col);
 		const Coordinates GetTileCoordinates (Dim x, Dim y) const;
 		const Coordinates GetXYCoordinates (Dim row, Dim col) const;
-		const bool isSolid(Dim x, Dim y, BBMovementIsUp moveUp) const;
+		const bool isSolid(Dim x, Dim y, BBMovement move) const;
 
 		void SetViewWindow (const Rect&);
 		const Rect	GetViewWindow (void) const;

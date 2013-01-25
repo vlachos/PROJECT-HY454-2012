@@ -18,8 +18,9 @@
 		for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 			for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){		
 				map[i][j] = 0;
-				tilesSolidity[i][j][true] = false;
-				tilesSolidity[i][j][false] = false;
+				tilesSolidity[i][j][Left] = false;
+				tilesSolidity[i][j][Up] = false;
+				tilesSolidity[i][j][Right] = false;
 			}
 		}
 		delete tilesBitmap;
@@ -52,16 +53,19 @@
 					map[i][j] = nextIndex;
 					/*empty or shadow*/
 					if (map[i][j] == 0 || map[i][j] >= BIG_BRICK_THRESHOLD){
-						tilesSolidity[i][j][true] = false;
-						tilesSolidity[i][j][false] = false;
+						tilesSolidity[i][j][BBLeft] = false;
+						tilesSolidity[i][j][BBUp] = false;
+						tilesSolidity[i][j][BBRight] = false;
 					}/*small brick*/
 					else if (map[i][j] < SMALL_BRICK_THRESHOLD){
-						tilesSolidity[i][j][true] = false;
-						tilesSolidity[i][j][false] = true;
+						tilesSolidity[i][j][BBLeft] = true;
+						tilesSolidity[i][j][BBUp] = false;
+						tilesSolidity[i][j][BBRight] = true;
 					}/*big brick*/
 					else if (map[i][j] >= SMALL_BRICK_THRESHOLD && map[i][j] <= BIG_BRICK_THRESHOLD){
-						tilesSolidity[i][j][true] = true;
-						tilesSolidity[i][j][false] = true;
+						tilesSolidity[i][j][BBLeft] = true;
+						tilesSolidity[i][j][BBUp] = true;
+						tilesSolidity[i][j][BBRight] = true;
 					}
 					DASSERT( map[i][j] >= 0 && map[i][j] < TILES_BITMAP_SIZE*TILES_BITMAP_SIZE  );
 				}
@@ -79,7 +83,10 @@
 		if (openfile.is_open()){
 			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
-					openfile << (int)map[i][j] << "("<< (int)tilesSolidity[i][j] << ")";
+					openfile << (int)map[i][j] << " ";
+					openfile << (int)tilesSolidity[i][j][Left] << " ";
+					openfile << (int)tilesSolidity[i][j][Up] << " ";
+					openfile << (int)tilesSolidity[i][j][Right] << " ";
 					openfile << "\t";
 				}
 				openfile << "\n";
@@ -141,13 +148,13 @@
 		return std::make_pair(MUL_TILE_SIZE(row), MUL_TILE_SIZE(col) );
 	}
 
-	const bool TileLayer::isSolid(Dim x, Dim y, BBMovementIsUp moveUp) const{
+	const bool TileLayer::isSolid(Dim x, Dim y, BBMovement move) const{
 
 		Coordinates tileCoordinates = GetTileCoordinates(x,y);
 
 		return tilesSolidity[tileCoordinates.first]
 							[tileCoordinates.second]
-							[moveUp];
+							[move];
 	}
 
 	/*view window*/

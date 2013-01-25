@@ -79,6 +79,7 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	
 	AnimatorHolder::Register(mar);
 	AnimatorHolder::MarkAsRunning(mar);
+
 }
 
 

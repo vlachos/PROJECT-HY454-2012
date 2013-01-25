@@ -64,7 +64,7 @@ void CollisionChecker::Cancel (Sprite* s1, Sprite* s2){
 										++aPair) {
 
 		if (s1 == (*aPair).master && s2 == (*aPair).slave){
-			std::cout << "Delete Bitch !!! \n";
+			std::cout << "Delete Bitch 2 !!! \n";
 			CollisionPairs.erase(aPair);
 			DASSERT(CollisionPairs.size() == oldSize - 1);
 		}
