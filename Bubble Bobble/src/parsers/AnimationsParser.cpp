@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <fstream>
 #include <list>
+#include <vector>
 #include <string.h>
 #include <stdlib.h>
 
@@ -92,7 +93,7 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 		int _listSize = GetGetIntAtrr( anim, "listSize" );
 		DASSERT( _listSize > 0 );
 		
-		std::list<PathEntry> paths;
+		std::vector<PathEntry> paths;
 		int index=0;
 
 		for ( rapidxml::xml_node<> * bbox = anim->first_node("list"); bbox; bbox = bbox->next_sibling(), ++index ) {
@@ -104,7 +105,7 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 		}
 		DASSERT( index == _listSize && paths.size() == index);
 
-		retVal = new MovingPathAnimation( paths, 1);
+		retVal = new MovingPathAnimation( paths, 1, false);
 	}else
 	if( !strcmp(strType, "FlashAnimation") ){
 		retVal = new FlashAnimation( GetGetIntAtrr( anim, "repetitions" ), GetGetIntAtrr( anim, "showDelay" ),

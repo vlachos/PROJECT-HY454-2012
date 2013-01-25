@@ -25,6 +25,7 @@ class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStart
 			{ return bubWalkAnimator_t; }
 
 		static void OnFinishCallback(Animator*, void*);
+		static void OnCollisionWithEnemy(Animator*);
 		void OnStartFalling(Sprite * sprite);
 };
 

@@ -29,6 +29,7 @@ void FrameRangeAnimator :: Progress (timestamp_t currTime){
 			NotifyStopped();
 			return;
 	    }
+
 	}
 }
 

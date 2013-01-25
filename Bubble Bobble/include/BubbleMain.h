@@ -23,6 +23,8 @@ Display display = NULL;
 Bitmap palette = NULL;
 EventQueue event_queue = NULL;
 Timer timer = NULL;
+
+ALLEGRO_EVENT ev;
 KeyBoardState keyState;
 
 const float FPS = 60;

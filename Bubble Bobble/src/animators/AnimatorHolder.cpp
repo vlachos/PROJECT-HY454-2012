@@ -32,6 +32,7 @@ void AnimatorHolder :: MarkAsRunning (Animator* a){
 	suspended.erase(it); 
 
 	running.push_back(a); 
+
 }
 
 void AnimatorHolder :: MarkAsSuspended (Animator* a){

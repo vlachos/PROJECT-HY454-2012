@@ -25,9 +25,11 @@ BubWalkingAnimator::BubWalkingAnimator(void) {
 }
 
 void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
-	DASSERT( sprite = this->GetSprite() );
-
+	
+	DASSERT( sprite == this->GetSprite() );
+	std::cout << "start\n";
 	AnimatorHolder::MarkAsSuspended(this);
+	std::cout << "end\n";
 	AnimatorHolder::Cancel(this);
 
 	timestamp_t timestamp = GetGameTime();
@@ -50,6 +52,7 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	frtor->Start(n_sprite,fra,GetGameTime());
 	AnimatorHolder::Register(frtor);
 	AnimatorHolder::MarkAsRunning(frtor);
+	
 }
 
 
@@ -67,18 +70,43 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	animid_t id = _this->GetAnimation()->GetId();
 
+	Sprite * newSprite = _this->GetSprite();
+	newSprite->RemoveStartFallingListener(_this);
 	_this->GetAnimation()->Destroy();
 	_this->Destroy(); //meta
 
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
-	_this->GetSprite()->SetFrame(0);
+	newSprite->SetFrame(0);
 
 	BubStandAnimator* mar = new BubStandAnimator();
 	mar->SetOnFinish(BubStandAnimator::OnFinishCallback, 0);
-	mar->Start(_this->GetSprite(), ma, timestamp);
+	mar->Start(newSprite, ma, timestamp);
 	
 	AnimatorHolder::Register(mar);
 	AnimatorHolder::MarkAsRunning(mar);
+
+}
+
+void BubWalkingAnimator::OnCollisionWithEnemy(Animator* animator){
+	DASSERT(animator);
+	BubWalkingAnimator * _this = (BubWalkingAnimator*)animator;
+	DASSERT( _this );
+	timestamp_t timestamp = GetGameTime();
+	DASSERT( timestamp>0 );
+	AnimatorHolder::MarkAsSuspended(_this);
+	AnimatorHolder::Cancel(_this);
+
+	DASSERT( _this->GetAnimation() );
+	DASSERT( _this->GetSprite() );
+
+	animid_t id = _this->GetAnimation()->GetId();
+
+	Sprite * newSprite = _this->GetSprite();
+	newSprite->RemoveStartFallingListener(_this);
+	_this->GetAnimation()->Destroy();
+	_this->GetSprite()->Destroy();
+	_this->Destroy();
+
 
 }
 
@@ -99,14 +127,12 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( timestamp>0 );
 
 
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalkright");
+	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
-						this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("Bubwalk"), 
-						Terrain::GetActionLayer(), false);
+		this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("Bubwalk"), 
+						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
 
-	BubWalkingAnimator *frtor=new BubWalkingAnimator();
-
-	n_sprite->AddStartFallingListener(frtor);
+	BubStandAnimator *frtor=new BubStandAnimator();
 
 	this->GetSprite()->Destroy();
 	this->GetAnimation()->Destroy();

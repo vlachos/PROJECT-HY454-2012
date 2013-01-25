@@ -53,10 +53,10 @@ void BubbleMain::InitGameEngine(){
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 
-	FrameRangeAnimation *bubWalkanimation= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalkleft");
+	MovingAnimation *bubStandanimation= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
 	Sprite *bubSprite=new Sprite(150,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
-	BubWalkingAnimator *bubWalkanimator=new BubWalkingAnimator();
-	bubSprite->AddStartFallingListener(bubWalkanimator);
+	bubSprite->SetFrame(6);
+	BubStandAnimator *bubStandanimator=new BubStandAnimator();
 
 	MovingAnimation *zenChanAnimation = (MovingAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
 	Sprite *zenChanSprite=new Sprite(100,79,true,AnimationFilmHolder::GetFilm("zenchanwalk"), Terrain::GetActionLayer(), true);
@@ -66,9 +66,9 @@ void BubbleMain::InitGameEngine(){
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 
-	bubWalkanimator->Start(bubSprite, bubWalkanimation, GetGameTime());
-	AnimatorHolder::Register(bubWalkanimator);
-	AnimatorHolder::MarkAsRunning(bubWalkanimator);
+	bubStandanimator->Start(bubSprite, bubStandanimation, GetGameTime());
+	AnimatorHolder::Register(bubStandanimator);
+	AnimatorHolder::MarkAsRunning(bubStandanimator);
 
 	zenChanAnimator->Start(zenChanSprite, zenChanAnimation, GetGameTime());
 	AnimatorHolder::Register(zenChanAnimator);
@@ -84,7 +84,6 @@ void BubbleMain::ManageGameLoop(){
 	using namespace BubbleMain;
 
 	while (1){
-		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 		al_get_keyboard_state(&keyState);
 
@@ -128,27 +127,103 @@ bool BubbleMain::InputManagement(){
 
 	if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
 		std::cout << "pressing Up\n";
-		return true;
 	}
-	else if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
+	if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
 		std::cout << "pressing Down\n";
-		return true;
 	}
-	else if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
-		std::cout << "pressing Right\n";
-		return true;
+	if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
+		std::vector<Animator*> bub;
+		
+		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			BubWalkingAnimator* bubWalk = (BubWalkingAnimator*) bub.front();
+			offset_t offset = bubWalk->GetAnimation()->GetDx();
+			DASSERT( offset!=0 );
+			if(offset<0){
+				bubWalk->GetAnimation()->SetDx(-offset);
+				bubWalk->GetSprite()->SetGoesLeft(false);
+			}
+		}else
+		if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			BubStandAnimator* _this = (BubStandAnimator*) bub.front();
+
+			timestamp_t timestamp = GetGameTime();
+			DASSERT( timestamp>0 );
+			AnimatorHolder::MarkAsSuspended(_this);
+			AnimatorHolder::Cancel(_this);
+
+			DASSERT( _this->GetAnimation() );
+			DASSERT( _this->GetSprite() );
+
+			animid_t id = _this->GetAnimation()->GetId();
+
+			_this->GetAnimation()->Destroy();
+			_this->Destroy(); 
+
+			FrameRangeAnimation *ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("Bubwalkright");
+			_this->GetSprite()->SetFrame(0);
+			_this->GetSprite()->SetGoesLeft(false);
+
+			BubWalkingAnimator* mar = new BubWalkingAnimator();
+			_this->GetSprite()->AddStartFallingListener(mar);
+			mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
+			mar->Start(_this->GetSprite(), ma, timestamp);
+	
+			AnimatorHolder::Register(mar);
+			AnimatorHolder::MarkAsRunning(mar);
+		}
 	}
-	else if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
-		std::cout << "pressing Left\n";
-		return true;
+	if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
+		std::vector<Animator*> bub;
+		bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t);
+		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			BubWalkingAnimator* bubWalk = (BubWalkingAnimator*) bub.front();
+			offset_t offset = bubWalk->GetAnimation()->GetDx();
+			DASSERT( offset!=0 );
+			if(offset>0){
+				bubWalk->GetAnimation()->SetDx(-offset);
+				bubWalk->GetSprite()->SetGoesLeft(true);
+			}
+		}else
+		if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			BubStandAnimator* _this = (BubStandAnimator*) bub.front();
+
+			timestamp_t timestamp = GetGameTime();
+			DASSERT( timestamp>0 );
+			AnimatorHolder::MarkAsSuspended(_this);
+			AnimatorHolder::Cancel(_this);
+
+			DASSERT( _this->GetAnimation() );
+			DASSERT( _this->GetSprite() );
+
+			animid_t id = _this->GetAnimation()->GetId();
+
+			Sprite* newSprite = _this->GetSprite();
+
+			_this->GetAnimation()->Destroy();
+			_this->Destroy(); 
+
+			FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("Bubwalkleft");
+			newSprite->SetFrame(0);
+			newSprite->SetGoesLeft(true);
+
+			BubWalkingAnimator* mar = new BubWalkingAnimator();
+			newSprite->AddStartFallingListener(mar);
+			mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
+			mar->Start(newSprite, ma, timestamp);
+	
+			AnimatorHolder::Register(mar);
+			AnimatorHolder::MarkAsRunning(mar);
+		}
 	}
-	else if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
+	if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
 		std::cout << "pressing Space\n";
-		return true;
 	}
-	else{
-		return false;
-	}
+
+	return true;
 }
 
 void BubbleMain::AnimationProgress(timestamp_t timeNow){
