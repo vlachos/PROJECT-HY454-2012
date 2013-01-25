@@ -5,6 +5,8 @@
 #include <windows.h>
 #include "PathNames.h"
 #include "utilities.h"
+
+#include "Terrain.h"
 #include "FrameRangeAnimation.h"
 #include "AnimationFilmHolder.h"
 #include "AnimationFilm.h"
@@ -13,8 +15,8 @@
 #include "BubAnimator.h"
 #include "ZenChanAnimator.h"
 #include "AnimationsParser.h"
-#include "Terrain.h"
-#include "EventCallbacks.h"
+#include "CollisionChecker.h"
+
 #include <allegro5\allegro5.h> 
 #include <allegro5\allegro_native_dialog.h> 
 #include <allegro5\allegro_image.h>

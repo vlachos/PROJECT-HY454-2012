@@ -4,6 +4,7 @@
 #include "AnimatorHolder.h"
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
+#include "ZenChanAnimator.h"
 
 ////////////////BubStandAnimator
 
@@ -31,7 +32,7 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	AnimatorHolder::MarkAsSuspended(this);
 	std::cout << "end\n";
 	AnimatorHolder::Cancel(this);
-
+	CollisionChecker::Cancel(this->GetSprite());
 	timestamp_t timestamp = GetGameTime();
 	DASSERT( timestamp>0 );
 
@@ -49,6 +50,11 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	this->GetAnimation()->Destroy();
 	this->Destroy();
 
+	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
+	for(int i=0; i<enemy.size(); ++i){
+		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
+	}
+
 	frtor->Start(n_sprite,fra,GetGameTime());
 	AnimatorHolder::Register(frtor);
 	AnimatorHolder::MarkAsRunning(frtor);
@@ -64,6 +70,8 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( timestamp>0 );
 	AnimatorHolder::MarkAsSuspended(_this);
 	AnimatorHolder::Cancel(_this);
+
+	CollisionChecker::Cancel(_this->GetSprite());
 
 	DASSERT( _this->GetAnimation() );
 	DASSERT( _this->GetSprite() );
@@ -87,14 +95,15 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 
 }
 
-void BubWalkingAnimator::OnCollisionWithEnemy(Animator* animator){
-	DASSERT(animator);
-	BubWalkingAnimator * _this = (BubWalkingAnimator*)animator;
+void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args);
+	BubWalkingAnimator * _this = (BubWalkingAnimator*)args;
 	DASSERT( _this );
 	timestamp_t timestamp = GetGameTime();
 	DASSERT( timestamp>0 );
 	AnimatorHolder::MarkAsSuspended(_this);
 	AnimatorHolder::Cancel(_this);
+	CollisionChecker::Cancel(_this->GetSprite());
 
 	DASSERT( _this->GetAnimation() );
 	DASSERT( _this->GetSprite() );
@@ -118,11 +127,11 @@ BubFallingAnimator::BubFallingAnimator(){
 }
 
 void BubFallingAnimator::OnStopFalling(Sprite * sprite){
-	DASSERT( sprite = this->GetSprite() );
+	DASSERT( sprite == this->GetSprite() );
 
 	AnimatorHolder::MarkAsSuspended(this);
 	AnimatorHolder::Cancel(this);
-
+	CollisionChecker::Cancel(sprite);
 	timestamp_t timestamp = GetGameTime();
 	DASSERT( timestamp>0 );
 
@@ -137,6 +146,11 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	this->GetSprite()->Destroy();
 	this->GetAnimation()->Destroy();
 	this->Destroy();
+
+	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
+	for(int i=0; i<enemy.size(); ++i){
+		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
+	}
 
 	frtor->Start(n_sprite,fra,GetGameTime());
 	AnimatorHolder::Register(frtor);

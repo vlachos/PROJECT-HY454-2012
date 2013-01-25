@@ -19,7 +19,7 @@ void CollisionChecker::SingletonCreate(){
 
 
 
-void CollisionChecker::Register (Sprite* s1, Sprite* s2, void* Args, CollisionCallback callBack){ // DEN ELEGXW AN UPARXEI HDH TO KA8E ZEVGARI
+void CollisionChecker::Register (Sprite* s1, Sprite* s2, void* Args, CollisionCallback callBack){ 
 	DASSERT(s1); DASSERT(s2); //DASSERT(callBack);
 	DASSERT( s1!=s2 );
 	unsigned int oldSize = CollisionPairs.size();

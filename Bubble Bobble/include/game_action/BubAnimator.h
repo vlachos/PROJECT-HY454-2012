@@ -4,6 +4,7 @@
 #include "FrameRangeAnimator.h"
 #include "MovingAnimator.h"
 #include "Sprite.h"
+#include "CollisionChecker.h"
 
 		
 class BubStandAnimator : public MovingAnimator{
@@ -25,7 +26,7 @@ class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStart
 			{ return bubWalkAnimator_t; }
 
 		static void OnFinishCallback(Animator*, void*);
-		static void OnCollisionWithEnemy(Animator*);
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
 };
 

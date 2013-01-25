@@ -70,9 +70,22 @@ bool Sprite::CollisionCheck( Sprite * s ){
 	//std::cout << "Bub x:" << _x << " ,y:" << _y << " , Height:" << frameBox.GetHeigth()<< " ,Width: "<< frameBox.GetWidth() <<"\n";
 	*/
 
-	return ( ( __x <= _x && _x <= (__x + s->GetFrameBox().GetWidth()) &&
-		__y <= _y && _y <= (__y + s->GetFrameBox().GetHeigth() ) ) ||
-		     ( _x <= __x && __x <= (_x + frameBox.GetWidth()) &&
-						_y <= __y && __y <= (_y + frameBox.GetHeigth() ) ) 
+	if (!goesLeft){
+	return (
+			 (	( (__x <= _x) && (_x <= (__x + __W)) ) &&
+						( (__y <= _y) && (_y <= (__y + __H)) )	)
+								||
+		     (	( (_x <= __x) && (__x <= (_x + _W)) ) &&
+						( ( _y <= __y) && (__y <= (_y + _H)) )	)
 		   );
+	}
+	else{
+		return (
+			 (	( (__x <= _x) && (_x <= (__x + __W)) ) &&
+						( ( _y <= __y) && (__y <= (_y + _H)) )	)
+								||
+		     (	( (_x <= __x) && (__x <= (_x + _W)) ) &&
+						( (__y <= _y) && (_y <= (__y + __H)) )	)
+		   );
+	}
 }

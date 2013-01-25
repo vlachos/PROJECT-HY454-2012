@@ -5,7 +5,7 @@
 #include <list>
 
 class CollisionChecker{
-
+public:
 	typedef void (*CollisionCallback) (Sprite*, Sprite*, void*);
 
 	typedef struct collision_t{
@@ -14,6 +14,8 @@ class CollisionChecker{
 		void* Args;
 		CollisionCallback callBack;
 	} CollisionInfo;
+
+private:
 
 	typedef std::list<CollisionInfo> CollisionPairsList ;
 
@@ -39,8 +41,8 @@ class CollisionChecker{
 	typedef struct CheckFunctor : public std::unary_function<CollisionInfo, void> {
 		void operator()(const CollisionInfo& p) const {
 			if (p.master->CollisionCheck(p.slave) ){
-				//(*p.callBack)(p.master, p.slave, p.Args);
-				std::cout << "Collision Bitch \t";
+				if(p.callBack)
+					(*p.callBack)(p.master, p.slave, p.Args);
 			}
 		}
 	};

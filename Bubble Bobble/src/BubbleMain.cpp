@@ -50,16 +50,17 @@ void BubbleMain::InitGameEngine(){
 
 	Terrain::SingeltonCreate();
 
+	CollisionChecker::SingletonCreate();
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 
 	MovingAnimation *bubStandanimation= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
-	Sprite *bubSprite=new Sprite(150,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
+	Sprite *bubSprite=new Sprite(350,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
 	bubSprite->SetFrame(6);
 	BubStandAnimator *bubStandanimator=new BubStandAnimator();
 
 	MovingAnimation *zenChanAnimation = (MovingAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
-	Sprite *zenChanSprite=new Sprite(100,79,true,AnimationFilmHolder::GetFilm("zenchanwalk"), Terrain::GetActionLayer(), true);
+	Sprite *zenChanSprite=new Sprite(300,79,true,AnimationFilmHolder::GetFilm("zenchanwalk"), Terrain::GetActionLayer(), true);
 	ZenChanStandAnimator * zenChanAnimator = new ZenChanStandAnimator();
 	zenChanSprite->AddStartFallingListener(zenChanAnimator);
 	
@@ -73,6 +74,8 @@ void BubbleMain::InitGameEngine(){
 	zenChanAnimator->Start(zenChanSprite, zenChanAnimation, GetGameTime());
 	AnimatorHolder::Register(zenChanAnimator);
 	AnimatorHolder::MarkAsRunning(zenChanAnimator);
+
+
 
 	redraw = true;
 }
@@ -152,6 +155,7 @@ bool BubbleMain::InputManagement(){
 			DASSERT( timestamp>0 );
 			AnimatorHolder::MarkAsSuspended(_this);
 			AnimatorHolder::Cancel(_this);
+			//CollisionChecker::Cancel(_this->GetSprite());
 
 			DASSERT( _this->GetAnimation() );
 			DASSERT( _this->GetSprite() );
@@ -170,6 +174,11 @@ bool BubbleMain::InputManagement(){
 			mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
 			mar->Start(_this->GetSprite(), ma, timestamp);
 	
+			std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
+			for(int i=0; i<enemy.size(); ++i){
+				CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
+			}
+
 			AnimatorHolder::Register(mar);
 			AnimatorHolder::MarkAsRunning(mar);
 		}
@@ -195,6 +204,7 @@ bool BubbleMain::InputManagement(){
 			DASSERT( timestamp>0 );
 			AnimatorHolder::MarkAsSuspended(_this);
 			AnimatorHolder::Cancel(_this);
+			//CollisionChecker::Cancel(_this->GetSprite());
 
 			DASSERT( _this->GetAnimation() );
 			DASSERT( _this->GetSprite() );
@@ -214,6 +224,11 @@ bool BubbleMain::InputManagement(){
 			newSprite->AddStartFallingListener(mar);
 			mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
 			mar->Start(newSprite, ma, timestamp);
+
+			std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
+			for(int i=0; i<enemy.size(); ++i){
+				CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
+			}
 	
 			AnimatorHolder::Register(mar);
 			AnimatorHolder::MarkAsRunning(mar);
@@ -227,6 +242,7 @@ bool BubbleMain::InputManagement(){
 }
 
 void BubbleMain::AnimationProgress(timestamp_t timeNow){
+	CollisionChecker::Check();
 	AnimatorHolder::Progress(timeNow);
 }
 
@@ -248,9 +264,11 @@ void BubbleMain::SystemLoopDispatching(){
 /* Game Termination */
 void BubbleMain::GameOver(){
 
-	AnimationsParser::SingletonDestroy();
-	AnimationFilmHolder::SingletonDestroy();
 	Terrain::SingeltonCleanUp();
+
+	CollisionChecker::SingletonCleanUp();
+	AnimationsParser::SingletonDestroy();
+	AnimationFilmHolder::SingletonDestroy();	
 
 	al_destroy_bitmap(palette);
 	al_destroy_timer(timer);
