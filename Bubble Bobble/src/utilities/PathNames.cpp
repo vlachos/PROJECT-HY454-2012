@@ -49,17 +49,17 @@ std::string BubblePathnames::GetTilesBitmap(){
 	return BubblePathnames::AppendToPath(GetTerrainBitmapDataPath(), TILES_BITMAP_16);
 }
 std::string BubblePathnames::GetActionLayerInfo(){
-	return BubblePathnames::AppendToPath(GetSpritesInfoDataPath(), ACTION_LAYER_INFO);
+	return BubblePathnames::AppendToPath(GetTerrainInfoDataPath(), ACTION_LAYER_INFO);
 }
 std::string BubblePathnames::GetStageInfo(unsigned int stageLevel){
 	DASSERT(stageLevel > 0 && stageLevel <=11);
 
 	std::stringstream ss;
 	ss << stageLevel;
-	return BubblePathnames::AppendToPath(BubblePathnames::GetSpritesInfoDataPath(), stagePrefix + ss.str() + stagePostfix);
+	return BubblePathnames::AppendToPath(BubblePathnames::GetTerrainInfoDataPath(), stagePrefix + ss.str() + stagePostfix);
 }
 std::string BubblePathnames::GetTestActionLayerInfo(){
-	return BubblePathnames::AppendToPath(GetSpritesInfoDataPath(), TEST_INFO);
+	return BubblePathnames::AppendToPath(GetTerrainInfoDataPath(), TEST_INFO);
 }
 
 void SingletonCleanUp (void){}

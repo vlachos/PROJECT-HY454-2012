@@ -18,9 +18,10 @@
 		for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 			for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){		
 				map[i][j] = 0;
-				tilesSolidity[i][j][Left] = false;
-				tilesSolidity[i][j][Up] = false;
-				tilesSolidity[i][j][Right] = false;
+				tilesSolidity[i][j][BBLeft] = false;
+				tilesSolidity[i][j][BBUp] = false;
+				tilesSolidity[i][j][BBRight] = false;
+				tilesSolidity[i][j][BBDown] = false;
 			}
 		}
 		delete tilesBitmap;
@@ -28,7 +29,6 @@
 
 	/*layer info*/
 	bool TileLayer::ReadMap (std::string aPath){
-		DASSERT(GetFileAttributesA(aPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 
 		std::ifstream openfile(aPath);
 		if (openfile.is_open()){
@@ -45,29 +45,26 @@
 		DASSERT(GetFileAttributesA(aPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 
 		std::ifstream openfile(aPath);
-		unsigned int nextIndex = 0;
+		unsigned int nextInteger = 0;
 		if (openfile.is_open()){
 			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
-					openfile >> nextIndex;
-					map[i][j] = nextIndex;
-					/*empty or shadow*/
-					if (map[i][j] == 0 || map[i][j] >= BIG_BRICK_THRESHOLD){
-						tilesSolidity[i][j][BBLeft] = false;
-						tilesSolidity[i][j][BBUp] = false;
-						tilesSolidity[i][j][BBRight] = false;
-					}/*small brick*/
-					else if (map[i][j] < SMALL_BRICK_THRESHOLD){
-						tilesSolidity[i][j][BBLeft] = true;
-						tilesSolidity[i][j][BBUp] = false;
-						tilesSolidity[i][j][BBRight] = true;
-					}/*big brick*/
-					else if (map[i][j] >= SMALL_BRICK_THRESHOLD && map[i][j] <= BIG_BRICK_THRESHOLD){
-						tilesSolidity[i][j][BBLeft] = true;
-						tilesSolidity[i][j][BBUp] = true;
-						tilesSolidity[i][j][BBRight] = true;
-					}
-					DASSERT( map[i][j] >= 0 && map[i][j] < TILES_BITMAP_SIZE*TILES_BITMAP_SIZE  );
+					openfile >> nextInteger;
+					map[i][j] = nextInteger;
+					openfile >> nextInteger;
+					tilesSolidity[i][j][BBLeft] = nextInteger;
+					openfile >> nextInteger;
+					tilesSolidity[i][j][BBUp] = nextInteger;
+					openfile >> nextInteger;
+					tilesSolidity[i][j][BBRight] = nextInteger;
+					openfile >> nextInteger;
+					tilesSolidity[i][j][BBDown] = nextInteger;
+
+					DASSERT(0 <= map[i][j] < 256);
+					DASSERT(-1 <= tilesSolidity[i][j][BBLeft] <= 2);
+					DASSERT(-1 <= tilesSolidity[i][j][BBUp] <= 2);
+					DASSERT(-1 <= tilesSolidity[i][j][BBRight] <= 2);
+					DASSERT(-1 <= tilesSolidity[i][j][BBDown] <= 2);
 				}
 			}
 			openfile.close();
@@ -84,9 +81,10 @@
 			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
 					openfile << (int)map[i][j] << " ";
-					openfile << (int)tilesSolidity[i][j][Left] << " ";
-					openfile << (int)tilesSolidity[i][j][Up] << " ";
-					openfile << (int)tilesSolidity[i][j][Right] << " ";
+					openfile << (int)tilesSolidity[i][j][BBLeft] << " ";
+					openfile << (int)tilesSolidity[i][j][BBUp] << " ";
+					openfile << (int)tilesSolidity[i][j][BBRight] << " ";
+					openfile << (int)tilesSolidity[i][j][BBDown] << " ";
 					openfile << "\t";
 				}
 				openfile << "\n";
@@ -114,7 +112,7 @@
 				DASSERT(XYCoordinates.first >= 0 && XYCoordinates.first <= (VIEW_WINDOW_WIDTH - TILE_SIZE) );
 				DASSERT(XYCoordinates.second >= 0 && XYCoordinates.second <= (VIEW_WINDOW_HEIGHT - TILE_SIZE) );
 
-				tilesBitmap->PutTile(at, XYCoordinates.first, XYCoordinates.second, GetTile(i, j) );
+				tilesBitmap->PutTile(at, XYCoordinates.first, XYCoordinates.second, GetTileIndex(i, j) );
 			}
 		}
 	}
@@ -127,11 +125,18 @@
 		map[row][col] = indx;
 	}
 
-	Index TileLayer::GetTile (Dim row, Dim col){
+	Index TileLayer::GetTileIndex (Dim row, Dim col){
 		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
 				(col>=0 && col<TILE_LAYER_WIDTH ) );
 
 		return map[row][col];
+	}
+
+	const bool TileLayer::GetTileSolidity (Dim row, Dim col, BBMovement move) const{
+		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
+				(col>=0 && col<TILE_LAYER_WIDTH ) );
+
+		return tilesSolidity[row][col][move];
 	}
 
 	const Coordinates TileLayer::GetTileCoordinates (Dim x, Dim y) const{
@@ -152,9 +157,7 @@
 
 		Coordinates tileCoordinates = GetTileCoordinates(x,y);
 
-		return tilesSolidity[tileCoordinates.first]
-							[tileCoordinates.second]
-							[move];
+		return GetTileSolidity(tileCoordinates.first, tileCoordinates.second, move);
 	}
 
 	/*view window*/

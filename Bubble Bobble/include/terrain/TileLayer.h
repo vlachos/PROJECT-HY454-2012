@@ -12,8 +12,8 @@ enum VertScroll {Up = -1, VertIntact = 0, Down = +1 };
 
 typedef std::pair<Dim, Dim> Coordinates;
 
-enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1};
-#define BB_MOVEMENTS 3
+enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1, BBDown = +2};
+#define BB_MOVEMENTS 4
 
 #define TILE_LAYER_WIDTH 32
 #define TILE_LAYER_HEIGHT 26
@@ -46,7 +46,8 @@ class TileLayer{
 		void Display (Bitmap at);
 
 		void SetTile (Dim row, Dim col, Index indx);
-		Index GetTile (Dim row, Dim col);
+		Index GetTileIndex (Dim row, Dim col);
+		const bool GetTileSolidity (Dim row, Dim col, BBMovement move) const;
 		const Coordinates GetTileCoordinates (Dim x, Dim y) const;
 		const Coordinates GetXYCoordinates (Dim row, Dim col) const;
 		const bool isSolid(Dim x, Dim y, BBMovement move) const;

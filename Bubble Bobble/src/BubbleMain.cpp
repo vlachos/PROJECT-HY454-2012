@@ -50,8 +50,8 @@ void BubbleMain::InitGameEngine(){
 
 	Terrain::SingeltonCreate();
 
-	AnimationsParser::SingletonCreate("..\\data\\bitmaps\\sprites\\animation_data.xml");
-	AnimationFilmHolder::SingletonCreate("..\\data\\bitmaps\\sprites\\sprites_data.xml");
+	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
+	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("Bubwalkleft");
 	Sprite *sprite=new Sprite(150,50,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
 	BubWalkingAnimator *frtor=new BubWalkingAnimator();
@@ -136,7 +136,6 @@ bool BubbleMain::InputManagement(){
 		return true;
 	}
 	else{
-		//std::cout << "pressing nothing\n";
 		return false;
 	}
 }
@@ -165,12 +164,12 @@ void BubbleMain::GameOver(){
 
 	AnimationsParser::SingletonDestroy();
 	AnimationFilmHolder::SingletonDestroy();
-   Terrain::SingeltonCleanUp();
+	Terrain::SingeltonCleanUp();
 
-   al_destroy_bitmap(palette);
-   al_destroy_timer(timer);
-   al_destroy_display(display);
-   al_destroy_event_queue(event_queue);
+	al_destroy_bitmap(palette);
+	al_destroy_timer(timer);
+	al_destroy_display(display);
+	al_destroy_event_queue(event_queue);
 }
 
 
