@@ -17,10 +17,30 @@ class CollisionChecker{
 
 	typedef std::list<CollisionInfo> CollisionPairsList ;
 
+	struct Find{
+		Find( Sprite* _master,  Sprite* _slave) : master(_master), slave(_slave) { }	
+		bool operator() (const CollisionInfo &n){ 
+			return (n.master==master && n.slave==slave) ||
+				   (n.master==slave && n.slave==master);
+		}
+
+		Sprite* master;
+		Sprite* slave;
+	};
+
+	struct FindAny{
+		FindAny( Sprite* _sprite) : sprite(_sprite){ }	
+		bool operator() (const CollisionInfo &n){ 
+			return (n.master==sprite || n.slave==sprite);
+		}
+		Sprite* sprite;
+	};
+
 	typedef struct CheckFunctor : public std::unary_function<CollisionInfo, void> {
 		void operator()(const CollisionInfo& p) const {
 			if (p.master->CollisionCheck(p.slave) ){
-				(*p.callBack)(p.master, p.slave, p.Args);
+				//(*p.callBack)(p.master, p.slave, p.Args);
+				std::cout << "Collision Bitch \t";
 			}
 		}
 	};
@@ -38,6 +58,7 @@ class CollisionChecker{
 
     public:
 		static void Register (Sprite* s1, Sprite* s2, void* Args, CollisionCallback callBack);
+		static CollisionPairsList::const_iterator PairLookUp (Sprite* s1, Sprite* s2);
 		static void Cancel (Sprite* s);
 		static void Cancel (Sprite* s1, Sprite* s2);
 		static void Check (void){

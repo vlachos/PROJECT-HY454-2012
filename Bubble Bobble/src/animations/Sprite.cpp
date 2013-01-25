@@ -48,7 +48,31 @@ void Sprite::Move( Dim _x, Dim _y ){
 
 bool Sprite::CollisionCheck( Sprite * s ){
 	DASSERT( s );
-	return ( x + frameBox.GetWidth() >= s->GetX() && s->GetX() + s->GetFrameBox().GetWidth() >= x ) &&
-		   ( y + frameBox.GetHeigth() >= s->GetY() && s->GetY() + s->GetFrameBox().GetHeigth() >= y ) ;
+	DASSERT( s!=this );
+	Dim _H = frameBox.GetHeigth();
+	Dim _W = frameBox.GetWidth();
+	Dim _x = x - _W/2;
+	Dim _y = y - _H;
 
+	Dim __H = s->GetFrameBox().GetHeigth();
+	Dim __W = s->GetFrameBox().GetWidth();
+	Dim __x = s->GetX() - __W/2;
+	Dim __y = s->GetY() - __H;
+
+	/*
+	if( !( ( _x > __x + __W || _x + _W < __x ) &&
+		    (_y > __y + __H || _y + _H < __y) )  ){
+			  std::cout << "inn\n";
+	}
+
+	//std::cout << _x<< "<=" <<__x<< "&&"<< __x<< "<="<< _x +_W<< " bool " << (_x <= __x && __x <= (_x + _W)  )<<"\n" ;
+	//std::cout << "Zen x: "<< __x << " ,y:" << __y << " , Height:" << s->GetFrameBox().GetHeigth()<< " ,Width: "<< s->GetFrameBox().GetWidth() <<"\n";
+	//std::cout << "Bub x:" << _x << " ,y:" << _y << " , Height:" << frameBox.GetHeigth()<< " ,Width: "<< frameBox.GetWidth() <<"\n";
+	*/
+
+	return ( ( __x <= _x && _x <= (__x + s->GetFrameBox().GetWidth()) &&
+		__y <= _y && _y <= (__y + s->GetFrameBox().GetHeigth() ) ) ||
+		     ( _x <= __x && __x <= (_x + frameBox.GetWidth()) &&
+						_y <= __y && __y <= (_y + frameBox.GetHeigth() ) ) 
+		   );
 }
