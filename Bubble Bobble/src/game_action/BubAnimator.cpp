@@ -28,9 +28,8 @@ BubWalkingAnimator::BubWalkingAnimator(void) {
 void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	
 	DASSERT( sprite == this->GetSprite() );
-	std::cout << "start\n";
 	AnimatorHolder::MarkAsSuspended(this);
-	std::cout << "end\n";
+
 	AnimatorHolder::Cancel(this);
 	CollisionChecker::Cancel(this->GetSprite());
 	timestamp_t timestamp = GetGameTime();

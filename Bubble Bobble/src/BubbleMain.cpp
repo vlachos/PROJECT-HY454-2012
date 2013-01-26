@@ -155,7 +155,7 @@ bool BubbleMain::InputManagement(){
 			DASSERT( timestamp>0 );
 			AnimatorHolder::MarkAsSuspended(_this);
 			AnimatorHolder::Cancel(_this);
-			//CollisionChecker::Cancel(_this->GetSprite());
+			CollisionChecker::Cancel(_this->GetSprite());
 
 			DASSERT( _this->GetAnimation() );
 			DASSERT( _this->GetSprite() );
@@ -204,7 +204,7 @@ bool BubbleMain::InputManagement(){
 			DASSERT( timestamp>0 );
 			AnimatorHolder::MarkAsSuspended(_this);
 			AnimatorHolder::Cancel(_this);
-			//CollisionChecker::Cancel(_this->GetSprite());
+			CollisionChecker::Cancel(_this->GetSprite());
 
 			DASSERT( _this->GetAnimation() );
 			DASSERT( _this->GetSprite() );

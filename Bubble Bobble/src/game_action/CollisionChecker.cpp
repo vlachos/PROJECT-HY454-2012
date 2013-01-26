@@ -22,6 +22,7 @@ void CollisionChecker::SingletonCreate(){
 void CollisionChecker::Register (Sprite* s1, Sprite* s2, void* Args, CollisionCallback callBack){ 
 	DASSERT(s1); DASSERT(s2); //DASSERT(callBack);
 	DASSERT( s1!=s2 );
+
 	unsigned int oldSize = CollisionPairs.size();
 	CollisionPairsList::const_iterator info;
 
@@ -54,7 +55,6 @@ void CollisionChecker::Cancel (Sprite* s){
 		oldSize = CollisionPairs.size();
 		CollisionPairs.erase(info);
 		DASSERT(CollisionPairs.size() == oldSize - 1);
-		std::cout << "Delete a pair1\n";
 	}
 }
 
@@ -68,10 +68,8 @@ void CollisionChecker::Cancel (Sprite* s1, Sprite* s2){
 	if ((info = std::find_if( CollisionPairs.begin(), CollisionPairs.end(), Find(s1,s2) ) ) != CollisionPairs.end() ){
 		CollisionPairs.erase(info);
 		DASSERT(CollisionPairs.size() == oldSize - 1);
-		std::cout << "Delete a pair2\n";
 	}
 	else{
-		std::cout << "Not FOund2\n";
 		DASSERT(CollisionPairs.size() == oldSize);
 	}
 }

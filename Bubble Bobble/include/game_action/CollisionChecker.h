@@ -17,7 +17,7 @@ public:
 
 private:
 
-	typedef std::list<CollisionInfo> CollisionPairsList ;
+	typedef std::vector<CollisionInfo> CollisionPairsList ;
 
 	struct Find{
 		Find( Sprite* _master,  Sprite* _slave) : master(_master), slave(_slave) { }	
@@ -38,15 +38,6 @@ private:
 		Sprite* sprite;
 	};
 
-	typedef struct CheckFunctor : public std::unary_function<CollisionInfo, void> {
-		void operator()(const CollisionInfo& p) const {
-			if (p.master->CollisionCheck(p.slave) ){
-				if(p.callBack)
-					(*p.callBack)(p.master, p.slave, p.Args);
-			}
-		}
-	};
-
 	private:
 		CollisionChecker();
 		~CollisionChecker();
@@ -64,9 +55,13 @@ private:
 		static void Cancel (Sprite* s);
 		static void Cancel (Sprite* s1, Sprite* s2);
 		static void Check (void){
- 			std::for_each(
-  				CollisionPairs.begin(), CollisionPairs.end(), CheckFunctor()
-			); 
+			for(int i=0; i<CollisionPairs.size(); ++i){
+				CollisionInfo p = CollisionPairs[i];
+				if (p.master->CollisionCheck(p.slave) ){
+					if(p.callBack){
+						(*p.callBack)(p.master, p.slave, p.Args);}
+				}
+			}
 		}
 
 	public:
