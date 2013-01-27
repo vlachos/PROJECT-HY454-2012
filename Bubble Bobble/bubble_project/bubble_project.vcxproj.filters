@@ -153,6 +153,9 @@
     <ClCompile Include="..\src\game_action\ZenChanAnimator.cpp">
       <Filter>Source Files\game_action</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\InputManege.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -249,6 +252,9 @@
       <Filter>Header Files\terrain</Filter>
     </ClInclude>
     <ClInclude Include="..\include\game_action\ZenChanAnimator.h">
+      <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\InputManage.h">
       <Filter>Header Files\game_action</Filter>
     </ClInclude>
   </ItemGroup>

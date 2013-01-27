@@ -5,6 +5,8 @@
 #include <windows.h>
 #include "PathNames.h"
 #include "utilities.h"
+#include "MemoryManage.h"
+#include "InputManage.h"
 
 #include "Terrain.h"
 #include "FrameRangeAnimation.h"

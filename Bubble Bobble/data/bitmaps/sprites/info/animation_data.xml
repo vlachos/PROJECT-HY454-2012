@@ -2,9 +2,9 @@
 <animations totalAnimations="9">
   <BubStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <Bubopenmouth type="FrameRangeAnimation" dx="-2" dy="0" delay="100" continue="false" start="0" end="6"  />
-  <Bubwalkleft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="false" start="0" end="6"  />
-  <Bubwalkright type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="false" start="0" end="6"  />
-  <BubFalling type="MovingAnimation" dx="0" dy="2" delay="200" continue="true"/>
+  <Bubwalkleft type="FrameRangeAnimation" dx="-2" dy="0" delay="50" continue="false" start="0" end="6"  />
+  <Bubwalkright type="FrameRangeAnimation" dx="2" dy="0" delay="50" continue="false" start="0" end="6"  />
+  <BubFalling type="MovingAnimation" dx="0" dy="2" delay="50" continue="true"/>
 
   <ZenChanStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   

@@ -55,7 +55,7 @@ private:
 		static void Cancel (Sprite* s);
 		static void Cancel (Sprite* s1, Sprite* s2);
 		static void Check (void){
-			for(int i=0; i<CollisionPairs.size(); ++i){
+			for(unsigned int i=0; i<CollisionPairs.size(); ++i){
 				CollisionInfo p = CollisionPairs[i];
 				if (p.master->CollisionCheck(p.slave) ){
 					if(p.callBack){

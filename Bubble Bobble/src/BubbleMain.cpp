@@ -53,12 +53,12 @@ void BubbleMain::InitGameEngine(){
 	CollisionChecker::SingletonCreate();
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
-
+	
 	MovingAnimation *bubStandanimation= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
 	Sprite *bubSprite=new Sprite(350,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
 	bubSprite->SetFrame(6);
 	BubStandAnimator *bubStandanimator=new BubStandAnimator();
-
+	
 	MovingAnimation *zenChanAnimation = (MovingAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
 	Sprite *zenChanSprite=new Sprite(300,79,true,AnimationFilmHolder::GetFilm("zenchanwalk"), Terrain::GetActionLayer(), true);
 	ZenChanStandAnimator * zenChanAnimator = new ZenChanStandAnimator();
@@ -74,8 +74,6 @@ void BubbleMain::InitGameEngine(){
 	zenChanAnimator->Start(zenChanSprite, zenChanAnimation, GetGameTime());
 	AnimatorHolder::Register(zenChanAnimator);
 	AnimatorHolder::MarkAsRunning(zenChanAnimator);
-
-
 
 	redraw = true;
 }
@@ -113,13 +111,13 @@ void BubbleMain::ManageGameLoop(){
 
 void BubbleMain::Rendering(){
 
-	al_set_target_bitmap(palette);
-	al_clear_to_color(BB_BLACK);
-
-	Terrain::DisplayTerrain(palette);
-	AnimatorHolder::Display(palette);
- 
 	if(al_is_event_queue_empty(event_queue)) {
+		al_set_target_bitmap(palette);
+		al_clear_to_color(BB_BLACK);
+
+		Terrain::DisplayTerrain(palette);
+		AnimatorHolder::Display(palette);
+
 		al_set_target_bitmap(al_get_backbuffer(display));
 		al_draw_bitmap(palette, 0, 0, 0);
 		al_flip_display();
@@ -127,7 +125,7 @@ void BubbleMain::Rendering(){
 }
 
 bool BubbleMain::InputManagement(){
-
+	bool retVal = true;
 	if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
 		std::cout << "pressing Up\n";
 	}
@@ -135,124 +133,32 @@ bool BubbleMain::InputManagement(){
 		std::cout << "pressing Down\n";
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
-		std::vector<Animator*> bub;
-		
-		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
-			BubWalkingAnimator* bubWalk = (BubWalkingAnimator*) bub.front();
-			offset_t offset = bubWalk->GetAnimation()->GetDx();
-			DASSERT( offset!=0 );
-			if(offset<0){
-				bubWalk->GetAnimation()->SetDx(-offset);
-				bubWalk->GetSprite()->SetGoesLeft(false);
-			}
-		}else
-		if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
-			BubStandAnimator* _this = (BubStandAnimator*) bub.front();
-
-			timestamp_t timestamp = GetGameTime();
-			DASSERT( timestamp>0 );
-			AnimatorHolder::MarkAsSuspended(_this);
-			AnimatorHolder::Cancel(_this);
-			CollisionChecker::Cancel(_this->GetSprite());
-
-			DASSERT( _this->GetAnimation() );
-			DASSERT( _this->GetSprite() );
-
-			animid_t id = _this->GetAnimation()->GetId();
-
-			_this->GetAnimation()->Destroy();
-			_this->Destroy(); 
-
-			FrameRangeAnimation *ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("Bubwalkright");
-			_this->GetSprite()->SetFrame(0);
-			_this->GetSprite()->SetGoesLeft(false);
-
-			BubWalkingAnimator* mar = new BubWalkingAnimator();
-			_this->GetSprite()->AddStartFallingListener(mar);
-			mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
-			mar->Start(_this->GetSprite(), ma, timestamp);
-	
-			std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-			for(int i=0; i<enemy.size(); ++i){
-				CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
-			}
-
-			AnimatorHolder::Register(mar);
-			AnimatorHolder::MarkAsRunning(mar);
-		}
+		retVal = InputManageHandling::OnKeyRight();
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
-		std::vector<Animator*> bub;
-		bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t);
-		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
-			BubWalkingAnimator* bubWalk = (BubWalkingAnimator*) bub.front();
-			offset_t offset = bubWalk->GetAnimation()->GetDx();
-			DASSERT( offset!=0 );
-			if(offset>0){
-				bubWalk->GetAnimation()->SetDx(-offset);
-				bubWalk->GetSprite()->SetGoesLeft(true);
-			}
-		}else
-		if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
-			BubStandAnimator* _this = (BubStandAnimator*) bub.front();
-
-			timestamp_t timestamp = GetGameTime();
-			DASSERT( timestamp>0 );
-			AnimatorHolder::MarkAsSuspended(_this);
-			AnimatorHolder::Cancel(_this);
-			CollisionChecker::Cancel(_this->GetSprite());
-
-			DASSERT( _this->GetAnimation() );
-			DASSERT( _this->GetSprite() );
-
-			animid_t id = _this->GetAnimation()->GetId();
-
-			Sprite* newSprite = _this->GetSprite();
-
-			_this->GetAnimation()->Destroy();
-			_this->Destroy(); 
-
-			FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("Bubwalkleft");
-			newSprite->SetFrame(0);
-			newSprite->SetGoesLeft(true);
-
-			BubWalkingAnimator* mar = new BubWalkingAnimator();
-			newSprite->AddStartFallingListener(mar);
-			mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
-			mar->Start(newSprite, ma, timestamp);
-
-			std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-			for(int i=0; i<enemy.size(); ++i){
-				CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
-			}
-	
-			AnimatorHolder::Register(mar);
-			AnimatorHolder::MarkAsRunning(mar);
-		}
+		retVal = InputManageHandling::OnKeyLeft();
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
 		std::cout << "pressing Space\n";
 	}
 
-	return true;
+	return retVal;
 }
 
 void BubbleMain::AnimationProgress(timestamp_t timeNow){
-	CollisionChecker::Check();
 	AnimatorHolder::Progress(timeNow);
+	
 }
 
 void BubbleMain::ArtificialIntelligence(){
 }
 
 void BubbleMain::CollisionChecking(){
+	CollisionChecker::Check();
 }
 
 void BubbleMain::CommitDestructions(){
+	DestructionManager::Commit();
 }
 
 void BubbleMain::FPSCalculation(){
