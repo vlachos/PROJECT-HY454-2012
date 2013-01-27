@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sprites format="32x32" totalSprites="21" bitmap="..\data\bitmaps\sprites\sprites.png">
+<sprites format="32x32" totalSprites="33" bitmap="..\data\bitmaps\sprites\sprites.png">
 	<Bubwalk frames="7">
-		<bbox box="0" x="6" y="16" h="17" w="17" />
-		<bbox box="1" x="27" y="16" h="17" w="17" />
-		<bbox box="2" x="48" y="16" h="17" w="17" />
-		<bbox box="3" x="69" y="16" h="17" w="17" />
-		<bbox box="4" x="90" y="16" h="17" w="17" />
-		<bbox box="5" x="110" y="16" h="17" w="17" />
-		<bbox box="6" x="130" y="16" h="17" w="17" />
+		<bbox box="0" x="6" y="16" h="15" w="15" />
+		<bbox box="1" x="27" y="16" h="15" w="15" />
+		<bbox box="2" x="48" y="16" h="15" w="15" />
+		<bbox box="3" x="69" y="16" h="15" w="15" />
+		<bbox box="4" x="90" y="16" h="15" w="15" />
+		<bbox box="5" x="110" y="16" h="15" w="15" />
+		<bbox box="6" x="130" y="16" h="15" w="15" />
 	</Bubwalk>
 	<Bubdie frames="16">
 		<bbox box="0" x="6" y="68" h="15" w="13" />
@@ -69,6 +69,18 @@
 		<bbox box="6" x="133" y="36" h="15" w="15" />
 		<bbox box="7" x="154" y="36" h="15" w="15" />
 	</Bubopenmouth>
+  <Bubopenmouthwalking frames="8">
+    <bbox box="0" x="150" y="16" h="15" w="15" />
+    <bbox box="1" x="171" y="16" h="15" w="15" />
+    <bbox box="2" x="193" y="16" h="15" w="15" />
+    <bbox box="3" x="213" y="16" h="15" w="15" />
+    <bbox box="4" x="233" y="16" h="15" w="15" />
+    <bbox box="5" x="254" y="16" h="15" w="17" />
+    <bbox box="6" x="275" y="16" h="15" w="15" />
+    <bbox box="7" x="296" y="16" h="15" w="15" />
+  </Bubopenmouthwalking>
+  
+  
 	<zenchanwalk frames="4">
 		<bbox box="0" x="6" y="246" h="14" w="14" />
 		<bbox box="1" x="24" y="245" h="15" w="14" />
@@ -106,6 +118,8 @@
 		<bbox box="6" x="265" y="245" h="14" w="14" />
 		<bbox box="7" x="284" y="245" h="15" w="15" />
 	</zenchandie>
+  
+  
 	<mightawalk frames="5">
 		<bbox box="0" x="5" y="278" h="15" w="15" />
 		<bbox box="1" x="24" y="278" h="15" w="15" />
@@ -168,7 +182,47 @@
 		<bbox box="4" x="96" y="299" h="15" w="14" />
 		<bbox box="5" x="114" y="299" h="15" w="14" />
 	</mightabubble>
-	<poneffect frames="2">
+  
+  
+  <Baronvonblubba frames="2">
+    <bbox box="0" x="224" y="333" h="14" w="15" />
+    <bbox box="1" x="245" y="333" h="14" w="15" />
+  </Baronvonblubba>
+
+  <Redshoe frames="1">
+    <bbox box="0" x="110" y="852" h="10" w="15" />
+  </Redshoe>
+  <Yellowsweet frames="1">
+    <bbox box="0" x="88" y="852" h="10" w="15" />
+  </Yellowsweet>
+  <Bluesweet frames="1">
+    <bbox box="0" x="67" y="852" h="10" w="15" />
+  </Bluesweet>
+  <Purplesweet frames="1">
+    <bbox box="0" x="47" y="852" h="10" w="15" />
+  </Purplesweet>
+  <Banana frames="1">
+    <bbox box="0" x="317" y="801" h="16" w="16" />
+  </Banana>
+  <Orange frames="1">
+    <bbox box="0" x="282" y="802" h="13" w="15" />
+  </Orange>
+  <Peach frames="1">
+    <bbox box="0" x="300" y="801" h="14" w="16" />
+  </Peach>
+  <Watermelon frames="1">
+    <bbox box="0" x="353" y="804" h="16" w="13" />
+  </Watermelon>
+  <Waterbubble frames="3">
+    <bbox box="0" x="223" y="1095" h="15" w="13" />
+    <bbox box="1" x="241" y="299" h="15" w="13" />
+    <bbox box="2" x="259" y="299" h="15" w="13" />
+  </Waterbubble>
+  <Bluediamond frames="1">
+    <bbox box="0" x="309" y="893" h="23" w="29" />
+  </Bluediamond>
+  
+  <poneffect frames="2">
 		<bbox box="0" x="590" y="1050" h="15" w="13" />
 		<bbox box="1" x="614" y="1050" h="15" w="13" />
 	</poneffect>
