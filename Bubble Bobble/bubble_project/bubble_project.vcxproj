@@ -91,7 +91,6 @@
     <ClCompile Include="..\src\animations\Sprite.cpp" />
     <ClCompile Include="..\src\animators\Animator.cpp" />
     <ClCompile Include="..\src\animators\AnimatorHolder.cpp" />
-    <ClCompile Include="..\src\animators\EventCallbacks.cpp" />
     <ClCompile Include="..\src\animators\FlashAnimator.cpp" />
     <ClCompile Include="..\src\animators\FrameRangeAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
@@ -127,7 +126,6 @@
     <ClInclude Include="..\include\animations\Sprite.h" />
     <ClInclude Include="..\include\animators\Animator.h" />
     <ClInclude Include="..\include\animators\AnimatorHolder.h" />
-    <ClInclude Include="..\include\animators\EventCallbacks.h" />
     <ClInclude Include="..\include\animators\FlashAnimator.h" />
     <ClInclude Include="..\include\animators\FrameRangeAnimator.h" />
     <ClInclude Include="..\include\animators\MovingAnimator.h" />

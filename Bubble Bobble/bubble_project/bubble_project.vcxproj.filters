@@ -129,9 +129,6 @@
     <ClCompile Include="..\src\animations\BitmapLoader.cpp">
       <Filter>Source Files\animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\animators\EventCallbacks.cpp">
-      <Filter>Source Files\animators</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\utilities\utilities.cpp">
       <Filter>Source Files\utilities</Filter>
     </ClCompile>
@@ -238,9 +235,6 @@
     </ClInclude>
     <ClInclude Include="..\include\animations\BitmapLoader.h">
       <Filter>Header Files\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\animators\EventCallbacks.h">
-      <Filter>Header Files\animators</Filter>
     </ClInclude>
     <ClInclude Include="..\include\BubbleMain.h">
       <Filter>Header Files</Filter>
