@@ -4,8 +4,6 @@
 #include "FrameRangeAnimator.h"
 #include "MovingAnimator.h"
 #include "Sprite.h"
-#include "CollisionChecker.h"
-
 		
 class BubStandAnimator : public MovingAnimator{
 	public:

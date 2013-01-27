@@ -5,6 +5,8 @@
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
 #include "ZenChanAnimator.h"
+#include "CollisionChecker.h"
+#include "BubblesAnimator.h"
 
 ////////////////BubStandAnimator
 
@@ -39,13 +41,34 @@ void BubStandAnimator::OnOpenMouth(void){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
 
-	this->GetSprite()->Destroy();
-	this->GetAnimation()->Destroy();
-	this->Destroy();
-
 	bomar->Start(n_sprite,fra,GetGameTime());
 	AnimatorHolder::Register(bomar);
 	AnimatorHolder::MarkAsRunning(bomar);
+
+	FrameRangeAnimation *frab = 
+		(FrameRangeAnimation*) AnimationsParser::GetAnimation(
+													this->GetSprite()->GoesLeft() ? 
+													"BubBubbleLeft" : 
+													"BubBubbleRight"
+													);
+	Sprite *n_spriteb=new Sprite(
+								this->GetSprite()->GetX(),
+								this->GetSprite()->GetY(),
+								this->GetSprite()->IsGravityAddicted(),
+								AnimationFilmHolder::GetFilm( "BubBubble" ), 
+								Terrain::GetActionLayer(), 
+								this->GetSprite()->GoesLeft()
+								);
+
+	BubBubbleAnimator *bbar=new BubBubbleAnimator();
+
+	bbar->Start(n_spriteb, frab, GetGameTime());
+	AnimatorHolder::Register(bbar);
+	AnimatorHolder::MarkAsRunning(bbar);
+
+	this->GetSprite()->Destroy();
+	this->GetAnimation()->Destroy();
+	this->Destroy();
 }
 
 ////////////////BubWalkingAnimator
@@ -97,20 +120,18 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( anim==_this );
 	timestamp_t timestamp = GetGameTime();
 	DASSERT( timestamp>0 );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-
-	CollisionChecker::Cancel(_this->GetSprite());
-
 	DASSERT( _this->GetAnimation() );
 	DASSERT( _this->GetSprite() );
+	AnimatorHolder::MarkAsSuspended(_this);
+	AnimatorHolder::Cancel(_this);
+	CollisionChecker::Cancel(_this->GetSprite());
 
 	animid_t id = _this->GetAnimation()->GetId();
 
 	Sprite * newSprite = _this->GetSprite();
 	newSprite->RemoveStartFallingListener(_this);
 	_this->GetAnimation()->Destroy();
-	_this->Destroy(); //meta
+	_this->Destroy(); 
 
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
 	newSprite->SetFrame(0);

@@ -1,6 +1,7 @@
 #include "InputManage.h"
 
 #include "vector"
+#include "CollisionChecker.h"
 #include "Animator.h"
 #include "AnimatorHolder.h"
 #include "BubAnimator.h"

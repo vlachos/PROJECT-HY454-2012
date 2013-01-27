@@ -18,6 +18,7 @@ enum animatorType_t {
 	bubWalkAnimator_t,
 	bubFallingAnimator_t,
 	bubOpenMouthAnimator_t,
+	bubBubbleAnimator_t,
 	zenChanStandAnimator_t
 };
 
