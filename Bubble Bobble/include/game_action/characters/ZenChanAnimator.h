@@ -6,6 +6,8 @@
 #include "Sprite.h"
 
 
+
+		
 class ZenChanStandAnimator : public MovingAnimator, public Sprite::SpriteStartFallingListener{
 	public:
 		ZenChanStandAnimator();

@@ -61,6 +61,12 @@
     <Filter Include="Source Files\game_action">
       <UniqueIdentifier>{2c89113d-031a-4a78-824e-f5fca6e697ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\game_action\characters">
+      <UniqueIdentifier>{1391c736-b1a6-4b5d-9161-f8feed402e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game_action\characters">
+      <UniqueIdentifier>{04f927e4-9203-44d6-a1c9-13557c3f68dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\terrain\TileBitmap.cpp">
@@ -150,11 +156,17 @@
     <ClCompile Include="..\src\terrain\Terrain.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\ZenChanAnimator.cpp">
-      <Filter>Source Files\game_action</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\game_action\InputManege.cpp">
       <Filter>Source Files\game_action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\BarronVonBluba.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\Mighta.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\ZenChanAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,11 +263,17 @@
     <ClInclude Include="..\include\terrain\Terrain.h">
       <Filter>Header Files\terrain</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\game_action\ZenChanAnimator.h">
-      <Filter>Header Files\game_action</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\game_action\InputManage.h">
       <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\BarronVonBluba.h">
+      <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\MightaAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\ZenChanAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
