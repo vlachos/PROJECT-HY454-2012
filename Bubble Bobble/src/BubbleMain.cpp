@@ -55,12 +55,12 @@ void BubbleMain::InitGameEngine(){
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	
 	MovingAnimation *bubStandanimation= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
-	Sprite *bubSprite=new Sprite(350,79,true,AnimationFilmHolder::GetFilm("Bubwalk"), Terrain::GetActionLayer(), true);
-	bubSprite->SetFrame(6);
+	Sprite *bubSprite=new Sprite(350,79,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);
+	bubSprite->SetFrame(0);
 	BubStandAnimator *bubStandanimator=new BubStandAnimator();
 	
 	MovingAnimation *zenChanAnimation = (MovingAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
-	Sprite *zenChanSprite=new Sprite(300,79,true,AnimationFilmHolder::GetFilm("zenchanwalk"), Terrain::GetActionLayer(), true);
+	Sprite *zenChanSprite=new Sprite(400,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);
 	ZenChanStandAnimator * zenChanAnimator = new ZenChanStandAnimator();
 	zenChanSprite->AddStartFallingListener(zenChanAnimator);
 	
@@ -139,7 +139,7 @@ bool BubbleMain::InputManagement(){
 		retVal = InputManageHandling::OnKeyLeft();
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
-		std::cout << "pressing Space\n";
+		retVal = InputManageHandling::OnKeySpace();
 	}
 
 	return retVal;

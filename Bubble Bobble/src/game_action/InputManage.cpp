@@ -42,7 +42,7 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 		_this->GetAnimation()->Destroy();
 		_this->Destroy(); 
 
-		FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( direction ? "Bubwalkleft" : "Bubwalkright" );
+		FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( direction ? "BubWalkLeft" : "BubWalkRight" );
 		newSprite->SetFrame(0);
 		newSprite->SetGoesLeft(direction);
 
@@ -105,6 +105,17 @@ bool InputManageHandling::OnKeyRight(void){
 }
 
 bool InputManageHandling::OnKeySpace(void){
+	bool retVal = true;
+	std::vector<Animator*> bub;
 
-	return true;
+	if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		( (BubWalkingAnimator*) bub.front() )->OnOpenMouth();
+	}else	
+	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		( (BubStandAnimator*) bub.front() )->OnOpenMouth();
+	}
+		
+	return retVal;
 }

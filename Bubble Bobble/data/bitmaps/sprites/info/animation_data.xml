@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animations totalAnimations="9">
+<animations totalAnimations="11">
   <BubStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <Bubopenmouth type="FrameRangeAnimation" dx="-2" dy="0" delay="100" continue="false" start="0" end="6"  />
-  <Bubwalkleft type="FrameRangeAnimation" dx="-2" dy="0" delay="50" continue="false" start="0" end="6"  />
-  <Bubwalkright type="FrameRangeAnimation" dx="2" dy="0" delay="50" continue="false" start="0" end="6"  />
+  <BubOpenMouth type="FrameRangeAnimation" dx="0" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubOpenMouthWalkingLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubOpenMouthWalkingRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="false" start="0" end="6"  />
+  <BubWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="false" start="0" end="6"  />
   <BubFalling type="MovingAnimation" dx="0" dy="2" delay="50" continue="true"/>
 
   <ZenChanStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  
-  
-  
-  
-  
+
+
+
+
+
   <exampleforframelist type="FrameListAnimation" dx="0" dy="0" delay="100" continue="true" listSize="3">
     <list id="0" frame="2" />
     <list id="1" frame="1" />
     <list id="2" frame="5" />
   </exampleforframelist>
-  
+
   <exampleformovingpath type="MovingPathAnimation" listSize="3">
     <list id="0" dx="0" dy="0" delay="100" frame="1"/>
     <list id="1" dx="2" dy="0" delay="100" frame="4"/>
     <list id="2" dx="1" dy="0" delay="90" frame="2"/>
   </exampleformovingpath>
-  
+
   <exampleflashanimation type="FlashAnimation" repetitions="6" hideDelay="100" showDelay="100" />
 </animations>

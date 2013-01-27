@@ -14,6 +14,7 @@ class BubStandAnimator : public MovingAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubStandAnimator_t; }
 
+		void OnOpenMouth(void);
 		static void OnFinishCallback(Animator*, void*);
 };
 
@@ -28,6 +29,7 @@ class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStart
 		static void OnFinishCallback(Animator*, void*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
+		void OnOpenMouth(void);
 };
 
 class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFallingListener{
@@ -41,5 +43,15 @@ class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFalli
 		void OnStopFalling(Sprite * sprite);
 };
 
+class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
+	public:
+		BubOpenMouthAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubOpenMouthAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void OnStartFalling(Sprite * sprite);
+};
 
 #endif

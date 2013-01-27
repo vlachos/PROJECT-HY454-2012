@@ -147,17 +147,11 @@
     <ClCompile Include="..\src\animations\FrameListAnimation.cpp">
       <Filter>Source Files\animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\BubAnimator.cpp">
-      <Filter>Source Files\game_action</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp">
       <Filter>Source Files\game_action</Filter>
     </ClCompile>
     <ClCompile Include="..\src\terrain\Terrain.cpp">
       <Filter>Source Files\terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\game_action\InputManege.cpp">
-      <Filter>Source Files\game_action</Filter>
     </ClCompile>
     <ClCompile Include="..\src\game_action\characters\BarronVonBluba.cpp">
       <Filter>Source Files\game_action\characters</Filter>
@@ -167,6 +161,15 @@
     </ClCompile>
     <ClCompile Include="..\src\game_action\characters\ZenChanAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\BubAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\InputManage.cpp">
+      <Filter>Source Files\game_action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +257,6 @@
     <ClInclude Include="..\include\animations\FrameListAnimation.h">
       <Filter>Header Files\animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\game_action\BubAnimator.h">
-      <Filter>Header Files\game_action</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\game_action\CollisionChecker.h">
       <Filter>Header Files\game_action</Filter>
     </ClInclude>
@@ -273,6 +273,12 @@
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
     <ClInclude Include="..\include\game_action\characters\ZenChanAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\BubblesAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\BubAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
   </ItemGroup>
