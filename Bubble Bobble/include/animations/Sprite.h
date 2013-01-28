@@ -25,7 +25,7 @@ class Sprite : public LatelyDestroyable{
 	private:
 		byte			frameNo;
 		Rect			frameBox;
-		Dim				x,y;
+		int				x,y;
 		bool			isVisible, gravityAddicted, isFalling, goesLeft;
 		const AnimationFilm *	currFilm;
 		const TileLayer *		tileLayer;
@@ -59,8 +59,8 @@ class Sprite : public LatelyDestroyable{
 
 		bool GoesLeft() const { return goesLeft; }
 		void SetGoesLeft( bool _goesLeft ) { goesLeft = _goesLeft; }
-		Dim GetX(void) const { return x; }
-		Dim GetY(void) const { return y; }
+		int GetX(void) const { return x; }
+		int GetY(void) const { return y; }
 		Rect GetFrameBox(void) const{ return frameBox; }
 		byte GetFrame(void) const { return frameNo; }
 		void SetVisibility(bool v) { isVisible = v; }
@@ -75,11 +75,13 @@ class Sprite : public LatelyDestroyable{
 
 		void AddStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.push_back( sl ); }
 		void RemoveStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.remove( sl ); }
+		void RemoveAllStartFallingListeners( void ) { spriteStartFallingListener.clear(); }
 
 		void AddStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.push_back( sl ); }
 		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.remove( sl ); }
+		void RemoveAllStopFallingListeners( void ) { spriteStopFallingListener.clear(); }
 
-		Sprite(Dim _x, Dim _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft): 
+		Sprite(int _x, int _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft): 
 			x(_x), y(_y), currFilm(film), isVisible(true), tileLayer(_tileLayer), goesLeft(goesLeft){
 
 			isFalling = false;

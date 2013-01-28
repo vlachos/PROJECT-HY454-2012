@@ -14,7 +14,41 @@
   <ZenChanStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
 
 
-
+  <Bubbles type="MovingPathAnimation" listSize="33">
+    <list id="0" x="450" y="79" delay="200" frame="0"/>
+    <list id="0" x="440" y="79" delay="200" frame="1"/>
+    <list id="0" x="430" y="79" delay="200" frame="2"/>
+    <list id="1" x="418" y="79" delay="200" frame="0"/>
+    <list id="1" x="408" y="79" delay="200" frame="1"/>
+    <list id="1" x="398" y="79" delay="200" frame="2"/>
+    <list id="2" x="386" y="79" delay="200" frame="0"/>
+    <list id="2" x="376" y="79" delay="200" frame="1"/>
+    <list id="2" x="366" y="79" delay="200" frame="2"/>
+    <list id="0" x="354" y="79" delay="200" frame="0"/>
+    <list id="0" x="344" y="79" delay="200" frame="1"/>
+    <list id="0" x="334" y="79" delay="200" frame="2"/>
+    <list id="1" x="322" y="79" delay="200" frame="0"/>
+    <list id="1" x="312" y="79" delay="200" frame="1"/>
+    <list id="1" x="302" y="79" delay="200" frame="2"/>
+    <list id="2" x="290" y="79" delay="200" frame="0"/>
+    <list id="2" x="280" y="79" delay="200" frame="1"/>
+    <list id="2" x="270" y="79" delay="200" frame="2"/>
+    <list id="1" x="258" y="79" delay="200" frame="0"/>
+    <list id="1" x="248" y="79" delay="200" frame="1"/>
+    <list id="1" x="238" y="79" delay="200" frame="2"/>
+    <list id="2" x="226" y="79" delay="200" frame="0"/>
+    <list id="2" x="216" y="79" delay="200" frame="1"/>
+    <list id="2" x="206" y="79" delay="200" frame="2"/>
+    <list id="1" x="191" y="79" delay="200" frame="0"/>
+    <list id="1" x="181" y="79" delay="200" frame="1"/>
+    <list id="1" x="171" y="79" delay="200" frame="2"/>
+    <list id="2" x="159" y="79" delay="200" frame="0"/>
+    <list id="2" x="149" y="79" delay="200" frame="1"/>
+    <list id="2" x="139" y="79" delay="200" frame="2"/>
+    <list id="0" x="127" y="79" delay="200" frame="0"/>
+    <list id="0" x="117" y="79" delay="200" frame="1"/>
+    <list id="0" x="107" y="79" delay="200" frame="2"/>
+  </Bubbles>
 
 
   <exampleforframelist type="FrameListAnimation" dx="0" dy="0" delay="100" continue="true" listSize="3">
@@ -22,12 +56,6 @@
     <list id="1" frame="1" />
     <list id="2" frame="5" />
   </exampleforframelist>
-
-  <exampleformovingpath type="MovingPathAnimation" listSize="3">
-    <list id="0" dx="0" dy="0" delay="100" frame="1"/>
-    <list id="1" dx="2" dy="0" delay="100" frame="4"/>
-    <list id="2" dx="1" dy="0" delay="90" frame="2"/>
-  </exampleformovingpath>
 
   <exampleflashanimation type="FlashAnimation" repetitions="6" hideDelay="100" showDelay="100" />
 </animations>

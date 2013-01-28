@@ -2,8 +2,19 @@
 #define BUBBLESANIMATOR_H
 
 #include "FrameRangeAnimator.h"
+#include "MovingPathAnimator.h"
 
-class BubBubbleAnimator: public FrameRangeAnimator{
+class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
+	public:
+		BubBubbleBlastOffAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubBubbleBlastOffAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+};
+
+class BubBubbleAnimator: public MovingPathAnimator{
 	public:
 		BubBubbleAnimator();
 

@@ -33,11 +33,13 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 
 	animid_t id = _this->GetAnimation()->GetId();
 	Sprite* newSprite = _this->GetSprite();
+	newSprite->RemoveAllStartFallingListeners();
 	FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( direction ? "BubWalkLeft" : "BubWalkRight" );
 	newSprite->SetFrame(0);
 	newSprite->SetGoesLeft(direction);
 
 	BubWalkingAnimator* mar = new BubWalkingAnimator();
+
 	newSprite->AddStartFallingListener(mar);
 	mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
 
@@ -140,12 +142,16 @@ bool InputManageHandling::OnKeyLeft(void){
 	std::vector<Animator*> bub;
 
 	if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
+		std::cout << "before  bubWalkAnimator_t left\n";
 		retVal = CheckDxDirectionWalking(bub, true);
+		std::cout << "finish left\n";
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+		std::cout << "before  bubStandAnimator_t left\n";
 		retVal = CheckDxDirectionStand(bub, true);
+		std::cout << "finish left\n";
 	}
-
+	
 	return retVal;
 }
 
@@ -154,10 +160,14 @@ bool InputManageHandling::OnKeyRight(void){
 	std::vector<Animator*> bub;
 		
 	if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
+		std::cout << "before  bubWalkAnimator_t Right\n";
 		retVal = CheckDxDirectionWalking(bub, false);
+		std::cout << "finish Right\n";
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+		std::cout << "before  bubStandAnimator_t Right\n";
 		retVal = CheckDxDirectionStand(bub, false);
+		std::cout << "finish Right\n";
 	}
 		
 	return retVal;

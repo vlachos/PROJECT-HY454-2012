@@ -1,6 +1,7 @@
 #include "sprite.h"
 
 void Sprite::Display(Bitmap dest){
+		
 	al_draw_bitmap_region(currFilm->GetBitmap(), frameBox.GetX(), frameBox.GetY(), 
 		frameBox.GetWidth(), frameBox.GetHeigth(), x-(frameBox.GetWidth()/2), y-frameBox.GetHeigth(), (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
 }

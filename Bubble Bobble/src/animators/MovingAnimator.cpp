@@ -10,7 +10,7 @@ MovingAnimator :: ~MovingAnimator(){}
 void MovingAnimator :: Progress (timestamp_t currTime){
 	DASSERT(currTime>=0);
 	DASSERT(anim);
-	DASSERT(lastTime<currTime);
+	DASSERT(lastTime<=currTime);
 
 	while (currTime > lastTime && currTime - lastTime >= anim->GetDelay()){
 		sprite->Move(anim->GetDx(), anim->GetDy());

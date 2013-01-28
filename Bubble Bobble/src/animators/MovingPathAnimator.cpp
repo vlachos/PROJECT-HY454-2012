@@ -3,6 +3,7 @@
 
 MovingPathAnimator::MovingPathAnimator (void)
 	:sprite((Sprite*) 0), anim((MovingPathAnimation*) 0){}
+
 MovingPathAnimator::~MovingPathAnimator(){}
 
 void MovingPathAnimator::Progress (timestamp_t currTime){
@@ -12,16 +13,19 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 
 	while (currTime > lastTime && currTime - lastTime >= anim->GetPath()[anim->GetCurrIndex()].delay){
 
-		if (anim->GetCurrIndex() == anim->GetPath().size())
+		if (anim->GetCurrIndex() == anim->GetPath().size()-1)
 			anim->SetCurrIndex(0);
 	    else
 			anim->SetCurrIndex(anim->GetCurrIndex()+1);
 
-		sprite->Move(anim->GetPath()[anim->GetCurrIndex()].dx, anim->GetPath()[anim->GetCurrIndex()].dy);
+		sprite->Move(	
+						anim->GetPath()[anim->GetCurrIndex()].x - sprite->GetX(), 
+						anim->GetPath()[anim->GetCurrIndex()].y - sprite->GetY()
+					);
 		sprite->SetFrame(anim->GetPath()[anim->GetCurrIndex()].frame);
 	    lastTime += anim->GetPath()[anim->GetCurrIndex()].delay;
 
-	    if (anim->GetCurrIndex() == anim->GetPath().size() && !anim->GetContinuous()){
+	    if (anim->GetCurrIndex() == anim->GetPath().size()-1 && !anim->GetContinuous()){
 			state = ANIMATOR_FINISHED;
 			NotifyStopped();
 			return;

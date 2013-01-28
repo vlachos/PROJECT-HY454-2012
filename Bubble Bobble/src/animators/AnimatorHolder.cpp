@@ -49,7 +49,7 @@ void AnimatorHolder :: MarkAsSuspended (Animator* a){
 void AnimatorHolder :: Progress (timestamp_t currTime){
 	DASSERT(currTime>=0);
 	DASSERT(!running.empty());
-	for (int i=0; i<running.size(); ++i)
+	for (unsigned int i=0; i<running.size(); ++i)
 		running[i]->Progress(currTime);
 }
 

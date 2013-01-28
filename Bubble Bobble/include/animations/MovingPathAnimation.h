@@ -7,17 +7,17 @@
 typedef unsigned char frame_t;
 
 struct PathEntry {
-	offset_t dx, dy;
+	int x, y;
 	frame_t frame;
 	delay_t	delay;
 	
-	PathEntry (void) : dx(0), dy(0), frame(0xff), delay(0){}
+	PathEntry (void) : x(0), y(0), frame(0xff), delay(0){}
 	
-	PathEntry (offset_t _dx, offset_t _dy, frame_t _frame, delay_t _delay) :
-	dx(_dx), dy(_dy), frame(_frame),delay(_delay){}
+	PathEntry (int _x, int _y, frame_t _frame, delay_t _delay) :
+	x(_x), y(_y), frame(_frame),delay(_delay){}
    
 	PathEntry (const PathEntry& p) :
-	dx(p.dx), dy(p.dy), frame(p.frame),delay(p.delay){}
+	x(p.x), y(p.y), frame(p.frame),delay(p.delay){}
 };
 
 class MovingPathAnimation : public Animation{
