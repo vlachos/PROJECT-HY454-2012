@@ -1,3 +1,4 @@
+#include "GameActionUtilities.h"
 #include "BubAnimator.h"
 #include "MemoryManage.h"
 #include "AnimationsParser.h"
@@ -7,6 +8,30 @@
 #include "ZenChanAnimator.h"
 #include "CollisionChecker.h"
 #include "BubblesAnimator.h"
+
+//////////////////////////static functions
+
+static void startBubBubbleAnimator(Sprite* sprite){
+	FrameRangeAnimation *frab = 
+		(FrameRangeAnimation*) AnimationsParser::GetAnimation(
+													sprite->GoesLeft() ? 
+													"BubBubbleLeft" : 
+													"BubBubbleRight"
+													);
+	Sprite *n_spriteb=new Sprite(
+								sprite->GetX(),
+								sprite->GetY(),
+								sprite->IsGravityAddicted(),
+								AnimationFilmHolder::GetFilm( "BubBubble" ), 
+								Terrain::GetActionLayer(), 
+								sprite->GoesLeft()
+								);
+
+	BubBubbleAnimator *bbar=new BubBubbleAnimator();
+
+	START_ANIMATOR( bbar, n_spriteb, frab, GetGameTime() );
+}
+
 
 ////////////////BubStandAnimator
 
@@ -21,12 +46,7 @@ void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){
 }
 
 void BubStandAnimator::OnOpenMouth(void){
-	AnimatorHolder::MarkAsSuspended(this);
-	AnimatorHolder::Cancel(this);
-	CollisionChecker::Cancel(this->GetSprite());
-
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
 
 	FrameRangeAnimation *fra = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BubOpenMouth");
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
@@ -41,34 +61,11 @@ void BubStandAnimator::OnOpenMouth(void){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
 
-	bomar->Start(n_sprite,fra,GetGameTime());
-	AnimatorHolder::Register(bomar);
-	AnimatorHolder::MarkAsRunning(bomar);
+	START_ANIMATOR( bomar, n_sprite, fra, GetGameTime() );
 
-	FrameRangeAnimation *frab = 
-		(FrameRangeAnimation*) AnimationsParser::GetAnimation(
-													this->GetSprite()->GoesLeft() ? 
-													"BubBubbleLeft" : 
-													"BubBubbleRight"
-													);
-	Sprite *n_spriteb=new Sprite(
-								this->GetSprite()->GetX(),
-								this->GetSprite()->GetY(),
-								this->GetSprite()->IsGravityAddicted(),
-								AnimationFilmHolder::GetFilm( "BubBubble" ), 
-								Terrain::GetActionLayer(), 
-								this->GetSprite()->GoesLeft()
-								);
+	startBubBubbleAnimator( this->GetSprite() );
 
-	BubBubbleAnimator *bbar=new BubBubbleAnimator();
-
-	bbar->Start(n_spriteb, frab, GetGameTime());
-	AnimatorHolder::Register(bbar);
-	AnimatorHolder::MarkAsRunning(bbar);
-
-	this->GetSprite()->Destroy();
-	this->GetAnimation()->Destroy();
-	this->Destroy();
+	DESTROY_ANIMATOR( this );
 }
 
 ////////////////BubWalkingAnimator
@@ -81,13 +78,7 @@ BubWalkingAnimator::BubWalkingAnimator(void) {
 void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	
 	DASSERT( sprite == this->GetSprite() );
-	AnimatorHolder::MarkAsSuspended(this);
-
-	AnimatorHolder::Cancel(this);
-	CollisionChecker::Cancel(this->GetSprite());
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-
+	REMOVE_FROM_ACTION_ANIMATOR( this );
 
 	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubFalling");
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
@@ -98,19 +89,14 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	BubFallingAnimator *frtor=new BubFallingAnimator();
 	n_sprite->AddStopFallingListener(frtor);
 
-	this->GetSprite()->Destroy();
-	this->GetAnimation()->Destroy();
-	this->Destroy();
-
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
 
-	frtor->Start(n_sprite,fra,GetGameTime());
-	AnimatorHolder::Register(frtor);
-	AnimatorHolder::MarkAsRunning(frtor);
-	
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+
+	DESTROY_ANIMATOR( this );
 }
 
 
@@ -118,64 +104,42 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( anim && args);
 	BubWalkingAnimator * _this = (BubWalkingAnimator*)args;
 	DASSERT( anim==_this );
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-	DASSERT( _this->GetAnimation() );
-	DASSERT( _this->GetSprite() );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
+	DASSERT( _this->GetAnimation() && _this->GetSprite());
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	animid_t id = _this->GetAnimation()->GetId();
 
 	Sprite * newSprite = _this->GetSprite();
 	newSprite->RemoveStartFallingListener(_this);
-	_this->GetAnimation()->Destroy();
-	_this->Destroy(); 
 
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
 	newSprite->SetFrame(0);
-
 	BubStandAnimator* mar = new BubStandAnimator();
 	mar->SetOnFinish(BubStandAnimator::OnFinishCallback, 0);
-	mar->Start(newSprite, ma, timestamp);
-	
-	AnimatorHolder::Register(mar);
-	AnimatorHolder::MarkAsRunning(mar);
 
+	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 }
 
 void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
-	DASSERT(args);
 	BubWalkingAnimator * _this = (BubWalkingAnimator*)args;
 	DASSERT( _this );
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
 
-	DASSERT( _this->GetAnimation() );
-	DASSERT( _this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 
 	animid_t id = _this->GetAnimation()->GetId();
 
 	Sprite * newSprite = _this->GetSprite();
 	newSprite->RemoveStartFallingListener(_this);
-	_this->GetAnimation()->Destroy();
-	_this->GetSprite()->Destroy();
-	_this->Destroy();
 
-
+	DESTROY_ANIMATOR( _this );
 }
 
 void BubWalkingAnimator::OnOpenMouth(void){
-	AnimatorHolder::MarkAsSuspended(this);
-	AnimatorHolder::Cancel(this);
-	CollisionChecker::Cancel(this->GetSprite());
-
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
 
 	FrameRangeAnimation *fra = 
 		(FrameRangeAnimation*) AnimationsParser::GetAnimation(
@@ -200,13 +164,9 @@ void BubWalkingAnimator::OnOpenMouth(void){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
 
-	this->GetSprite()->Destroy();
-	this->GetAnimation()->Destroy();
-	this->Destroy();
-
-	bomar->Start(n_sprite,fra,GetGameTime());
-	AnimatorHolder::Register(bomar);
-	AnimatorHolder::MarkAsRunning(bomar);
+	START_ANIMATOR( bomar, n_sprite, fra, GetGameTime() );
+	startBubBubbleAnimator( this->GetSprite() );
+	DESTROY_ANIMATOR( this );
 }
 
 ////////////////BubFallingAnimator
@@ -217,13 +177,7 @@ BubFallingAnimator::BubFallingAnimator(){
 
 void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
-
-	AnimatorHolder::MarkAsSuspended(this);
-	AnimatorHolder::Cancel(this);
-	CollisionChecker::Cancel(sprite);
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-
+	REMOVE_FROM_ACTION_ANIMATOR( this );
 
 	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
@@ -232,18 +186,13 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 
 	BubStandAnimator *frtor=new BubStandAnimator();
 
-	this->GetSprite()->Destroy();
-	this->GetAnimation()->Destroy();
-	this->Destroy();
-
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
 
-	frtor->Start(n_sprite,fra,GetGameTime());
-	AnimatorHolder::Register(frtor);
-	AnimatorHolder::MarkAsRunning(frtor);
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( this );
 }
 
 ///////////////////////BubOpenMouthAnimator
@@ -258,12 +207,7 @@ void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
 	BubOpenMouthAnimator * _this = (BubOpenMouthAnimator*)args;
 	DASSERT( anim==_this );
 
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
 	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
@@ -272,18 +216,13 @@ void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	BubStandAnimator *frtor=new BubStandAnimator();
 
-	_this->GetSprite()->Destroy();
-	_this->GetAnimation()->Destroy();
-	_this->Destroy();
-
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
 
-	frtor->Start(n_sprite,fra,GetGameTime());
-	AnimatorHolder::Register(frtor);
-	AnimatorHolder::MarkAsRunning(frtor);
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
 }
 
 void BubOpenMouthAnimator::OnStartFalling(Sprite * sprite){
@@ -298,24 +237,14 @@ BubJumpAnimator::BubJumpAnimator(){
 void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
 	DASSERT(args);
 	BubJumpAnimator * _this = (BubJumpAnimator*)args;
-	DASSERT( _this );
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
 
-	DASSERT( _this->GetAnimation() );
-	DASSERT( _this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 
 	animid_t id = _this->GetAnimation()->GetId();
 
-	Sprite * newSprite = _this->GetSprite();
-	_this->GetAnimation()->Destroy();
-	_this->GetSprite()->Destroy();
-	_this->Destroy();
-
-
+	DESTROY_ANIMATOR( _this );
 }
 
 void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){

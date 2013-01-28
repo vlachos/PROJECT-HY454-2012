@@ -138,6 +138,7 @@
     <ClInclude Include="..\include\game_action\characters\ZenChanAnimator.h" />
     <ClInclude Include="..\include\game_action\CollisionChecker.h" />
     <ClInclude Include="..\include\game_action\InputManage.h" />
+    <ClInclude Include="..\include\game_action\GameActionUtilities.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />

@@ -11,7 +11,7 @@ FrameRangeAnimator :: ~FrameRangeAnimator(){}
 void FrameRangeAnimator :: Progress (timestamp_t currTime){
 	DASSERT(currTime>=0);
 	DASSERT(anim);
-	DASSERT(lastTime<currTime);
+	DASSERT(lastTime<=currTime);
 
 	while (currTime > lastTime && currTime - lastTime >= anim->GetDelay()){
 
