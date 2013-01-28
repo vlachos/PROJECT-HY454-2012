@@ -52,4 +52,17 @@ class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteSta
 		void OnStartFalling(Sprite * sprite);
 };
 
+class BubJumpAnimator : public FrameRangeAnimator{
+	public:
+		BubJumpAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubJumpAnimator_t; }
+
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		static void OnFinishCallback(Animator*, void*);
+
+
+};
+
 #endif

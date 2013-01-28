@@ -127,7 +127,7 @@ void BubbleMain::Rendering(){
 bool BubbleMain::InputManagement(){
 	bool retVal = true;
 	if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
-		std::cout << "pressing Up\n";
+		retVal = InputManageHandling::OnKeyUp();
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
 		std::cout << "pressing Down\n";

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animations totalAnimations="13">
+<animations totalAnimations="14">
   <BubStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <BubOpenMouth type="FrameRangeAnimation" dx="0" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubOpenMouthWalkingLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubOpenMouthWalkingRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="false" start="0" end="6"  />
   <BubWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="false" start="0" end="6"  />
-  <BubFalling type="MovingAnimation" dx="0" dy="2" delay="50" continue="true"/>
+  <BubFalling type="MovingAnimation" dx="0" dy="2" delay="20" continue="true"/>
+  <BubJump type="FrameRangeAnimation" dx="0" dy="-2" delay="20" continue="true" start="6" end="6"  />
   <BubBubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="50" continue="false" start="0" end="10"  />
   <BubBubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="50" continue="false" start="0" end="10"  />
   

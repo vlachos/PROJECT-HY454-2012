@@ -289,3 +289,35 @@ void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
 void BubOpenMouthAnimator::OnStartFalling(Sprite * sprite){
 
 }
+
+///////////////////////BubOpenMouthAnimator
+
+BubJumpAnimator::BubJumpAnimator(){
+}
+
+void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args);
+	BubJumpAnimator * _this = (BubJumpAnimator*)args;
+	DASSERT( _this );
+	timestamp_t timestamp = GetGameTime();
+	DASSERT( timestamp>0 );
+	AnimatorHolder::MarkAsSuspended(_this);
+	AnimatorHolder::Cancel(_this);
+	CollisionChecker::Cancel(_this->GetSprite());
+
+	DASSERT( _this->GetAnimation() );
+	DASSERT( _this->GetSprite() );
+
+	animid_t id = _this->GetAnimation()->GetId();
+
+	Sprite * newSprite = _this->GetSprite();
+	_this->GetAnimation()->Destroy();
+	_this->GetSprite()->Destroy();
+	_this->Destroy();
+
+
+}
+
+void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
+
+}
