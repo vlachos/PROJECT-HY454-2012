@@ -1,5 +1,5 @@
 #include "InputManage.h"
-
+#include "GameActionUtilities.h"
 #include "vector"
 #include "CollisionChecker.h"
 #include "Animator.h"
@@ -27,22 +27,12 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 	DASSERT( bub.size()==1 );
 	BubStandAnimator* _this = (BubStandAnimator*) bub.front();
 
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	DASSERT( _this->GetAnimation() );
-	DASSERT( _this->GetSprite() );
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 
 	animid_t id = _this->GetAnimation()->GetId();
-
 	Sprite* newSprite = _this->GetSprite();
-
-	_this->GetAnimation()->Destroy();
-	_this->Destroy(); 
-
 	FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( direction ? "BubWalkLeft" : "BubWalkRight" );
 	newSprite->SetFrame(0);
 	newSprite->SetGoesLeft(direction);
@@ -50,16 +40,14 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 	BubWalkingAnimator* mar = new BubWalkingAnimator();
 	newSprite->AddStartFallingListener(mar);
 	mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
-	mar->Start(newSprite, ma, timestamp);
 
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
 	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
+		CollisionChecker::Register(newSprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
 	}
-	
-	AnimatorHolder::Register(mar);
-	AnimatorHolder::MarkAsRunning(mar);
 
+	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 	return true;
 }
 
@@ -67,39 +55,24 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 	DASSERT( bub.size()==1 );
 	BubWalkingAnimator* _this = (BubWalkingAnimator*) bub.front();
 	
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	DASSERT( _this->GetAnimation() );
-	DASSERT( _this->GetSprite() );
-
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	animid_t id = _this->GetAnimation()->GetId();
 
 	Sprite* newSprite = _this->GetSprite();
-
-	_this->GetAnimation()->Destroy();
-	_this->Destroy(); 
-
 	FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( "BubJump" );
-	
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
-	mar->Start(newSprite, ma, timestamp);
 
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubJumpAnimator::OnCollisionWithEnemy);
 	}
 	
-
-	AnimatorHolder::Register(mar);
-	AnimatorHolder::MarkAsRunning(mar);
-	
+	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 	return true;
-
 }
 
 static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
