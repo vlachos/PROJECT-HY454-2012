@@ -150,12 +150,6 @@
     <ClCompile Include="..\src\terrain\Terrain.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\characters\BarronVonBluba.cpp">
-      <Filter>Source Files\game_action\characters</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\game_action\characters\Mighta.cpp">
-      <Filter>Source Files\game_action\characters</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\game_action\characters\ZenChanAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
@@ -167,6 +161,15 @@
     </ClCompile>
     <ClCompile Include="..\src\game_action\InputManage.cpp">
       <Filter>Source Files\game_action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\BarronVonBlubaAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\MightaAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\BasicEnemyAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +263,6 @@
     <ClInclude Include="..\include\game_action\InputManage.h">
       <Filter>Header Files\game_action</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\game_action\characters\BarronVonBluba.h">
-      <Filter>Header Files\game_action\characters</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\game_action\characters\MightaAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
@@ -277,6 +277,12 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\GameActionUtilities.h">
       <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\BasicEnemyAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
