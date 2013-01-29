@@ -14,8 +14,8 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 	while (currTime > lastTime && currTime - lastTime >= anim->GetPath()[currIndex].delay){
 		
 		sprite->Move(	
-						anim->GetPath()[currIndex].x - sprite->GetX(), 
-						anim->GetPath()[currIndex].y - sprite->GetY()
+						anim->GetPath()[currIndex].x, 
+						anim->GetPath()[currIndex].y
 					);
 
 		sprite->SetFrame(anim->GetPath()[currIndex].frame);

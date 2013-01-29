@@ -89,9 +89,7 @@ void BubbleMain::ManageGameLoop(){
 		al_get_keyboard_state(&keyState);
 
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
-
 			timestamp_t nowTime = GetCurrTime();
-			
 			Rendering();
 			InputManagement();
 			AnimationProgress(nowTime);

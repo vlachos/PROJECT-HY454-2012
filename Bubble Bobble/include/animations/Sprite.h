@@ -81,6 +81,7 @@ class Sprite : public LatelyDestroyable{
 		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.remove( sl ); }
 		void RemoveAllStopFallingListeners( void ) { spriteStopFallingListener.clear(); }
 
+		void ClearListeners() { RemoveAllStopFallingListeners( ); RemoveAllStartFallingListeners();}
 		Sprite(int _x, int _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft): 
 			x(_x), y(_y), currFilm(film), isVisible(true), tileLayer(_tileLayer), goesLeft(goesLeft){
 

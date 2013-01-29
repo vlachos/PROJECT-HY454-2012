@@ -2,6 +2,7 @@
 #define BUBANIMATOR_H
 
 #include "FrameRangeAnimator.h"
+#include "MovingPathAnimator.h"
 #include "MovingAnimator.h"
 #include "Sprite.h"
 		
@@ -52,7 +53,7 @@ class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteSta
 		void OnStartFalling(Sprite * sprite);
 };
 
-class BubJumpAnimator : public FrameRangeAnimator{
+class BubJumpAnimator : public MovingPathAnimator{
 	public:
 		BubJumpAnimator();
 

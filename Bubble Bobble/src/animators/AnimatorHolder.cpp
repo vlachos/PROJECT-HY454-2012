@@ -64,9 +64,13 @@ void AnimatorHolder :: Display(Bitmap at){
 
 std::vector<Animator*> AnimatorHolder:: GetAnimators(enum animatorType_t type){
 	std::vector<Animator*> animators;
+	//std::cout << type <<"\n";
 	for(std::vector<Animator*>::const_iterator ci = running.begin(); ci != running.end(); ++ci){
-		if( (*ci)->GetAnimatorType() == type )
+		//std::cout << "find "<<  (*ci)->GetAnimatorType()  <<"\n";
+		if( (*ci)->GetAnimatorType() == type ){
 			animators.push_back( *ci );
+		}
 	}
+	//std::cout << animators.size() <<"\n";
 	return animators;
 }

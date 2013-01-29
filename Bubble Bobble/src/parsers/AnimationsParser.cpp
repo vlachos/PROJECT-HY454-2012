@@ -96,7 +96,7 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 
 		for ( rapidxml::xml_node<> * bbox = anim->first_node("list"); bbox; bbox = bbox->next_sibling(), ++index ) {
 
-			PathEntry pathentry( GetGetIntAtrr( bbox, "x" ), GetGetIntAtrr( bbox, "y" ),
+			PathEntry pathentry( GetGetIntAtrr( bbox, "dx" ), GetGetIntAtrr( bbox, "dy" ),
 								 GetGetIntAtrr( bbox, "frame" ), GetGetIntAtrr( bbox, "delay" ) );
 
 			paths.push_back( pathentry );
