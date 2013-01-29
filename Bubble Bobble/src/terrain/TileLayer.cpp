@@ -126,22 +126,22 @@
 	}
 
 	Index TileLayer::GetTileIndex (Dim row, Dim col){
-		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
-				(col>=0 && col<TILE_LAYER_WIDTH ) );
+//		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
+//				(col>=0 && col<TILE_LAYER_WIDTH ) );
 
 		return map[row][col];
 	}
 
 	const bool TileLayer::GetTileSolidity (int row, int col, BBMovement move) const{
-		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
-				(col>=0 && col<TILE_LAYER_WIDTH ) );
+//		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
+//				(col>=0 && col<TILE_LAYER_WIDTH ) );
 
 		return tilesSolidity[row][col][move];
 	}
 
 	const Coordinates TileLayer::GetTileCoordinates (int x, int y) const{
-		DASSERT((x>=0 && x<VIEW_WINDOW_WIDTH ) &&
-				(y>=0 && y<VIEW_WINDOW_HEIGHT ) );
+//		DASSERT((x>=0 && x<VIEW_WINDOW_WIDTH ) &&
+//				(y>=0 && y<VIEW_WINDOW_HEIGHT ) );
 
 		return std::make_pair(DIV_TILE_SIZE(y), DIV_TILE_SIZE(x) );
 	}
