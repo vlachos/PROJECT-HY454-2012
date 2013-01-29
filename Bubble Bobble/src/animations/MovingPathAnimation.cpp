@@ -17,7 +17,7 @@ const std::vector<PathEntry>& MovingPathAnimation :: GetPath (void) const{
 	return path; 
 }
 
-void MovingPathAnimation :: SetPath (const std::vector<PathEntry>& p){
+void MovingPathAnimation :: SetPath (const std::vector<PathEntry> p){
 	DASSERT(!p.empty());
 	DASSERT(!path.empty());
 	path.clear(); 

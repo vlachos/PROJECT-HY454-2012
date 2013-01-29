@@ -27,7 +27,7 @@ public:
 	MovingPathAnimation (const std::vector<PathEntry> _path, animid_t id, bool c);
 	~MovingPathAnimation(void);
 	const std::vector<PathEntry>& GetPath (void) const;
-    void SetPath (const std::vector<PathEntry>& p);
+    void SetPath (const std::vector<PathEntry> p);
     Animation* Clone (animid_t newId) const;
 	bool GetContinuous (void) const{return continuous;}
 	void SetContinuous (bool v){ continuous = v;}
