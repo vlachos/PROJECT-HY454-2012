@@ -1,70 +1,48 @@
 #ifndef ZENCHANANIMATOR_H
 #define ZENCHANANIMATOR_H
 
-#include "FrameRangeAnimator.h"
 #include "MovingAnimator.h"
+#include "FrameRangeAnimator.h"
+#include "MovingPathAnimator.h"
 #include "Sprite.h"
 
 
-class ZenChanStandAnimator : public MovingAnimator, public Sprite::SpriteStartFallingListener{
+class ZenChanStandAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
 	public:
 		ZenChanStandAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanStandAnimator_t; }
 
+		void OnStartFalling(Sprite * sprite);
+		static void OnFinishCallback(Animator*, void*);
+};
+
+
+class ZenChanWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
+
+	public:
+		ZenChanWalkingAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanWalkAnimator_t; }
+
 		static void OnFinishCallback(Animator*, void*);
 		void OnStartFalling(Sprite * sprite);
 };
 
-/*
-class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
+class ZenChanFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
 
 	public:
-		BubWalkingAnimator();
+		ZenChanFallingAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
-			{ return bubWalkAnimator_t; }
-
-		static void OnFinishCallback(Animator*, void*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
-		void OnStartFalling(Sprite * sprite);
-		void OnOpenMouth(void);
-};
-
-class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFallingListener{
-
-	public:
-		BubFallingAnimator();
-
-		enum animatorType_t GetAnimatorType(void)
-			{ return bubFallingAnimator_t; }
+			{ return zenChanFallingAnimator_t; }
 
 		void OnStopFalling(Sprite * sprite);
 };
 
-class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
-	public:
-		BubOpenMouthAnimator();
-
-		enum animatorType_t GetAnimatorType(void)
-			{ return bubOpenMouthAnimator_t; }
-
-		static void OnFinishCallback(Animator*, void*);
-		void OnStartFalling(Sprite * sprite);
+class ZenChanJumpAnimator : public MovingPathAnimator{
 };
 
-class BubJumpAnimator : public FrameRangeAnimator{
-	public:
-		BubJumpAnimator();
-
-		enum animatorType_t GetAnimatorType(void)
-			{ return bubJumpAnimator_t; }
-
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
-		static void OnFinishCallback(Animator*, void*);
-
-
-};
-*/
 #endif
