@@ -2,7 +2,7 @@
 
 
 MovingPathAnimator::MovingPathAnimator (void)
-	:sprite((Sprite*) 0), anim((MovingPathAnimation*) 0){}
+	:sprite((Sprite*) 0), anim((MovingPathAnimation*) 0), currIndex(0){}
 
 MovingPathAnimator::~MovingPathAnimator(){}
 
@@ -11,23 +11,22 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 	DASSERT(anim);
 	DASSERT(lastTime<=currTime);
 
-	while (currTime > lastTime && currTime - lastTime >= anim->GetPath()[anim->GetCurrIndex()].delay){
-		lastTime += anim->GetPath()[anim->GetCurrIndex()].delay;
-
-		if (anim->GetCurrIndex() == anim->GetPath().size()-1)
-			anim->SetCurrIndex(0);
-	    else
-			anim->SetCurrIndex(anim->GetCurrIndex()+1);
-
+	while (currTime > lastTime && currTime - lastTime >= anim->GetPath()[currIndex].delay){
+		
 		sprite->Move(	
-						anim->GetPath()[anim->GetCurrIndex()].x - sprite->GetX(), 
-						anim->GetPath()[anim->GetCurrIndex()].y - sprite->GetY()
+						anim->GetPath()[currIndex].x - sprite->GetX(), 
+						anim->GetPath()[currIndex].y - sprite->GetY()
 					);
 
-		sprite->SetFrame(anim->GetPath()[anim->GetCurrIndex()].frame);
-	    
+		sprite->SetFrame(anim->GetPath()[currIndex].frame);
+	    lastTime += anim->GetPath()[currIndex].delay;
 
-	    if (anim->GetCurrIndex() == anim->GetPath().size()-1 && !anim->GetContinuous()){
+		if (currIndex == anim->GetPath().size())
+			currIndex = 0;
+	    else
+			++currIndex;
+
+	    if (currIndex == anim->GetPath().size() && !anim->GetContinuous()){
 			state = ANIMATOR_FINISHED;
 			NotifyStopped();
 			return;
@@ -45,7 +44,7 @@ void MovingPathAnimator::Start (Sprite* s, MovingPathAnimation* a, timestamp_t t
 	anim = a;
 	lastTime = t;
 	state = ANIMATOR_RUNNING;
-	sprite->SetFrame(anim->GetPath()[anim->GetCurrIndex()].frame);
+	sprite->SetFrame(anim->GetPath()[currIndex].frame);
 }
 void MovingPathAnimator::Display(Bitmap at){
 	sprite->Display(at);

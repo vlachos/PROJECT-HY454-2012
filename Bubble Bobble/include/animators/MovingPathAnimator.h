@@ -9,7 +9,7 @@
 class MovingPathAnimator : public Animator{
 	Sprite *sprite;
 	MovingPathAnimation *anim;
-
+	int currIndex;
 public:
 	MovingPathAnimator (void);
 	~MovingPathAnimator();
@@ -23,6 +23,9 @@ public:
 	void Progress (timestamp_t currTime);
 	void Start (Sprite* s, MovingPathAnimation* a, timestamp_t t);
 	void Display(Bitmap at);
+
+	int GetCurrIndex(){return currIndex;}
+	void SetCurrIndex(int index) { currIndex = index; }
 
 };
 

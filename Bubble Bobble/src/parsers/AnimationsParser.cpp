@@ -90,8 +90,6 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 								GetGetIntAtrr( anim, "delay" ), GetGetBoolAtrr( anim, "continue" ), 1);
 	}else
 	if( !strcmp(strType, "MovingPathAnimation") ){
-		int _listSize = GetGetIntAtrr( anim, "listSize" );
-		DASSERT( _listSize > 0 );
 		
 		std::vector<PathEntry> paths;
 		int index=0;
@@ -103,7 +101,6 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 
 			paths.push_back( pathentry );
 		}
-		//DASSERT( index == _listSize && paths.size() == index);
 
 		retVal = new MovingPathAnimation( paths, 1, false);
 	}else

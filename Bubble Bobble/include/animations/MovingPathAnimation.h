@@ -22,7 +22,6 @@ struct PathEntry {
 
 class MovingPathAnimation : public Animation{
 	std::vector<PathEntry> path;
-	int currIndex;
 	bool continuous;
 public:
 	MovingPathAnimation (const std::vector<PathEntry> _path, animid_t id, bool c);
@@ -30,8 +29,6 @@ public:
 	const std::vector<PathEntry>& GetPath (void) const;
     void SetPath (const std::vector<PathEntry>& p);
     Animation* Clone (animid_t newId) const;
-	int GetCurrIndex(){return currIndex;}
-	void SetCurrIndex(int index) { currIndex = index; }
 	bool GetContinuous (void) const{return continuous;}
 	void SetContinuous (bool v){ continuous = v;}
 };

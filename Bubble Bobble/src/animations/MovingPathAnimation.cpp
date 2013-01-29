@@ -2,7 +2,7 @@
 #include "MemoryManage.h"
 
 MovingPathAnimation :: MovingPathAnimation (const std::vector<PathEntry> _path, animid_t id, bool c)
-	:path(_path), Animation(id),  currIndex(0),continuous(c){
+	:path(_path), Animation(id),continuous(c){
 		DASSERT(!_path.empty());
 		DASSERT(id>0);
 
