@@ -10,13 +10,12 @@
 
 ////////////////MightaStandAnimator
 
-MightaStandAnimator::MightaStandAnimator(){
-}
+MightaStandAnimator::MightaStandAnimator(){}
 
 void MightaStandAnimator::OnFinishCallback(Animator* anim, void* args){}
 
-
 void MightaStandAnimator::OnStartFalling(Sprite* sprite){}
+
 
 ////////////////MightaWalkingAnimator
 
@@ -73,8 +72,7 @@ void MightaWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 
 ////////////////MightaFallingAnimator
 
-MightaFallingAnimator::MightaFallingAnimator(){
-}
+MightaFallingAnimator::MightaFallingAnimator(){}
 
 void MightaFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );

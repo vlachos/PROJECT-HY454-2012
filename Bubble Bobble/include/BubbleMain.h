@@ -14,10 +14,12 @@
 #include "AnimationFilm.h"
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
-#include "BubAnimator.h"
-#include "ZenChanAnimator.h"
+
+#include "GameActionUtilities.h"
 #include "AnimationsParser.h"
 #include "CollisionChecker.h"
+#include "BubAnimator.h"
+#include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
 #include "BarronVonBlubaAnimator.h"
 

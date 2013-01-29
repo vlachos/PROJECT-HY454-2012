@@ -58,40 +58,26 @@ void BubbleMain::InitGameEngine(){
 	Sprite *bubSprite=new Sprite(350,79,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);
 	bubSprite->SetFrame(0);
 	BubStandAnimator *bubStandanimator=new BubStandAnimator();
-	
-	FrameRangeAnimation *zenChanAnimation = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
-	Sprite *zenChanSprite=new Sprite(400,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);
-	ZenChanStandAnimator * zenChanAnimator = new ZenChanStandAnimator();
-	zenChanSprite->AddStartFallingListener(zenChanAnimator);
 
-	FrameRangeAnimation *mightaAnimation = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaStand");
-	Sprite *mightaSprite=new Sprite(400,150,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);
-	MightaStandAnimator * mightaAnimator = new MightaStandAnimator();
-	mightaSprite->AddStartFallingListener(mightaAnimator);
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation, "ZenChanStand",
+						ZenChanStandAnimator, zenChanAnimator, 
+						zenChanSprite, "ZenChanWalk", 400, 79, true, true);
 
-	FrameRangeAnimation *baronVonBlubaAnimation = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaStand");
-	Sprite *baronVonBlubaSprite=new Sprite(300,300,true,AnimationFilmHolder::GetFilm("BaronVonBlubba"), Terrain::GetActionLayer(), true);
-	BaronVonBlubaStandAnimator * baronVonBlubaAnimator = new BaronVonBlubaStandAnimator();
-	baronVonBlubaSprite->AddStartFallingListener(baronVonBlubaAnimator);
-	
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, mightaAnimation, "MightaStand",
+						MightaStandAnimator, mightaAnimator, 
+						mightaSprite, "MightaWalk", 400, 150, true, false);
+
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, baronVonBlubaAnimation, "BarronVonBlubaStand",
+						BaronVonBlubaStandAnimator, baronVonBlubaAnimator, 
+						baronVonBlubaSprite, "BaronVonBlubba", 400, 300, false, false);
+
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 
-	bubStandanimator->Start(bubSprite, bubStandanimation, GetGameTime());
-	AnimatorHolder::Register(bubStandanimator);
-	AnimatorHolder::MarkAsRunning(bubStandanimator);
-
-	zenChanAnimator->Start(zenChanSprite, zenChanAnimation, GetGameTime());
-	AnimatorHolder::Register(zenChanAnimator);
-	AnimatorHolder::MarkAsRunning(zenChanAnimator);
-
-	mightaAnimator->Start(mightaSprite, mightaAnimation, GetGameTime());
-	AnimatorHolder::Register(mightaAnimator);
-	AnimatorHolder::MarkAsRunning(mightaAnimator);
-
-	baronVonBlubaAnimator->Start(baronVonBlubaSprite, baronVonBlubaAnimation, GetGameTime());
-	AnimatorHolder::Register(baronVonBlubaAnimator);
-	AnimatorHolder::MarkAsRunning(baronVonBlubaAnimator);
+	START_ANIMATOR( bubStandanimator, bubSprite, bubStandanimation, GetGameTime() );
+	START_ANIMATOR( zenChanAnimator, zenChanSprite, zenChanAnimation, GetGameTime() );
+	START_ANIMATOR( mightaAnimator, mightaSprite, mightaAnimation, GetGameTime() );
+	START_ANIMATOR( baronVonBlubaAnimator, baronVonBlubaSprite, baronVonBlubaAnimation, GetGameTime() );
 
 	redraw = true;
 }

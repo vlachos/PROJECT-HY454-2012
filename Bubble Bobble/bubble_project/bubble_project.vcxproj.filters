@@ -168,9 +168,6 @@
     <ClCompile Include="..\src\game_action\characters\MightaAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\characters\BasicEnemyAnimator.cpp">
-      <Filter>Source Files\game_action\characters</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -281,8 +278,8 @@
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\game_action\characters\BasicEnemyAnimator.h">
-      <Filter>Header Files\game_action\characters</Filter>
+    <ClInclude Include="..\src\game_action\GameActionUtilities.h">
+      <Filter>Source Files\game_action\characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

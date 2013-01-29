@@ -10,13 +10,12 @@
 
 ////////////////ZenChanStandAnimator
 
-ZenChanStandAnimator::ZenChanStandAnimator(){
-}
+ZenChanStandAnimator::ZenChanStandAnimator(){}
 
 void ZenChanStandAnimator::OnFinishCallback(Animator* anim, void* args){}
 
-
 void ZenChanStandAnimator::OnStartFalling(Sprite* sprite){}
+
 
 ////////////////ZenChanWalkingAnimator
 
@@ -33,7 +32,6 @@ void ZenChanWalkingAnimator::OnStartFalling(Sprite * sprite){
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
 						this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("ZenChanWalk"), 
 						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
-	n_sprite->SetFrame(0);
 
 	ZenChanFallingAnimator *frtor = new ZenChanFallingAnimator();
 	n_sprite->AddStopFallingListener(frtor);
@@ -73,8 +71,7 @@ void ZenChanWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 
 ////////////////ZenChanFallingAnimator
 
-ZenChanFallingAnimator::ZenChanFallingAnimator(){
-}
+ZenChanFallingAnimator::ZenChanFallingAnimator(){}
 
 void ZenChanFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );

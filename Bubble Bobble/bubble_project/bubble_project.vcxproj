@@ -97,7 +97,6 @@
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
     <ClCompile Include="..\src\game_action\characters\BarronVonBlubaAnimator.cpp" />
-    <ClCompile Include="..\src\game_action\characters\BasicEnemyAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\MightaAnimator.cpp" />
@@ -133,7 +132,6 @@
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
     <ClInclude Include="..\include\BubbleMain.h" />
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h" />
-    <ClInclude Include="..\include\game_action\characters\BasicEnemyAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubblesAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\MightaAnimator.h" />
@@ -152,6 +150,7 @@
     <ClInclude Include="..\include\utilities\Metrics.h" />
     <ClInclude Include="..\include\utilities\PathNames.h" />
     <ClInclude Include="..\include\utilities\utilities.h" />
+    <ClInclude Include="..\src\game_action\GameActionUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\bitmaps\sprites\info\animation_data.xml">
