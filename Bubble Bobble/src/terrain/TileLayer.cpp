@@ -132,14 +132,14 @@
 		return map[row][col];
 	}
 
-	const bool TileLayer::GetTileSolidity (Dim row, Dim col, BBMovement move) const{
+	const bool TileLayer::GetTileSolidity (int row, int col, BBMovement move) const{
 		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
 				(col>=0 && col<TILE_LAYER_WIDTH ) );
 
 		return tilesSolidity[row][col][move];
 	}
 
-	const Coordinates TileLayer::GetTileCoordinates (Dim x, Dim y) const{
+	const Coordinates TileLayer::GetTileCoordinates (int x, int y) const{
 		DASSERT((x>=0 && x<VIEW_WINDOW_WIDTH ) &&
 				(y>=0 && y<VIEW_WINDOW_HEIGHT ) );
 
@@ -153,7 +153,7 @@
 		return std::make_pair(MUL_TILE_SIZE(row), MUL_TILE_SIZE(col) );
 	}
 
-	const bool TileLayer::isSolid(Dim x, Dim y, BBMovement move) const{
+	const bool TileLayer::isSolid(int x, int y, BBMovement move) const{
 
 		Coordinates tileCoordinates = GetTileCoordinates(x,y);
 

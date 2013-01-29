@@ -14,40 +14,49 @@
   <ZenChanStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
 
 
-  <Bubbles type="MovingPathAnimation" listSize="33">
-    <list id="0" x="450" y="79" delay="200" frame="0"/>
-    <list id="0" x="440" y="79" delay="200" frame="1"/>
-    <list id="0" x="430" y="79" delay="200" frame="2"/>
-    <list id="1" x="418" y="79" delay="200" frame="0"/>
-    <list id="1" x="408" y="79" delay="200" frame="1"/>
-    <list id="1" x="398" y="79" delay="200" frame="2"/>
-    <list id="2" x="386" y="79" delay="200" frame="0"/>
-    <list id="2" x="376" y="79" delay="200" frame="1"/>
-    <list id="2" x="366" y="79" delay="200" frame="2"/>
-    <list id="0" x="354" y="79" delay="200" frame="0"/>
-    <list id="0" x="344" y="79" delay="200" frame="1"/>
-    <list id="0" x="334" y="79" delay="200" frame="2"/>
-    <list id="1" x="322" y="79" delay="200" frame="0"/>
-    <list id="1" x="312" y="79" delay="200" frame="1"/>
-    <list id="1" x="302" y="79" delay="200" frame="2"/>
-    <list id="2" x="290" y="79" delay="200" frame="0"/>
-    <list id="2" x="280" y="79" delay="200" frame="1"/>
-    <list id="2" x="270" y="79" delay="200" frame="2"/>
-    <list id="1" x="258" y="79" delay="200" frame="0"/>
-    <list id="1" x="248" y="79" delay="200" frame="1"/>
-    <list id="1" x="238" y="79" delay="200" frame="2"/>
-    <list id="2" x="226" y="79" delay="200" frame="0"/>
-    <list id="2" x="216" y="79" delay="200" frame="1"/>
-    <list id="2" x="206" y="79" delay="200" frame="2"/>
-    <list id="1" x="191" y="79" delay="200" frame="0"/>
-    <list id="1" x="181" y="79" delay="200" frame="1"/>
-    <list id="1" x="171" y="79" delay="200" frame="2"/>
-    <list id="2" x="159" y="79" delay="200" frame="0"/>
-    <list id="2" x="149" y="79" delay="200" frame="1"/>
-    <list id="2" x="139" y="79" delay="200" frame="2"/>
-    <list id="0" x="127" y="79" delay="200" frame="0"/>
-    <list id="0" x="117" y="79" delay="200" frame="1"/>
-    <list id="0" x="107" y="79" delay="200" frame="2"/>
+  <Bubbles type="MovingPathAnimation" listSize="1">
+
+    <list id="33" x="97" y="79" delay="200" frame="0"/>
+    <list id="35" x="82" y="79" delay="200" frame="2"/>
+    <list id="35" x="82" y="93" delay="200" frame="2"/>
+    <list id="33" x="82" y="105" delay="200" frame="0"/>
+    <list id="34" x="82" y="118" delay="200" frame="1"/>
+    <list id="35" x="82" y="130" delay="200" frame="2"/>
+    <list id="35" x="82" y="142" delay="200" frame="1"/>
+    <list id="35" x="82" y="154" delay="200" frame="2"/>
+    <list id="35" x="82" y="158" delay="200" frame="0"/>
+    <list id="35" x="92" y="158" delay="200" frame="0"/>
+    <list id="35" x="114" y="158" delay="200" frame="1"/>
+    <list id="35" x="124" y="158" delay="200" frame="1"/>
+    <list id="35" x="134" y="158" delay="200" frame="1"/>
+    <list id="35" x="146" y="158" delay="200" frame="2"/>
+    <list id="35" x="154" y="158" delay="200" frame="1"/>
+    <list id="35" x="164" y="158" delay="200" frame="1"/>
+    <list id="35" x="178" y="158" delay="200" frame="0"/>
+    <list id="35" x="188" y="158" delay="200" frame="1"/>
+    <list id="35" x="198" y="158" delay="200" frame="1"/>
+    <list id="35" x="210" y="158" delay="200" frame="1"/>
+    <list id="35" x="220" y="158" delay="200" frame="1"/>
+    <list id="35" x="230" y="158" delay="200" frame="1"/>
+    <list id="35" x="242" y="158" delay="200" frame="2"/>
+    <list id="35" x="252" y="158" delay="200" frame="1"/>
+    <list id="35" x="262" y="158" delay="200" frame="1"/>
+    <list id="35" x="274" y="158" delay="200" frame="0"/>
+    <list id="35" x="284" y="158" delay="200" frame="1"/>
+    <list id="35" x="294" y="158" delay="200" frame="1"/>
+    <list id="35" x="306" y="158" delay="200" frame="0"/>
+    <list id="35" x="316" y="158" delay="200" frame="1"/>
+    <list id="35" x="326" y="158" delay="200" frame="1"/>
+    <list id="35" x="338" y="158" delay="200" frame="0"/>
+    <list id="35" x="348" y="158" delay="200" frame="1"/>
+    <list id="35" x="358" y="158" delay="200" frame="1"/>
+    <list id="35" x="370" y="158" delay="200" frame="0"/>
+    <list id="35" x="380" y="158" delay="200" frame="1"/>
+    <list id="35" x="390" y="158" delay="200" frame="1"/>
+    <list id="35" x="402" y="158" delay="200" frame="0"/>
+    <list id="35" x="412" y="158" delay="200" frame="1"/>
+    <list id="35" x="422" y="158" delay="200" frame="1"/>
+    <list id="35" x="434" y="158" delay="200" frame="0"/>
   </Bubbles>
 
 

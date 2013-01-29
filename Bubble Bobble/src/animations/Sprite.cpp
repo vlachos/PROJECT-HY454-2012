@@ -6,7 +6,7 @@ void Sprite::Display(Bitmap dest){
 		frameBox.GetWidth(), frameBox.GetHeigth(), x-(frameBox.GetWidth()/2), y-frameBox.GetHeigth(), (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
 }
 
-static bool isSolidTerrain(const TileLayer * tileLayer, Rect frameBox, Dim x, Dim y, Dim _x, Dim _y){
+static bool isSolidTerrain(const TileLayer * tileLayer, Rect frameBox, int x, int y, int _x, int _y){
 	if (_y<0){
 		return tileLayer->isSolid(x+_x, y-frameBox.GetHeigth()+_y, BBUp);
 	}
@@ -24,9 +24,10 @@ static bool isSolidTerrain(const TileLayer * tileLayer, Rect frameBox, Dim x, Di
 	}
 }
 static int i=0;
-void Sprite::Move( Dim _x, Dim _y ){
-	bool canNotMove = isSolidTerrain(tileLayer, frameBox, x, y, _x, _y);
+void Sprite::Move( int _x, int _y ){
 	
+	bool canNotMove = isSolidTerrain(tileLayer, frameBox, x, y, _x, _y);
+
 	if(!canNotMove){
 		x += _x;
 		y += _y;

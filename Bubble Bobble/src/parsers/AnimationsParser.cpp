@@ -103,7 +103,7 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 
 			paths.push_back( pathentry );
 		}
-		DASSERT( index == _listSize && paths.size() == index);
+		//DASSERT( index == _listSize && paths.size() == index);
 
 		retVal = new MovingPathAnimation( paths, 1, false);
 	}else

@@ -10,7 +10,7 @@
 enum HorizScroll {Left = -1, HorizIntact = 0, Right = +1 };
 enum VertScroll {Up = -1, VertIntact = 0, Down = +1 };
 
-typedef std::pair<Dim, Dim> Coordinates;
+typedef std::pair<int, int> Coordinates;
 
 enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1, BBDown = +2};
 #define BB_MOVEMENTS 4
@@ -47,10 +47,10 @@ class TileLayer{
 
 		void SetTile (Dim row, Dim col, Index indx);
 		Index GetTileIndex (Dim row, Dim col);
-		const bool GetTileSolidity (Dim row, Dim col, BBMovement move) const;
-		const Coordinates GetTileCoordinates (Dim x, Dim y) const;
+		const bool GetTileSolidity (int row, int col, BBMovement move) const;
+		const Coordinates GetTileCoordinates (int x, int y) const;
 		const Coordinates GetXYCoordinates (Dim row, Dim col) const;
-		const bool isSolid(Dim x, Dim y, BBMovement move) const;
+		const bool isSolid(int x, int y, BBMovement move) const;
 
 		void SetViewWindow (const Rect&);
 		const Rect	GetViewWindow (void) const;

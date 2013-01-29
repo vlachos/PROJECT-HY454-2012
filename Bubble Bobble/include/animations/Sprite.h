@@ -71,7 +71,7 @@ class Sprite : public LatelyDestroyable{
 		void SetFalling( bool f ) { isFalling = f; }
 		bool CollisionCheck( Sprite * s );
 		void Display(Bitmap dest);
-		void Move( Dim _x, Dim _y );
+		void Move( int _x, int _y );
 
 		void AddStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.push_back( sl ); }
 		void RemoveStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.remove( sl ); }
