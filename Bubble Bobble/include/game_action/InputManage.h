@@ -9,6 +9,7 @@ extern bool OnKeyLeft(void);
 extern bool OnKeyRight(void);
 extern bool OnKeySpace(void);
 
+
 }
 
 #endif

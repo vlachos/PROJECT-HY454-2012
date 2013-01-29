@@ -122,16 +122,25 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 }
 
 void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args);
 	BubWalkingAnimator * _this = (BubWalkingAnimator*)args;
-	DASSERT( _this );
+
+	timestamp_t timestamp = GetGameTime();
+	DASSERT( timestamp>0 );
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+	Sprite* newSprite = _this->GetSprite();
 
-	animid_t id = _this->GetAnimation()->GetId();
+	_this->GetAnimation()->Destroy();
+	_this->Destroy();
 
-	DESTROY_ANIMATOR( _this );
+	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDie");
+	
+	/*BubDieAnimator *bda=new BubDieAnimator();
+	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+	DESTROY_ANIMATOR( _this );*/
 }
 
 void BubWalkingAnimator::OnOpenMouth(void){
@@ -251,13 +260,16 @@ void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * arg
 	DASSERT(args);
 	BubJumpAnimator * _this = (BubJumpAnimator*)args;
 
+	timestamp_t timestamp = GetGameTime();
+	DASSERT( timestamp>0 );
+
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+	Sprite* newSprite = _this->GetSprite();
 
-	animid_t id = _this->GetAnimation()->GetId();
-
-	DESTROY_ANIMATOR( _this );
+	_this->GetAnimation()->Destroy();
+	_this->Destroy(); 
 }
 
 
@@ -283,4 +295,23 @@ void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
+}
+
+/////////////////////////BubDieAnimator
+
+BubDieAnimator::BubDieAnimator(){}
+
+void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
+	DASSERT( anim && args);
+	BubDieAnimator * _this = (BubDieAnimator*)args;
+	DASSERT( anim==_this );
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+
+	animid_t id = _this->GetAnimation()->GetId();
+
+	DESTROY_ANIMATOR( _this );
+
 }

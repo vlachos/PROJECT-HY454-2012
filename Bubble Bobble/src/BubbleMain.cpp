@@ -124,17 +124,51 @@ void BubbleMain::Rendering(){
 
 bool BubbleMain::InputManagement(){
 	bool retVal = true;
+	bool up=false,right=false,left=false;
+
 	if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
 		retVal = InputManageHandling::OnKeyUp();
+
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
 		std::cout << "pressing Down\n";
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
 		retVal = InputManageHandling::OnKeyRight();
+
+		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubJumpAnimator_t);
+		if(anim.size()==1){
+			BubJumpAnimator *bja=(BubJumpAnimator *)anim.front();
+			std::vector<PathEntry> e=bja->GetAnimation()->GetPath();
+			e[bja->GetCurrIndex()].x +=2; 
+			bja->GetAnimation()->SetPath(e);
+			bja->GetSprite()->SetGoesLeft(false);
+		}
+		anim = AnimatorHolder::GetAnimators(bubFallingAnimator_t);
+		if(anim.size()==1){
+			BubFallingAnimator *bja=(BubFallingAnimator *)anim.front();
+			bja->GetSprite()->SetGoesLeft(false);
+			bja->GetSprite()->Move(2,0);
+		}
+		
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
 		retVal = InputManageHandling::OnKeyLeft();
+
+		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubJumpAnimator_t);
+		if(anim.size()==1){
+			BubJumpAnimator *bja=(BubJumpAnimator *)anim.front();
+			std::vector<PathEntry> e=bja->GetAnimation()->GetPath();
+			e[bja->GetCurrIndex()].x +=-2; 
+			bja->GetAnimation()->SetPath(e);
+			bja->GetSprite()->SetGoesLeft(true);
+		}
+		anim = AnimatorHolder::GetAnimators(bubFallingAnimator_t);
+		if(anim.size()==1){
+			BubFallingAnimator *bja=(BubFallingAnimator *)anim.front();
+			bja->GetSprite()->SetGoesLeft(true);
+			bja->GetSprite()->Move(-2,0);
+		}
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
 		retVal = InputManageHandling::OnKeySpace();

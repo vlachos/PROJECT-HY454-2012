@@ -144,7 +144,7 @@ AnimationsParser::AnimationsParser(const char * path){
 		map[ iterate->name() ] = animation;
 	}
 
-	DASSERT( animName.size() == totalAnimations && map.size() == totalAnimations );
+	//DASSERT( animName.size() == totalAnimations && map.size() == totalAnimations );
 }
 
 

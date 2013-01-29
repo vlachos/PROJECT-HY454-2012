@@ -18,6 +18,8 @@
 #include "ZenChanAnimator.h"
 #include "AnimationsParser.h"
 #include "CollisionChecker.h"
+#include "MightaAnimator.h"
+#include "BarronVonBlubaAnimator.h"
 
 #include <allegro5\allegro5.h> 
 #include <allegro5\allegro_native_dialog.h> 

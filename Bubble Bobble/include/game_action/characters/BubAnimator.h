@@ -66,4 +66,14 @@ class BubJumpAnimator : public MovingPathAnimator{
 
 };
 
+class BubDieAnimator : public MovingPathAnimator{
+	public:
+		BubDieAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubDieAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+};
+
 #endif
