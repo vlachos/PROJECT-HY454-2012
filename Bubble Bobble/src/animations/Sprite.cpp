@@ -41,7 +41,8 @@ void Sprite::Move( int _x, int _y ){
 			}else
 			if (!isFalling) {
 			   isFalling = true; 
-			   NotifyStartFalling(); 
+			   NotifyStartFalling();
+			   std::cout << "is falling\n";
 			}
 		}
 	}

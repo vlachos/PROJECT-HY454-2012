@@ -84,7 +84,6 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-
 	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubFalling");
 
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
@@ -107,10 +106,8 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	animid_t id = _this->GetAnimation()->GetId();
-
 	Sprite * newSprite = _this->GetSprite();
-	newSprite->ClearListeners();
+
 
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
 	newSprite->SetFrame(0);

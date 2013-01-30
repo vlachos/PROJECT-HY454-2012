@@ -54,34 +54,34 @@ void BubbleMain::InitGameEngine(){
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	
-	INIT_NEW_INSTANCE(	MovingAnimation, bubStandanimation, "BubStand",
-						BubStandAnimator, bubStandanimator, 
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, bubStandanimation, "BubWalkLeft",
+						BubWalkingAnimator, bubStandanimator, 
 						bubSprite, "BubWalk", 350, 79, true, true);
-	/*
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation2, "ZenChanStand",
-						ZenChanStandAnimator, zenChanAnimator2, 
-						zenChanSprite2, "ZenChanWalk", 400, 46, true, true);
+	
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation2, "ZenChanWalkLeft",
+						ZenChanWalkingAnimator, zenChanAnimator2, 
+						zenChanSprite2, "ZenChanWalk", 450, 79, true, true);
 
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation, "ZenChanStand",
-						ZenChanStandAnimator, zenChanAnimator, 
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation, "ZenChanWalkLeft",
+						ZenChanWalkingAnimator, zenChanAnimator, 
 						zenChanSprite, "ZenChanWalk", 450, 79, true, true);
 	
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, mightaAnimation, "ZenChanStand",
-						ZenChanStandAnimator, mightaAnimator, 
-						mightaSprite, "ZenChanWalk", 300, 112, true, false);
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, mightaAnimation, "ZenChanWalkLeft",
+						ZenChanWalkingAnimator, mightaAnimator, 
+						mightaSprite, "ZenChanWalk", 300, 112, true, true);
 
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, baronVonBlubaAnimation, "ZenChanStand",
+	INIT_NEW_INSTANCE(	FrameRangeAnimation, baronVonBlubaAnimation, "ZenChanWalkLeft",
 						ZenChanStandAnimator, baronVonBlubaAnimator, 
-						baronVonBlubaSprite, "ZenChanWalk", 250, 79, false, false);*/
+						baronVonBlubaSprite, "ZenChanWalk", 250, 79, true, true);
 
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 	
-	START_ANIMATOR( bubStandanimator, bubSprite, bubStandanimation, GetGameTime() );/*
+	START_ANIMATOR( bubStandanimator, bubSprite, bubStandanimation, GetGameTime() );
 	START_ANIMATOR( zenChanAnimator2, zenChanSprite2, zenChanAnimation2, GetGameTime() );
 	START_ANIMATOR( zenChanAnimator, zenChanSprite, zenChanAnimation, GetGameTime() );
 	START_ANIMATOR( mightaAnimator, mightaSprite, mightaAnimation, GetGameTime() );
-	START_ANIMATOR( baronVonBlubaAnimator, baronVonBlubaSprite, baronVonBlubaAnimation, GetGameTime() );*/
+	START_ANIMATOR( baronVonBlubaAnimator, baronVonBlubaSprite, baronVonBlubaAnimation, GetGameTime() );
 
 	redraw = true;
 }
