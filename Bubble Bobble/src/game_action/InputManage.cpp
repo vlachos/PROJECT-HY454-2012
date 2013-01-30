@@ -7,6 +7,7 @@
 #include "BubAnimator.h"
 #include "AnimationsParser.h"
 #include "ZenChanAnimator.h"
+#include "BubblesAnimator.h"
 
 /////////////////////////static functions
 
@@ -76,6 +77,10 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubJumpAnimator::OnCollisionWithEnemy);
 	}
+	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
+	for(unsigned int i=0; i<bubbles.size(); ++i){
+		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), newSprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
+	}
 	
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
@@ -114,7 +119,11 @@ static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubJumpAnimator::OnCollisionWithEnemy);
 	}
-	
+	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
+	for(unsigned int i=0; i<bubbles.size(); ++i){
+		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), newSprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
+	}
+
 	AnimatorHolder::Register(mar);
 	AnimatorHolder::MarkAsRunning(mar);
 

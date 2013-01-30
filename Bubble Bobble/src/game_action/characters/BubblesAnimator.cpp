@@ -64,9 +64,6 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 								true
 							);
 	mpa->SetPath( pathEntry );
-	for(int i=0; i<pathEntry.size(); ++i){
-		std::cout << pathEntry[i].x << ", " << pathEntry[i].y << "\n";
-	}
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
 	
 	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
@@ -82,7 +79,27 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 
 static void ballBurst(Sprite *bubble, Sprite *bub, void *args){
 	DASSERT( bubble && bub && args );
-	BubBubbleAnimator * bbar = (BubBubbleAnimator *) args;
+	BubBubbleAnimator * _this = (BubBubbleAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("PonEffect");
+	Sprite *sprite=new Sprite(
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
+								false,
+								AnimationFilmHolder::GetFilm( "PonEffect" ), 
+								Terrain::GetActionLayer(), 
+								true
+							);
+	PonEffectAnimator* pear = new PonEffectAnimator();
+
+	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
+	for(unsigned int i=0; i<bubbles.size(); ++i){
+		CollisionChecker::Register(sprite, ( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), bubbles[i], PonEffectAnimator::OnCollisionWithBubble);
+	}
+
+	START_ANIMATOR(pear, sprite, mpa, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
 }
 
 BubBubbleAnimator::BubBubbleAnimator(){
@@ -133,4 +150,21 @@ void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *
 		spr1->Move( 0, -1 );
 	}*/
 	
+}
+
+/////////////////////////PonEffectAnimator
+
+PonEffectAnimator::PonEffectAnimator(){
+	this->SetOnFinish( OnFinishCallback, (void*)this );
+}
+
+void PonEffectAnimator::OnFinishCallback(Animator* anim, void* args){
+	PonEffectAnimator* _this = (PonEffectAnimator*) anim;
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}
+
+void PonEffectAnimator::OnCollisionWithBubble(Sprite * pon, Sprite *bubble, void *args){
+	ballBurst(bubble, pon, args);
 }

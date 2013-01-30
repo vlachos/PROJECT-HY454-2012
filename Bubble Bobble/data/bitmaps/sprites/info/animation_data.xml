@@ -431,6 +431,8 @@
   <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
 
+  <PonEffect type="MovingAnimation" dx="0" dy="0" delay="300" continue="false"/>
+  
   <exampleforframelist type="FrameListAnimation" dx="0" dy="0" delay="100" continue="true" listSize="3">
     <list id="0" frame="2" />
     <list id="1" frame="1" />

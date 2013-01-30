@@ -13,7 +13,7 @@ enum animatorstate_t {
 	ANIMATOR_STOPPED  = 2
 };
 
-#define ANIMATORS_SIZE 43
+#define ANIMATORS_SIZE 45
 
 enum animatorType_t {
 	unkwownAnimator_t,
@@ -23,6 +23,7 @@ enum animatorType_t {
 	bubOpenMouthAnimator_t,
 	bubJumpAnimator_t,
 	bubDieAnimator_t,
+	ponEffectAnimator_t,
 	bubBubbleBlastOffAnimator_t,
 	bubBubbleAnimator_t,
 	zenChanInBubble_t,

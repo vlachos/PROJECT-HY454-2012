@@ -26,7 +26,7 @@ static void startBubBubbleAnimator(Sprite* sprite){
 								Terrain::GetActionLayer(), 
 								sprite->GoesLeft()
 								);
-	std::cout << "display: " << sprite->GetX() << ", " << sprite->GetY() << ", " <<sprite->GetFrameBox().GetWidth() << ", " << sprite->GetFrameBox().GetHeigth() << "\n";
+	//std::cout << "display: " << sprite->GetX() << ", " << sprite->GetY() << ", " <<sprite->GetFrameBox().GetWidth() << ", " << sprite->GetFrameBox().GetHeigth() << "\n";
 	BubBubbleBlastOffAnimator *bbar=new BubBubbleBlastOffAnimator();
 
 	START_ANIMATOR( bbar, n_spriteb, frab, GetGameTime() );
@@ -95,7 +95,12 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
-	
+	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
+	for(unsigned int i=0; i<bubbles.size(); ++i){
+		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), n_sprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
+	}
+
+
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
@@ -280,6 +285,11 @@ void BubOpenMouthAnimator::OnStartFalling(Sprite * sprite){
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
 	}
+	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
+	for(unsigned int i=0; i<bubbles.size(); ++i){
+		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), n_sprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
+	}
+
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
@@ -335,6 +345,10 @@ void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
 	for(unsigned int i=0; i<enemy.size(); ++i){
 		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
+	}
+	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
+	for(unsigned int i=0; i<bubbles.size(); ++i){
+		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), n_sprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
 	}
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
