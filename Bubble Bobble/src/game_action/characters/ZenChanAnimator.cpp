@@ -9,7 +9,6 @@
 
 
 ////////////////ZenChanStandAnimator
-
 ZenChanStandAnimator::ZenChanStandAnimator(){}
 
 void ZenChanStandAnimator::OnFinishCallback(Animator* anim, void* args){}
@@ -18,7 +17,6 @@ void ZenChanStandAnimator::OnStartFalling(Sprite* sprite){}
 
 
 ////////////////ZenChanWalkingAnimator
-
 ZenChanWalkingAnimator::ZenChanWalkingAnimator(void) {
 	this->SetOnFinish( OnFinishCallback , (void*)this);
 }
@@ -28,70 +26,50 @@ void ZenChanWalkingAnimator::OnStartFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanFalling");
-	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
-						this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("ZenChanWalk"), 
-						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenFallAnmn, "ZenChanFalling",
+						ZenChanFallingAnimator, zenFallAnmr, newSprite, this->GetSprite() );
 
-	ZenChanFallingAnimator *frtor = new ZenChanFallingAnimator();
-	n_sprite->AddStopFallingListener(frtor);
+	newSprite->AddStopFallingListener(zenFallAnmr);
 
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-	
-	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	START_ANIMATOR( zenFallAnmr, newSprite, zenFallAnmn, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
 
 
-void ZenChanWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
-	DASSERT( anim && args);
-	ZenChanWalkingAnimator * _this = (ZenChanWalkingAnimator*)args;
-	DASSERT( anim==_this );
+void ZenChanWalkingAnimator::OnFinishCallback(Animator* animr, void* args){
+	DASSERT( animr && args);
+	ZenChanWalkingAnimator* _this = (ZenChanWalkingAnimator*)args;
+	DASSERT( animr ==_this );
 	DASSERT( _this->GetAnimation() && _this->GetSprite());
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	animid_t id = _this->GetAnimation()->GetId();
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, "ZenChanStand",
+						ZenChanStandAnimator, zenStandAnmr, newSprite, _this->GetSprite() );
+	zenStandAnmr->SetOnFinish(ZenChanStandAnimator::OnFinishCallback, 0);
 
-	Sprite * newSprite = _this->GetSprite();
-	newSprite->ClearListeners();
+	//collision register
 
-	FrameRangeAnimation *ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanStand");
-	newSprite->SetFrame(0);
-	ZenChanStandAnimator* mar = new ZenChanStandAnimator();
-	mar->SetOnFinish(ZenChanStandAnimator::OnFinishCallback, 0);
-
-	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
-	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
+	START_ANIMATOR( zenStandAnmr, newSprite, zenStandAnmn, GetGameTime() );
+	DESTROY_ANIMATOR(_this );
 }
 
 
 ////////////////ZenChanFallingAnimator
-
 ZenChanFallingAnimator::ZenChanFallingAnimator(){}
 
 void ZenChanFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanStand");
-	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
-		this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("ZenChanWalk"), 
-						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, "ZenChanStand",
+						ZenChanStandAnimator, zenStandAnmr, newSprite, this->GetSprite() );	
+	//collision register
 
-	ZenChanStandAnimator *frtor = new ZenChanStandAnimator();
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-
-	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	START_ANIMATOR( zenStandAnmr, newSprite, zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
 
 
 ////////////////ZenChanJumpAnimator
+

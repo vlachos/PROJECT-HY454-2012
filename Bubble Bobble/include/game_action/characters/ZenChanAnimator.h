@@ -43,6 +43,50 @@ class ZenChanFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteS
 };
 
 class ZenChanJumpAnimator : public MovingPathAnimator{
+	public:
+		ZenChanJumpAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanJumpAnimator_t; }
+
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		static void OnFinishCallback(Animator*, void*);
+
+
+};
+
+class ZenChanAngryStandAnimator : public ZenChanStandAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanAngryStandAnimator_t; }
+};
+
+class ZenChanAngryWalkingAnimator : public ZenChanWalkingAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanAngryWalkAnimator_t; }
+};
+
+class ZenChanAngryFallingAnimator : public ZenChanFallingAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanAngryFallingAnimator_t; }
+};
+
+class ZenChanAngryJumpAnimator : public ZenChanJumpAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanAngryJumpAnimator_t; }
+};
+
+class ZenChanDieAnimator : public MovingPathAnimator{
+	public:
+		ZenChanDieAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanDieAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
 };
 
 #endif

@@ -28,21 +28,14 @@ void MightaWalkingAnimator::OnStartFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaFalling");
-	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
-						this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaWalk"), 
-						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
-	n_sprite->SetFrame(0);
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, mightaFallAnmn, "MightaFalling",
+						MightaFallingAnimator, mightaFallAnmr, newSprite, this->GetSprite() );
 
-	MightaFallingAnimator *frtor = new MightaFallingAnimator();
-	n_sprite->AddStopFallingListener(frtor);
+	newSprite->AddStopFallingListener(mightaFallAnmr);
 
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(mightaStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (MightaStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
+	//collision check register
 	
-	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	START_ANIMATOR( mightaFallAnmr, newSprite, mightaFallAnmn, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
 
@@ -55,17 +48,14 @@ void MightaWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	animid_t id = _this->GetAnimation()->GetId();
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, mightaStandAnmn, "MightaChanStand",
+						MightaStandAnimator, mightaStandAnmr, newSprite, _this->GetSprite() );
 
-	Sprite * newSprite = _this->GetSprite();
-	newSprite->ClearListeners();
+	mightaStandAnmr->SetOnFinish(MightaStandAnimator::OnFinishCallback, 0);
 
-	FrameRangeAnimation *ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaStand");
-	newSprite->SetFrame(0);
-	MightaStandAnimator* mar = new MightaStandAnimator();
-	mar->SetOnFinish(MightaStandAnimator::OnFinishCallback, 0);
+		//collision register
 
-	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+	START_ANIMATOR( mightaStandAnmr, newSprite, mightaStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 }
 
@@ -78,20 +68,13 @@ void MightaFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaStand");
-	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
-		this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaWalk"), 
-						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, mightaStandAnmn, "MightaStand",
+						MightaStandAnimator, mightaStandAnmr, newSprite, this->GetSprite() );	
 
-	MightaStandAnimator *frtor = new MightaStandAnimator();
+		//collision register
 
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(mightaStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (MightaStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-
-	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
-	DESTROY_ANIMATOR( this );
+	START_ANIMATOR( mightaStandAnmr, newSprite, mightaStandAnmn, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }
 
 

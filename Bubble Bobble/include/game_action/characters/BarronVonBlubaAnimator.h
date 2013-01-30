@@ -6,14 +6,24 @@
 #include "Sprite.h"
 
 
-class BaronVonBlubaStandAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
+class BaronVonBlubaStandAnimator : public FrameRangeAnimator{
 	public:
 		BaronVonBlubaStandAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return baronVonBlubaStandAnimator_t; }
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		static void OnFinishCallback(Animator*, void*);
+};
 
-		void OnStartFalling(Sprite * sprite);
+
+class BaronVonBlubaRushAnimator : public MovingPathAnimator{
+	public:
+		BaronVonBlubaRushAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return baronVonBlubaStandAnimator_t; }
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 };
 

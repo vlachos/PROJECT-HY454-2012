@@ -311,21 +311,21 @@
   <ZenChanStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="3"  />
   <ZenChanWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="100" continue="false" start="0" end="3"  />
   <ZenChanWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="100" continue="false" start="0" end="3"  />
-  <ZenChanFalling type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="3"  />
+  <ZenChanFalling type="FrameRangeAnimation" dx="0" dy="1" delay="100" continue="true" start="0" end="3"  />
   <ZenChanAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="50" continue="true" start="0" end="3"  />
   <ZenChanAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="50" continue="false" start="0" end="3"  />
   <ZenChanAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="50" continue="false" start="0" end="3"  />
-  <ZenChanAngryFalling type="FrameRangeAnimation" dx="0" dy="0" delay="50" continue="true" start="0" end="3"  />
+  <ZenChanAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="50" continue="true" start="0" end="3"  />
 
 
   <MightaStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="4"  />
   <MightaWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="100" continue="false" start="0" end="4"  />
   <MightaWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="100" continue="false" start="0" end="4"  />
-  <MightaFalling type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="4"  />
+  <MightaFalling type="FrameRangeAnimation" dx="0" dy="1" delay="100" continue="true" start="0" end="4"  />
   <MightaAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="50" continue="true" start="0" end="4"  />
   <MightaAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="50" continue="false" start="0" end="4"  />
   <MightaAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="50" continue="false" start="0" end="4"  />
-  <MightaAngryFalling type="FrameRangeAnimation" dx="0" dy="0" delay="50" continue="true" start="0" end="4"  />
+  <MightaAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="50" continue="true" start="0" end="4"  />
 
 
   <BarronVonBlubaStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="1"  />

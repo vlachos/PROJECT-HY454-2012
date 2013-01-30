@@ -42,6 +42,50 @@ class MightaFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteSt
 };
 
 class MightaJumpAnimator : public MovingPathAnimator{
+	public:
+		MightaJumpAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaJumpAnimator_t; }
+
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		static void OnFinishCallback(Animator*, void*);
+
+
+};
+
+class MightaAngryStandAnimator : public MightaStandAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaAngryStandAnimator_t; }
+};
+
+class MightaAngryWalkingAnimator : public MightaWalkingAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaAngryWalkAnimator_t; }
+};
+
+class MightaAngryFallingAnimator : public MightaFallingAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaAngryFallingAnimator_t; }
+};
+
+class MightaAngryJumpAnimator : public MightaJumpAnimator{
+	public:
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaAngryJumpAnimator_t; }
+};
+
+class MightaDieAnimator : public MovingPathAnimator{
+	public:
+		MightaDieAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaDieAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
 };
 
 #endif

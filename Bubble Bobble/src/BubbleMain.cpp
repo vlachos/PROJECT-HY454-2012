@@ -54,10 +54,9 @@ void BubbleMain::InitGameEngine(){
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	
-	MovingAnimation *bubStandanimation= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
-	Sprite *bubSprite=new Sprite(350,79,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);
-	bubSprite->SetFrame(0);
-	BubStandAnimator *bubStandanimator=new BubStandAnimator();
+	INIT_NEW_INSTANCE(	MovingAnimation, bubStandanimation, "BubStand",
+						BubStandAnimator, bubStandanimator, 
+						bubSprite, "BubWalk", 350, 79, true, true);
 
 	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation, "ZenChanStand",
 						ZenChanStandAnimator, zenChanAnimator, 
