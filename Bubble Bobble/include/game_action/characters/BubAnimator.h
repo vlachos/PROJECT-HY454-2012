@@ -39,6 +39,7 @@ class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFalli
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubFallingAnimator_t; }
 
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStopFalling(Sprite * sprite);
 };
 

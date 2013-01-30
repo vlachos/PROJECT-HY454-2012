@@ -131,16 +131,21 @@ void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
-	Sprite* newSprite = _this->GetSprite();
+	DASSERT(_this->GetSprite()==bub);
+	Sprite* newSprite = 
+		new Sprite(bub->GetX(),bub->GetY(),
+		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
+		Terrain::GetActionLayer(),false);
 
 	_this->GetAnimation()->Destroy();
 	_this->Destroy();
 
-	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDie");
+	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
 	
-	/*BubDieAnimator *bda=new BubDieAnimator();
+	BubDieAnimator *bda=new BubDieAnimator();
+	bda->SetOnFinish(BubDieAnimator::OnFinishCallback,bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
-	DESTROY_ANIMATOR( _this );*/
+	DESTROY_ANIMATOR( _this );
 }
 
 void BubWalkingAnimator::OnOpenMouth(void){
@@ -198,6 +203,33 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
+}
+
+void BubFallingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args);
+	BubFallingAnimator * _this = (BubFallingAnimator*)args;
+
+	timestamp_t timestamp = GetGameTime();
+	DASSERT( timestamp>0 );
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+	DASSERT(_this->GetSprite()==bub);
+	Sprite* newSprite = 
+		new Sprite(bub->GetX(),bub->GetY(),
+		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
+		Terrain::GetActionLayer(),false);
+
+	_this->GetAnimation()->Destroy();
+	_this->Destroy();
+
+	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
+	
+	BubDieAnimator *bda=new BubDieAnimator();
+	bda->SetOnFinish(BubDieAnimator::OnFinishCallback,bda);
+	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
 }
 
 ///////////////////////BubOpenMouthAnimator
@@ -266,10 +298,21 @@ void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * arg
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
-	Sprite* newSprite = _this->GetSprite();
+	DASSERT(_this->GetSprite()==bub);
+	Sprite* newSprite = 
+		new Sprite(bub->GetX(),bub->GetY(),
+		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
+		Terrain::GetActionLayer(),false);
 
 	_this->GetAnimation()->Destroy();
-	_this->Destroy(); 
+	_this->Destroy();
+
+	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
+	
+	BubDieAnimator *bda=new BubDieAnimator();
+	bda->SetOnFinish(BubDieAnimator::OnFinishCallback,bda);
+	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
 }
 
 

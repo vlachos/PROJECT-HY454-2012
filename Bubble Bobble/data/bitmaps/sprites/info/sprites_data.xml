@@ -9,7 +9,7 @@
     <bbox box="5" x="110" y="16" h="16" w="16" />
     <bbox box="6" x="130" y="16" h="16" w="16" />
   </BubWalk>
-  <BubDie frames="16">
+  <BubDieByEnemy frames="16">
     <bbox box="0" x="6" y="68" h="15" w="13" />
     <bbox box="1" x="26" y="68" h="15" w="11" />
     <bbox box="2" x="46" y="68" h="15" w="10" />
@@ -26,7 +26,7 @@
     <bbox box="13" x="281" y="58" h="25" w="3" />
     <bbox box="14" x="290" y="58" h="25" w="6" />
     <bbox box="15" x="302" y="58" h="25" w="10" />
-  </BubDie>
+  </BubDieByEnemy>
   <BubBurningDie frames="16">
     <bbox box="0" x="5" y="89" h="15" w="15" />
     <bbox box="1" x="25" y="89" h="15" w="15" />
