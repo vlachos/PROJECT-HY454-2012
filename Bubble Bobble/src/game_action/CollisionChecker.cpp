@@ -1,4 +1,6 @@
 #include "CollisionChecker.h"
+#include "AnimatorHolder.h"
+#include "GameActionUtilities.h"
 
 CollisionChecker* CollisionChecker::Checker;
 CollisionChecker::CollisionPairsList CollisionChecker::CollisionPairs;
@@ -39,8 +41,37 @@ void CollisionChecker::Register (Sprite* s1, Sprite* s2, void* Args, CollisionCa
 		DASSERT(CollisionPairs.size() == oldSize + 1);
 	}
 	else{
-		std::cout << "Yparxei hdh re nooba!!!\n";
 		DASSERT(CollisionPairs.size() == oldSize);
+	}
+}
+
+void CollisionChecker::Register (Sprite* s, animatorType_t start, animatorType_t end, void* Args, CollisionCallback callBack){ 
+	DASSERT(s); //DASSERT(callBack);
+
+	unsigned int oldSize = CollisionPairs.size();
+	CollisionPairsList::const_iterator info;
+
+	std::vector<Animator*> relatedAnimators = AnimatorHolder::GetAnimators(start,end);
+
+	for(unsigned int i=0; i<relatedAnimators.size(); ++i){
+		DASSERT(0 <= start<= ANIMATORS_SIZE);
+
+		if (true){
+
+			CollisionInfo newCollisionInfo;
+			newCollisionInfo.master = s;
+			//newCollisionInfo.slave = ( ->GetSprite();
+			newCollisionInfo.Args = Args;
+			newCollisionInfo.callBack = callBack;
+
+			CollisionChecker::CollisionPairs.push_back(newCollisionInfo);
+
+			DASSERT(CollisionPairs.size() == oldSize + 1);
+		}
+		else{
+			DASSERT(CollisionPairs.size() == oldSize);
+		}
+		
 	}
 }
 

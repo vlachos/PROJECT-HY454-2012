@@ -3,6 +3,7 @@
 
 #include "MemoryManage.h"
 #include "utilities.h"
+#include <map>
 
 typedef unsigned long timestamp_t;
 
@@ -12,16 +13,25 @@ enum animatorstate_t {
 	ANIMATOR_STOPPED  = 2
 };
 
+#define ANIMATORS_SIZE 43
+
 enum animatorType_t {
 	unkwownAnimator_t,
 	bubStandAnimator_t,
 	bubWalkAnimator_t,
 	bubFallingAnimator_t,
 	bubOpenMouthAnimator_t,
-	bubBubbleBlastOffAnimator_t,
-	bubBubbleAnimator_t,
 	bubJumpAnimator_t,
 	bubDieAnimator_t,
+	bubBubbleBlastOffAnimator_t,
+	bubBubbleAnimator_t,
+	zenChanInBubble_t,
+	zenChanInBubbleMediumAngry_t,
+	zenChanInBubbleHighAngry_t,
+	mightaInBubble_t,
+	mightaInBubbleMediumAngry_t,
+	mightaInBubbleHighAngry_t,
+	waterSpecialBubble_t,
 	zenChanStandAnimator_t,
 	zenChanWalkAnimator_t,
 	zenChanFallingAnimator_t,
@@ -30,7 +40,6 @@ enum animatorType_t {
 	zenChanAngryWalkAnimator_t,
 	zenChanAngryFallingAnimator_t,
 	zenChanAngryJumpAnimator_t,
-	zenChanDieAnimator_t,
 	mightaStandAnimator_t,
 	mightaWalkAnimator_t,
 	mightaFallingAnimator_t,
@@ -39,8 +48,9 @@ enum animatorType_t {
 	mightaAngryWalkAnimator_t,
 	mightaAngryFallingAnimator_t,
 	mightaAngryJumpAnimator_t,
-	mightaDieAnimator_t,
 	baronVonBlubaStandAnimator_t,
+	zenChanDieAnimator_t,
+	mightaDieAnimator_t,
 	BananaAnimator_t,
 	OrangeAnimator_t,
 	PeachAnimator_t,
@@ -63,6 +73,7 @@ protected:
 	FinishCallback	onFinish;
 	void* finishClosure;
 	void NotifyStopped (void);
+
 
 public:
 	Animator (void); 

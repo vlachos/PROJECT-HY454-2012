@@ -3,14 +3,12 @@
 
 #define INIT_NEW_INSTANCE(anim_t, anim, animStateStr, animr_t, animr, sprite, spriteStateStr, _x, _y, gravAddict, goLeft)			\
 	Sprite* sprite = new Sprite(_x,_y,gravAddict,AnimationFilmHolder::GetFilm(spriteStateStr), Terrain::GetActionLayer(), goLeft);	\
-	sprite->ClearListeners();																										\
 	anim_t* anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);															\
 	animr_t* animr = new animr_t()
 
 #define INIT_NEW_INSTANCE_WITH_SPRITE(anim_t, anim, animStateStr, animr_t, animr, newSprt, oldSprt )	\
-	Sprite* newSprt = oldSprt->Clone();															\
-	newSprt->ClearListeners();															\
-	anim_t *anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);				\
+	Sprite* newSprt = oldSprt->Clone();																	\
+	anim_t *anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);								\
 	animr_t* animr = new animr_t()
 
 #define START_ANIMATOR( animr, sprite, anim, time )	\

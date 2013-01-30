@@ -16,6 +16,7 @@ public:
 	static void Progress (timestamp_t currTime);
 	static void Display(Bitmap at);
 	static std::vector<Animator*> GetAnimators(enum animatorType_t);
+	static std::vector<Animator*> GetAnimators(animatorType_t start, animatorType_t end);
 };
 
 #endif

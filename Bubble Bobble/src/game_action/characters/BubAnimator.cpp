@@ -80,13 +80,15 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
+
 	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubFalling");
+
 	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
 						this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("BubWalk"), 
 						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
-	n_sprite->SetFrame(0);
 
 	BubFallingAnimator *frtor=new BubFallingAnimator();
+
 	n_sprite->AddStopFallingListener(frtor);
 
 	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
@@ -115,6 +117,7 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
 	newSprite->SetFrame(0);
 	BubStandAnimator* mar = new BubStandAnimator();
+
 	mar->SetOnFinish(BubStandAnimator::OnFinishCallback, 0);
 
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );

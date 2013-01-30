@@ -26,7 +26,7 @@ class Sprite : public LatelyDestroyable{
 		byte			frameNo;
 		Rect			frameBox;
 		int				x,y;
-		bool			isVisible, gravityAddicted, isFalling, goesLeft;
+		bool			isVisible, gravityAddicted, isFalling, goesLeft, onDrugs;
 		const AnimationFilm *	currFilm;
 		const TileLayer *		tileLayer;
 
@@ -35,17 +35,21 @@ class Sprite : public LatelyDestroyable{
 
 		void NotifyStopFalling() {	
 			std::list<SpriteStopFallingListener *>::const_iterator iterator;
-			for (iterator = spriteStopFallingListener.begin(); iterator != spriteStopFallingListener.end(); ++iterator) {
-				DASSERT( *iterator );
-				(*iterator)->OnStopFalling(this);
+			if (IsAlive()){
+				for (iterator = spriteStopFallingListener.begin(); iterator != spriteStopFallingListener.end(); ++iterator) {
+					DASSERT( *iterator );
+					(*iterator)->OnStopFalling(this);
+				}
 			}
 		}
 
 		void NotifyStartFalling(){	
 			std::list<SpriteStartFallingListener *>::const_iterator iterator;
-			for (iterator = spriteStartFallingListener.begin(); iterator != spriteStartFallingListener.end(); ++iterator) {
-				DASSERT( *iterator );
-				(*iterator)->OnStartFalling(this);
+			if (IsAlive()){
+				for (iterator = spriteStartFallingListener.begin(); iterator != spriteStartFallingListener.end(); ++iterator) {
+					DASSERT( *iterator );
+					(*iterator)->OnStartFalling(this);
+				}
 			}
 		}
 
@@ -57,8 +61,6 @@ class Sprite : public LatelyDestroyable{
 			}
 		}
 
-		bool GoesLeft() const { return goesLeft; }
-		void SetGoesLeft( bool _goesLeft ) { goesLeft = _goesLeft; }
 		int GetX(void) const { return x; }
 		int GetY(void) const { return y; }
 		Rect GetFrameBox(void) const{ return frameBox; }
@@ -69,6 +71,10 @@ class Sprite : public LatelyDestroyable{
 		void SetGravityAddicted( bool a ) { gravityAddicted = a; }
 		bool IsFalling(void) const { return isFalling; }
 		void SetFalling( bool f ) { isFalling = f; }
+		bool GoesLeft() const { return goesLeft; }
+		void SetGoesLeft( bool _goesLeft ) { goesLeft = _goesLeft; }
+		void SetOnDrugs(bool b) { onDrugs = b; }
+		bool IsOnDrugs() { return onDrugs; }
 		bool CollisionCheck( Sprite * s );
 		void Display(Bitmap dest);
 		void Move( int _x, int _y );
@@ -89,6 +95,7 @@ class Sprite : public LatelyDestroyable{
 			gravityAddicted = _gravityAddicted;
 			frameNo = currFilm->GetTotalFrames();
 			SetFrame(0);
+			onDrugs = false;
 		}
 
 		Sprite* Clone() { return new Sprite(x,y,gravityAddicted,currFilm,tileLayer,goesLeft); }

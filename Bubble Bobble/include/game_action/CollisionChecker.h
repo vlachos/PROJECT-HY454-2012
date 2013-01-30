@@ -2,6 +2,7 @@
 #define COLLISIONCHECKER_H
 
 #include "Sprite.h"
+#include "Animator.h"
 #include <list>
 
 class CollisionChecker{
@@ -51,7 +52,7 @@ private:
 
     public:
 		static void Register (Sprite* s1, Sprite* s2, void* Args, CollisionCallback callBack);
-		static CollisionPairsList::const_iterator PairLookUp (Sprite* s1, Sprite* s2);
+		static void Register (Sprite* s, animatorType_t start, animatorType_t end, void* Args, CollisionCallback callBack);
 		static void Cancel (Sprite* s);
 		static void Cancel (Sprite* s1, Sprite* s2);
 		static void Check (void){

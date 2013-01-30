@@ -74,3 +74,17 @@ std::vector<Animator*> AnimatorHolder:: GetAnimators(enum animatorType_t type){
 	//std::cout << animators.size() <<"\n";
 	return animators;
 }
+
+std::vector<Animator*> AnimatorHolder::GetAnimators(animatorType_t start, animatorType_t end){
+	DASSERT(0 <= start<= ANIMATORS_SIZE);
+
+	std::vector<Animator*> animators;
+	for(std::vector<Animator*>::const_iterator ci = running.begin(); ci != running.end(); ++ci){
+		if((start <= (*ci)->GetAnimatorType() ) && ((*ci)->GetAnimatorType() <= end) ){
+			//std::cout << (*ci)->GetAnimatorType() << "  ";
+			animators.push_back( *ci );
+		}
+	}
+	//std::cout << animators.size() <<"\n";
+	return animators;
+}

@@ -3,7 +3,7 @@
 #include <iostream>
 /*Protected*/
 void Animator::NotifyStopped (void){
-	if(onFinish)
+	if(onFinish && IsAlive())
 		(*onFinish)(this, finishClosure);
 }
 

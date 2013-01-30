@@ -13,7 +13,18 @@ ZenChanStandAnimator::ZenChanStandAnimator(){}
 
 void ZenChanStandAnimator::OnFinishCallback(Animator* anim, void* args){}
 
-void ZenChanStandAnimator::OnStartFalling(Sprite* sprite){}
+void ZenChanStandAnimator::OnStartFalling(Sprite* sprite){
+	DASSERT( sprite == this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenFallAnmn, "ZenChanFalling",
+						ZenChanFallingAnimator, zenFallAnmr, newSprite, this->GetSprite() );
+
+	newSprite->AddStopFallingListener(zenFallAnmr);
+
+	START_ANIMATOR( zenFallAnmr, newSprite, zenFallAnmn, GetGameTime() );
+	DESTROY_ANIMATOR( this );
+}
 
 
 ////////////////ZenChanWalkingAnimator

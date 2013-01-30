@@ -28,7 +28,7 @@ void Sprite::Move( int _x, int _y ){
 	
 	bool canNotMove = isSolidTerrain(tileLayer, frameBox, x, y, _x, _y);
 
-	if(!canNotMove){
+	if(!canNotMove || onDrugs){
 		x += _x;
 		y += _y;
 		if(gravityAddicted){
@@ -41,7 +41,6 @@ void Sprite::Move( int _x, int _y ){
 			}else
 			if (!isFalling) {
 			   isFalling = true; 
-			   
 			   NotifyStartFalling(); 
 			}
 		}
