@@ -150,9 +150,6 @@
     <ClCompile Include="..\src\terrain\Terrain.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\characters\ZenChanAnimator.cpp">
-      <Filter>Source Files\game_action\characters</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
@@ -165,7 +162,7 @@
     <ClCompile Include="..\src\game_action\characters\BarronVonBlubaAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\characters\MightaAnimator.cpp">
+    <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
   </ItemGroup>

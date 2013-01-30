@@ -48,7 +48,6 @@ class MightaJumpAnimator : public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return mightaJumpAnimator_t; }
 
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 
 
