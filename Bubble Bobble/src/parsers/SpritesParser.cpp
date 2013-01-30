@@ -14,45 +14,43 @@ std::string					SpriteParser::bitmapName;
 SpriteParser::spritesMap	SpriteParser::map;
 SpriteParser::spritesName	SpriteParser::SpritesName;
 
+static int GetGetIntAtrr(rapidxml::xml_node<>* anim, const char * atrr ){				
+	rapidxml::xml_attribute<>* getter = anim->first_attribute(atrr);	
+	DASSERT( getter );						
+	return atoi( getter->value() );
+}
+
+static char * GetGetStringAtrr(rapidxml::xml_node<>* anim, const char * atrr ){				
+	rapidxml::xml_attribute<>* getter = anim->first_attribute(atrr);	
+	DASSERT( getter );
+	char * getVal = getter->value();
+	DASSERT( getVal );
+	return getVal;
+}
 
 static std::vector<Rect> GetCurrentSprite(rapidxml::xml_node<>* current, byte spritesSize){
 	DASSERT( current && spritesSize>=0 );
-	int totalFrames;
 	std::vector<Rect> rects;
 
-	DNEWPTR( char,  _totalFrames);
-	_totalFrames = current->first_attribute("frames")->value();
-	DASSERT( _totalFrames );
-		
-	totalFrames = atoi( _totalFrames );
-	DASSERT( totalFrames > 0 );
+	int StandarH = GetGetIntAtrr(current, "h");
+	int StandarW = GetGetIntAtrr(current, "w");
+	for ( rapidxml::xml_node<> * bbox = current->first_node("bbox"); bbox; bbox = bbox->next_sibling()) {
 
-	int index=0;
-	for ( rapidxml::xml_node<> * bbox = current->first_node("bbox"); bbox; bbox = bbox->next_sibling(), ++index ) {
+		int x = GetGetIntAtrr(bbox, "x");
+		int y = GetGetIntAtrr(bbox, "y");
 
-		DNEWPTR(rapidxml::xml_attribute<>, currBox);
-		currBox = bbox->first_attribute("box");
+		DNEWPTR(rapidxml::xml_attribute<>, attrh);
+		attrh = bbox->first_attribute("h");
+		int h = ( attrh ? atoi( attrh->value() ) : StandarH );
 
-		DNEWPTR(rapidxml::xml_attribute<>, dx);
-		dx = bbox->first_attribute("x");
-			
-		DNEWPTR(rapidxml::xml_attribute<>, dy);
-		dy = bbox->first_attribute("y");
+		DNEWPTR(rapidxml::xml_attribute<>, attrw);
+		attrw = bbox->first_attribute("w");
+		int w = ( attrw ? atoi( attrw->value() ) : StandarW );
 
-		DNEWPTR(rapidxml::xml_attribute<>, h);
-		h = bbox->first_attribute("h");
-
-		DNEWPTR(rapidxml::xml_attribute<>, w);
-		w = bbox->first_attribute("w");
-
-		DASSERT( dx && dx->value() && dy && dy->value() && h && h->value() && w && w->value() );
-		Rect rect( ALIGN_SIZE( StringToDim( dx->value() ), spritesSize ), ALIGN_SIZE( StringToDim( dy->value()), spritesSize ), 
-					ALIGN_SIZE( StringToDim( h->value() ), spritesSize ), ALIGN_SIZE(  StringToDim( w->value()), spritesSize ) );
+		Rect rect( ALIGN_SIZE( x, spritesSize ), ALIGN_SIZE( y, spritesSize ), 
+					ALIGN_SIZE( w, spritesSize ), ALIGN_SIZE( h, spritesSize ) );
 		rects.push_back( rect );
 	}
-	DASSERT( index == totalFrames && rects.size() == index);
-	
-
 	return rects;
 }
 
@@ -73,21 +71,9 @@ SpriteParser::SpriteParser(const char * path){
 	DASSERT( rootNode );
 
 	DNEWPTR( const char, s );
-	s = rootNode->first_attribute("format")->value();
-	DASSERT( s );
+	s = GetGetStringAtrr(rootNode, "format");
 
-	DNEWPTR( char,  _totalSpritesNum );
-	_totalSpritesNum = rootNode->first_attribute("totalSprites")->value();
-	DASSERT( _totalSpritesNum );
-
-	byte totalSpritesNum = atoi( _totalSpritesNum );
-	DASSERT( totalSpritesNum > 0 );
-
-	DNEWPTR( char, _bitmapName );
-	_bitmapName = rootNode->first_attribute("bitmap")->value();
-	DASSERT(_bitmapName);
-
-	bitmapName = std::string( _bitmapName );
+	bitmapName = std::string( GetGetStringAtrr(rootNode, "bitmap") );
 
 	using namespace SpriteParserSpecifications;
 
@@ -109,8 +95,6 @@ SpriteParser::SpriteParser(const char * path){
 		SpritesName.push_back( iterate->name() );
 		map[ iterate->name() ] = currBbox;
 	}
-
-	DASSERT( SpritesName.size() == totalSpritesNum && map.size() == totalSpritesNum );
 }
 
 SpriteParser::~SpriteParser(void){

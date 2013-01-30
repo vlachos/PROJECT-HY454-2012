@@ -90,6 +90,8 @@ class Sprite : public LatelyDestroyable{
 			frameNo = currFilm->GetTotalFrames();
 			SetFrame(0);
 		}
+
+		Sprite* Clone() { return new Sprite(x,y,gravityAddicted,currFilm,tileLayer,goesLeft); }
 };
 
 #endif

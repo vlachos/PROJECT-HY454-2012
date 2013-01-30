@@ -26,6 +26,8 @@ static int GetGetIntAtrr(rapidxml::xml_node<>* anim, const char * atrr ){
 	return atoi( getter->value() )	;
 }
 
+
+
 static bool GetGetBoolAtrr(rapidxml::xml_node<>* anim, const char * atrr ){							
 		rapidxml::xml_attribute<>* getter = (anim)->first_attribute(atrr);
 		DASSERT( getter );

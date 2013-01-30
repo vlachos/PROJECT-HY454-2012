@@ -1,235 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sprites format="32x32" totalSprites="34" bitmap="..\data\bitmaps\sprites\sprites.png">
-  <BubWalk frames="7">
-    <bbox box="0" x="6" y="16" h="16" w="16" />
-    <bbox box="1" x="27" y="16" h="16" w="15" />
-    <bbox box="2" x="48" y="16" h="16" w="16" />
-    <bbox box="3" x="69" y="16" h="16" w="16" />
-    <bbox box="4" x="90" y="16" h="16" w="16" />
-    <bbox box="5" x="110" y="16" h="16" w="16" />
-    <bbox box="6" x="130" y="16" h="16" w="16" />
+<sprites format="32x32" bitmap="..\data\bitmaps\sprites\sprites.png">
+  <BubWalk w="16" h="16">
+    <bbox x="6" y="16"/>
+    <bbox x="27" y="16"/>
+    <bbox x="48" y="16"/>
+    <bbox x="69" y="16"/>
+    <bbox x="90" y="16"/>
+    <bbox x="110" y="16"/>
+    <bbox x="130" y="16"/>
   </BubWalk>
-  <BubDieByEnemy frames="16">
-    <bbox box="0" x="6" y="68" h="15" w="13" />
-    <bbox box="1" x="26" y="68" h="15" w="11" />
-    <bbox box="2" x="46" y="68" h="15" w="10" />
-    <bbox box="3" x="62" y="68" h="15" w="14" />
-    <bbox box="4" x="82" y="68" h="15" w="14" />
-    <bbox box="5" x="103" y="68" h="15" w="14" />
-    <bbox box="6" x="124" y="68" h="15" w="14" />
-    <bbox box="7" x="145" y="68" h="15" w="14" />
-    <bbox box="8" x="166" y="68" h="15" w="14" />
-    <bbox box="9" x="188" y="58" h="25" w="14" />
-    <bbox box="10" x="212" y="58" h="25" w="14" />
-    <bbox box="11" x="233" y="58" h="25" w="14" />
-    <bbox box="12" x="254" y="58" h="25" w="14" />
-    <bbox box="13" x="281" y="58" h="25" w="3" />
-    <bbox box="14" x="290" y="58" h="25" w="6" />
-    <bbox box="15" x="302" y="58" h="25" w="10" />
+  <BubDieByEnemy w="16" h="16">
+    <bbox x="6" y="68"/>
+    <bbox x="24" y="68"/>
+    <bbox x="43" y="68"/>
+    <bbox x="62" y="68"/>
+    <bbox x="82" y="68"/>
+    <bbox x="103" y="68"/>
+    <bbox x="124" y="68"/>
+    <bbox x="145" y="68"/>
+    <bbox x="166" y="68"/>
+    <bbox x="188" y="58" w="16" h="25" />
+    <bbox x="212" y="58" w="16" h="25" />
+    <bbox x="233" y="58" w="16" h="25" />
+    <bbox x="254" y="58" w="16" h="25" />
+    <bbox x="281" y="58" w="16" h="25" />
+    <bbox x="290" y="58" w="16" h="25" />
+    <bbox x="302" y="58" w="16" h="25" />
   </BubDieByEnemy>
-  <BubBurningDie frames="16">
-    <bbox box="0" x="5" y="89" h="15" w="15" />
-    <bbox box="1" x="25" y="89" h="15" w="15" />
-    <bbox box="2" x="45" y="89" h="15" w="15" />
-    <bbox box="3" x="64" y="89" h="15" w="15" />
-    <bbox box="4" x="84" y="89" h="15" w="14" />
-    <bbox box="5" x="103" y="89" h="15" w="14" />
-    <bbox box="6" x="122" y="89" h="15" w="16" />
-    <bbox box="7" x="144" y="89" h="15" w="19" />
-    <bbox box="8" x="168" y="89" h="15" w="19" />
-    <bbox box="9" x="193" y="89" h="15" w="12" />
-    <bbox box="10" x="212" y="89" h="15" w="13" />
-    <bbox box="11" x="230" y="89" h="15" w="13" />
-    <bbox box="12" x="247" y="89" h="15" w="13" />
-    <bbox box="13" x="266" y="89" h="15" w="13" />
-    <bbox box="14" x="285" y="68" h="15" w="13" />
-    <bbox box="15" x="303" y="68" h="15" w="13" />
+  <BubBurningDie w="16" h="16">
+    <bbox x="5" y="89"  />
+    <bbox x="25" y="89"  />
+    <bbox x="45" y="89"  />
+    <bbox x="64" y="89"  />
+    <bbox x="84" y="89" w="16" h="14" />
+    <bbox x="103" y="89"  />
+    <bbox x="122" y="89" w="18" h="16" />
+    <bbox x="144" y="89" w="21" h="16" />
+    <bbox x="168" y="89" w="21" h="16" />
+    <bbox x="193" y="89"  />
+    <bbox x="212" y="89"  />
+    <bbox x="230" y="89"  />
+    <bbox x="247" y="89"  />
+    <bbox x="266" y="89"  />
+    <bbox x="285" y="89"  />
+    <bbox x="303" y="89"  />
   </BubBurningDie>
-  <BubBubbleBlastOff frames="12">
-    <bbox box="0" x="6" y="1050" h="16" w="16" />
-    <bbox box="1" x="114" y="1050" h="16" w="16" />
-    <bbox box="2" x="24" y="1050" h="16" w="16" />
-    <bbox box="3" x="132" y="1050" h="16" w="16" />
-    <bbox box="4" x="42" y="1050" h="16" w="16" />
-    <bbox box="5" x="150" y="1050" h="16" w="16" />
-    <bbox box="6" x="60" y="1050" h="16" w="16" />
-    <bbox box="7" x="168" y="1050" h="16" w="16" />
-    <bbox box="8" x="78" y="1050" h="16" w="16" />
-    <bbox box="9" x="186" y="1050" h="16" w="16" />
-    <bbox box="10" x="96" y="1050" h="16" w="16" />
-    <bbox box="11" x="204" y="1050" h="16" w="16" />
+  <BubBubbleBlastOff w="16" h="16">
+    <bbox x="6" y="1050"  />
+    <bbox x="114" y="1050"  />
+    <bbox x="24" y="1050"  />
+    <bbox x="132" y="1050"  />
+    <bbox x="42" y="1050"  />
+    <bbox x="150" y="1050"  />
+    <bbox x="60" y="1050"  />
+    <bbox x="168" y="1050"  />
+    <bbox x="78" y="1050"  />
+    <bbox x="186" y="1050"  />
+    <bbox x="96" y="1050"  />
+    <bbox x="204" y="1050"  />
   </BubBubbleBlastOff>
-  <BubBubble frames="3">
-    <bbox box="0" x="7" y="1072" h="16" w="16" />
-    <bbox box="1" x="25" y="1072" h="16" w="16" />
-    <bbox box="2" x="43" y="1072" h="16" w="16" />
+  <BubBubble frames="3" w="16" h="16">
+    <bbox x="7" y="1072"  />
+    <bbox x="25" y="1072"  />
+    <bbox x="43" y="1072"  />
   </BubBubble>
-  <BubOpenMouth frames="8">
-    <bbox box="0" x="6" y="36" h="16" w="16" />
-    <bbox box="1" x="27" y="36" h="16" w="16" />
-    <bbox box="2" x="48" y="36" h="16" w="16" />
-    <bbox box="3" x="69" y="36" h="16" w="16" />
-    <bbox box="4" x="90" y="36" h="16" w="16" />
-    <bbox box="5" x="111" y="36" h="16" w="16" />
-    <bbox box="6" x="133" y="36" h="16" w="16" />
-    <bbox box="7" x="154" y="36" h="16" w="16" />
+  <BubOpenMouth w="16" h="16">
+    <bbox x="6" y="36"  />
+    <bbox x="27" y="36"  />
+    <bbox x="48" y="36"  />
+    <bbox x="69" y="36"  />
+    <bbox x="90" y="36"  />
+    <bbox x="111" y="36"  />
+    <bbox x="133" y="36"  />
+    <bbox x="154" y="36"  />
   </BubOpenMouth>
-  <BubOpenMouthWalking frames="8">
-    <bbox box="0" x="150" y="16" h="16" w="16" />
-    <bbox box="1" x="171" y="16" h="16" w="16" />
-    <bbox box="2" x="193" y="16" h="16" w="16" />
-    <bbox box="3" x="213" y="16" h="16" w="16" />
-    <bbox box="4" x="233" y="16" h="16" w="16" />
-    <bbox box="5" x="254" y="16" h="16" w="16" />
-    <bbox box="6" x="275" y="16" h="16" w="16" />
-    <bbox box="7" x="296" y="16" h="16" w="16" />
+  <BubOpenMouthWalking w="16" h="16">
+    <bbox x="150" y="16"  />
+    <bbox x="171" y="16"  />
+    <bbox x="193" y="16"  />
+    <bbox x="213" y="16"  />
+    <bbox x="233" y="16"  />
+    <bbox x="254" y="16"  />
+    <bbox x="275" y="16"  />
+    <bbox x="296" y="16"  />
   </BubOpenMouthWalking>
   
 
 
-  <ZenChanWalk frames="4">
-    <bbox box="0" x="6" y="246" h="14" w="14" />
-    <bbox box="1" x="24" y="245" h="15" w="14" />
-    <bbox box="2" x="43" y="246" h="14" w="14" />
-    <bbox box="3" x="62" y="245" h="15" w="15" />
+  <ZenChanWalk  w="16" h="16">
+    <bbox x="6" y="246" />
+    <bbox x="24" y="245"  />
+    <bbox x="43" y="246"  />
+    <bbox x="62" y="245"  />
   </ZenChanWalk>
-  <ZenChanInBubble frames="3">
-    <bbox box="0" x="304" y="245" h="15" w="13" />
-    <bbox box="1" x="322" y="245" h="15" w="13" />
-    <bbox box="2" x="340" y="245" h="15" w="13" />
+  <ZenChanInBubble w="16" h="16">
+    <bbox x="304" y="245"  />
+    <bbox x="322" y="245"  />
+    <bbox x="340" y="245"  />
   </ZenChanInBubble>
-  <ZenChanInBubbleMediumAngry frames="3">
-    <bbox box="0" x="412" y="245" h="15" w="13" />
-    <bbox box="1" x="430" y="245" h="15" w="13" />
-    <bbox box="2" x="448" y="245" h="15" w="13" />
+  <ZenChanInBubbleMediumAngry w="16" h="16">
+    <bbox x="412" y="245"  />
+    <bbox x="430" y="245"  />
+    <bbox x="448" y="245"  />
   </ZenChanInBubbleMediumAngry>
-  <ZenChanInBubbleHighAngry frames="3">
-    <bbox box="0" x="466" y="245" h="15" w="13" />
-    <bbox box="1" x="484" y="245" h="15" w="13" />
-    <bbox box="2" x="502" y="245" h="15" w="13" />
+  <ZenChanInBubbleHighAngry w="16" h="16">
+    <bbox x="466" y="245"  />
+    <bbox x="484" y="245"  />
+    <bbox x="502" y="245"  />
   </ZenChanInBubbleHighAngry>
-  <ZenChanAngry frames="4">
-    <bbox box="0" x="81" y="246" h="14" w="14" />
-    <bbox box="1" x="99" y="245" h="15" w="14" />
-    <bbox box="2" x="117" y="246" h="14" w="14" />
-    <bbox box="3" x="134" y="245" h="15" w="15" />
+  <ZenChanAngry w="16" h="16">
+    <bbox x="81" y="246"  />
+    <bbox x="99" y="245"  />
+    <bbox x="117" y="246"  />
+    <bbox x="134" y="245"  />
   </ZenChanAngry>
-  <ZenChanDie frames="8">
-    <bbox box="0" x="153" y="245" h="15" w="14" />
-    <bbox box="1" x="171" y="245" h="15" w="14" />
-    <bbox box="2" x="191" y="245" h="14" w="14" />
-    <bbox box="3" x="208" y="245" h="15" w="15" />
-    <bbox box="4" x="227" y="245" h="15" w="14" />
-    <bbox box="5" x="246" y="245" h="15" w="15" />
-    <bbox box="6" x="265" y="245" h="14" w="14" />
-    <bbox box="7" x="284" y="245" h="15" w="15" />
+  <ZenChanDie w="16" h="16">
+    <bbox x="153" y="245"  />
+    <bbox x="171" y="245"  />
+    <bbox x="191" y="245"  />
+    <bbox x="208" y="245"  />
+    <bbox x="227" y="245"  />
+    <bbox x="246" y="245"  />
+    <bbox x="265" y="245"  />
+    <bbox x="284" y="245"  />
   </ZenChanDie>
 
 
-  <MightaWalk frames="5">
-    <bbox box="0" x="5" y="278" h="15" w="15" />
-    <bbox box="1" x="24" y="278" h="15" w="15" />
-    <bbox box="2" x="43" y="278" h="15" w="15" />
-    <bbox box="3" x="62" y="278" h="15" w="15" />
-    <bbox box="4" x="81" y="278" h="15" w="15" />
+  <MightaWalk w="16" h="16">
+    <bbox x="5" y="278"  />
+    <bbox x="24" y="278"  />
+    <bbox x="43" y="278"  />
+    <bbox x="62" y="278"  />
+    <bbox x="81" y="278"  />
   </MightaWalk>
-  <MightaAngry frames="5">
-    <bbox box="0" x="215" y="278" h="15" w="15" />
-    <bbox box="1" x="236" y="278" h="15" w="15" />
-    <bbox box="2" x="256" y="278" h="15" w="15" />
-    <bbox box="3" x="276" y="278" h="15" w="15" />
-    <bbox box="4" x="296" y="278" h="15" w="15" />
+  <MightaAngry w="16" h="16">
+    <bbox x="215" y="278"  />
+    <bbox x="236" y="278"  />
+    <bbox x="256" y="278"  />
+    <bbox x="276" y="278"  />
+    <bbox x="296" y="278"  />
   </MightaAngry>
-  <MightaDie frames="9">
-    <bbox box="0" x="435" y="278" h="15" w="15" />
-    <bbox box="1" x="456" y="278" h="15" w="15" />
-    <bbox box="2" x="477" y="278" h="15" w="15" />
-    <bbox box="3" x="498" y="278" h="15" w="15" />
-    <bbox box="4" x="519" y="278" h="15" w="15" />
-    <bbox box="5" x="540" y="278" h="15" w="15" />
-    <bbox box="6" x="561" y="278" h="15" w="15" />
-    <bbox box="7" x="583" y="278" h="15" w="15" />
-    <bbox box="8" x="606" y="278" h="15" w="15" />
+  <MightaDie w="16" h="16">
+    <bbox x="435" y="278"  />
+    <bbox x="456" y="278"  />
+    <bbox x="477" y="278"  />
+    <bbox x="498" y="278"  />
+    <bbox x="519" y="278"  />
+    <bbox x="540" y="278"  />
+    <bbox x="561" y="278"  />
+    <bbox x="583" y="278"  />
+    <bbox x="606" y="278"  />
   </MightaDie>
-  <MightaInBubble frames="3">
-    <bbox box="0" x="137" y="299" h="15" w="13" />
-    <bbox box="1" x="155" y="299" h="15" w="13" />
-    <bbox box="2" x="173" y="299" h="15" w="13" />
+  <MightaInBubble w="16" h="16">
+    <bbox x="137" y="299"/>
+    <bbox x="155" y="299"/>
+    <bbox x="173" y="299"/>
   </MightaInBubble>
-  <MightaInBubbleMediumAgry frames="3">
-    <bbox box="0" x="245" y="299" h="15" w="13" />
-    <bbox box="1" x="263" y="299" h="15" w="13" />
-    <bbox box="2" x="281" y="299" h="15" w="13" />
+  <MightaInBubbleMediumAgry w="16" h="16">
+    <bbox x="245" y="299"/>
+    <bbox x="263" y="299"/>
+    <bbox x="281" y="299"/>
   </MightaInBubbleMediumAgry>
-  <MightaInBubbleHighAgry frames="3">
-    <bbox box="0" x="299" y="299" h="15" w="13" />
-    <bbox box="1" x="317" y="299" h="15" w="13" />
-    <bbox box="2" x="335" y="299" h="15" w="13" />
+  <MightaInBubbleHighAgry w="16" h="16">
+    <bbox x="299" y="299"/>
+    <bbox x="317" y="299"/>
+    <bbox x="335" y="299"/>
   </MightaInBubbleHighAgry>
-  <MightaAngryFireBubble frames="5">
-    <bbox box="0" x="317" y="278" h="15" w="15" />
-    <bbox box="1" x="338" y="278" h="15" w="15" />
-    <bbox box="2" x="359" y="278" h="15" w="17" />
-    <bbox box="3" x="381" y="278" h="15" w="20" />
-    <bbox box="4" x="408" y="278" h="15" w="22" />
+  <MightaAngryFireBubble w="16" h="16">
+    <bbox x="317" y="278" />
+    <bbox x="338" y="278" />
+    <bbox x="359" y="278" w="18" h="16" />
+    <bbox x="381" y="278" w="21" h="16" />
+    <bbox x="408" y="278" w="23" h="16" />
   </MightaAngryFireBubble>
-  <MightaFireBubble frames="5">
-    <bbox box="0" x="100" y="278" h="15" w="15" />
-    <bbox box="1" x="120" y="278" h="15" w="15" />
-    <bbox box="2" x="140" y="278" h="15" w="17" />
-    <bbox box="3" x="162" y="278" h="15" w="20" />
-    <bbox box="4" x="187" y="278" h="15" w="22" />
+  <MightaFireBubble w="16" h="16">
+    <bbox x="100" y="278" />
+    <bbox x="120" y="278" />
+    <bbox x="140" y="278" w="18" h="16" />
+    <bbox x="162" y="278" w="21" h="16" />
+    <bbox x="187" y="278" w="23" h="16" />
   </MightaFireBubble>
-  <MightaBubble frames="6">
-    <bbox box="0" x="6" y="299" h="15" w="14" />
-    <bbox box="1" x="24" y="299" h="15" w="14" />
-    <bbox box="2" x="41" y="299" h="15" w="14" />
-    <bbox box="3" x="78" y="299" h="15" w="14" />
-    <bbox box="4" x="96" y="299" h="15" w="14" />
-    <bbox box="5" x="114" y="299" h="15" w="14" />
+  <MightaBubble w="16" h="16">
+    <bbox x="6" y="299"  />
+    <bbox x="24" y="299"  />
+    <bbox x="41" y="299"  />
+    <bbox x="78" y="299"  />
+    <bbox x="96" y="299"  />
+    <bbox x="114" y="299"  />
   </MightaBubble>
 
 
-  <BaronVonBlubba frames="2">
-    <bbox box="0" x="224" y="333" h="14" w="15" />
-    <bbox box="1" x="245" y="333" h="14" w="15" />
+  <BaronVonBlubba w="16" h="16">
+    <bbox x="224" y="333"/>
+    <bbox x="245" y="333"/>
   </BaronVonBlubba>
 
-  <RedShoe frames="1">
-    <bbox box="0" x="110" y="852" h="10" w="15" />
+  <RedShoe w="15" h="10">
+    <bbox x="110" y="852"/>
   </RedShoe>
-  <YellowSweet frames="1">
-    <bbox box="0" x="88" y="852" h="10" w="15" />
+  <YellowSweet w="15" h="10" >
+    <bbox x="88" y="852" />
   </YellowSweet>
-  <BlueSweet frames="1">
-    <bbox box="0" x="67" y="852" h="10" w="15" />
+  <BlueSweet w="15" h="10">
+    <bbox x="67" y="852"  />
   </BlueSweet>
-  <PurpleSweet frames="1">
-    <bbox box="0" x="47" y="852" h="10" w="15" />
+  <PurpleSweet  w="15" h="10">
+    <bbox x="47" y="852"  />
   </PurpleSweet>
-  <Banana frames="1">
-    <bbox box="0" x="317" y="801" h="16" w="16" />
+  <Banana w="16" h="16">
+    <bbox x="317" y="801"  />
   </Banana>
-  <Orange frames="1">
-    <bbox box="0" x="282" y="802" h="13" w="15" />
+  <Orange w="16" h="16">
+    <bbox x="282" y="802"  />
   </Orange>
-  <Peach frames="1">
-    <bbox box="0" x="300" y="801" h="14" w="16" />
+  <Peach w="16" h="16">
+    <bbox x="300" y="801"  />
   </Peach>
-  <WaterMelon frames="1">
-    <bbox box="0" x="353" y="804" h="16" w="13" />
+  <WaterMelon w="16" h="16">
+    <bbox x="353" y="804"  />
   </WaterMelon>
-  <WaterBubble frames="3">
-    <bbox box="0" x="223" y="1095" h="15" w="13" />
-    <bbox box="1" x="241" y="299" h="15" w="13" />
-    <bbox box="2" x="259" y="299" h="15" w="13" />
+  <WaterBubble  w="16" h="16">
+    <bbox x="223" y="1095" />
+    <bbox x="241" y="299"  />
+    <bbox x="259" y="299" />
   </WaterBubble>
-  <BlueDiamond frames="1">
-    <bbox box="0" x="309" y="893" h="23" w="29" />
+  <BlueDiamond w="29" h="23">
+    <bbox x="309" y="893"  />
   </BlueDiamond>
 
-  <PonEffect frames="2">
-    <bbox box="0" x="590" y="1050" h="15" w="13" />
-    <bbox box="1" x="614" y="1050" h="15" w="13" />
+  <PonEffect w="16" h="16">
+    <bbox x="590" y="1050"  />
+    <bbox x="614" y="1050"/>
   </PonEffect>
 </sprites>
