@@ -21,6 +21,8 @@ class BubBubbleAnimator: public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubBubbleAnimator_t; }
 
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 };

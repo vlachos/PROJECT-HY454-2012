@@ -64,6 +64,9 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 								true
 							);
 	mpa->SetPath( pathEntry );
+	for(int i=0; i<pathEntry.size(); ++i){
+		std::cout << pathEntry[i].x << ", " << pathEntry[i].y << "\n";
+	}
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
 	
 	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
@@ -77,6 +80,11 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 
 /////////////////////////////BubBubbleAnimator
 
+static void ballBurst(Sprite *bubble, Sprite *bub, void *args){
+	DASSERT( bubble && bub && args );
+	BubBubbleAnimator * bbar = (BubBubbleAnimator *) args;
+}
+
 BubBubbleAnimator::BubBubbleAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
 }
@@ -89,18 +97,40 @@ void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 }
 
+void BubBubbleAnimator::OnCollisionWithBubFalling(Sprite *bubble, Sprite *bub, void *args){
+	ballBurst(bubble, bub, args);
+}
+
+void BubBubbleAnimator::OnCollisionWithBubJump(Sprite *bubble, Sprite *bub, void *args){
+	ballBurst(bubble, bub, args);
+}
+
 void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
+	/*
 	DASSERT( args );
-	BubBubbleAnimator* m = (BubBubbleAnimator*)args;
+	BubBubbleAnimator* mmar = (BubBubbleAnimator*)args;
+	MovingPathAnimation* mma = mmar->GetAnimation();
+	std::vector<PathEntry> path = mma->GetPath();
 	if(spr1->GetX()>spr2->GetX()){
-		spr1->Move( 1, 0 );
-		
+		//spr1->Move( 1, 0 );
+		PathEntry entry( -15, 0, 0, 400);
+		path.insert( path.begin() + mmar->GetCurrIndex(), entry );
+		PathEntry entry2( 15, 0, 0, 400);
+		path.insert( path.begin() + mmar->GetCurrIndex(), entry2 );
+
 	}else{
-		spr1->Move( -1, 0 );
+		//spr1->Move( -1, 0 );
+		PathEntry entry( 15, 0, 0, 400);
+		path.insert( path.begin() + mmar->GetCurrIndex(), entry );
+		PathEntry entry2( -15, 0, 0, 400);
+		path.insert( path.begin() + mmar->GetCurrIndex(), entry2 );
 	}
+	mma->SetPath( path );
+	/*
 	if(spr1->GetY()>spr2->GetY()){
 		spr1->Move( 0, 1 );
 	}else{
 		spr1->Move( 0, -1 );
-	}
+	}*/
+	
 }

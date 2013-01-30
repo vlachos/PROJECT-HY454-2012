@@ -47,8 +47,12 @@ static std::vector<Rect> GetCurrentSprite(rapidxml::xml_node<>* current, byte sp
 		attrw = bbox->first_attribute("w");
 		int w = ( attrw ? atoi( attrw->value() ) : StandarW );
 
-		Rect rect( ALIGN_SIZE( x, spritesSize ), ALIGN_SIZE( y, spritesSize ), 
-					ALIGN_SIZE( w, spritesSize ), ALIGN_SIZE( h, spritesSize ) );
+		Rect rect(	
+					ALIGN_SIZE( x, spritesSize ), 
+					ALIGN_SIZE( y, spritesSize ), 
+					ALIGN_SIZE( w, spritesSize ), 
+					ALIGN_SIZE( h, spritesSize ) 
+				 );
 		rects.push_back( rect );
 	}
 	return rects;
