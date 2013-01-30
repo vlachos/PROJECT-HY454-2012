@@ -149,7 +149,6 @@
     <ClInclude Include="..\include\utilities\Metrics.h" />
     <ClInclude Include="..\include\utilities\PathNames.h" />
     <ClInclude Include="..\include\utilities\utilities.h" />
-    <ClInclude Include="..\src\game_action\GameActionUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\bitmaps\sprites\info\animation_data.xml">

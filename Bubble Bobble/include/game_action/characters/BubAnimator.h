@@ -13,6 +13,7 @@ class BubStandAnimator : public MovingAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubStandAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		void OnOpenMouth(void);
 		static void OnFinishCallback(Animator*, void*);
 };
@@ -25,6 +26,7 @@ class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStart
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubWalkAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
@@ -39,6 +41,7 @@ class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFalli
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubFallingAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStopFalling(Sprite * sprite);
 };
@@ -50,6 +53,7 @@ class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteSta
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubOpenMouthAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 		void OnStartFalling(Sprite * sprite);
 };
@@ -61,10 +65,9 @@ class BubJumpAnimator : public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubJumpAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
-
-
 };
 
 class BubDieAnimator : public MovingPathAnimator{
@@ -74,6 +77,7 @@ class BubDieAnimator : public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubDieAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 };
 

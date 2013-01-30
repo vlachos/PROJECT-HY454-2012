@@ -12,6 +12,7 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubBubbleBlastOffAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 };
 
@@ -22,6 +23,7 @@ class BubBubbleAnimator: public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubBubbleAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
@@ -35,6 +37,7 @@ class PonEffectAnimator: public MovingAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return ponEffectAnimator_t; }
 
+		void RegistCollitions(Animator *, Sprite*);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 };

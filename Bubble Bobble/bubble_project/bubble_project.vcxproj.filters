@@ -275,9 +275,6 @@
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\game_action\GameActionUtilities.h">
-      <Filter>Source Files\game_action\characters</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\soundtrack\bubble-bobble-01-amiga-credits.mp3">

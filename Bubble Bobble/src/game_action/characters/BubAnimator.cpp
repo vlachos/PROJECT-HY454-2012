@@ -28,7 +28,7 @@ static void startBubBubbleAnimator(Sprite* sprite){
 								);
 	//std::cout << "display: " << sprite->GetX() << ", " << sprite->GetY() << ", " <<sprite->GetFrameBox().GetWidth() << ", " << sprite->GetFrameBox().GetHeigth() << "\n";
 	BubBubbleBlastOffAnimator *bbar=new BubBubbleBlastOffAnimator();
-
+	bbar->RegistCollitions(bbar, n_spriteb);
 	START_ANIMATOR( bbar, n_spriteb, frab, GetGameTime() );
 }
 
@@ -37,6 +37,10 @@ static void startBubBubbleAnimator(Sprite* sprite){
 
 BubStandAnimator::BubStandAnimator(){
 
+}
+
+void BubStandAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
 }
 
 void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -55,12 +59,7 @@ void BubStandAnimator::OnOpenMouth(void){
 
 	BubOpenMouthAnimator *bomar = new BubOpenMouthAnimator();
 	n_sprite->AddStartFallingListener(bomar);
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-
+	bomar->RegistCollitions(bomar, n_sprite);
 	START_ANIMATOR( bomar, n_sprite, fra, GetGameTime() );
 
 	startBubBubbleAnimator( this->GetSprite() );
@@ -75,6 +74,11 @@ BubWalkingAnimator::BubWalkingAnimator(void) {
 	this->SetOnFinish( OnFinishCallback , (void*)this);
 }
 
+void BubWalkingAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+}
+
+
 void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 	
 	DASSERT( sprite == this->GetSprite() );
@@ -88,19 +92,8 @@ void BubWalkingAnimator::OnStartFalling(Sprite * sprite){
 						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
 
 	BubFallingAnimator *frtor=new BubFallingAnimator();
-
 	n_sprite->AddStopFallingListener(frtor);
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), n_sprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
-	}
-
-
+	frtor->RegistCollitions(frtor, n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
@@ -122,7 +115,7 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	MovingAnimation *ma = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
 	newSprite->SetFrame(0);
 	BubStandAnimator* mar = new BubStandAnimator();
-
+	mar->RegistCollitions(mar, newSprite);
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 }
@@ -143,13 +136,9 @@ void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
 		Terrain::GetActionLayer(),false);
 
-	_this->GetAnimation()->Destroy();
-	_this->Destroy();
-
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
-	
 	BubDieAnimator *bda=new BubDieAnimator();
-
+	bda->RegistCollitions(bda, newSprite);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -174,11 +163,7 @@ void BubWalkingAnimator::OnOpenMouth(void){
 
 	BubOpenMouthAnimator *bomar = new BubOpenMouthAnimator();
 	n_sprite->AddStartFallingListener(bomar);
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
+	bomar->RegistCollitions(bomar, n_sprite);
 
 	START_ANIMATOR( bomar, n_sprite, fra, GetGameTime() );
 	startBubBubbleAnimator( this->GetSprite() );
@@ -191,6 +176,11 @@ BubFallingAnimator::BubFallingAnimator(){
 	
 }
 
+void BubFallingAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, 0, BubBubbleAnimator::OnCollisionWithBubFalling, true);
+}
+
 void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
@@ -201,12 +191,7 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
 
 	BubStandAnimator *frtor=new BubStandAnimator();
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-
+	frtor->RegistCollitions(frtor, n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
@@ -227,12 +212,10 @@ void BubFallingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
 		Terrain::GetActionLayer(),false);
 
-	_this->GetAnimation()->Destroy();
-	_this->Destroy();
-
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
 	
 	BubDieAnimator *bda=new BubDieAnimator();
+	bda->RegistCollitions(bda, newSprite);
 
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
@@ -244,6 +227,9 @@ BubOpenMouthAnimator::BubOpenMouthAnimator(){
 	this->SetOnFinish( OnFinishCallback , (void*)this);
 }
 
+void BubOpenMouthAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+}
 
 void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( anim && args);
@@ -258,11 +244,7 @@ void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
 						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
 
 	BubStandAnimator *frtor=new BubStandAnimator();
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
+	frtor->RegistCollitions(frtor, n_sprite);
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
@@ -279,24 +261,21 @@ void BubOpenMouthAnimator::OnStartFalling(Sprite * sprite){
 	n_sprite->SetFrame(0);
 
 	BubFallingAnimator *frtor=new BubFallingAnimator();
+	frtor->RegistCollitions(frtor, n_sprite);
 	n_sprite->AddStopFallingListener(frtor);
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), n_sprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
-	}
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
 }
 
-///////////////////////BubOpenMouthAnimator
+///////////////////////BubJumpAnimator
 
 BubJumpAnimator::BubJumpAnimator(){
+}
+
+void BubJumpAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, anim, BubJumpAnimator::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, 0, BubBubbleAnimator::OnCollisionWithBubJump, true);
 }
 
 void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
@@ -315,13 +294,10 @@ void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * arg
 		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
 		Terrain::GetActionLayer(),false);
 
-	_this->GetAnimation()->Destroy();
-	_this->Destroy();
-
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
-	
 	BubDieAnimator *bda=new BubDieAnimator();
-	
+	bda->RegistCollitions(bda, newSprite);
+
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -341,16 +317,7 @@ void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	n_sprite->SetFrame(0);
 	BubFallingAnimator *frtor=new BubFallingAnimator();
 	n_sprite->AddStopFallingListener(frtor);
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(n_sprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), 0, 0);
-	}
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), n_sprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
-	}
-
+	frtor->RegistCollitions(frtor, n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -359,6 +326,9 @@ void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 BubDieAnimator::BubDieAnimator(){
 	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void BubDieAnimator::RegistCollitions(Animator *anim, Sprite *spr){
 }
 
 void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){

@@ -17,8 +17,9 @@ static Sprite* GetSpriteFromBubFallingAnimator(Animator* animr) { return (( BubF
 static Sprite* GetSpriteFromBubOpenMouthAnimator(Animator* animr) { return (( BubOpenMouthAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubJumpAnimator(Animator* animr) { return (( BubJumpAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubDieAnimator(Animator* animr) { return (( BubDieAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromPonEffectAnimator(Animator* animr) { return (( PonEffectAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleBlastOffAnimator(Animator* animr) { return (( BubBubbleBlastOffAnimator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return  0;}//(( BubBubbleAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return (( BubBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
@@ -56,47 +57,48 @@ static Sprite* GetSpriteFromBlueSweetAnimator(Animator* animr) { return  0;}//((
 static Sprite* GetSpriteFromPurpleSweetAnimator(Animator* animr) { return  0;}//(( PurpleSweetAnimator*)animr )->GetSprite();}
 
 SpriteDispacher_t spriteDispatcher[] = {
-	GetSpriteFromUnkwownAnimator,//0
+	GetSpriteFromUnkwownAnimator,
 	GetSpriteFromBubStandAnimator,
 	GetSpriteFromBubWalkAnimator,
 	GetSpriteFromBubFallingAnimator,
 	GetSpriteFromBubOpenMouthAnimator,
-	GetSpriteFromBubJumpAnimator,//5
+	GetSpriteFromBubJumpAnimator,
 	GetSpriteFromBubDieAnimator,
+	GetSpriteFromPonEffectAnimator,
 	GetSpriteFromBubBubbleBlastOffAnimator,
 	GetSpriteFromBubBubbleAnimator,
 	GetSpriteFromZenChanInBubbleAnimator,
-	GetSpriteFromZenChanInBubbleMediumAngryAnimator,//10
+	GetSpriteFromZenChanInBubbleMediumAngryAnimator,
 	GetSpriteFromZenChanInBubbleHighAngryAnimator,
 	GetSpriteFromMightaInBubbleAnimator,
 	GetSpriteFromMightaInBubbleMediumAngryAnimator,
 	GetSpriteFromMightaInBubbleHighAngryAnimator,
-	GetSpriteFromWaterSpecialBubbleAnimator,//15
+	GetSpriteFromWaterSpecialBubbleAnimator,
 	GetSpriteFromZenChanStandAnimator,
 	GetSpriteFromZenChanWalkAnimator,
 	GetSpriteFromZenChanFallingAnimator,
 	GetSpriteFromZenChanJumpAnimator,
-	GetSpriteFromZenChanAngryStandAnimator,//20
+	GetSpriteFromZenChanAngryStandAnimator,
 	GetSpriteFromZenChanAngryWalkAnimator,
 	GetSpriteFromZenChanAngryFallingAnimator,
 	GetSpriteFromZenChanAngryJumpAnimator,
 	GetSpriteFromMightaStandAnimator,
-	GetSpriteFromMightaWalkAnimator,//25
+	GetSpriteFromMightaWalkAnimator,
 	GetSpriteFromMightaFallingAnimator,
 	GetSpriteFromMightaJumpAnimator,
 	GetSpriteFromMightaAngryStandAnimator,
 	GetSpriteFromMightaAngryWalkAnimator,
-	GetSpriteFromMightaAngryFallingAnimator,//30
+	GetSpriteFromMightaAngryFallingAnimator,
 	GetSpriteFromMightaAngryJumpAnimator,
 	GetSpriteFromBaronVonBlubaStandAnimator,
 	GetSpriteFromZenChanDieAnimator,
 	GetSpriteFromMightaDieAnimator,
-	GetSpriteFromBananaAnimator,//35
+	GetSpriteFromBananaAnimator,
 	GetSpriteFromOrangeAnimator,
 	GetSpriteFromPeachAnimator,
 	GetSpriteFromWaterMelonAnimator,
 	GetSpriteFromBlueDiamondAnimator,
-	GetSpriteFromRedShoeAnimator,//40
+	GetSpriteFromRedShoeAnimator,
 	GetSpriteFromYellowSweetAnimator,
 	GetSpriteFromBlueSweetAnimator,
 	GetSpriteFromPurpleSweetAnimator
@@ -148,13 +150,29 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 
 	Sprite* s2 = 0;
 	std::vector<Animator*> relatedAnimators = AnimatorHolder::GetAnimators(start,end);
+	
+	for(unsigned int i=0; i<relatedAnimators.size(); ++i){
+		DASSERT(0 <= start<= ANIMATORS_SIZE);
+		
+		s2 = spriteDispatcher[(relatedAnimators[i]->GetAnimatorType())](relatedAnimators[i]);
+		
+		DASSERT(s2);
 
+		CollisionChecker::Register (s1, s2, Args, callBack);
+	}
+}
+
+void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_t end, Animator* Args, CollisionCallback callBack, bool slaveArgument){
+	DASSERT(s1); //DASSERT(callBack);
+
+	Sprite* s2 = 0;
+	std::vector<Animator*> relatedAnimators = AnimatorHolder::GetAnimators(start,end);
 	for(unsigned int i=0; i<relatedAnimators.size(); ++i){
 		DASSERT(0 <= start<= ANIMATORS_SIZE);
 		s2 = spriteDispatcher[(relatedAnimators[i]->GetAnimatorType())](relatedAnimators[i]);
 		DASSERT(s2);
 
-		CollisionChecker::Register (s1, s2, Args, callBack);
+		CollisionChecker::Register (s1, s2, slaveArgument?relatedAnimators[i]:Args, callBack);
 	}
 }
 

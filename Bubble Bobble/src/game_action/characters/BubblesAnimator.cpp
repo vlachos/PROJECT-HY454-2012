@@ -44,6 +44,10 @@ BubBubbleBlastOffAnimator::BubBubbleBlastOffAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
 }
 
+void BubBubbleBlastOffAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+
+}
+
 void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( anim && args);
 	BubBubbleBlastOffAnimator * _this = (BubBubbleBlastOffAnimator*)args;
@@ -65,17 +69,15 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 							);
 	mpa->SetPath( pathEntry );
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
-	
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(sprite, ( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), (void*)bbar, BubBubbleAnimator::OnCollisionWithBubble);
-	}
+	bbar->RegistCollitions(bbar, sprite);
 
 	START_ANIMATOR(bbar, sprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
 
 /////////////////////////////BubBubbleAnimator
+
+
 
 static void ballBurst(Sprite *bubble, Sprite *bub, void *args){
 	DASSERT( bubble && bub && args );
@@ -92,18 +94,17 @@ static void ballBurst(Sprite *bubble, Sprite *bub, void *args){
 								true
 							);
 	PonEffectAnimator* pear = new PonEffectAnimator();
-
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(sprite, ( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), bubbles[i], PonEffectAnimator::OnCollisionWithBubble);
-	}
-
+	pear->RegistCollitions(0, sprite);
 	START_ANIMATOR(pear, sprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
 
 BubBubbleAnimator::BubBubbleAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
+}
+
+void BubBubbleAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, anim, BubBubbleAnimator::OnCollisionWithBubble, false);
 }
 
 void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -114,11 +115,11 @@ void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 }
 
-void BubBubbleAnimator::OnCollisionWithBubFalling(Sprite *bubble, Sprite *bub, void *args){
+void BubBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
 	ballBurst(bubble, bub, args);
 }
 
-void BubBubbleAnimator::OnCollisionWithBubJump(Sprite *bubble, Sprite *bub, void *args){
+void BubBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
 	ballBurst(bubble, bub, args);
 }
 
@@ -156,6 +157,10 @@ void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *
 
 PonEffectAnimator::PonEffectAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
+}
+
+void PonEffectAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, 0, PonEffectAnimator::OnCollisionWithBubble, true);
 }
 
 void PonEffectAnimator::OnFinishCallback(Animator* anim, void* args){

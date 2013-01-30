@@ -43,11 +43,7 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 
 	newSprite->AddStartFallingListener(mar);
 	mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
-
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(newSprite, ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubWalkingAnimator::OnCollisionWithEnemy);
-	}
+	mar->RegistCollitions(0, newSprite);
 
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
@@ -73,14 +69,7 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
 
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubJumpAnimator::OnCollisionWithEnemy);
-	}
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), newSprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
-	}
+	mar->RegistCollitions(mar, newSprite);
 	
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
@@ -115,14 +104,7 @@ static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
 	mar->Start(newSprite, ma, timestamp);
 
-	std::vector<Animator*> enemy = AnimatorHolder::GetAnimators(zenChanStandAnimator_t);
-	for(unsigned int i=0; i<enemy.size(); ++i){
-		CollisionChecker::Register(_this->GetSprite(), ( (ZenChanStandAnimator*)enemy[i] )->GetSprite(), (void *)mar, BubJumpAnimator::OnCollisionWithEnemy);
-	}
-	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);
-	for(unsigned int i=0; i<bubbles.size(); ++i){
-		CollisionChecker::Register(( (BubBubbleAnimator*)bubbles[i] )->GetSprite(), newSprite, (void*)bubbles[i], BubBubbleAnimator::OnCollisionWithBubJump);
-	}
+	mar->RegistCollitions(mar, newSprite);
 
 	AnimatorHolder::Register(mar);
 	AnimatorHolder::MarkAsRunning(mar);
