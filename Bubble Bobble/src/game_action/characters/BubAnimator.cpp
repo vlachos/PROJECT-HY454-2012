@@ -118,8 +118,6 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 	newSprite->SetFrame(0);
 	BubStandAnimator* mar = new BubStandAnimator();
 
-	mar->SetOnFinish(BubStandAnimator::OnFinishCallback, 0);
-
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 }
@@ -146,7 +144,7 @@ void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
 	
 	BubDieAnimator *bda=new BubDieAnimator();
-	bda->SetOnFinish(BubDieAnimator::OnFinishCallback,bda);
+
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -230,7 +228,7 @@ void BubFallingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
 	
 	BubDieAnimator *bda=new BubDieAnimator();
-	bda->SetOnFinish(BubDieAnimator::OnFinishCallback,bda);
+
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -313,7 +311,7 @@ void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * arg
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
 	
 	BubDieAnimator *bda=new BubDieAnimator();
-	bda->SetOnFinish(BubDieAnimator::OnFinishCallback,bda);
+	
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -345,7 +343,9 @@ void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 /////////////////////////BubDieAnimator
 
-BubDieAnimator::BubDieAnimator(){}
+BubDieAnimator::BubDieAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
 
 void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( anim && args);
