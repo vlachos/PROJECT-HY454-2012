@@ -20,7 +20,7 @@ static Sprite* GetSpriteFromBubDieAnimator(Animator* animr) { return (( BubDieAn
 static Sprite* GetSpriteFromPonEffectAnimator(Animator* animr) { return (( PonEffectAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleBlastOffAnimator(Animator* animr) { return (( BubBubbleBlastOffAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return (( BubBubbleAnimator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return (( ZenChanInBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaInBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite();}
@@ -173,6 +173,20 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 		DASSERT(s2);
 
 		CollisionChecker::Register (s1, s2, relatedAnimators[i], callBack);
+	}
+}
+
+void CollisionChecker::RegisterPair (Sprite* s1, animatorType_t start, animatorType_t end, Animator* anim, CollisionCallback callBack){
+	DASSERT( s1 && anim );
+	std::vector<Animator*> relatedAnimators = AnimatorHolder::GetAnimators(start,end);
+	for(unsigned int i=0; i<relatedAnimators.size(); ++i){	
+		Animator* amtr = (Animator*) relatedAnimators[i];
+		Sprite* s2 = spriteDispatcher[(amtr->GetAnimatorType())](relatedAnimators[i]);
+		DASSERT( s2 );
+		std::pair< Animator*, Animator* >* args = (std::pair< Animator*, Animator* >*)malloc(sizeof(std::pair< Animator*, Animator* >));
+		args->first = anim;
+		args->second = amtr;
+		CollisionChecker::Register (s1, s2, (void*)args, callBack);
 	}
 }
 

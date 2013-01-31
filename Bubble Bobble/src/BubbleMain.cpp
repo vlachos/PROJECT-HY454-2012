@@ -54,34 +54,27 @@ void BubbleMain::InitGameEngine(){
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, bubStandanimation, "BubWalkLeft",
-						BubWalkingAnimator, bubStandanimator, 
-						bubSprite, "BubWalk", 350, 79, true, true);
-	
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation2, "ZenChanWalkLeft",
-						ZenChanWalkingAnimator, zenChanAnimator2, 
-						zenChanSprite2, "ZenChanWalk", 450, 79, true, true);
 
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, zenChanAnimation, "ZenChanWalkLeft",
-						ZenChanWalkingAnimator, zenChanAnimator, 
-						zenChanSprite, "ZenChanWalk", 450, 79, true, true);
-	
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, mightaAnimation, "ZenChanWalkLeft",
-						ZenChanWalkingAnimator, mightaAnimator, 
-						mightaSprite, "ZenChanWalk", 300, 112, true, true);
+	Sprite* sprite = new Sprite(350,79,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BubStand");															\
+	BubStandAnimator* animr = new BubStandAnimator();
+	animr->RegistCollitions(sprite);
 
-	INIT_NEW_INSTANCE(	FrameRangeAnimation, baronVonBlubaAnimation, "ZenChanWalkLeft",
-						ZenChanStandAnimator, baronVonBlubaAnimator, 
-						baronVonBlubaSprite, "ZenChanWalk", 250, 79, true, true);
+
+	Sprite* sprite2 = new Sprite(450,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
+	ZenChanWalkingAnimator* animr2 = new ZenChanWalkingAnimator();
+
+	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim3 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
+	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
 
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 	
-	START_ANIMATOR( bubStandanimator, bubSprite, bubStandanimation, GetGameTime() );
-	START_ANIMATOR( zenChanAnimator2, zenChanSprite2, zenChanAnimation2, GetGameTime() );
-	START_ANIMATOR( zenChanAnimator, zenChanSprite, zenChanAnimation, GetGameTime() );
-	START_ANIMATOR( mightaAnimator, mightaSprite, mightaAnimation, GetGameTime() );
-	START_ANIMATOR( baronVonBlubaAnimator, baronVonBlubaSprite, baronVonBlubaAnimation, GetGameTime() );
+	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
+	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
+	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 
 	redraw = true;
 }

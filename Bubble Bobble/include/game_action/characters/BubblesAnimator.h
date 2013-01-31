@@ -14,6 +14,14 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
+		static void OnCollisionWithZenChanStand(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenChanWalking(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenChanFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenChanJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenChanAngryStand(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenZenChanAngryWalking(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenChanAngryFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithZenChanAngryJump(Sprite *, Sprite *, void *);
 };
 
 class BubBubbleAnimator: public MovingPathAnimator{
@@ -40,6 +48,17 @@ class PonEffectAnimator: public MovingAnimator{
 		void RegistCollitions(Sprite*);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
+};
+
+class ZenChanInBubbleAnimator : public MovingPathAnimator{
+	public:
+		ZenChanInBubbleAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanInBubble_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
 };
 
 #endif

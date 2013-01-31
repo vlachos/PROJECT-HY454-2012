@@ -9,7 +9,7 @@
 #define INIT_NEW_INSTANCE_WITH_SPRITE(anim_t, anim, animStateStr, animr_t, animr, newSprt, oldSprt )	\
 	Sprite* newSprt = oldSprt->Clone();																	\
 	anim_t *anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);								\
-	animr_t* animr = new animr_t()
+	animr_t* animr = new animr_t();																		
 
 #define START_ANIMATOR( animr, sprite, anim, time )	\
 	animr->Start( sprite, anim, time);				\
