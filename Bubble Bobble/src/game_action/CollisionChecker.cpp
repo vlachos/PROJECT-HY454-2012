@@ -22,11 +22,11 @@ static Sprite* GetSpriteFromBubBubbleBlastOffAnimator(Animator* animr) { return 
 static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return (( BubBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubPingBubbleAnimator(Animator* animr) { return (( BubPingBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return (( ZenChanInBubbleAnimator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  (( ZenChanInBubbleMediumAngryAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  (( ZenChanInBubbleHighAngryAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaInBubbleAnimator(Animator* animr) { return  (( MightaInBubbleAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromMightaInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromMightaInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromMightaInBubbleMediumAngryAnimator(Animator* animr) { return 0;} //(( MightaInBubbleMediumAngryAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromMightaInBubbleHighAngryAnimator(Animator* animr) { return  0;} //(( MightaInBubbleHighAngryAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromWaterSpecialBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanStandAnimator(Animator* animr) { return (( ZenChanStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanWalkAnimator(Animator* animr) { return (( ZenChanWalkingAnimator*)animr )->GetSprite(); }
@@ -173,7 +173,6 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 		DASSERT(0 <= start<= ANIMATORS_SIZE);
 		s2 = spriteDispatcher[(relatedAnimators[i]->GetAnimatorType())](relatedAnimators[i]);
 		DASSERT(s2);
-
 		CollisionChecker::Register (s1, s2, relatedAnimators[i], callBack);
 	}
 }

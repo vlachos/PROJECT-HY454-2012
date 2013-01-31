@@ -17,6 +17,19 @@
 	DESTROY_ANIMATOR( pair->second );				\
 	free(pair)
 
+#define BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(animator_type, bubble, enemy, args)\
+	DASSERT(bubble && enemy && args);													\
+	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());							\
+	std::pair< BubBubbleBlastOffAnimator*, animator_type* >* pair =						\
+				(std::pair< BubBubbleBlastOffAnimator*, animator_type* >*) args;		\
+	DESTROY_PAIR(pair)
+
+#define BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(animator_type, bubble, enemy, args)\
+	DASSERT(bubble && enemy && args);													\
+	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());							\
+	std::pair< BubBubbleBlastOffAnimator*, animator_type* >* pair =						\
+				(std::pair< BubBubbleBlastOffAnimator*, animator_type* >*) args;		\
+	DESTROY_PAIR(pair)
 /////////////////////////////static functios
 static int getClosestIndexFromPath(int x, int y, const std::vector<PathEntry>& path){
 	double minDistance=1024;
@@ -137,133 +150,69 @@ static void StartMightaAtBubbleAnimator(int x, int y){
 
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanStand(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanStandAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanStandAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanStandAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanWalking(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanWalkingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanWalkingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanWalkingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanFalling(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanFallingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanFallingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanFallingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanJump(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanJumpAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanJumpAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanJumpAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanAngryStand(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryStandAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryStandAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanAngryStandAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenZenChanAngryWalking(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryWalkingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryWalkingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanAngryWalkingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanAngryFalling(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryFallingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryFallingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanAngryFallingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithZenChanAngryJump(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryJumpAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, ZenChanAngryJumpAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanAngryJumpAnimator, bubble, enemy, args  );
 }
 
 ////////////////////////////////
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaStand(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaStandAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaStandAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaStandAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaWalking(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaWalkingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaWalkingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaWalkingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaFalling(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaFallingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaFallingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaFallingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaJump(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaJumpAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaJumpAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaJumpAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryStand(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaAngryStandAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaAngryStandAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryStandAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryWalking(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaAngryWalkingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaAngryWalkingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryWalkingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryFalling(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaAngryFallingAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaAngryFallingAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryFallingAnimator, bubble, enemy, args  );
 }
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryJump(Sprite *bubble, Sprite *enemy, void *args){
-	DASSERT(bubble && enemy && args);
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());
-
-	std::pair< BubBubbleBlastOffAnimator*, MightaAngryJumpAnimator* >* pair = (std::pair< BubBubbleBlastOffAnimator*, MightaAngryJumpAnimator* >*) args;
-	DESTROY_PAIR(pair);
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryJumpAnimator, bubble, enemy, args  );
 }
 
 /////////////////////////////BubBubbleAnimator
