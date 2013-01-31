@@ -30,6 +30,30 @@
 	std::pair< BubBubbleBlastOffAnimator*, animator_type* >* pair =						\
 				(std::pair< BubBubbleBlastOffAnimator*, animator_type* >*) args;		\
 	DESTROY_PAIR(pair)
+
+#define KILL_BUB_BUBBLE( animator_type, bubble, bub, args )					\
+	DASSERT( bubble && bub && args );										\
+	animator_type * _this = (animator_type *) args;					\
+	REMOVE_FROM_ACTION_ANIMATOR( _this );									\
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );				\
+	DESTROY_ANIMATOR( _this )
+
+#define KILL_ZEN_CHAN(animator_type, bubble, zenChan, args )			\
+		DASSERT( bubble && zenChan && args );							\
+		animator_type * _this = (animator_type *) args;					\
+		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
+		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
+		StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());		\
+		DESTROY_ANIMATOR( _this )	
+
+#define KILL_MIGHTA(animator_type, bubble, mighta, args )				\
+		DASSERT( bubble && mighta && args );							\
+		animator_type * _this = (animator_type *) args;					\
+		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
+		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
+		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
+		DESTROY_ANIMATOR( _this )	
+
 /////////////////////////////static functios
 static int getClosestIndexFromPath(int x, int y, const std::vector<PathEntry>& path){
 	double minDistance=1024;
@@ -268,19 +292,11 @@ void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 }
 
 void BubBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	BubBubbleAnimator * _this = (BubBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+	KILL_BUB_BUBBLE( BubBubbleAnimator, bubble, bub, args );
 }
 
 void BubBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	BubBubbleAnimator * _this = (BubBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+	KILL_BUB_BUBBLE( BubBubbleAnimator, bubble, bub, args );
 }
 
 void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -331,19 +347,11 @@ void BubPingBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 }
 
 void BubPingBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	BubBubbleAnimator * _this = (BubBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+	KILL_BUB_BUBBLE( BubPingBubbleAnimator, bubble, bub, args );
 }
 
 void BubPingBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	BubBubbleAnimator * _this = (BubBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+	KILL_BUB_BUBBLE( BubPingBubbleAnimator, bubble, bub, args );
 }
 
 void BubPingBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -369,12 +377,10 @@ void PonEffectAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 }
 
+
+
 void PonEffectAnimator::OnCollisionWithBubble(Sprite * pon, Sprite *bubble, void *args){
-	DASSERT( bubble && pon && args );
-	BubBubbleAnimator * _this = (BubBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+	KILL_BUB_BUBBLE( PonEffectAnimator, bubble, pon, args );
 }
 
 ////////////////////////////ZenChanInBubbleAnimator
@@ -418,26 +424,12 @@ void ZenChanInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	DESTROY_ANIMATOR( _this );
 }
 
-void ZenChanInBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	ZenChanInBubbleAnimator * _this = (ZenChanInBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());
-
-	DESTROY_ANIMATOR( _this );
+void ZenChanInBubbleAnimator::OnCollisionWithBubFalling(Sprite *zenChan, Sprite *bubble, void *args){
+	KILL_ZEN_CHAN(ZenChanInBubbleAnimator, bubble, zenChan, args );
 }
 
-void ZenChanInBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	ZenChanInBubbleAnimator * _this = (ZenChanInBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartZenChanDieAnimator( bubble->GetX(), bubble->GetY() );
-
-	DESTROY_ANIMATOR( _this );
+void ZenChanInBubbleAnimator::OnCollisionWithBubJump(Sprite *zenChan, Sprite *bubble, void *args){
+	KILL_ZEN_CHAN(ZenChanInBubbleAnimator, bubble, zenChan, args );
 }
 
 void ZenChanInBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -474,28 +466,14 @@ void ZenChanInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*ar
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
+}						
+
+void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *zenChan, Sprite *bubble, void *args){
+	KILL_ZEN_CHAN(ZenChanInBubbleMediumAngryAnimator, bubble, zenChan, args );
 }
 
-void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	ZenChanInBubbleMediumAngryAnimator * _this = (ZenChanInBubbleMediumAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());
-
-	DESTROY_ANIMATOR( _this );
-}
-
-void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	ZenChanInBubbleMediumAngryAnimator * _this = (ZenChanInBubbleMediumAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartZenChanDieAnimator( bubble->GetX(), bubble->GetY() );
-
-	DESTROY_ANIMATOR( _this );
+void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *zenChan, Sprite *bubble, void *args){
+	KILL_ZEN_CHAN(ZenChanInBubbleMediumAngryAnimator, bubble, zenChan, args );
 }
 
 void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -519,26 +497,13 @@ void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args
 	DESTROY_ANIMATOR( _this );
 }
 
-void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	ZenChanInBubbleHighAngryAnimator * _this = (ZenChanInBubbleHighAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
+void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *zenChan, Sprite *bubble, void *args){
+	KILL_ZEN_CHAN(ZenChanInBubbleHighAngryAnimator, bubble, zenChan, args );
 
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());
-
-	DESTROY_ANIMATOR( _this );
 }
 
-void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	ZenChanInBubbleHighAngryAnimator * _this = (ZenChanInBubbleHighAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartZenChanDieAnimator( bubble->GetX(), bubble->GetY() );
-
-	DESTROY_ANIMATOR( _this );
+void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *zenChan, Sprite *bubble, void *args){
+	KILL_ZEN_CHAN(ZenChanInBubbleHighAngryAnimator, bubble, zenChan, args );
 }
 
 void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -586,22 +551,12 @@ void MightaInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	DESTROY_ANIMATOR( _this );
 }
 
-void MightaInBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	MightaInBubbleAnimator * _this = (MightaInBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+void MightaInBubbleAnimator::OnCollisionWithBubFalling(Sprite *mighta, Sprite *bubble, void *args){
+	KILL_MIGHTA(MightaInBubbleAnimator, bubble, mighta, args );
 }
 
-void MightaInBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	MightaInBubbleAnimator * _this = (MightaInBubbleAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+void MightaInBubbleAnimator::OnCollisionWithBubJump(Sprite *mighta, Sprite *bubble, void *args){
+	KILL_MIGHTA(MightaInBubbleAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -642,22 +597,12 @@ void MightaInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*arg
 	DESTROY_ANIMATOR( _this );
 }
 
-void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	MightaInBubbleMediumAngryAnimator * _this = (MightaInBubbleMediumAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *mighta, Sprite *bubble, void *args){
+	KILL_MIGHTA(MightaInBubbleMediumAngryAnimator, bubble, mighta, args );
 }
 
-void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	MightaInBubbleMediumAngryAnimator * _this = (MightaInBubbleMediumAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *mighta, Sprite *bubble, void *args){
+	KILL_MIGHTA(MightaInBubbleMediumAngryAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -682,22 +627,12 @@ void MightaInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args)
 	DESTROY_ANIMATOR( _this );
 }
 
-void MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	MightaInBubbleHighAngryAnimator * _this = (MightaInBubbleHighAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+void MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *mighta, Sprite *bubble, void *args){
+	KILL_MIGHTA(MightaInBubbleHighAngryAnimator, bubble, mighta, args );
 }
 
-void MightaInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
-	DASSERT( bubble && bub && args );
-	MightaInBubbleHighAngryAnimator * _this = (MightaInBubbleHighAngryAnimator *) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
-	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
-	DESTROY_ANIMATOR( _this );
+void MightaInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *mighta, Sprite *bubble, void *args){
+	KILL_MIGHTA(MightaInBubbleHighAngryAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
