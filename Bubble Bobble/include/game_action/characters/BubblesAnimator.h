@@ -130,4 +130,32 @@ class MightaInBubbleAnimator : public MovingPathAnimator{
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 };
 
+class MightaInBubbleMediumAngryAnimator : public MovingPathAnimator{
+	public:
+		MightaInBubbleMediumAngryAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaInBubbleMediumAngry_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+};
+
+class MightaInBubbleHighAngryAnimator : public MovingPathAnimator{
+	public:
+		MightaInBubbleHighAngryAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaInBubbleHighAngry_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+};
+
 #endif

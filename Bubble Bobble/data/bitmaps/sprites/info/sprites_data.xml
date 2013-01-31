@@ -161,16 +161,16 @@
     <bbox x="155" y="299"/>
     <bbox x="173" y="299"/>
   </MightaInBubble>
-  <MightaInBubbleMediumAgry w="16" h="16">
+  <MightaInBubbleMediumAngry w="16" h="16">
     <bbox x="245" y="299"/>
     <bbox x="263" y="299"/>
     <bbox x="281" y="299"/>
-  </MightaInBubbleMediumAgry>
-  <MightaInBubbleHighAgry w="16" h="16">
+  </MightaInBubbleMediumAngry>
+  <MightaInBubbleHighAngry w="16" h="16">
     <bbox x="299" y="299"/>
     <bbox x="317" y="299"/>
     <bbox x="335" y="299"/>
-  </MightaInBubbleHighAgry>
+  </MightaInBubbleHighAngry>
   <MightaAngryFireBubble w="16" h="16">
     <bbox x="317" y="278" />
     <bbox x="338" y="278" />

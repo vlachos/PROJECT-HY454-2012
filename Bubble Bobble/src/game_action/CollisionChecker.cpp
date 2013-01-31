@@ -25,8 +25,8 @@ static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return ((
 static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  (( ZenChanInBubbleMediumAngryAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  (( ZenChanInBubbleHighAngryAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaInBubbleAnimator(Animator* animr) { return  (( MightaInBubbleAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromMightaInBubbleMediumAngryAnimator(Animator* animr) { return 0;} //(( MightaInBubbleMediumAngryAnimator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromMightaInBubbleHighAngryAnimator(Animator* animr) { return  0;} //(( MightaInBubbleHighAngryAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromMightaInBubbleMediumAngryAnimator(Animator* animr) { return(( MightaInBubbleMediumAngryAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromMightaInBubbleHighAngryAnimator(Animator* animr) { return  (( MightaInBubbleHighAngryAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromWaterSpecialBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanStandAnimator(Animator* animr) { return (( ZenChanStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanWalkAnimator(Animator* animr) { return (( ZenChanWalkingAnimator*)animr )->GetSprite(); }

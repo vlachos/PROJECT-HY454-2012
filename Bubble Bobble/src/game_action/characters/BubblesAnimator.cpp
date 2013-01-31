@@ -218,7 +218,6 @@ void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryJump(Sprite *bubble, S
 /////////////////////////////BubBubbleAnimator
 
 
-
 static void StartPonEffectAnimator(int x, int y){
 
 	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("PonEffect");
@@ -402,7 +401,7 @@ void ZenChanInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	DASSERT( anim && anim==args );
 	ZenChanInBubbleAnimator* _this = (ZenChanInBubbleAnimator*) anim;
 
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("ZenChanAgryBubble");
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
 	Sprite *sprite=new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
@@ -459,7 +458,7 @@ void ZenChanInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*ar
 	DASSERT( anim && anim==args );
 	ZenChanInBubbleMediumAngryAnimator* _this = (ZenChanInBubbleMediumAngryAnimator*) anim;
 
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("ZenChanAgryBubble");
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
 	Sprite *sprite=new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
@@ -570,6 +569,19 @@ void MightaInBubbleAnimator::RegistCollitions(Sprite* spr){
 void MightaInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	DASSERT( anim && anim==args );
 	MightaInBubbleAnimator* _this = (MightaInBubbleAnimator*) anim;
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
+	Sprite *sprite=new Sprite(
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
+								false,						  
+								AnimationFilmHolder::GetFilm( "MightaInBubbleMediumAngry" ), 
+								Terrain::GetActionLayer(), 
+								true
+							);
+	MightaInBubbleMediumAngryAnimator* bpbamr = new MightaInBubbleMediumAngryAnimator();
+	bpbamr->RegistCollitions(sprite);
+	START_ANIMATOR(bpbamr, sprite, mpa, GetGameTime() );
+
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 }
@@ -593,5 +605,101 @@ void MightaInBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble,
 }
 
 void MightaInBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
+
+}
+
+
+/////////////////////////////////MightaInBubbleMediumAngryAnimator
+
+MightaInBubbleMediumAngryAnimator::MightaInBubbleMediumAngryAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void MightaInBubbleMediumAngryAnimator::RegistCollitions(Sprite* spr){
+
+
+}
+
+void MightaInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*args){
+
+	DASSERT( anim && anim==args );
+	MightaInBubbleMediumAngryAnimator* _this = (MightaInBubbleMediumAngryAnimator*) anim;
+
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
+	Sprite *sprite=new Sprite(
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
+								false,						
+								AnimationFilmHolder::GetFilm( "MightaInBubbleHighAngry" ), 
+								Terrain::GetActionLayer(), 
+								true
+							);
+	MightaInBubbleHighAngryAnimator* bpbamr = new MightaInBubbleHighAngryAnimator();
+	bpbamr->RegistCollitions(sprite);
+	START_ANIMATOR(bpbamr, sprite, mpa, GetGameTime() );
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}
+
+void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	MightaInBubbleMediumAngryAnimator * _this = (MightaInBubbleMediumAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
+	DESTROY_ANIMATOR( _this );
+}
+
+void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	MightaInBubbleMediumAngryAnimator * _this = (MightaInBubbleMediumAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
+	DESTROY_ANIMATOR( _this );
+}
+
+void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
+
+}
+
+/////////////////////////////////MightaInBubbleHighAngryAnimator
+
+MightaInBubbleHighAngryAnimator::MightaInBubbleHighAngryAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void MightaInBubbleHighAngryAnimator::RegistCollitions(Sprite* spr){
+
+}
+
+void MightaInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args){
+
+	DASSERT( anim && anim==args );
+	MightaInBubbleHighAngryAnimator* _this = (MightaInBubbleHighAngryAnimator*) anim;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}
+
+void MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	MightaInBubbleHighAngryAnimator * _this = (MightaInBubbleHighAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
+	DESTROY_ANIMATOR( _this );
+}
+
+void MightaInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	MightaInBubbleHighAngryAnimator * _this = (MightaInBubbleHighAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartMightaDieAnimator( bubble->GetX(), bubble->GetY() );
+	DESTROY_ANIMATOR( _this );
+}
+
+void MightaInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
 
 }

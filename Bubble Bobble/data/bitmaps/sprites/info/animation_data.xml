@@ -364,7 +364,7 @@
     <list  dx="0" dy="0" delay="100" frame="7"/>
   </ZenChanDie>
 
-  <ZenChanAgryBubble type="MovingPathAnimation">
+  <EnemyAgryBubble type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="200" frame="0"/>
     <list  dx="0" dy="-5" delay="200" frame="1"/>
     <list  dx="0" dy="5" delay="200" frame="2"/>
@@ -373,7 +373,7 @@
     <list  dx="0" dy="-5" delay="200" frame="2"/>
     <list  dx="0" dy="5" delay="200" frame="0"/>
     <list  dx="0" dy="-5" delay="200" frame="1"/>
-  </ZenChanAgryBubble>
+  </EnemyAgryBubble>
 
 
   <MightaStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="4"  />
