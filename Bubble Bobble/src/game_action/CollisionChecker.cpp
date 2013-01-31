@@ -23,7 +23,7 @@ static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return (( BubBu
 static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return (( ZenChanInBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromMightaInBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaInBubbleAnimator(Animator* animr) { return  (( MightaInBubbleAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromWaterSpecialBubbleAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }

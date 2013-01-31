@@ -61,9 +61,9 @@ void BubbleMain::InitGameEngine(){
 	animr->RegistCollitions(sprite);
 
 
-	Sprite* sprite2 = new Sprite(450,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
-	ZenChanWalkingAnimator* animr2 = new ZenChanWalkingAnimator();
+	Sprite* sprite2 = new Sprite(450,79,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															\
+	MightaWalkingAnimator* animr2 = new MightaWalkingAnimator();
 
 	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
 	FrameRangeAnimation* anim3 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\

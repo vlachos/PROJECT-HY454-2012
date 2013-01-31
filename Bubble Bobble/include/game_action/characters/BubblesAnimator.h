@@ -14,6 +14,7 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
+
 		static void OnCollisionWithZenChanStand(Sprite *, Sprite *, void *);
 		static void OnCollisionWithZenChanWalking(Sprite *, Sprite *, void *);
 		static void OnCollisionWithZenChanFalling(Sprite *, Sprite *, void *);
@@ -22,6 +23,15 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithZenZenChanAngryWalking(Sprite *, Sprite *, void *);
 		static void OnCollisionWithZenChanAngryFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithZenChanAngryJump(Sprite *, Sprite *, void *);
+
+		static void OnCollisionWithMightaStand(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaWalking(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaAngryStand(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaAngryWalking(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaAngryFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaAngryJump(Sprite *, Sprite *, void *);
 };
 
 class BubBubbleAnimator: public MovingPathAnimator{
@@ -59,6 +69,23 @@ class ZenChanInBubbleAnimator : public MovingPathAnimator{
 
 		static void OnFinishCallback(Animator*, void*);
 		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+};
+
+class MightaInBubbleAnimator : public MovingPathAnimator{
+	public:
+		MightaInBubbleAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaInBubble_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 };
 
 #endif

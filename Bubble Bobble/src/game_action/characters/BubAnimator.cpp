@@ -182,6 +182,8 @@ BubFallingAnimator::BubFallingAnimator(){
 void BubFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubFallingAnimator::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubFalling);
+	CollisionChecker::Register(spr, zenChanInBubble_t, zenChanInBubble_t, ZenChanInBubbleAnimator::OnCollisionWithBubFalling);
+	CollisionChecker::Register(spr, mightaInBubble_t, mightaInBubble_t, MightaInBubbleAnimator::OnCollisionWithBubFalling);
 }
 
 void BubFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -276,6 +278,8 @@ BubJumpAnimator::BubJumpAnimator(){
 void BubJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubJumpAnimator::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, zenChanInBubble_t, zenChanInBubble_t, ZenChanInBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, mightaInBubble_t, mightaInBubble_t, MightaInBubbleAnimator::OnCollisionWithBubJump);
 }
 
 void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
