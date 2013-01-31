@@ -16,6 +16,7 @@ class BubStandAnimator : public MovingAnimator{
 		void RegistCollitions(Sprite*);
 		void OnOpenMouth(void);
 		static void OnFinishCallback(Animator*, void*);
+		static void OnCollisionWithEnemy(Sprite*, Sprite*, void*);
 };
 
 class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
@@ -55,6 +56,7 @@ class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteSta
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
 };
 

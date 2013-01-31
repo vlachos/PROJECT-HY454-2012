@@ -32,6 +32,15 @@ static void startBubBubbleAnimator(Sprite* sprite){
 	START_ANIMATOR( bbar, n_spriteb, frab, GetGameTime() );
 }
 
+static void StartDieAnimator(int x, int y){
+	Sprite* newSprite = 
+		new Sprite(x, y, false, AnimationFilmHolder::GetFilm("BubDieByEnemy"), Terrain::GetActionLayer(),false);
+
+	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
+	BubDieAnimator *bda=new BubDieAnimator();
+	bda->RegistCollitions(newSprite);
+	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+}
 
 ////////////////BubStandAnimator
 
@@ -40,12 +49,10 @@ BubStandAnimator::BubStandAnimator(){
 }
 
 void BubStandAnimator::RegistCollitions(Sprite *spr){
-	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubStandAnimator::OnCollisionWithEnemy);
 }
 
 void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){
-
-
 
 }
 
@@ -67,6 +74,17 @@ void BubStandAnimator::OnOpenMouth(void){
 	DESTROY_ANIMATOR( this );
 }
 
+void BubStandAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args && enem && bub);
+	BubStandAnimator * _this = (BubStandAnimator*)args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+	DASSERT(_this->GetSprite()==bub);
+
+	StartDieAnimator(bub->GetX(), bub->GetY());
+	DESTROY_ANIMATOR( _this );
+}
+
 ////////////////BubWalkingAnimator
 
 
@@ -75,7 +93,7 @@ BubWalkingAnimator::BubWalkingAnimator(void) {
 }
 
 void BubWalkingAnimator::RegistCollitions(Sprite *spr){
-	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubWalkingAnimator::OnCollisionWithEnemy);
 }
 
 
@@ -120,23 +138,11 @@ void BubWalkingAnimator::OnFinishCallback(Animator* anim, void* args){
 void BubWalkingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
 	DASSERT(args);
 	BubWalkingAnimator * _this = (BubWalkingAnimator*)args;
-
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	DASSERT(_this->GetSprite()==bub);
-	Sprite* newSprite = 
-		new Sprite(bub->GetX(),bub->GetY(),
-		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
-		Terrain::GetActionLayer(),false);
 
-	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
-	BubDieAnimator *bda=new BubDieAnimator();
-	bda->RegistCollitions(newSprite);
-	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+	StartDieAnimator(bub->GetX(), bub->GetY());
 	DESTROY_ANIMATOR( _this );
 }
 
@@ -174,7 +180,7 @@ BubFallingAnimator::BubFallingAnimator(){
 }
 
 void BubFallingAnimator::RegistCollitions(Sprite *spr){
-	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubFallingAnimator::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubFalling);
 }
 
@@ -196,25 +202,11 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 void BubFallingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
 	DASSERT(args);
 	BubFallingAnimator * _this = (BubFallingAnimator*)args;
-
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	DASSERT(_this->GetSprite()==bub);
-	Sprite* newSprite = 
-		new Sprite(bub->GetX(),bub->GetY(),
-		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
-		Terrain::GetActionLayer(),false);
 
-	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
-	
-	BubDieAnimator *bda=new BubDieAnimator();
-	bda->RegistCollitions(newSprite);
-
-	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+	StartDieAnimator(bub->GetX(), bub->GetY());
 	DESTROY_ANIMATOR( _this );
 }
 
@@ -225,7 +217,7 @@ BubOpenMouthAnimator::BubOpenMouthAnimator(){
 }
 
 void BubOpenMouthAnimator::RegistCollitions(Sprite *spr){
-	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, 0, 0);
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubOpenMouthAnimator::OnCollisionWithEnemy);
 }
 
 void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -265,6 +257,17 @@ void BubOpenMouthAnimator::OnStartFalling(Sprite * sprite){
 	DESTROY_ANIMATOR( this );
 }
 
+void BubOpenMouthAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args);
+	BubOpenMouthAnimator * _this = (BubOpenMouthAnimator*)args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+	DASSERT(_this->GetSprite()==bub);
+
+	StartDieAnimator(bub->GetX(), bub->GetY());
+	DESTROY_ANIMATOR( _this );
+}
+
 ///////////////////////BubJumpAnimator
 
 BubJumpAnimator::BubJumpAnimator(){
@@ -278,24 +281,11 @@ void BubJumpAnimator::RegistCollitions(Sprite *spr){
 void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
 	DASSERT(args);
 	BubJumpAnimator * _this = (BubJumpAnimator*)args;
-
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	DASSERT(_this->GetSprite()==bub);
-	Sprite* newSprite = 
-		new Sprite(bub->GetX(),bub->GetY(),
-		false,AnimationFilmHolder::GetFilm("BubDieByEnemy"),
-		Terrain::GetActionLayer(),false);
 
-	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
-	BubDieAnimator *bda=new BubDieAnimator();
-	bda->RegistCollitions(newSprite);
-
-	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
+	StartDieAnimator(bub->GetX(), bub->GetY());
 	DESTROY_ANIMATOR( _this );
 }
 
