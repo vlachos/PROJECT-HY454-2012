@@ -101,12 +101,18 @@ void ZenChanJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 ////////////////ZenChanDieAnimator
 ZenChanDieAnimator::ZenChanDieAnimator(){
+	this->SetOnFinish( OnFinishCallback, this );
+}
+
+void ZenChanDieAnimator::RegistCollitions(Sprite *spr){
 
 }
 
 void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
-
-
+	DASSERT( anim == args && anim );
+	ZenChanDieAnimator* _this = (ZenChanDieAnimator*) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
 }
 
 
@@ -217,11 +223,17 @@ void MightaJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 ////////////////ZenChanDieAnimator
 MightaDieAnimator::MightaDieAnimator(){
+	this->SetOnFinish( OnFinishCallback, this );
+}
+
+void MightaDieAnimator::RegistCollitions(Sprite *spr){
 
 }
 
 void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
-
-
+	DASSERT( anim == args && anim );
+	MightaDieAnimator* _this = (MightaDieAnimator*) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
 }
 

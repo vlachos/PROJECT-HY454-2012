@@ -85,6 +85,7 @@ class ZenChanDieAnimator : public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanDieAnimator_t; }
 
+		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 };
 

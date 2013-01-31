@@ -48,6 +48,20 @@ class BubBubbleAnimator: public MovingPathAnimator{
 		static void OnFinishCallback(Animator*, void*);
 };
 
+class BubPingBubbleAnimator: public MovingPathAnimator{
+	public:
+		BubPingBubbleAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubBubbleAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+		static void OnFinishCallback(Animator*, void*);
+};
+
 class PonEffectAnimator: public MovingAnimator{
 	public:
 		PonEffectAnimator();

@@ -84,6 +84,7 @@ class MightaDieAnimator : public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return mightaDieAnimator_t; }
 
+		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 };
 

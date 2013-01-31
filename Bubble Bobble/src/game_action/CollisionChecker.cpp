@@ -20,6 +20,7 @@ static Sprite* GetSpriteFromBubDieAnimator(Animator* animr) { return (( BubDieAn
 static Sprite* GetSpriteFromPonEffectAnimator(Animator* animr) { return (( PonEffectAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleBlastOffAnimator(Animator* animr) { return (( BubBubbleBlastOffAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return (( BubBubbleAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromBubPingBubbleAnimator(Animator* animr) { return (( BubPingBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleAnimator(Animator* animr) { return (( ZenChanInBubbleAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleMediumAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanInBubbleHighAngryAnimator(Animator* animr) { return  0;}//(( Animator*)animr )->GetSprite(); }
@@ -67,6 +68,7 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromPonEffectAnimator,
 	GetSpriteFromBubBubbleBlastOffAnimator,
 	GetSpriteFromBubBubbleAnimator,
+	GetSpriteFromBubPingBubbleAnimator,
 	GetSpriteFromZenChanInBubbleAnimator,
 	GetSpriteFromZenChanInBubbleMediumAngryAnimator,
 	GetSpriteFromZenChanInBubbleHighAngryAnimator,

@@ -59,11 +59,16 @@
     <bbox x="96" y="1050"  />
     <bbox x="204" y="1050"  />
   </BubBubbleBlastOff>
-  <BubBubble frames="3" w="16" h="16">
+  <BubBubble w="16" h="16">
     <bbox x="7" y="1072"  />
     <bbox x="25" y="1072"  />
     <bbox x="43" y="1072"  />
   </BubBubble>
+  <BubPingBubble w="16" h="16">
+    <bbox x="114" y="1072"  />
+    <bbox x="132" y="1072"  />
+    <bbox x="150" y="1072"  />
+  </BubPingBubble>
   <BubOpenMouth w="16" h="16">
     <bbox x="6" y="36"  />
     <bbox x="27" y="36"  />
