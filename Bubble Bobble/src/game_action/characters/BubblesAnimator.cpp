@@ -44,7 +44,7 @@ BubBubbleBlastOffAnimator::BubBubbleBlastOffAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
 }
 
-void BubBubbleBlastOffAnimator::RegistCollitions(Animator *anim, Sprite *spr){
+void BubBubbleBlastOffAnimator::RegistCollitions(Sprite *spr){
 
 }
 
@@ -69,7 +69,7 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 							);
 	mpa->SetPath( pathEntry );
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
-	bbar->RegistCollitions(bbar, sprite);
+	bbar->RegistCollitions(sprite);
 
 	START_ANIMATOR(bbar, sprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
@@ -94,7 +94,7 @@ static void ballBurst(Sprite *bubble, Sprite *bub, void *args){
 								true
 							);
 	PonEffectAnimator* pear = new PonEffectAnimator();
-	pear->RegistCollitions(0, sprite);
+	pear->RegistCollitions(sprite);
 	START_ANIMATOR(pear, sprite, mpa, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -103,8 +103,8 @@ BubBubbleAnimator::BubBubbleAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
 }
 
-void BubBubbleAnimator::RegistCollitions(Animator *anim, Sprite *spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, anim, BubBubbleAnimator::OnCollisionWithBubble, false);
+void BubBubbleAnimator::RegistCollitions(Sprite *spr){
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, BubBubbleAnimator::OnCollisionWithBubble);
 }
 
 void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -159,8 +159,8 @@ PonEffectAnimator::PonEffectAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
 }
 
-void PonEffectAnimator::RegistCollitions(Animator *anim, Sprite *spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, 0, PonEffectAnimator::OnCollisionWithBubble, true);
+void PonEffectAnimator::RegistCollitions(Sprite *spr){
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t,PonEffectAnimator::OnCollisionWithBubble);
 }
 
 void PonEffectAnimator::OnFinishCallback(Animator* anim, void* args){

@@ -43,7 +43,7 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 
 	newSprite->AddStartFallingListener(mar);
 	mar->SetOnFinish(BubWalkingAnimator::OnFinishCallback, mar);
-	mar->RegistCollitions(0, newSprite);
+	mar->RegistCollitions(newSprite);
 
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
@@ -69,7 +69,7 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
 
-	mar->RegistCollitions(mar, newSprite);
+	mar->RegistCollitions(newSprite);
 	
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
@@ -104,7 +104,7 @@ static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
 	mar->Start(newSprite, ma, timestamp);
 
-	mar->RegistCollitions(mar, newSprite);
+	mar->RegistCollitions(newSprite);
 
 	AnimatorHolder::Register(mar);
 	AnimatorHolder::MarkAsRunning(mar);

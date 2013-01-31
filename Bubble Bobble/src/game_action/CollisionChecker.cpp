@@ -162,7 +162,7 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 	}
 }
 
-void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_t end, Animator* Args, CollisionCallback callBack, bool slaveArgument){
+void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_t end, CollisionCallback callBack){
 	DASSERT(s1); //DASSERT(callBack);
 
 	Sprite* s2 = 0;
@@ -172,7 +172,7 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 		s2 = spriteDispatcher[(relatedAnimators[i]->GetAnimatorType())](relatedAnimators[i]);
 		DASSERT(s2);
 
-		CollisionChecker::Register (s1, s2, slaveArgument?relatedAnimators[i]:Args, callBack);
+		CollisionChecker::Register (s1, s2, relatedAnimators[i], callBack);
 	}
 }
 
