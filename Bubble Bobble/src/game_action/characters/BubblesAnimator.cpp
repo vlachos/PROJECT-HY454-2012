@@ -452,6 +452,20 @@ void ZenChanInBubbleAnimator::RegistCollitions(Sprite* spr){
 void ZenChanInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	DASSERT( anim && anim==args );
 	ZenChanInBubbleAnimator* _this = (ZenChanInBubbleAnimator*) anim;
+
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("ZenChanAgryBubble");
+	Sprite *sprite=new Sprite(
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
+								false,
+								AnimationFilmHolder::GetFilm( "ZenChanInBubbleMediumAngry" ), 
+								Terrain::GetActionLayer(), 
+								true
+							);
+	ZenChanInBubbleMediumAngryAnimator* bpbamr = new ZenChanInBubbleMediumAngryAnimator();
+	bpbamr->RegistCollitions(sprite);
+	START_ANIMATOR(bpbamr, sprite, mpa, GetGameTime() );
+
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 }
@@ -479,6 +493,107 @@ void ZenChanInBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble
 }
 
 void ZenChanInBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
+
+}
+
+////////////////////////////ZenChanInBubbleMediumAngryAnimator
+
+ZenChanInBubbleMediumAngryAnimator::ZenChanInBubbleMediumAngryAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void ZenChanInBubbleMediumAngryAnimator::RegistCollitions(Sprite* spr){
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+}
+
+void ZenChanInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*args){
+	DASSERT( anim && anim==args );
+	ZenChanInBubbleMediumAngryAnimator* _this = (ZenChanInBubbleMediumAngryAnimator*) anim;
+
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("ZenChanAgryBubble");
+	Sprite *sprite=new Sprite(
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
+								false,
+								AnimationFilmHolder::GetFilm( "ZenChanInBubbleHighAngry" ), 
+								Terrain::GetActionLayer(), 
+								true
+							);
+	ZenChanInBubbleHighAngryAnimator* bpbamr = new ZenChanInBubbleHighAngryAnimator();
+	bpbamr->RegistCollitions(sprite);
+	START_ANIMATOR(bpbamr, sprite, mpa, GetGameTime() );
+
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}
+
+void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	ZenChanInBubbleMediumAngryAnimator * _this = (ZenChanInBubbleMediumAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());
+
+	DESTROY_ANIMATOR( _this );
+}
+
+void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	ZenChanInBubbleMediumAngryAnimator * _this = (ZenChanInBubbleMediumAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartZenChanDieAnimator( bubble->GetX(), bubble->GetY() );
+
+	DESTROY_ANIMATOR( _this );
+}
+
+void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
+
+}
+
+////////////////////////////ZenChanInBubbleHighAngryAnimator
+
+ZenChanInBubbleHighAngryAnimator::ZenChanInBubbleHighAngryAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void ZenChanInBubbleHighAngryAnimator::RegistCollitions(Sprite* spr){
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+}
+
+void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args){
+	DASSERT( anim && anim==args );
+	ZenChanInBubbleHighAngryAnimator* _this = (ZenChanInBubbleHighAngryAnimator*) anim;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}
+
+void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	ZenChanInBubbleHighAngryAnimator * _this = (ZenChanInBubbleHighAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());
+
+	DESTROY_ANIMATOR( _this );
+}
+
+void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void *args){
+	DASSERT( bubble && bub && args );
+	ZenChanInBubbleHighAngryAnimator * _this = (ZenChanInBubbleHighAngryAnimator *) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );
+	StartZenChanDieAnimator( bubble->GetX(), bubble->GetY() );
+
+	DESTROY_ANIMATOR( _this );
+}
+
+void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
 
 }
 

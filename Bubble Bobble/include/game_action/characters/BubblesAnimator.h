@@ -88,6 +88,34 @@ class ZenChanInBubbleAnimator : public MovingPathAnimator{
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 };
 
+class ZenChanInBubbleMediumAngryAnimator : public MovingPathAnimator{
+	public:
+		ZenChanInBubbleMediumAngryAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanInBubbleMediumAngry_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+};
+
+class ZenChanInBubbleHighAngryAnimator : public MovingPathAnimator{
+	public:
+		ZenChanInBubbleHighAngryAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanInBubbleHighAngry_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+};
+
 class MightaInBubbleAnimator : public MovingPathAnimator{
 	public:
 		MightaInBubbleAnimator();
