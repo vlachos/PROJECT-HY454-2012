@@ -165,6 +165,9 @@
     <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\BubbleLogic.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\BubbleLogic.h">
+      <Filter>Header Files\game_action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

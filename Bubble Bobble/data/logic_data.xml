@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Logic total = "6">
+
+	<BubLifes StartingLifes = "3">
+
+	<Bubbles total = "4">
+		<WaterBubble TimeBetweenAppearances = "5">
+		<EmptyBubble PointsFromPon = "10" TimeToBecomeRed = "5" TimeToPon = "8">
+		<ZenChanBubbles TimeToMediumAngry = "5" TimeToHighAngry = "7" TimeToPon = "10">
+		<MightaBubbles TimeToMediumAngry = "5" TimeToHighAngry = "7" TimeToPon = "10">
+	</Bubbles>
+
+	<Fruits total = "4">
+		<Banana points = "500" enemiesToDefeat = "1"> 
+		<Orange points = "1000" enemiesToDefeat = "2">
+		<Peach points = "2000" enemiesToDefeat = "3">
+		<WaterMelon points = "3000" enemiesToDefeat = "4">
+	</Fruits>
+	
+	<BlueDiamond points = "5000">
+	
+	<PowerUps total = "4">
+		<RedShoe PixelsWalkedNeeded = "100"> 
+		<YellowSweet JumpsNeeded = "5">
+		<BlueSweet  = PonedBubblesNeeded "5">
+		<PurpleSweet BlustedBubblesNeeded = "5">
+	</PowerUps>
+	
+	<BarronVonBluba HurryUpDisplay = "25" TimeToShowUp = "30" TimeToGrowMS = "5" MSGrowth = "2">
+	
+</Logic>
