@@ -171,4 +171,5 @@ allegro5
 allegro.log
 
 #terrain test text
-test_terrain_info.txt
+test_terrain_index_info.txt
+test_terrain_sldty_info.txt
