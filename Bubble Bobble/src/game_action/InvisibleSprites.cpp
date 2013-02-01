@@ -77,85 +77,85 @@ void InvisibleSprites::CreateInvisibleDrivers(){
 	box.clear();
 	box.push_back( Rect(0, 0, 362, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_0");
-	spr = new Sprite( 115, 40, false, af, Terrain::GetActionLayer(), false);
+	spr = new Sprite( 115, 72, false, af, Terrain::GetActionLayer(), false);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeft ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 42, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_1");
-	spr = new Sprite( 30, 22, false, af, Terrain::GetActionLayer(), false);
+	spr = new Sprite( 30, 54, false, af, Terrain::GetActionLayer(), false);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDown ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 370, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_2");
-	spr = new Sprite( 30, 120, false, af, Terrain::GetActionLayer(), false);
+	spr = new Sprite( 30, 152, false, af, Terrain::GetActionLayer(), false);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoRight ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 61, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_3");
-	spr = new Sprite( 420, 105, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 420, 137, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDown ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 362, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_4");
-	spr = new Sprite( 118, 205, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 118, 237, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeft ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 42, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_5");
-	spr = new Sprite( 30, 185, false, af, Terrain::GetActionLayer(), false);
+	spr = new Sprite( 30, 217, false, af, Terrain::GetActionLayer(), false);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDown ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 370, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_6");
-	spr = new Sprite( 30, 280, false, af, Terrain::GetActionLayer(), false);
+	spr = new Sprite( 30, 317, false, af, Terrain::GetActionLayer(), false);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoRight ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 50, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_7");
-	spr = new Sprite( 430, 260, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 430, 292, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDown ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 130, 45) );
 	af = new AnimationFilm(0, box, "invisibleDriver_8");
-	spr = new Sprite( 360, 365, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 360, 397, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeft ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 120, 55) );
 	af = new AnimationFilm(0, box, "invisibleDriver_9");
-	spr = new Sprite( 30, 350, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 30, 382, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoRight ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 20) );
 	af = new AnimationFilm(0, box, "invisibleDriver_10");
-	spr = new Sprite( 155, 350, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 155, 382, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDown ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 20) );
 	af = new AnimationFilm(0, box, "invisibleDriver_11");
-	spr = new Sprite( 315, 350, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 315, 382, false, af, Terrain::GetActionLayer(), true);
 	drivers.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDown ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 40) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
-	spr = new Sprite( 315, 375, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 315, 407, false, af, Terrain::GetActionLayer(), true);
 	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround1 ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 40) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
-	spr = new Sprite( 155, 375, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 155, 407, false, af, Terrain::GetActionLayer(), true);
 	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround1 ) );
 }
 

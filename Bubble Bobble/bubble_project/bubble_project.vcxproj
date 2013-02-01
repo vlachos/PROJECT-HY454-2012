@@ -102,6 +102,7 @@
     <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp" />
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp" />
     <ClCompile Include="..\src\game_action\InputManage.cpp" />
+    <ClCompile Include="..\src\game_action\InvisibleSprites.cpp" />
     <ClCompile Include="..\src\logic\BubbleLogic.cpp" />
     <ClCompile Include="..\src\logic\BubProfile.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="..\include\game_action\CollisionChecker.h" />
     <ClInclude Include="..\include\game_action\InputManage.h" />
     <ClInclude Include="..\include\game_action\GameActionUtilities.h" />
+    <ClInclude Include="..\include\game_action\InvisibleSprites.h" />
     <ClInclude Include="..\include\logic\BubbleLogic.h" />
     <ClInclude Include="..\include\logic\BubProfile.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />

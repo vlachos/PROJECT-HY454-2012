@@ -180,6 +180,9 @@
     <ClCompile Include="..\src\terrain\ScoreBoard.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\InvisibleSprites.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -298,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="..\include\terrain\ScoreBoard.h">
       <Filter>Header Files\terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\InvisibleSprites.h">
+      <Filter>Header Files\game_action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
