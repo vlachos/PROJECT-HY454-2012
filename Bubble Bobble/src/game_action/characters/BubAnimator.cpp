@@ -8,6 +8,7 @@
 #include "ZenChanAnimator.h"
 #include "CollisionChecker.h"
 #include "BubblesAnimator.h"
+#include "InvisibleSprites.h"
 
 //////////////////////////static functions
 
@@ -15,8 +16,8 @@ static void startBubBubbleAnimator(Sprite* sprite){
 	FrameRangeAnimation *frab = 
 		(FrameRangeAnimation*) AnimationsParser::GetAnimation(
 													sprite->GoesLeft() ? 
-													"BubBubbleLeft" : 
-													"BubBubbleRight"
+													"BubBubbleBlastOffLeft" : 
+													"BubBubbleBlastOffRight"
 													);
 	Sprite *n_spriteb=new Sprite(
 								sprite->GetX(),
@@ -50,6 +51,10 @@ BubStandAnimator::BubStandAnimator(){
 
 void BubStandAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubStandAnimator::OnCollisionWithEnemy);
+	std::vector<InvisibleSprites::InvisibleDrivers> iwad = InvisibleSprites::GetInvisibleWrapAroundDrivers();
+	for(int i=0; i<iwad.size(); ++i){
+		CollisionChecker::Register(spr, iwad[i].sprite, this, iwad[i].callback);
+	}
 }
 
 void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){

@@ -14,6 +14,7 @@
 #include "AnimationFilm.h"
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
+#include "InvisibleSprites.h"
 
 #include "GameActionUtilities.h"
 #include "AnimationsParser.h"

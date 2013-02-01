@@ -8,7 +8,6 @@ AnimationFilm :: AnimationFilm()
 AnimationFilm :: AnimationFilm (Bitmap _bitmap, const std::vector<Rect> _boxes, const std::string& _id)
 	: bitmap(_bitmap), boxes(_boxes), id(_id){
 
-		DASSERT(_bitmap);
 		DASSERT(!(_boxes.empty()));
 		DASSERT((!_id.empty()));
 }

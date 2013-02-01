@@ -34,7 +34,7 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithMightaAngryJump(Sprite *, Sprite *, void *);
 };
 
-class BubBubbleAnimator: public MovingPathAnimator{
+class BubBubbleAnimator: public FrameRangeAnimator{
 	public:
 		BubBubbleAnimator();
 

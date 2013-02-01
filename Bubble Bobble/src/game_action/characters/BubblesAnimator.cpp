@@ -9,6 +9,7 @@
 #include "Terrain.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
+#include "InvisibleSprites.h"
 
 #define DESTROY_PAIR( pair )						\
 	REMOVE_FROM_ACTION_ANIMATOR( pair->first );		\
@@ -117,18 +118,17 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 	
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("Bubbles");
-	int startIndex = getClosestIndexFromPath( _this->GetSprite()->GetX(),  _this->GetSprite()->GetY(), mpa->GetPath() );
-	std::vector<PathEntry> pathEntry = getPath(startIndex, mpa->GetPath(), 4);
+	FrameRangeAnimation *mpa = (FrameRangeAnimation*) AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"BubBubbleLeft":"BubBubbleRight");
+
 	Sprite *sprite=new Sprite(
-								mpa->GetPath()[startIndex].x,
-								mpa->GetPath()[startIndex].y,
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
 								false,
 								AnimationFilmHolder::GetFilm( "BubBubble" ), 
 								Terrain::GetActionLayer(), 
-								true
+								_this->GetSprite()->GoesLeft()
 							);
-	mpa->SetPath( pathEntry );
+
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
 	bbar->RegistCollitions(sprite);
 
@@ -264,6 +264,14 @@ BubBubbleAnimator::BubBubbleAnimator(){
 
 void BubBubbleAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleBubbleDrivers();
+	for(int i=0; i<ibd.size(); ++i){
+		CollisionChecker::Register(spr, ibd[i].sprite, this, ibd[i].callback);
+	}
+	std::vector<InvisibleSprites::InvisibleDrivers> iwad = InvisibleSprites::GetInvisibleWrapAroundDrivers();
+	for(int i=0; i<iwad.size(); ++i){
+		CollisionChecker::Register(spr, iwad[i].sprite, this, iwad[i].callback);
+	}
 }
 
 void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){

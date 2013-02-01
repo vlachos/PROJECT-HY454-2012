@@ -7,8 +7,11 @@
   <BubWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="false" start="0" end="6"  />
   <BubWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="false" start="0" end="6"  />
   <BubFalling type="MovingAnimation" dx="0" dy="1" delay="10" continue="true"/>
-  <BubBubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="50" continue="false" start="0" end="10"  />
-  <BubBubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="50" continue="false" start="0" end="10"  />
+  <BubBubbleBlastOffLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="50" continue="false" start="0" end="10"  />
+  <BubBubbleBlastOffRight type="FrameRangeAnimation" dx="10" dy="0" delay="50" continue="false" start="0" end="10"  />
+
+  <BubBubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="150" continue="true" start="0" end="2"  />
+  <BubBubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="150" continue="true" start="0" end="2"  />
   
   <BubJumpStand type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="20" frame="6"/>

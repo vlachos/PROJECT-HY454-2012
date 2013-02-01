@@ -53,28 +53,27 @@ void BubbleMain::InitGameEngine(){
 	CollisionChecker::SingletonCreate();
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
-	
+	InvisibleSprites::CreateInvisibleDrivers();
 
-	Sprite* sprite = new Sprite(350,79,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BubStand");															\
+	Sprite* sprite = new Sprite(334,300,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
 	BubStandAnimator* animr = new BubStandAnimator();
 	animr->RegistCollitions(sprite);
-
-
-	Sprite* sprite2 = new Sprite(450,79,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
+	/*
+	Sprite* sprite2 = new Sprite(450,47,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
 	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															\
 	MightaWalkingAnimator* animr2 = new MightaWalkingAnimator();
-
+	
 	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
 	FrameRangeAnimation* anim3 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
 	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
-
+	*/
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 	
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
-	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
-	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
+	//START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
+	//START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 
 	redraw = true;
 }

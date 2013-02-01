@@ -21,7 +21,7 @@ class Sprite : public LatelyDestroyable{
 			public:
 				virtual void OnStopFalling(Sprite * sprite) = 0;
 		};
-
+		
 	private:
 		byte			frameNo;
 		Rect			frameBox;
@@ -63,6 +63,8 @@ class Sprite : public LatelyDestroyable{
 
 		int GetX(void) const { return x; }
 		int GetY(void) const { return y; }
+		void SetX(int _x) { x = _x; }
+		void SetY(int _y) { y = _y; }
 		Rect GetFrameBox(void) const{ return frameBox; }
 		byte GetFrame(void) const { return frameNo; }
 		void SetVisibility(bool v) { isVisible = v; }
@@ -90,7 +92,6 @@ class Sprite : public LatelyDestroyable{
 		void ClearListeners() { RemoveAllStopFallingListeners( ); RemoveAllStartFallingListeners();}
 		Sprite(int _x, int _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft): 
 			x(_x), y(_y), currFilm(film), isVisible(true), tileLayer(_tileLayer), goesLeft(goesLeft){
-
 			isFalling = false;
 			gravityAddicted = _gravityAddicted;
 			frameNo = currFilm->GetTotalFrames();
