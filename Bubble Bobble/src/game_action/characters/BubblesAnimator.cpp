@@ -502,6 +502,16 @@ void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args
 	DASSERT( anim && anim==args );
 	ZenChanInBubbleHighAngryAnimator* _this = (ZenChanInBubbleHighAngryAnimator*) anim;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanAngryWalkLeft");
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("ZenChanAngry"), 
+						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+
+	ZenChanAngryWalkingAnimator *frtor=new ZenChanAngryWalkingAnimator();
+
+	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
+
 	DESTROY_ANIMATOR( _this );
 }
 
@@ -632,6 +642,16 @@ void MightaInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args)
 	DASSERT( anim && anim==args );
 	MightaInBubbleHighAngryAnimator* _this = (MightaInBubbleHighAngryAnimator*) anim;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaAngryWalkLeft");
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaAngry"), 
+						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+
+	MightaAngryWalkingAnimator *frtor=new MightaAngryWalkingAnimator();
+
+	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
+
 	DESTROY_ANIMATOR( _this );
 }
 

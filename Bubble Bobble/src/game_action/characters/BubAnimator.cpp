@@ -282,6 +282,7 @@ void BubOpenMouthAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void 
 ///////////////////////BubJumpAnimator
 
 BubJumpAnimator::BubJumpAnimator(){
+	this->SetOnFinish(OnFinishCallback,(void*)this);
 }
 
 void BubJumpAnimator::RegistCollitions(Sprite *spr){

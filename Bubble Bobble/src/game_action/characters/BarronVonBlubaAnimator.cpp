@@ -36,11 +36,12 @@ void BaronVonBlubaRushAnimator::OnFinishCallback(Animator* animr, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, baronStandAnmn, "BarronVonBlubaStand",
-						BaronVonBlubaStandAnimator, baronStandAnmr, newSprite, _this->GetSprite() );
+						BaronVonBlubaStandAnimator, baronStandAnmr, _this->GetSprite() );
+
 	baronStandAnmr->SetOnFinish(BaronVonBlubaStandAnimator::OnFinishCallback, 0);
 
 	//collision register
 
-	START_ANIMATOR( baronStandAnmr, newSprite, baronStandAnmn, GetGameTime() );
+	START_ANIMATOR( baronStandAnmr, _this->GetSprite(), baronStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR(_this );
 }

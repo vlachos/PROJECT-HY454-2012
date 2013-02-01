@@ -7,14 +7,14 @@
 #include "Sprite.h"
 
 
-class ZenChanStandAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
+class ZenChanStandAnimator : public FrameRangeAnimator{
 	public:
 		ZenChanStandAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanStandAnimator_t; }
-
-		void OnStartFalling(Sprite * sprite);
+		
+		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 };
 
@@ -27,6 +27,7 @@ class ZenChanWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteS
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanWalkAnimator_t; }
 
+		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 		void OnStartFalling(Sprite * sprite);
 };
@@ -39,6 +40,7 @@ class ZenChanFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteS
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanFallingAnimator_t; }
 
+		void RegistCollitions(Sprite*);
 		void OnStopFalling(Sprite * sprite);
 };
 
@@ -49,35 +51,57 @@ class ZenChanJumpAnimator : public MovingPathAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanJumpAnimator_t; }
 
+		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
 
 
 };
-
-class ZenChanAngryStandAnimator : public ZenChanStandAnimator{
+////////////////////////////////////////////AngryAnimators
+class ZenChanAngryStandAnimator : public FrameRangeAnimator{
 	public:
+		ZenChanAngryStandAnimator();
+
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanAngryStandAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
 };
 
-class ZenChanAngryWalkingAnimator : public ZenChanWalkingAnimator{
+class ZenChanAngryWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
 	public:
+		ZenChanAngryWalkingAnimator();
+
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanAngryWalkAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
+		void OnStartFalling(Sprite * sprite);
 };
 
-class ZenChanAngryFallingAnimator : public ZenChanFallingAnimator{
+class ZenChanAngryFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
 	public:
+		ZenChanAngryFallingAnimator();
+
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanAngryFallingAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		void OnStopFalling(Sprite * sprite);
 };
 
-class ZenChanAngryJumpAnimator : public ZenChanJumpAnimator{
+class ZenChanAngryJumpAnimator : public FrameRangeAnimator{
 	public:
+		ZenChanAngryJumpAnimator();
+
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanAngryJumpAnimator_t; }
-};
 
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
+};
+////////////////////////Die Animator is common
 class ZenChanDieAnimator : public MovingPathAnimator{
 	public:
 		ZenChanDieAnimator();

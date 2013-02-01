@@ -2,7 +2,7 @@
 #define SPRITE_H
 
 #include <algorithm>
-#include <list>
+#include <vector>
 #include "MemoryManage.h"
 #include "Metrics.h"
 #include "utilities.h"
@@ -30,15 +30,13 @@ class Sprite : public LatelyDestroyable{
 		const AnimationFilm *	currFilm;
 		const TileLayer *		tileLayer;
 
-		std::list<SpriteStartFallingListener *> spriteStartFallingListener;
-		std::list<SpriteStopFallingListener *> spriteStopFallingListener;
+		std::vector<SpriteStartFallingListener *> spriteStartFallingListener;
+		std::vector<SpriteStopFallingListener *> spriteStopFallingListener;
 
 		void NotifyStopFalling() {	
-			std::list<SpriteStopFallingListener *>::const_iterator iterator;
 			if (IsAlive()){
-				for (iterator = spriteStopFallingListener.begin(); iterator != spriteStopFallingListener.end(); ++iterator) {
-					DASSERT( *iterator );
-					(*iterator)->OnStopFalling(this);
+				for (unsigned int i=0; i<spriteStopFallingListener.size(); ++i) {
+					spriteStopFallingListener[i]->OnStopFalling(this);
 				}
 			}
 		}
@@ -46,9 +44,8 @@ class Sprite : public LatelyDestroyable{
 		void NotifyStartFalling(){	
 			std::list<SpriteStartFallingListener *>::const_iterator iterator;
 			if (IsAlive()){
-				for (iterator = spriteStartFallingListener.begin(); iterator != spriteStartFallingListener.end(); ++iterator) {
-					DASSERT( *iterator );
-					(*iterator)->OnStartFalling(this);
+				for (unsigned int i=0; i<spriteStartFallingListener.size(); ++i) {
+					spriteStartFallingListener[i]->OnStartFalling(this);
 				}
 			}
 		}
@@ -82,11 +79,19 @@ class Sprite : public LatelyDestroyable{
 		void Move( int _x, int _y );
 
 		void AddStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.push_back( sl ); }
-		void RemoveStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.remove( sl ); }
+		void RemoveStartFallingListener(SpriteStartFallingListener * sl) { 
+			std::vector<SpriteStartFallingListener*>::iterator it = std::find(spriteStartFallingListener.begin(), spriteStartFallingListener.end(), sl);
+			DASSERT( it != spriteStartFallingListener.end() ); 
+			spriteStartFallingListener.erase(it); 
+		}
 		void RemoveAllStartFallingListeners( void ) { spriteStartFallingListener.clear(); }
 
 		void AddStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.push_back( sl ); }
-		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { spriteStopFallingListener.remove( sl ); }
+		void RemoveStopFallingListener(SpriteStopFallingListener * sl) { 
+			std::vector<SpriteStopFallingListener*>::iterator it = std::find(spriteStopFallingListener.begin(), spriteStopFallingListener.end(), sl);
+			DASSERT( it != spriteStopFallingListener.end() ); 
+			spriteStopFallingListener.erase(it); 
+		}
 		void RemoveAllStopFallingListeners( void ) { spriteStopFallingListener.clear(); }
 
 		void ClearListeners() { RemoveAllStopFallingListeners( ); RemoveAllStartFallingListeners();}

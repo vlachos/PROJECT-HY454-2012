@@ -6,9 +6,9 @@
 	anim_t* anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);															\
 	animr_t* animr = new animr_t()
 
-#define INIT_NEW_INSTANCE_WITH_SPRITE(anim_t, anim, animStateStr, animr_t, animr, newSprt, oldSprt )	\
-	Sprite* newSprt = oldSprt->Clone();																	\
-	anim_t *anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);								\
+#define INIT_NEW_INSTANCE_WITH_SPRITE(anim_t, anim, animStateStr, animr_t, animr, Sprt )\
+	Sprt->ClearListeners();																\
+	anim_t *anim = (anim_t*) AnimationsParser::GetAnimation(animStateStr);				\
 	animr_t* animr = new animr_t();																		
 
 #define START_ANIMATOR( animr, sprite, anim, time )	\
