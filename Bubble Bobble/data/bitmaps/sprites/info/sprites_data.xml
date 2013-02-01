@@ -234,7 +234,28 @@
   </BlueDiamond>
 
   <PonEffect w="16" h="16">
-    <bbox x="590" y="1050"  />
+    <bbox x="590" y="1050"/>
     <bbox x="614" y="1050"/>
   </PonEffect>
+  
+  <WhiteLettersStart w="16" h="16">
+    <bbox x="26" y="3192"/>
+  </WhiteLettersStart>
+
+  <GreenLettersStart w="16" h="16">
+    <bbox x="26" y="3216"/>
+  </GreenLettersStart>
+
+  <BlueLettersStart w="16" h="16">
+    <bbox x="26" y="3240"/>
+  </BlueLettersStart>
+
+  <RedLettersStart w="16" h="16">
+    <bbox x="26" y="3264"/>
+  </RedLettersStart>
+
+  <YellowLettersStart w="16" h="16">
+    <bbox x="26" y="3288"/>
+  </YellowLettersStart>
+
 </sprites>

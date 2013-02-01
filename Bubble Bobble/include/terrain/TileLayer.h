@@ -16,11 +16,14 @@ enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1, BBDown = +2};
 #define BB_MOVEMENTS 4
 
 #define TILE_LAYER_WIDTH 32
-#define TILE_LAYER_HEIGHT 26
-#define VIEW_WINDOW_WIDTH 512
-#define VIEW_WINDOW_HEIGHT 416
+#define TILE_LAYER_HEIGHT 32
+
+#define SCREEN_WINDOW_WIDTH 512
+#define SCREEN_WINDOW_HEIGHT 448
+#define VIEW_WINDOW_START_X 0
+#define VIEW_WINDOW_START_Y 2
 #define VIEW_WINDOW_TILE_WIDTH 32
-#define VIEW_WINDOW_TILE_HEIGHT 26
+#define VIEW_WINDOW_TILE_HEIGHT 28
 
 #define SMALL_BRICK_THRESHOLD 16
 #define BIG_BRICK_THRESHOLD 64
@@ -40,8 +43,8 @@ class TileLayer{
 
 	public:
 		bool ReadMap (std::string aPath);
-		bool ReadStage (std::string aPath);
-		void WriteMap (std::string aPath);
+		bool ReadStage (std::string indexPath, std::string sldtyPath);
+		void WriteMap (std::string testIndexPath, std::string testSldtyPath);
 
 		void Display (Bitmap at);
 

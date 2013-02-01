@@ -96,15 +96,17 @@
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
-    <ClCompile Include="..\src\game_action\BubbleLogic.cpp" />
     <ClCompile Include="..\src\game_action\characters\BarronVonBlubaAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp" />
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp" />
     <ClCompile Include="..\src\game_action\InputManage.cpp" />
+    <ClCompile Include="..\src\logic\BubbleLogic.cpp" />
+    <ClCompile Include="..\src\logic\BubProfile.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesParser.cpp" />
+    <ClCompile Include="..\src\terrain\ScoreBoard.cpp" />
     <ClCompile Include="..\src\terrain\Terrain.cpp" />
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
@@ -131,7 +133,6 @@
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
     <ClInclude Include="..\include\BubbleMain.h" />
-    <ClInclude Include="..\include\game_action\BubbleLogic.h" />
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubblesAnimator.h" />
@@ -140,9 +141,12 @@
     <ClInclude Include="..\include\game_action\CollisionChecker.h" />
     <ClInclude Include="..\include\game_action\InputManage.h" />
     <ClInclude Include="..\include\game_action\GameActionUtilities.h" />
+    <ClInclude Include="..\include\logic\BubbleLogic.h" />
+    <ClInclude Include="..\include\logic\BubProfile.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />
+    <ClInclude Include="..\include\terrain\ScoreBoard.h" />
     <ClInclude Include="..\include\terrain\Terrain.h" />
     <ClInclude Include="..\include\terrain\TerrainUtilities.h" />
     <ClInclude Include="..\include\terrain\TileBitmap.h" />
@@ -156,7 +160,9 @@
     <None Include="..\data\bitmaps\sprites\info\animation_data.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="..\data\bitmaps\sprites\info\sprites_attributes_data.xml" />
     <None Include="..\data\bitmaps\sprites\info\sprites_data.xml" />
+    <None Include="..\data\bitmaps\sprites\info\stage1_starting_data.xml" />
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
     <None Include="..\data\bitmaps\terrain\stage1.txt" />

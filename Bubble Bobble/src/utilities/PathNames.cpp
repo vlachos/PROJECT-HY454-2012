@@ -51,15 +51,27 @@ std::string BubblePathnames::GetTilesBitmap(){
 std::string BubblePathnames::GetActionLayerInfo(){
 	return BubblePathnames::AppendToPath(GetTerrainInfoDataPath(), ACTION_LAYER_INFO);
 }
-std::string BubblePathnames::GetStageInfo(unsigned int stageLevel){
+std::string BubblePathnames::GetStageIndexInfo(unsigned int stageLevel){
 	DASSERT(stageLevel > 0 && stageLevel <=11);
 
 	std::stringstream ss;
 	ss << stageLevel;
-	return BubblePathnames::AppendToPath(BubblePathnames::GetTerrainInfoDataPath(), stagePrefix + ss.str() + stagePostfix);
+	return BubblePathnames::AppendToPath(BubblePathnames::GetTerrainInfoDataPath(), stagePrefix + ss.str() + stageIndexPostfix);
 }
-std::string BubblePathnames::GetTestActionLayerInfo(){
-	return BubblePathnames::AppendToPath(GetTerrainInfoDataPath(), TEST_INFO);
+
+std::string BubblePathnames::GetStageSldtyInfo(unsigned int stageLevel){
+	DASSERT(stageLevel > 0 && stageLevel <=11);
+
+	std::stringstream ss;
+	ss << stageLevel;
+	return BubblePathnames::AppendToPath(BubblePathnames::GetTerrainInfoDataPath(), stagePrefix + ss.str() + stageSldtyPostfix);
+}
+
+std::string BubblePathnames::GetTestActionLayerIndexInfo(){
+	return BubblePathnames::AppendToPath(GetTerrainInfoDataPath(), TEST_INDEX_INFO);
+}
+std::string BubblePathnames::GetTestActionLayerSldtyInfo(){
+	return BubblePathnames::AppendToPath(GetTerrainInfoDataPath(), TEST_SLDTY_INFO);
 }
 
 void SingletonCleanUp (void){}

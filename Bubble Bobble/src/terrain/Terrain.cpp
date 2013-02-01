@@ -20,8 +20,8 @@ void Terrain::SingeltonCreate(){
 	actionLayer = DNEWCLASS(TileLayer, (tilesBitmap) );
 
 	//actionLayer->ReadMap(BubblePathnames::GetActionLayerInfo());
-	actionLayer->ReadStage(BubblePathnames::GetStageInfo(1));
-	actionLayer->WriteMap(BubblePathnames::GetTestActionLayerInfo() );
+	actionLayer->ReadStage(BubblePathnames::GetStageIndexInfo(1), BubblePathnames::GetStageSldtyInfo(1));
+	actionLayer->WriteMap(BubblePathnames::GetTestActionLayerIndexInfo(),  BubblePathnames::GetTestActionLayerSldtyInfo());
 }
 
 TileLayer* Terrain::GetActionLayer(){

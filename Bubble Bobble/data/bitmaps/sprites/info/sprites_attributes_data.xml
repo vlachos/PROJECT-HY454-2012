@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Attributes total = "6">
+
+	<BubLifes StartingLifes = "3"/>
+
+  <Bubbles MaximumNumberOfBubbles = "30"/>
+  
+  <Points>
+    <points EmptyBubble = "10"/>
+    <points ZenChanBubble = "800"/>
+    <points MightaBubble = "1000"/>
+    <points Banana = "500"/>
+    <points Orange = "1000"/>
+    <points Peach = "2000"/>
+    <points WaterMelon = "3000"/>
+    <points BlueDiamond = "5000"/>
+    <points PowerUp = "100"/>   
+  </Points>
+  
+	<BubblesPon total = "4">
+		<WaterBubble TimeBetweenAppearances = "5"/>
+		<EmptyBubble TimeToBecomeRed = "5" TimeToPon = "8"/>
+		<ZenChanBubbles TimeToMediumAngry = "5" TimeToHighAngry = "7" TimeToPon = "10"/>
+		<MightaBubbles TimeToMediumAngry = "5" TimeToHighAngry = "7" TimeToPon = "10"/>
+	</BubblesPon>
+
+	<FruitConditions>
+		<Banana enemiesToDefeat = "1"/> 
+		<Orange enemiesToDefeat = "2"/>
+		<Peach enemiesToDefeat = "3"/>
+		<WaterMelon enemiesToDefeat = "4"/>
+	</FruitConditions>
+	
+	<PowerUpConditions>
+		<RedShoe TimesToCrossTheStage = "2"/> 
+		<YellowSweet JumpsNeeded = "5"/>
+		<BlueSweet PonedBubblesNeeded = "5"/>
+		<PurpleSweet BlustedBubblesNeeded = "5"/>
+	</PowerUpConditions>
+	
+	<BarronVonBluba HurryUpDisplay = "30" TimeToShowUp = "40" SecToDecrDelay = "5" DecrDelay = "10"/>
+	
+</Attributes>

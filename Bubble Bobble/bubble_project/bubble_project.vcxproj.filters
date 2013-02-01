@@ -67,6 +67,12 @@
     <Filter Include="Header Files\game_action\characters">
       <UniqueIdentifier>{04f927e4-9203-44d6-a1c9-13557c3f68dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\logic">
+      <UniqueIdentifier>{5da167c7-5f65-45a9-9e55-a536f6024301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\logic">
+      <UniqueIdentifier>{ddfede13-a9f0-46d4-9df6-98dbf4d5208a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\terrain\TileBitmap.cpp">
@@ -165,8 +171,14 @@
     <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_action\BubbleLogic.cpp">
-      <Filter>Source Files\game_action</Filter>
+    <ClCompile Include="..\src\logic\BubbleLogic.cpp">
+      <Filter>Source Files\logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\logic\BubProfile.cpp">
+      <Filter>Source Files\logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\terrain\ScoreBoard.cpp">
+      <Filter>Source Files\terrain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,8 +290,14 @@
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\game_action\BubbleLogic.h">
-      <Filter>Header Files\game_action</Filter>
+    <ClInclude Include="..\include\logic\BubbleLogic.h">
+      <Filter>Header Files\logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\logic\BubProfile.h">
+      <Filter>Header Files\logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\terrain\ScoreBoard.h">
+      <Filter>Header Files\terrain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +356,12 @@
       <Filter>Resource Files\bitmaps\sprites</Filter>
     </None>
     <None Include="..\data\bitmaps\sprites\info\sprites_data.xml">
+      <Filter>Resource Files\bitmaps\sprites</Filter>
+    </None>
+    <None Include="..\data\bitmaps\sprites\info\stage1_starting_data.xml">
+      <Filter>Resource Files\bitmaps\sprites</Filter>
+    </None>
+    <None Include="..\data\bitmaps\sprites\info\sprites_attributes_data.xml">
       <Filter>Resource Files\bitmaps\sprites</Filter>
     </None>
   </ItemGroup>

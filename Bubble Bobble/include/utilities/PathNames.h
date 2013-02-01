@@ -20,9 +20,12 @@
 
 #define TILES_BITMAP_16 "tiles_bitmap_16x16.png"
 #define ACTION_LAYER_INFO "action_layer_info.txt"
-#define TEST_INFO "test_terrain_info.txt"
+#define TEST_INDEX_INFO "test_terrain_index_info.txt"
+#define TEST_SLDTY_INFO "test_terrain_sldty_info.txt"
+
 const std::string stagePrefix = "stage";
-const std::string stagePostfix = "_info.txt";
+const std::string stageIndexPostfix = "_index_info.txt";
+const std::string stageSldtyPostfix = "_sldty_info.txt";
 
 
 class BubblePathnames{
@@ -48,8 +51,10 @@ class BubblePathnames{
 		static std::string GetTerrainInfoDataPath();
 		static std::string GetTilesBitmap();
 		static std::string GetActionLayerInfo();
-		static std::string GetStageInfo(unsigned int stageLevel);
-		static std::string GetTestActionLayerInfo();
+		static std::string GetStageIndexInfo(unsigned int stageLevel);
+		static std::string GetStageSldtyInfo(unsigned int stageLevel);
+		static std::string GetTestActionLayerIndexInfo();
+		static std::string GetTestActionLayerSldtyInfo();
 
 	public:
 		static void	SingletonCleanUp (void);

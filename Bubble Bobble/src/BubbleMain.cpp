@@ -12,13 +12,13 @@ bool BubbleMain::InitAllegro(){
 		al_show_native_message_box(NULL, "Error", NULL, "failed to create timer!\n", NULL, NULL);
 		return false;
 	}
-	display = al_create_display(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
+	display = al_create_display(SCREEN_WINDOW_WIDTH, SCREEN_WINDOW_HEIGHT);
 	if(!display) {
 		al_show_native_message_box(NULL, "Error", NULL, "failed to create display!\n", NULL, NULL);
 		al_destroy_timer(timer);
 		return false;
 	}
-	palette = al_create_bitmap(VIEW_WINDOW_WIDTH, VIEW_WINDOW_HEIGHT);
+	palette = al_create_bitmap(SCREEN_WINDOW_WIDTH, SCREEN_WINDOW_HEIGHT);
 	if(!palette) {
 		al_show_native_message_box(NULL, "Error", NULL, "failed to create bouncer bitmap!\n", NULL, NULL);
 		al_destroy_display(display);

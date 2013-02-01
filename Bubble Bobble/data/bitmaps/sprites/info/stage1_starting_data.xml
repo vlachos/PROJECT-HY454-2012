@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StartingSprites total = "4">
+
+	<Bub x="350" y="79" gravityAddict = "true" FildID = "BubWalk" goesLeft = "false"/>
+	<ZenChan x="400" y="79" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "true"/>
+	<ZenChan x="300" y="79" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "true"/>
+	<Mighta x="250" y="79" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "false"/>
+	
+</StartingSprites>

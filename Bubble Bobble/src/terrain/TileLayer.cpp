@@ -7,10 +7,10 @@
 
 	TileLayer::TileLayer(TileBitmap* aTileBitmap){
 		tilesBitmap = aTileBitmap;
-		viewWindow.SetX(0);
-		viewWindow.SetY(0);
-		viewWindow.SetWidth(VIEW_WINDOW_WIDTH);
-		viewWindow.SetHeigth(VIEW_WINDOW_HEIGHT);
+		viewWindow.SetX(VIEW_WINDOW_START_X);
+		viewWindow.SetY(VIEW_WINDOW_START_Y);
+		viewWindow.SetWidth(VIEW_WINDOW_TILE_WIDTH);
+		viewWindow.SetHeigth(VIEW_WINDOW_TILE_HEIGHT);
 	}
 
 	TileLayer::~TileLayer(){
@@ -41,33 +41,31 @@
 		}
 	}
 
-	bool TileLayer::ReadStage (std::string aPath){
-		DASSERT(GetFileAttributesA(aPath.c_str()) != INVALID_FILE_ATTRIBUTES );
+	bool TileLayer::ReadStage (std::string indexPath, std::string sldtyPath){
+		DASSERT(GetFileAttributesA(indexPath.c_str()) != INVALID_FILE_ATTRIBUTES );
+		DASSERT(GetFileAttributesA(sldtyPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 
-		std::ifstream openfile(aPath);
+		std::ifstream indexStage(indexPath);
+		std::ifstream sldtyStage(sldtyPath);
 		unsigned int nextInteger = 0;
-		if (openfile.is_open()){
+		if (indexStage.is_open() && sldtyStage.is_open() ){
 			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
-					openfile >> nextInteger;
+					indexStage >> nextInteger;
 					map[i][j] = nextInteger;
-					openfile >> nextInteger;
-					tilesSolidity[i][j][BBLeft] = nextInteger;
-					openfile >> nextInteger;
-					tilesSolidity[i][j][BBUp] = nextInteger;
-					openfile >> nextInteger;
-					tilesSolidity[i][j][BBRight] = nextInteger;
-					openfile >> nextInteger;
-					tilesSolidity[i][j][BBDown] = nextInteger;
 
-					DASSERT(0 <= map[i][j] < 256);
-					DASSERT(-1 <= tilesSolidity[i][j][BBLeft] <= 2);
-					DASSERT(-1 <= tilesSolidity[i][j][BBUp] <= 2);
-					DASSERT(-1 <= tilesSolidity[i][j][BBRight] <= 2);
-					DASSERT(-1 <= tilesSolidity[i][j][BBDown] <= 2);
+					sldtyStage >> nextInteger;
+					tilesSolidity[i][j][BBUp] = nextInteger;
+					sldtyStage >> nextInteger;
+					tilesSolidity[i][j][BBLeft] = nextInteger;
+					sldtyStage >> nextInteger;
+					tilesSolidity[i][j][BBDown] = nextInteger;
+					sldtyStage >> nextInteger;
+					tilesSolidity[i][j][BBRight] = nextInteger;
 				}
 			}
-			openfile.close();
+			indexStage.close();
+			sldtyStage.close();
 			return true;
 		}
 		else{
@@ -75,21 +73,26 @@
 		}
 	}
 
-	void TileLayer::WriteMap (std::string aPath){
-		std::ofstream openfile(aPath);
-		if (openfile.is_open()){
+	void TileLayer::WriteMap (std::string testIndexPath, std::string testSldtyPath){
+		std::ofstream MapIndex (testIndexPath);
+		std::ofstream MapSldty (testSldtyPath);
+		if (MapIndex.is_open() && MapSldty.is_open() ){
 			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
 				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
-					openfile << (int)map[i][j] << " ";
-					openfile << (int)tilesSolidity[i][j][BBLeft] << " ";
-					openfile << (int)tilesSolidity[i][j][BBUp] << " ";
-					openfile << (int)tilesSolidity[i][j][BBRight] << " ";
-					openfile << (int)tilesSolidity[i][j][BBDown] << " ";
-					openfile << "\t";
+					MapIndex << (int)map[i][j] ;
+					MapIndex << "\t";
+
+					MapSldty << (int)tilesSolidity[i][j][BBUp] << " ";
+					MapSldty << (int)tilesSolidity[i][j][BBLeft] << " ";
+					MapSldty << (int)tilesSolidity[i][j][BBDown] << " ";
+					MapSldty << (int)tilesSolidity[i][j][BBRight] << " ";
+					MapSldty << "\t";
 				}
-				openfile << "\n";
+				MapIndex << "\n";
+				MapSldty << "\n";
 			}
-			openfile.close();
+			MapIndex.close();
+			MapSldty.close();
 		}
 	}
 
@@ -97,20 +100,17 @@
 	void TileLayer::Display (Bitmap at){
 		DASSERT(at );
 		DASSERT(viewWindow.GetX() >= 0 &&
-			    viewWindow.GetX() <= (TILE_LAYER_WIDTH - viewWindow.GetWidth()) );
+			    viewWindow.GetX() <= (TILE_LAYER_WIDTH - VIEW_WINDOW_TILE_WIDTH) );
 		DASSERT(viewWindow.GetY() >= 0 &&
-			    viewWindow.GetY() <= (TILE_LAYER_HEIGHT - viewWindow.GetHeigth()) );
+			    viewWindow.GetY() <= (TILE_LAYER_HEIGHT - VIEW_WINDOW_TILE_HEIGHT) );
 
 		al_set_target_bitmap(at);
 		al_clear_to_color(al_map_rgb(0,0,0));
 
 		Coordinates XYCoordinates;
-		for(Dim i=0; i<VIEW_WINDOW_TILE_HEIGHT; ++i){
-			for(Dim j=0; j<VIEW_WINDOW_TILE_WIDTH; ++j){
+		for(Dim i = 0; i < VIEW_WINDOW_TILE_HEIGHT; ++i){
+			for(Dim j = 0; j < VIEW_WINDOW_TILE_WIDTH; ++j){
 				XYCoordinates = GetXYCoordinates(j, i);
-
-				DASSERT(XYCoordinates.first >= 0 && XYCoordinates.first <= (VIEW_WINDOW_WIDTH - TILE_SIZE) );
-				DASSERT(XYCoordinates.second >= 0 && XYCoordinates.second <= (VIEW_WINDOW_HEIGHT - TILE_SIZE) );
 
 				tilesBitmap->PutTile(at, XYCoordinates.first, XYCoordinates.second, GetTileIndex(i, j) );
 			}
@@ -129,14 +129,14 @@
 //		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
 //				(col>=0 && col<TILE_LAYER_WIDTH ) );
 
-		return map[row][col];
+		return map[row + viewWindow.GetY()][col + viewWindow.GetX()];
 	}
 
 	const bool TileLayer::GetTileSolidity (int row, int col, BBMovement move) const{
 //		DASSERT((row>=0 && row<TILE_LAYER_HEIGHT ) &&
 //				(col>=0 && col<TILE_LAYER_WIDTH ) );
 
-		return tilesSolidity[row][col][move];
+		return tilesSolidity[row + viewWindow.GetY()][col + viewWindow.GetX()][move];
 	}
 
 	const Coordinates TileLayer::GetTileCoordinates (int x, int y) const{
@@ -147,8 +147,8 @@
 	}
 
 	const Coordinates TileLayer::GetXYCoordinates (Dim row, Dim col) const{
-		DASSERT((row>=0 && row<TILE_LAYER_WIDTH ) &&
-				(col>=0 && col<TILE_LAYER_HEIGHT ) );
+//		DASSERT((row>=0 && row<TILE_LAYER_WIDTH ) &&
+//				(col>=0 && col<TILE_LAYER_HEIGHT ) );
 
 		return std::make_pair(MUL_TILE_SIZE(row), MUL_TILE_SIZE(col) );
 	}
@@ -177,13 +177,13 @@
 
 	bool TileLayer::CanScroll (HorizScroll h) const{	
 		return	viewWindow.GetX() >= -(Dim) h &&
-				viewWindow.GetX() + ((Dim) h) + viewWindow.GetWidth() <= VIEW_WINDOW_WIDTH;	
+				viewWindow.GetX() + ((Dim) h) + viewWindow.GetWidth() <= TILE_LAYER_WIDTH;	
 		return false;
 	}
 
 	bool TileLayer::CanScroll (VertScroll v) const{
 		return	viewWindow.GetY() >= -(Dim) v &&
-				viewWindow.GetY() + ((Dim) v) + viewWindow.GetHeigth() <= VIEW_WINDOW_HEIGHT;
+				viewWindow.GetY() + ((Dim) v) + viewWindow.GetHeigth() <= TILE_LAYER_HEIGHT;
 		return false;
 	}
 
