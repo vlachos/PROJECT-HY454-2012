@@ -238,24 +238,25 @@
     <bbox x="614" y="1050"/>
   </PonEffect>
   
-  <WhiteLettersStart w="16" h="16">
-    <bbox x="26" y="3192"/>
-  </WhiteLettersStart>
+  <WhiteLettersFont w="1062" h="16">
+    <bbox x="6" y="3192"/>
+  </WhiteLettersFont>
 
-  <GreenLettersStart w="16" h="16">
-    <bbox x="26" y="3216"/>
-  </GreenLettersStart>
+  <GreenLettersFont w="1062" h="16">
+    <bbox x="6" y="3216"/>
+  </GreenLettersFont>
 
-  <BlueLettersStart w="16" h="16">
-    <bbox x="26" y="3240"/>
-  </BlueLettersStart>
+  <BlueLettersFont w="1062" h="16">
+    <bbox x="6" y="3240"/>
+  </BlueLettersFont>
 
-  <RedLettersStart w="16" h="16">
-    <bbox x="26" y="3264"/>
-  </RedLettersStart>
+  <RedLettersFont w="1062" h="16">
+    <bbox x="6" y="3264"/>
+  </RedLettersFont>
 
-  <YellowLettersStart w="16" h="16">
-    <bbox x="26" y="3288"/>
-  </YellowLettersStart>
+  <YellowLettersFont w="1062" h="16">
+    <bbox x="6" y="3288"/>
+  </YellowLettersFont>
+
 
 </sprites>

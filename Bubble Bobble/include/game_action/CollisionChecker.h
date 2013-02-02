@@ -7,37 +7,37 @@
 
 class CollisionChecker{
 
-public:
-	typedef void (*CollisionCallback) (Sprite*, Sprite*, void*);
+	public:
+		typedef void (*CollisionCallback) (Sprite*, Sprite*, void*);
 
-	typedef struct collision_t{
-		Sprite* master;
-		Sprite* slave;
-		void* Args;
-		CollisionCallback callBack;
-	} CollisionInfo;
+		typedef struct collision_t{
+			Sprite* master;
+			Sprite* slave;
+			void* Args;
+			CollisionCallback callBack;
+		} CollisionInfo;
 
-private:
-	typedef std::vector<CollisionInfo> CollisionPairsList ;
+	private:
+		typedef std::vector<CollisionInfo> CollisionPairsList ;
 
-	struct Find{
-		Find( Sprite* _master,  Sprite* _slave) : master(_master), slave(_slave) { }	
-		bool operator() (const CollisionInfo &n){ 
-			return (n.master==master && n.slave==slave) ||
-				   (n.master==slave && n.slave==master);
-		}
+		struct Find{
+			Find( Sprite* _master,  Sprite* _slave) : master(_master), slave(_slave) { }	
+			bool operator() (const CollisionInfo &n){ 
+				return (n.master==master && n.slave==slave) ||
+					   (n.master==slave && n.slave==master);
+			}
 
-		Sprite* master;
-		Sprite* slave;
-	};
+			Sprite* master;
+			Sprite* slave;
+		};
 
-	struct FindAny{
-		FindAny( Sprite* _sprite) : sprite(_sprite){ }	
-		bool operator() (const CollisionInfo &n){ 
-			return (n.master==sprite || n.slave==sprite);
-		}
-		Sprite* sprite;
-	};
+		struct FindAny{
+			FindAny( Sprite* _sprite) : sprite(_sprite){ }	
+			bool operator() (const CollisionInfo &n){ 
+				return (n.master==sprite || n.slave==sprite);
+			}
+			Sprite* sprite;
+		};
 
 	private:
 		CollisionChecker();

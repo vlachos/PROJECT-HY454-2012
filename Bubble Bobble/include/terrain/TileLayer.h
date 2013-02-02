@@ -10,8 +10,6 @@
 enum HorizScroll {Left = -1, HorizIntact = 0, Right = +1 };
 enum VertScroll {Up = -1, VertIntact = 0, Down = +1 };
 
-typedef std::pair<int, int> Coordinates;
-
 enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1, BBDown = +2};
 #define BB_MOVEMENTS 4
 
