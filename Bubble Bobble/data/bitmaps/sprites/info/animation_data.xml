@@ -9,9 +9,10 @@
   <BubFalling type="MovingAnimation" dx="0" dy="1" delay="10" continue="true"/>
   <BubBubbleBlastOffLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="50" continue="false" start="0" end="10"  />
   <BubBubbleBlastOffRight type="FrameRangeAnimation" dx="10" dy="0" delay="50" continue="false" start="0" end="10"  />
-
   <BubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="150" continue="true" start="0" end="2"  />
   <BubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="150" continue="true" start="0" end="2"  />
+
+  <BubOpenMouthFalling type="FrameRangeAnimation" dx="0" dy="1" delay="10" continue="false" start="0" end="6"  />
   
   <BubJumpStand type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="20" frame="6"/>

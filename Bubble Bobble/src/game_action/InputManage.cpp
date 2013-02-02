@@ -144,8 +144,22 @@ bool InputManageHandling::OnKeyLeft(void){
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
 		retVal = CheckDxDirectionStand(bub, true);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
+		std::vector<PathEntry> e=bja->GetAnimation()->GetPath();
+		e[bja->GetCurrIndex()].x +=-2; 
+		bja->GetAnimation()->SetPath(e);
+		bja->GetSprite()->SetGoesLeft(true);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		BubFallingAnimator *bja=(BubFallingAnimator *)bub.front();
+		bja->GetSprite()->SetGoesLeft(true);
+		bja->GetSprite()->Move(-2,0);
 	}
-	
+
 	return retVal;
 }
 
@@ -158,8 +172,22 @@ bool InputManageHandling::OnKeyRight(void){
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
 		retVal = CheckDxDirectionStand(bub, false);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
+		std::vector<PathEntry> e=bja->GetAnimation()->GetPath();
+		e[bja->GetCurrIndex()].x +=2; 
+		bja->GetAnimation()->SetPath(e);
+		bja->GetSprite()->SetGoesLeft(false);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		BubFallingAnimator *bja=(BubFallingAnimator *)bub.front();
+		bja->GetSprite()->SetGoesLeft(false);
+		bja->GetSprite()->Move(2,0);
 	}
-		
+
 	return retVal;
 }
 
@@ -174,6 +202,10 @@ bool InputManageHandling::OnKeySpace(void){
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
 		DASSERT( bub.size()==1 );
 		( (BubStandAnimator*) bub.front() )->OnOpenMouth();
+	}else	
+	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		( (BubFallingAnimator*) bub.front() )->OnOpenMouth();
 	}
 		
 	return retVal;

@@ -222,6 +222,26 @@ void BubFallingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 	DESTROY_ANIMATOR( _this );
 }
 
+void BubFallingAnimator::OnOpenMouth(){
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+
+	FrameRangeAnimation *fra = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BubOpenMouthFalling");
+	Sprite *n_sprite=new Sprite(
+								this->GetSprite()->GetX(),
+								this->GetSprite()->GetY(),
+								this->GetSprite()->IsGravityAddicted(),
+								AnimationFilmHolder::GetFilm("BubOpenMouth"), 
+								Terrain::GetActionLayer(), 
+								this->GetSprite()->GoesLeft()
+								);
+	BubOpenMouthFallingAnimator *bomfar = new BubOpenMouthFallingAnimator();
+	n_sprite->AddStopFallingListener( bomfar );
+	bomfar->RegistCollitions(n_sprite);
+	START_ANIMATOR( bomfar, n_sprite, fra, GetGameTime() );
+	startBubBubbleAnimator( n_sprite );
+	DESTROY_ANIMATOR( this );
+}
+
 ///////////////////////BubOpenMouthAnimator
 
 BubOpenMouthAnimator::BubOpenMouthAnimator(){
@@ -272,7 +292,65 @@ void BubOpenMouthAnimator::OnStartFalling(Sprite * sprite){
 	DESTROY_ANIMATOR( this );
 }
 
+
 void BubOpenMouthAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args && bub && enem);
+	BubOpenMouthAnimator * _this = (BubOpenMouthAnimator*)args;
+	DASSERT( _this->GetAnimation() && _this->GetSprite() && _this->GetSprite()==bub);
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	StartDieAnimator(bub->GetX(), bub->GetY());
+	DESTROY_ANIMATOR( _this );
+}
+
+///////////////////////BubOpenMouthFallingAnimator
+
+BubOpenMouthFallingAnimator::BubOpenMouthFallingAnimator(){
+	this->SetOnFinish( OnFinishCallback , (void*)this);
+}
+
+void BubOpenMouthFallingAnimator::RegistCollitions(Sprite *spr){
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubOpenMouthAnimator::OnCollisionWithEnemy);
+}
+
+void BubOpenMouthFallingAnimator::OnFinishCallback(Animator* anim, void* args){
+	DASSERT( anim && args && anim == args );
+	BubOpenMouthFallingAnimator* _this = (BubOpenMouthFallingAnimator*) anim;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubFalling");
+	Sprite *n_sprite=new Sprite(
+								_this->GetSprite()->GetX(),
+								_this->GetSprite()->GetY(),
+								_this->GetSprite()->IsGravityAddicted(),
+								AnimationFilmHolder::GetFilm("BubWalk"), 
+								Terrain::GetActionLayer(), 
+								_this->GetSprite()->GoesLeft()
+								);
+	BubFallingAnimator *frtor=new BubFallingAnimator();
+	n_sprite->AddStopFallingListener(frtor);
+	frtor->RegistCollitions(n_sprite);
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
+}
+
+void BubOpenMouthFallingAnimator::OnStopFalling(Sprite * sprite){
+	DASSERT( sprite == this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+
+	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
+	Sprite *n_sprite=new Sprite(this->GetSprite()->GetX(),this->GetSprite()->GetY(),
+		this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("BubWalk"), 
+						Terrain::GetActionLayer(), this->GetSprite()->GoesLeft());
+
+	BubStandAnimator *frtor=new BubStandAnimator();
+	frtor->RegistCollitions(n_sprite);
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( this );
+}
+
+
+void BubOpenMouthFallingAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
 	DASSERT(args && bub && enem);
 	BubOpenMouthAnimator * _this = (BubOpenMouthAnimator*)args;
 	DASSERT( _this->GetAnimation() && _this->GetSprite() && _this->GetSprite()==bub);

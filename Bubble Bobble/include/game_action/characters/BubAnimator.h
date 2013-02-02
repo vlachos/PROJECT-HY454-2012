@@ -44,6 +44,7 @@ class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFalli
 
 		void RegistCollitions(Sprite*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		void OnOpenMouth(void);
 		void OnStopFalling(Sprite * sprite);
 };
 
@@ -58,6 +59,19 @@ class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteSta
 		static void OnFinishCallback(Animator*, void*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
+};
+
+class BubOpenMouthFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
+	public:
+		BubOpenMouthFallingAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubOpenMouthFallingAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		void OnStopFalling(Sprite * sprite);
 };
 
 class BubJumpAnimator : public MovingPathAnimator{
