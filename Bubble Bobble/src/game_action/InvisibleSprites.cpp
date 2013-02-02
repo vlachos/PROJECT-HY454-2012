@@ -1,3 +1,5 @@
+#include <list>
+#include <algorithm>
 #include "InvisibleSprites.h"
 #include "MemoryManage.h"
 #include "Metrics.h"
@@ -7,8 +9,27 @@
 #include "Terrain.h"
 #include "BubblesAnimator.h"
 
-static std::vector<InvisibleSprites::InvisibleDrivers> driversForFrameRange;
-static std::vector<InvisibleSprites::InvisibleDrivers> wrapAroundDriversForFrameRange;
+std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::driversForFrameRange;
+std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::wrapAroundDriversForFrameRange;
+InvisibleSprites*								InvisibleSprites::singletonPtr;
+
+static std::list<AnimationFilm*>				animationFilmHolderLateDestraction;
+
+namespace InvisibleSpritesDelete{
+
+	struct DeleteAnimationFilm{
+		void operator()(AnimationFilm* af){
+			delete af;
+		}
+	};
+
+	struct DeleteInvisibleDrivers{
+		void operator()(InvisibleSprites::InvisibleDrivers af){
+			af.sprite->Destroy();
+		}
+	};
+
+}
 
 static void InvisibleDrivererGoDownFRA(Sprite *obj, Sprite *driver, void *args){
 	std::cout<<"down\n";
@@ -70,7 +91,7 @@ static void InvisibleDrivererWrapAroundFRA1(Sprite *obj, Sprite *driver, void *a
 	InvisibleDrivererGoDownFRA( driver, obj, args );
 }
 
-void InvisibleSprites::CreateInvisibleDrivers(){
+InvisibleSprites::InvisibleSprites(){
 	AnimationFilm* af;
 	Sprite* spr;
 	std::vector<Rect> box;
@@ -79,89 +100,122 @@ void InvisibleSprites::CreateInvisibleDrivers(){
 	box.push_back( Rect(0, 0, 362, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_0");
 	spr = new Sprite( 115, 72, false, af, Terrain::GetActionLayer(), false);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeftFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 42, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_1");
 	spr = new Sprite( 30, 54, false, af, Terrain::GetActionLayer(), false);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 370, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_2");
 	spr = new Sprite( 30, 152, false, af, Terrain::GetActionLayer(), false);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoRightFRA ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 61, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_3");
 	spr = new Sprite( 420, 137, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 362, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_4");
 	spr = new Sprite( 118, 237, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeftFRA ) );
 	
 	box.clear();
 	box.push_back( Rect(0, 0, 42, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_5");
 	spr = new Sprite( 30, 217, false, af, Terrain::GetActionLayer(), false);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 370, 44) );
 	af = new AnimationFilm(0, box, "invisibleDriver_6");
 	spr = new Sprite( 30, 317, false, af, Terrain::GetActionLayer(), false);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoRightFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 50, 95) );
 	af = new AnimationFilm(0, box, "invisibleDriver_7");
 	spr = new Sprite( 430, 292, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 130, 45) );
 	af = new AnimationFilm(0, box, "invisibleDriver_8");
 	spr = new Sprite( 360, 397, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeftFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 120, 55) );
 	af = new AnimationFilm(0, box, "invisibleDriver_9");
 	spr = new Sprite( 30, 382, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoRightFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 20) );
 	af = new AnimationFilm(0, box, "invisibleDriver_10");
 	spr = new Sprite( 155, 382, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 20) );
 	af = new AnimationFilm(0, box, "invisibleDriver_11");
 	spr = new Sprite( 315, 382, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 40) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
 	spr = new Sprite( 315, 407, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	wrapAroundDriversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAroundFRA1 ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 10, 40) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
 	spr = new Sprite( 155, 407, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
 	wrapAroundDriversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAroundFRA1 ) );
 }
 
-void InvisibleSprites::DestroyInvisibleDrivers(){
-	
+InvisibleSprites::~InvisibleSprites(){
+	std::for_each(
+					animationFilmHolderLateDestraction.begin(),
+					animationFilmHolderLateDestraction.end(),
+					InvisibleSpritesDelete::DeleteAnimationFilm()
+				);
+	animationFilmHolderLateDestraction.clear();
+
+	std::for_each(
+					driversForFrameRange.begin(),
+					driversForFrameRange.end(),
+					InvisibleSpritesDelete::DeleteInvisibleDrivers()
+				);
+	driversForFrameRange.clear();
+
+	std::for_each(
+					wrapAroundDriversForFrameRange.begin(),
+					wrapAroundDriversForFrameRange.end(),
+					InvisibleSpritesDelete::DeleteInvisibleDrivers()
+				);
+	wrapAroundDriversForFrameRange.clear();
 }
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleBubbleDriversForFrameRange(){

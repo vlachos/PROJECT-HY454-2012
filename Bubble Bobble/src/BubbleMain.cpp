@@ -53,7 +53,7 @@ void BubbleMain::InitGameEngine(){
 	CollisionChecker::SingletonCreate();
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
-	InvisibleSprites::CreateInvisibleDrivers();
+	InvisibleSprites::SingletonCreate();
 
 	Sprite* sprite = new Sprite(334,300,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
 	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
@@ -210,7 +210,9 @@ void BubbleMain::GameOver(){
 
 	CollisionChecker::SingletonCleanUp();
 	AnimationsParser::SingletonDestroy();
-	AnimationFilmHolder::SingletonDestroy();	
+	AnimationFilmHolder::SingletonDestroy();
+	InvisibleSprites::SingletonDestroy();
+	DestructionManager::Commit();
 
 	al_destroy_bitmap(palette);
 	al_destroy_timer(timer);

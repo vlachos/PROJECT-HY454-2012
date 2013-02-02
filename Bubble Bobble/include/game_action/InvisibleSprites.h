@@ -4,19 +4,27 @@
 #include <vector>
 #include "Sprite.h"
 
-namespace InvisibleSprites{
+class InvisibleSprites{
+	public:
+		typedef struct _InvisibleDrivers{
+			Sprite* sprite;
+			void (*callback)(Sprite *, Sprite *, void *);
+			_InvisibleDrivers(Sprite* _sprite, void (*_callback)(Sprite *, Sprite *, void *))
+				{ sprite = _sprite; callback = _callback; }
+		}InvisibleDrivers;
 
-	typedef struct _InvisibleDrivers{
-		Sprite* sprite;
-		void (*callback)(Sprite *, Sprite *, void *);
-		_InvisibleDrivers(Sprite* _sprite, void (*_callback)(Sprite *, Sprite *, void *))
-			{ sprite = _sprite; callback = _callback; }
-	}InvisibleDrivers;
+		static void	SingletonCreate () { singletonPtr = new InvisibleSprites(); }
+		static void	SingletonDestroy (void) { delete singletonPtr; singletonPtr = 0; }
 
-	extern void CreateInvisibleDrivers();
-	extern void DestroyInvisibleDrivers();
+		static std::vector<InvisibleDrivers> GetInvisibleBubbleDriversForFrameRange();
+		static std::vector<InvisibleDrivers> GetInvisibleWrapAroundDriversForFrameRange();
 
-	extern std::vector<InvisibleDrivers> GetInvisibleBubbleDriversForFrameRange();
-	extern std::vector<InvisibleDrivers> GetInvisibleWrapAroundDriversForFrameRange();
-}
+	private:
+		static InvisibleSprites*	singletonPtr;
+		static std::vector<InvisibleDrivers> driversForFrameRange;
+		static std::vector<InvisibleDrivers> wrapAroundDriversForFrameRange;
+
+		InvisibleSprites();
+		~InvisibleSprites();
+};
 #endif

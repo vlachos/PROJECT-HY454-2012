@@ -20,21 +20,21 @@
 
 #define BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(animator_type, bubble, enemy, args)\
 	DASSERT(bubble && enemy && args);													\
-	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY());							\
+	StartZenChanAtBubbleAnimator(enemy->GetX(), enemy->GetY(), enemy->GoesLeft());		\
 	std::pair< BubBubbleBlastOffAnimator*, animator_type* >* pair =						\
 				(std::pair< BubBubbleBlastOffAnimator*, animator_type* >*) args;		\
 	DESTROY_PAIR(pair)
 
-#define BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(animator_type, bubble, enemy, args)\
+#define BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(animator_type, bubble, enemy, args)	\
 	DASSERT(bubble && enemy && args);													\
-	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY());							\
+	StartMightaAtBubbleAnimator(enemy->GetX(), enemy->GetY(), enemy->GoesLeft());		\
 	std::pair< BubBubbleBlastOffAnimator*, animator_type* >* pair =						\
 				(std::pair< BubBubbleBlastOffAnimator*, animator_type* >*) args;		\
 	DESTROY_PAIR(pair)
 
 #define KILL_BUB_BUBBLE( animator_type, bubble, bub, args )					\
 	DASSERT( bubble && bub && args );										\
-	animator_type * _this = (animator_type *) args;					\
+	animator_type * _this = (animator_type *) args;							\
 	REMOVE_FROM_ACTION_ANIMATOR( _this );									\
 	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );				\
 	DESTROY_ANIMATOR( _this )
@@ -54,35 +54,6 @@
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
 		DESTROY_ANIMATOR( _this )	
-
-/////////////////////////////static functios
-static int getClosestIndexFromPath(int x, int y, const std::vector<PathEntry>& path){
-	double minDistance=1024;
-	int index=-1;
-	for(unsigned int i=0; i<path.size(); ++i){
-		double distance = sqrt( pow( double(path[i].x - x), 2 ) + pow( double(path[i].y - y), 2 ) );
-		if( distance < minDistance ){
-			minDistance = distance;
-			index=i;
-		}
-	}
-
-	return index;
-}
-
-static std::vector<PathEntry> getPath(const int index, const std::vector<PathEntry>& constPath, unsigned int distatnce){
-	std::vector<PathEntry> path;
-
-	for(unsigned int i = index; i<constPath.size()-1 && i<index+constPath.size()/distatnce; ++i){
-		PathEntry entry;
-		entry.x = constPath[i+1].x - constPath[i].x;
-		entry.y = constPath[i+1].y - constPath[i].y;
-		entry.delay =  constPath[i].delay;
-		entry.frame = constPath[i].frame;
-		path.push_back(entry);
-	}
-	return path;
-}
 
 //////////////////////////////BubBubbleBlastOffAnimator
 
@@ -118,8 +89,7 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 	
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	
-	FrameRangeAnimation *mpa = (FrameRangeAnimation*) AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"BubBubbleLeft":"BubBubbleRight");
-
+	FrameRangeAnimation *fra = (FrameRangeAnimation*) AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"BubbleLeft":"BubbleRight");
 	Sprite *sprite=new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
@@ -132,44 +102,38 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
 	bbar->RegistCollitions(sprite);
 
-	START_ANIMATOR(bbar, sprite, mpa, GetGameTime() );
+	START_ANIMATOR(bbar, sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
 
-static void StartZenChanAtBubbleAnimator(int x, int y){
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("Bubbles");
-	int startIndex = getClosestIndexFromPath( x,  y, mpa->GetPath() );
-	std::vector<PathEntry> pathEntry = getPath(startIndex, mpa->GetPath(), 4);
+static void StartZenChanAtBubbleAnimator(int x, int y, bool goesLeft){
+	FrameRangeAnimation *fra = (FrameRangeAnimation*) AnimationsParser::GetAnimation(goesLeft?"BubbleLeft":"BubbleRight");
 	Sprite *sprite=new Sprite(
-								mpa->GetPath()[startIndex].x,
-								mpa->GetPath()[startIndex].y,
+								x,
+								y,
 								false,
 								AnimationFilmHolder::GetFilm( "ZenChanInBubble" ), 
 								Terrain::GetActionLayer(), 
 								true
 							);
-	mpa->SetPath( pathEntry );
 	ZenChanInBubbleAnimator* zcibanmr = new ZenChanInBubbleAnimator();
 	zcibanmr->RegistCollitions(sprite);
-	START_ANIMATOR(zcibanmr, sprite, mpa, GetGameTime() );
+	START_ANIMATOR(zcibanmr, sprite, fra, GetGameTime() );
 }
 
-static void StartMightaAtBubbleAnimator(int x, int y){
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("Bubbles");
-	int startIndex = getClosestIndexFromPath( x,  y, mpa->GetPath() );
-	std::vector<PathEntry> pathEntry = getPath(startIndex, mpa->GetPath(), 4);
+static void StartMightaAtBubbleAnimator(int x, int y, bool goesLeft){
+	FrameRangeAnimation *fra = (FrameRangeAnimation*) AnimationsParser::GetAnimation(goesLeft?"BubbleLeft":"BubbleRight");
 	Sprite *sprite=new Sprite(
-								mpa->GetPath()[startIndex].x,
-								mpa->GetPath()[startIndex].y,
+								x,
+								y,
 								false,
 								AnimationFilmHolder::GetFilm( "MightaInBubble" ), 
 								Terrain::GetActionLayer(), 
 								true
 							);
-	mpa->SetPath( pathEntry );
 	MightaInBubbleAnimator* mibanmr = new MightaInBubbleAnimator();
 	mibanmr->RegistCollitions(sprite);
-	START_ANIMATOR(mibanmr, sprite, mpa, GetGameTime() );
+	START_ANIMATOR(mibanmr, sprite, fra, GetGameTime() );
 }
 
 
@@ -265,7 +229,7 @@ BubBubbleAnimator::BubBubbleAnimator(){
 void BubBubbleAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
 	CollisionChecker::RegisterBubbleDrivers(spr, this);
-	CollisionChecker::RegisterBubbleDrivers(spr, this);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -273,9 +237,7 @@ void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 	BubBubbleAnimator * _this = (BubBubbleAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("Bubbles");
-	int startIndex = getClosestIndexFromPath( _this->GetSprite()->GetX(),  _this->GetSprite()->GetY(), mpa->GetPath() );
-	std::vector<PathEntry> pathEntry = getPath(startIndex, mpa->GetPath(), 6);
+	FrameRangeAnimation *fra = (FrameRangeAnimation*) AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"BubbleLeft":"BubbleRight");
 	Sprite *sprite=new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
@@ -284,11 +246,9 @@ void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 								Terrain::GetActionLayer(), 
 								true
 							);
-
-	mpa->SetPath( pathEntry );
 	BubPingBubbleAnimator* bpbamr = new BubPingBubbleAnimator();
 	bpbamr->RegistCollitions(sprite);
-	START_ANIMATOR(bpbamr, sprite, mpa, GetGameTime() );
+	START_ANIMATOR(bpbamr, sprite, fra, GetGameTime() );
 
 	DESTROY_ANIMATOR( _this );
 }
@@ -308,18 +268,9 @@ void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *
 	MovingPathAnimation* mma = mmar->GetAnimation();
 	std::vector<PathEntry> path = mma->GetPath();
 	if(spr1->GetX()>spr2->GetX()){
-		//spr1->Move( 1, 0 );
-		PathEntry entry( -15, 0, 0, 400);
-		path.insert( path.begin() + mmar->GetCurrIndex(), entry );
-		PathEntry entry2( 15, 0, 0, 400);
-		path.insert( path.begin() + mmar->GetCurrIndex(), entry2 );
 
 	}else{
 		//spr1->Move( -1, 0 );
-		PathEntry entry( 15, 0, 0, 400);
-		path.insert( path.begin() + mmar->GetCurrIndex(), entry );
-		PathEntry entry2( -15, 0, 0, 400);
-		path.insert( path.begin() + mmar->GetCurrIndex(), entry2 );
 	}
 	mma->SetPath( path );
 	/*
@@ -328,7 +279,6 @@ void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *
 	}else{
 		spr1->Move( 0, -1 );
 	}*/
-	
 }
 
 ////////////////////////////////////BubPingBubbleAnimator
@@ -339,6 +289,8 @@ BubPingBubbleAnimator::BubPingBubbleAnimator(){
 
 void BubPingBubbleAnimator::RegistCollitions(Sprite* spr){
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::RegisterBubbleDrivers(spr, this);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void BubPingBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -391,8 +343,8 @@ static void StartZenChanDieAnimator( int x, int y ){
 	Sprite* newSprite = 
 		new Sprite(x, y, false, AnimationFilmHolder::GetFilm("ZenChanDie"), Terrain::GetActionLayer(),false);
 
-	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("ZenChanDie");
-	ZenChanDieAnimator *bda=new ZenChanDieAnimator();
+	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("ZenChanDie");
+	ZenChanDieAnimator *bda = new ZenChanDieAnimator();
 	bda->RegistCollitions(newSprite);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
@@ -403,6 +355,8 @@ ZenChanInBubbleAnimator::ZenChanInBubbleAnimator(){
 
 void ZenChanInBubbleAnimator::RegistCollitions(Sprite* spr){
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::RegisterBubbleDrivers(spr, this);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void ZenChanInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
@@ -410,7 +364,7 @@ void ZenChanInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	ZenChanInBubbleAnimator* _this = (ZenChanInBubbleAnimator*) anim;
 
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
-	Sprite *sprite=new Sprite(
+	Sprite *sprite  =new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
 								false,
@@ -453,7 +407,7 @@ void ZenChanInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*ar
 	ZenChanInBubbleMediumAngryAnimator* _this = (ZenChanInBubbleMediumAngryAnimator*) anim;
 
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
-	Sprite *sprite=new Sprite(
+	Sprite *sprite = new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
 								false,
@@ -497,15 +451,17 @@ void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args
 	ZenChanInBubbleHighAngryAnimator* _this = (ZenChanInBubbleHighAngryAnimator*) anim;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanAngryWalkLeft");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("ZenChanAngry"), 
-						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-
+	FrameRangeAnimation *fra = (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanAngryWalkLeft");
+	Sprite *n_sprite = new Sprite(
+									_this->GetSprite()->GetX(),
+									_this->GetSprite()->GetY(),
+									_this->GetSprite()->IsGravityAddicted(),
+									AnimationFilmHolder::GetFilm("ZenChanAngry"), 
+									Terrain::GetActionLayer(), 
+									_this->GetSprite()->GoesLeft()
+								);
 	ZenChanAngryWalkingAnimator *frtor=new ZenChanAngryWalkingAnimator();
-
 	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
-
 	DESTROY_ANIMATOR( _this );
 }
 
@@ -528,8 +484,8 @@ static void StartMightaDieAnimator( int x, int y ){
 	Sprite* newSprite = 
 		new Sprite(x, y, false, AnimationFilmHolder::GetFilm("MightaDie"), Terrain::GetActionLayer(),false);
 
-	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("MightaDie");
-	ZenChanDieAnimator *bda=new ZenChanDieAnimator();
+	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("MightaDie");
+	ZenChanDieAnimator *bda = new ZenChanDieAnimator();
 	bda->RegistCollitions(newSprite);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
@@ -539,22 +495,23 @@ MightaInBubbleAnimator::MightaInBubbleAnimator(){
 }
 
 void MightaInBubbleAnimator::RegistCollitions(Sprite* spr){
-
-
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::RegisterBubbleDrivers(spr, this);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void MightaInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
 	DASSERT( anim && anim==args );
 	MightaInBubbleAnimator* _this = (MightaInBubbleAnimator*) anim;
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
-	Sprite *sprite=new Sprite(
+	Sprite *sprite = new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
 								false,						  
 								AnimationFilmHolder::GetFilm( "MightaInBubbleMediumAngry" ), 
 								Terrain::GetActionLayer(), 
 								true
-							);
+								);
 	MightaInBubbleMediumAngryAnimator* bpbamr = new MightaInBubbleMediumAngryAnimator();
 	bpbamr->RegistCollitions(sprite);
 	START_ANIMATOR(bpbamr, sprite, mpa, GetGameTime() );
@@ -593,7 +550,7 @@ void MightaInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*arg
 	MightaInBubbleMediumAngryAnimator* _this = (MightaInBubbleMediumAngryAnimator*) anim;
 
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
-	Sprite *sprite=new Sprite(
+	Sprite *sprite = new Sprite(
 								_this->GetSprite()->GetX(),
 								_this->GetSprite()->GetY(),
 								false,						
@@ -638,14 +595,16 @@ void MightaInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args)
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaAngryWalkLeft");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaAngry"), 
-						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-
+	Sprite *n_sprite = new Sprite(
+									_this->GetSprite()->GetX(),
+									_this->GetSprite()->GetY(),
+									_this->GetSprite()->IsGravityAddicted(),
+									AnimationFilmHolder::GetFilm("MightaAngry"), 
+									Terrain::GetActionLayer(), 
+									_this->GetSprite()->GoesLeft()
+								);
 	MightaAngryWalkingAnimator *frtor=new MightaAngryWalkingAnimator();
-
 	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
-
 	DESTROY_ANIMATOR( _this );
 }
 

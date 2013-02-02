@@ -51,7 +51,7 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 		static void OnFinishCallback(Animator*, void*);
 };
 
-class BubPingBubbleAnimator: public MovingPathAnimator{
+class BubPingBubbleAnimator: public FrameRangeAnimator{
 	public:
 		BubPingBubbleAnimator();
 
@@ -77,7 +77,7 @@ class PonEffectAnimator: public MovingAnimator{
 		static void OnFinishCallback(Animator*, void*);
 };
 
-class ZenChanInBubbleAnimator : public MovingPathAnimator{
+class ZenChanInBubbleAnimator: public FrameRangeAnimator{
 	public:
 		ZenChanInBubbleAnimator();
 
@@ -119,7 +119,7 @@ class ZenChanInBubbleHighAngryAnimator : public MovingPathAnimator{
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 };
 
-class MightaInBubbleAnimator : public MovingPathAnimator{
+class MightaInBubbleAnimator: public FrameRangeAnimator{
 	public:
 		MightaInBubbleAnimator();
 
