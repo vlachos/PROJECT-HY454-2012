@@ -55,6 +55,8 @@ class CollisionChecker{
 		static void Register (Sprite* s1, animatorType_t start, animatorType_t end, void* Args, CollisionCallback callBack);
 		static void Register (Sprite* s1, animatorType_t start, animatorType_t end, CollisionCallback callBack);
 		static void RegisterPair(Sprite* s1, animatorType_t start, animatorType_t end, Animator* anim, CollisionCallback callBack);
+		static void RegisterBubbleDrivers(Sprite* s1, void* Args);
+		static void RegisterBubbleWrapAroundDrivers(Sprite* s1, void* Args);
 		static void Cancel (Sprite* s);
 		static void Cancel (Sprite* s1, Sprite* s2);
 		static void Check (void){

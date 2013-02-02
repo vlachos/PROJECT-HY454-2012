@@ -16,7 +16,7 @@ namespace InvisibleSprites{
 	extern void CreateInvisibleDrivers();
 	extern void DestroyInvisibleDrivers();
 
-	extern std::vector<InvisibleDrivers> GetInvisibleBubbleDrivers();
-	extern std::vector<InvisibleDrivers> GetInvisibleWrapAroundDrivers();
+	extern std::vector<InvisibleDrivers> GetInvisibleBubbleDriversForFrameRange();
+	extern std::vector<InvisibleDrivers> GetInvisibleWrapAroundDriversForFrameRange();
 }
 #endif

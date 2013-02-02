@@ -45,6 +45,9 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+
+		static void OnCollisionWithInvisibleDriverGoDown(Sprite *, Sprite *, void *);
+
 		static void OnFinishCallback(Animator*, void*);
 };
 

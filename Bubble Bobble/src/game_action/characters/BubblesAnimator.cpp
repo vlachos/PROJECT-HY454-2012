@@ -9,7 +9,7 @@
 #include "Terrain.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
-#include "InvisibleSprites.h"
+
 
 #define DESTROY_PAIR( pair )						\
 	REMOVE_FROM_ACTION_ANIMATOR( pair->first );		\
@@ -264,14 +264,8 @@ BubBubbleAnimator::BubBubbleAnimator(){
 
 void BubBubbleAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
-	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleBubbleDrivers();
-	for(int i=0; i<ibd.size(); ++i){
-		CollisionChecker::Register(spr, ibd[i].sprite, this, ibd[i].callback);
-	}
-	std::vector<InvisibleSprites::InvisibleDrivers> iwad = InvisibleSprites::GetInvisibleWrapAroundDrivers();
-	for(int i=0; i<iwad.size(); ++i){
-		CollisionChecker::Register(spr, iwad[i].sprite, this, iwad[i].callback);
-	}
+	CollisionChecker::RegisterBubbleDrivers(spr, this);
+	CollisionChecker::RegisterBubbleDrivers(spr, this);
 }
 
 void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){

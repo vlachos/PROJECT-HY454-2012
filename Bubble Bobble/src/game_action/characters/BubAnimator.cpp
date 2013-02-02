@@ -51,10 +51,6 @@ BubStandAnimator::BubStandAnimator(){
 
 void BubStandAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubStandAnimator::OnCollisionWithEnemy);
-	std::vector<InvisibleSprites::InvisibleDrivers> iwad = InvisibleSprites::GetInvisibleWrapAroundDrivers();
-	for(int i=0; i<iwad.size(); ++i){
-		CollisionChecker::Register(spr, iwad[i].sprite, this, iwad[i].callback);
-	}
 }
 
 void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -191,6 +187,8 @@ void BubFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, zenChanInBubbleMediumAngry_t, zenChanInBubbleMediumAngry_t, ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, zenChanInBubbleHighAngry_t, zenChanInBubbleHighAngry_t, ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, mightaInBubble_t, mightaInBubble_t, MightaInBubbleAnimator::OnCollisionWithBubFalling);
+	CollisionChecker::Register(spr, mightaInBubbleMediumAngry_t, mightaInBubbleMediumAngry_t, MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling);
+	CollisionChecker::Register(spr, mightaInBubbleHighAngry_t, mightaInBubbleHighAngry_t, MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, BubPingBubbleAnimator::OnCollisionWithBubFalling);
 
 }

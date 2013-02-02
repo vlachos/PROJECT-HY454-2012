@@ -7,6 +7,7 @@
 #include "MightaAnimator.h"
 #include "ZenChanAnimator.h"
 #include "BarronVonBlubaAnimator.h"
+#include "InvisibleSprites.h"
 
 typedef Sprite* (*SpriteDispacher_t) (Animator* animr);
 
@@ -188,6 +189,20 @@ void CollisionChecker::RegisterPair (Sprite* s1, animatorType_t start, animatorT
 		args->first = anim;
 		args->second = amtr;
 		CollisionChecker::Register (s1, s2, (void*)args, callBack);
+	}
+}
+
+void CollisionChecker::RegisterBubbleDrivers(Sprite* spr, void* Args){
+	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleBubbleDriversForFrameRange();
+	for(int i=0; i<ibd.size(); ++i){
+		CollisionChecker::Register(spr, ibd[i].sprite, Args, ibd[i].callback);
+	}
+}
+
+void CollisionChecker::RegisterBubbleWrapAroundDrivers(Sprite* spr, void* Args){
+	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleWrapAroundDriversForFrameRange();
+	for(int i=0; i<ibd.size(); ++i){
+		CollisionChecker::Register(spr, ibd[i].sprite, Args, ibd[i].callback);
 	}
 }
 
