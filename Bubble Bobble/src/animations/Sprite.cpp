@@ -61,11 +61,14 @@ bool Sprite::CollisionCheck( Sprite * s ){
 	return( !( ( _x > __x + __W || _x + _W < __x ) &&
 		    (_y > __y + __H || _y + _H < __y) )  );
 	*/
+	bool res = (	(( (__x <= _x) && (_x <= (__x + __W)) ) || ( (_x <= __x) && (__x <= (_x + _W)) )) &&
+						(( (__y <= _y) && (_y <= (__y + __H)) )	 || ( ( _y <= __y) && (__y <= (_y + _H)) ) ) );
+								
 	//std::cout << _x<< "<=" <<__x<< "&&"<< __x<< "<="<< _x +_W<< " bool " << (_x <= __x && __x <= (_x + _W)  )<<"\n" ;
-	//std::cout << s->currFilm->GetId()<<" Zen x: "<< __x << " ,y:" << __y << " , Height:" << s->GetFrameBox().GetHeigth()<< " ,Width: "<< s->GetFrameBox().GetWidth() <<"\n";
+	//std::cout << s->currFilm->GetId()<< ", " << res << ", Zen x: "<< __x << " ,y:" << __y << " , Height:" << s->GetFrameBox().GetHeigth()<< " ,Width: "<< s->GetFrameBox().GetWidth() <<"\n";
 	
-	
-
+	return res;
+	/*
 	return (
 			 (	( (__x <= _x) && (_x <= (__x + __W)) ) &&
 						( (__y <= _y) && (_y <= (__y + __H)) )	)
@@ -73,6 +76,7 @@ bool Sprite::CollisionCheck( Sprite * s ){
 		     (	( (_x <= __x) && (__x <= (_x + _W)) ) &&
 						( ( _y <= __y) && (__y <= (_y + _H)) )	)
 		   );
+		   */
 	/*
 	if (goesLeft){
 	return (
