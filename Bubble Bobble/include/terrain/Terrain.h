@@ -1,8 +1,9 @@
 #ifndef	TERRAIN_H
 #define	TERRAIN_H
 
-#include <TileBitmap.h>
-#include <TileLayer.h>
+#include "TileBitmap.h"
+#include "TileLayer.h"
+#include "ScoreBoard.h"
 
 class Terrain {
 
@@ -13,6 +14,7 @@ class Terrain {
 	private:
 		static Terrain* terrain;
 		static TileLayer* actionLayer;
+		static ScoreBoard* scores;
 
 	public:
 		static void SingeltonCreate();

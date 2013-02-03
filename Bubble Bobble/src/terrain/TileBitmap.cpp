@@ -1,4 +1,5 @@
-#include <TileBitmap.h>
+#include "TileBitmap.h"
+#include "BitmapLoader.h"
 #include "MemoryManage.h"
 
 	/*constructor and destructor*/
@@ -7,15 +8,13 @@
 		DASSERT(tiles );
 	}
 
-	TileBitmap::~TileBitmap(){
-		al_destroy_bitmap(tiles);
-	}
+	TileBitmap::~TileBitmap(){}
 
 	/*tiles Bitmap*/
 	bool TileBitmap::LoadTiles (const std::string& aPath ){
 		DASSERT(GetFileAttributesA(aPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 
-		if (tiles = al_load_bitmap((char*)aPath.c_str()) )
+		if (tiles = BitmapLoader::Load(aPath) )
 			return true;
 		else
 			return false;

@@ -2,14 +2,18 @@
 
 Terrain* Terrain::terrain;
 TileLayer* Terrain::actionLayer;
+ScoreBoard* Terrain::scores;
 
 /*constructor and destructor*/
 Terrain::Terrain(){
 	actionLayer = DNEWCLASS(TileLayer,() );
+	scores = DNEWCLASS(ScoreBoard,() );
 	DASSERT(actionLayer);
+	DASSERT(scores);
 }
 Terrain::~Terrain(){
 	delete actionLayer;
+	delete scores;
 }
 
 void Terrain::SingeltonCreate(){
@@ -30,6 +34,7 @@ TileLayer* Terrain::GetActionLayer(){
 
 void Terrain::DisplayTerrain(Bitmap at){
 	actionLayer->Display(at);
+	scores->DisplayScoreBoard(at, 12345, 99999999, 906);
 }
 
 void Terrain::SingeltonCleanUp(){
