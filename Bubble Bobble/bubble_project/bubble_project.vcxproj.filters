@@ -183,6 +183,12 @@
     <ClCompile Include="..\src\game_action\InvisibleSprites.cpp">
       <Filter>Source Files\game_action</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animations\TickAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\TimerTickAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -304,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\InvisibleSprites.h">
       <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\TickAnimation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\TimerTickAnimator.h">
+      <Filter>Header Files\animators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

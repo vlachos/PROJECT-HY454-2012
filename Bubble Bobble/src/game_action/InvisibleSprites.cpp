@@ -32,7 +32,6 @@ namespace InvisibleSpritesDelete{
 }
 
 static void InvisibleDrivererGoDownFRA(Sprite *obj, Sprite *driver, void *args){
-	std::cout<<"down\n";
 	DASSERT( driver && obj && args );
 	FrameRangeAnimation* anim = ((FrameRangeAnimator*) args)->GetAnimation();
 
@@ -50,7 +49,6 @@ static void InvisibleDrivererGoDownFRA(Sprite *obj, Sprite *driver, void *args){
 }
 
 static void InvisibleDrivererGoLeftFRA(Sprite *obj, Sprite *driver, void *args){
-	std::cout<<"left\n";
 	DASSERT( driver && obj && args );
 	FrameRangeAnimation* anim = ((FrameRangeAnimator*) args)->GetAnimation();
 	if(anim->GetDx()>=0){
@@ -68,7 +66,6 @@ static void InvisibleDrivererGoLeftFRA(Sprite *obj, Sprite *driver, void *args){
 }
 
 static void InvisibleDrivererGoRightFRA(Sprite *obj, Sprite *driver, void *args){
-	std::cout<<"right\n";
 	DASSERT( driver && obj && args );
 	FrameRangeAnimation* anim = ((FrameRangeAnimator*) args)->GetAnimation();
 	if(anim->GetDx()<=0){
@@ -86,9 +83,14 @@ static void InvisibleDrivererGoRightFRA(Sprite *obj, Sprite *driver, void *args)
 }
 
 static void InvisibleDrivererWrapAroundFRA1(Sprite *obj, Sprite *driver, void *args){
-	std::cout<<"wrap\n";
 	obj->SetX(160);
-	obj->SetY(5);
+	obj->SetY(0);
+	InvisibleDrivererGoDownFRA( driver, obj, args );
+}
+
+static void InvisibleDrivererWrapAroundFRA2(Sprite *obj, Sprite *driver, void *args){
+	obj->SetX(323);
+	obj->SetY(0);
 	InvisibleDrivererGoDownFRA( driver, obj, args );
 }
 
@@ -175,19 +177,19 @@ InvisibleSprites::InvisibleSprites(){
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 
 	box.clear();
-	box.push_back( Rect(0, 0, 362, 44) );
+	box.push_back( Rect(0, 0, 362, 24) );
 	af = new AnimationFilm(0, box, "invisibleDriver_0");
-	spr = new Sprite( 115, 72, false, af, Terrain::GetActionLayer(), false);
+	spr = new Sprite( 115, 92, false, af, Terrain::GetActionLayer(), false);
 	animationFilmHolderLateDestraction.push_back(af);
 	driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoLeftFRA ) );
 	
 
 	box.clear();
 	box.push_back( Rect(0, 0, 12, 2) );
-	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
+	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround2");
 	spr = new Sprite( 335, 450, false, af, Terrain::GetActionLayer(), true);
 	animationFilmHolderLateDestraction.push_back(af);
-	wrapAroundDriversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAroundFRA1 ) );
+	wrapAroundDriversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAroundFRA2 ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 12, 2) );
