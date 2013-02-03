@@ -1,6 +1,7 @@
 #ifndef BUBBLESANIMATOR_H
 #define BUBBLESANIMATOR_H
 
+#include "TimerTickAnimator.h"
 #include "MovingAnimator.h"
 #include "FrameRangeAnimator.h"
 #include "MovingPathAnimator.h"
@@ -36,7 +37,7 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 
 class BubBubbleAnimator: public FrameRangeAnimator{
 	public:
-		BubBubbleAnimator();
+		BubBubbleAnimator(TimerTickAnimator*);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubBubbleAnimator_t; }
@@ -51,11 +52,16 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 		static void OnBubbleExpiredTime(void*);
 
 		static void OnFinishCallback(Animator*, void*);
+
+		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
+
+	private:
+		TimerTickAnimator*	BubBubbleTimer;
 };
 
 class BubPingBubbleAnimator: public FrameRangeAnimator{
 	public:
-		BubPingBubbleAnimator();
+		BubPingBubbleAnimator(TimerTickAnimator*);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubBubbleAnimator_t; }
@@ -65,6 +71,12 @@ class BubPingBubbleAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
+
+		static void OnBubbleExpiredTime(void*);
+		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
+
+	private:
+		TimerTickAnimator*	BubBubbleTimer;
 };
 
 class PonEffectAnimator: public MovingAnimator{

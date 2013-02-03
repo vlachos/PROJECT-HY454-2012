@@ -1,6 +1,5 @@
 #include <math.h>
 #include "GameActionUtilities.h"
-#include "TimerTickAnimator.h"
 #include "BubblesAnimator.h"
 #include "AnimatorHolder.h"
 #include "MemoryManage.h"
@@ -36,6 +35,7 @@
 #define KILL_BUB_BUBBLE( animator_type, bubble, bub, args )					\
 	DASSERT( bubble && bub && args );										\
 	animator_type * _this = (animator_type *) args;							\
+	OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);				\
 	REMOVE_FROM_ACTION_ANIMATOR( _this );									\
 	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );				\
 	DESTROY_ANIMATOR( _this )
@@ -56,9 +56,9 @@
 		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
 		DESTROY_ANIMATOR( _this )	
 
-static void OnTickTimerFinishCallback(Animator* animr, void* anim){
+static void OnTickTimerFinishCallback(Animator* animr, void* args){
+	DASSERT( animr && !args );
 	TimerTickAnimator* ttar = (TimerTickAnimator*) animr;
-	DASSERT( ttar && anim && ttar->GetAnimation()==anim );
 	AnimatorHolder::MarkAsSuspended( ttar );	
 	AnimatorHolder::Cancel( ttar );			
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( ttar );
@@ -109,14 +109,13 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 								_this->GetSprite()->GoesLeft()
 							);
 
-	BubBubbleAnimator *bbar=new BubBubbleAnimator();
-	bbar->RegistCollitions(sprite);
-	
-
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
-	ta->SetTickAction( BubBubbleAnimator::OnBubbleExpiredTime, bbar );
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(OnTickTimerFinishCallback, ta);
+	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+
+	BubBubbleAnimator *bbar=new BubBubbleAnimator(ttar);
+	bbar->RegistCollitions(sprite);
+	ta->SetTickAction( BubBubbleAnimator::OnBubbleExpiredTime, bbar );
 
 	START_ANIMATOR(bbar, sprite, fra, GetGameTime() );
 	ttar->Start(GetGameTime());
@@ -242,8 +241,9 @@ static void StartPonEffectAnimator(int x, int y){
 	START_ANIMATOR(pear, sprite, mpa, GetGameTime() );
 }
 
-BubBubbleAnimator::BubBubbleAnimator(){
+BubBubbleAnimator::BubBubbleAnimator(TimerTickAnimator* _BubBubbleTimer){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
+	BubBubbleTimer = _BubBubbleTimer;
 }
 
 void BubBubbleAnimator::RegistCollitions(Sprite *spr){
@@ -266,10 +266,19 @@ void BubBubbleAnimator::OnBubbleExpiredTime(void* args){
 								Terrain::GetActionLayer(), 
 								true
 							);
-	BubPingBubbleAnimator* bpbamr = new BubPingBubbleAnimator();
-	bpbamr->RegistCollitions(sprite);
-	START_ANIMATOR(bpbamr, sprite, fra, GetGameTime() );
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
+	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
+	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
 
+	BubPingBubbleAnimator* bpbamr = new BubPingBubbleAnimator(ttar);
+	bpbamr->RegistCollitions(sprite);
+
+	ta->SetTickAction( BubPingBubbleAnimator::OnBubbleExpiredTime, bpbamr );
+
+	ttar->Start(GetGameTime());
+	AnimatorHolder::Register( ttar );				
+	AnimatorHolder::MarkAsRunning( ttar );
+	START_ANIMATOR(bpbamr, sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
 
@@ -307,8 +316,9 @@ void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *
 
 ////////////////////////////////////BubPingBubbleAnimator
 
-BubPingBubbleAnimator::BubPingBubbleAnimator(){
+BubPingBubbleAnimator::BubPingBubbleAnimator(TimerTickAnimator* _bubBubbleTimer){
 	this->SetOnFinish( OnFinishCallback, this );
+	BubBubbleTimer = _bubBubbleTimer;
 }
 
 void BubPingBubbleAnimator::RegistCollitions(Sprite* spr){
@@ -336,7 +346,12 @@ void BubPingBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, vo
 
 }
 
-
+void BubPingBubbleAnimator::OnBubbleExpiredTime(void* args){
+	DASSERT( args );
+	BubPingBubbleAnimator* _this = (BubPingBubbleAnimator*) args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}
 
 /////////////////////////PonEffectAnimator
 
@@ -355,10 +370,8 @@ void PonEffectAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 }
 
-
-
 void PonEffectAnimator::OnCollisionWithBubble(Sprite * pon, Sprite *bubble, void *args){
-	KILL_BUB_BUBBLE( PonEffectAnimator, bubble, pon, args );
+	KILL_BUB_BUBBLE( BubBubbleAnimator, bubble, pon, args );
 }
 
 ////////////////////////////ZenChanInBubbleAnimator
