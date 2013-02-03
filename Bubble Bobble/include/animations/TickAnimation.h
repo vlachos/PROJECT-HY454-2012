@@ -16,10 +16,12 @@ class TickAnimation : public Animation{
 		~TickAnimation();
 
 		void NotifyTickAction (void);
+		Animation* Clone (animid_t newId) const;
 		delay_t GetDelay (void) const;
 		void SetDelay (delay_t v);
 		byte GetRepetitions (void) const;
 		void SetRepetitions (byte v);
+		void SetTickAction(TickFunc, void*);
 };
 
 #endif

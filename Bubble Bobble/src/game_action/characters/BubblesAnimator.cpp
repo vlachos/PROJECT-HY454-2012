@@ -1,5 +1,6 @@
 #include <math.h>
 #include "GameActionUtilities.h"
+#include "TimerTickAnimator.h"
 #include "BubblesAnimator.h"
 #include "AnimatorHolder.h"
 #include "MemoryManage.h"
@@ -55,6 +56,14 @@
 		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
 		DESTROY_ANIMATOR( _this )	
 
+static void OnTickTimerFinishCallback(Animator* animr, void* anim){
+	TimerTickAnimator* ttar = (TimerTickAnimator*) animr;
+	DASSERT( ttar && anim && ttar->GetAnimation()==anim );
+	AnimatorHolder::MarkAsSuspended( ttar );	
+	AnimatorHolder::Cancel( ttar );			
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( ttar );
+}
+
 //////////////////////////////BubBubbleBlastOffAnimator
 
 BubBubbleBlastOffAnimator::BubBubbleBlastOffAnimator(){
@@ -81,6 +90,7 @@ void BubBubbleBlastOffAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::RegisterPair( spr,  mightaAngryJumpAnimator_t, mightaAngryJumpAnimator_t, this, OnCollisionWithMightaAngryJump);
 }
 
+
 void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( anim && args);
 	BubBubbleBlastOffAnimator * _this = (BubBubbleBlastOffAnimator*)args;
@@ -101,9 +111,19 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	BubBubbleAnimator *bbar=new BubBubbleAnimator();
 	bbar->RegistCollitions(sprite);
+	
+
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
+	ta->SetTickAction( BubBubbleAnimator::OnBubbleExpiredTime, bbar );
+	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
+	ttar->SetOnFinish(OnTickTimerFinishCallback, ta);
 
 	START_ANIMATOR(bbar, sprite, fra, GetGameTime() );
+	ttar->Start(GetGameTime());
+	AnimatorHolder::Register( ttar );				
+	AnimatorHolder::MarkAsRunning( ttar );
 	DESTROY_ANIMATOR( _this );
+	
 }
 
 static void StartZenChanAtBubbleAnimator(int x, int y, bool goesLeft){
@@ -232,8 +252,8 @@ void BubBubbleAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
-void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
-	DASSERT( anim && anim==args);
+void BubBubbleAnimator::OnBubbleExpiredTime(void* args){
+	DASSERT( args);
 	BubBubbleAnimator * _this = (BubBubbleAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
@@ -251,6 +271,10 @@ void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
 	START_ANIMATOR(bpbamr, sprite, fra, GetGameTime() );
 
 	DESTROY_ANIMATOR( _this );
+}
+
+void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
+
 }
 
 void BubBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){

@@ -1,7 +1,7 @@
 #include "TickAnimation.h"
 
 TickAnimation::TickAnimation(animid_t _id, delay_t	_delay, byte _repetitions, TickFunc _action, void* _closure): 
-				Animation(_id), delay(_delay), repetitions(_repetitions), action(_action), closure(_closure){
+				delay(_delay), repetitions(_repetitions), action(_action), closure(_closure),Animation(_id){
 
 }
 
@@ -15,6 +15,10 @@ TickAnimation::~TickAnimation(){
 void TickAnimation::NotifyTickAction (void){
 	if(action)
 		(*action)(closure);
+}
+
+Animation* TickAnimation::Clone (animid_t newId) const{
+	return new TickAnimation(newId, delay, repetitions, action, closure);
 }
 
 delay_t TickAnimation::GetDelay (void) const{
@@ -31,4 +35,9 @@ byte TickAnimation::GetRepetitions (void) const{
 
 void TickAnimation::SetRepetitions (byte v){
 	repetitions = v;
+}
+
+void TickAnimation::SetTickAction(TickFunc	_action, void* _closure){
+	action = _action;
+	closure = _closure;
 }

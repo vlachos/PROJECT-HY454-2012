@@ -13,6 +13,7 @@
 #include "FrameListAnimation.h"
 #include "MovingPathAnimation.h"
 #include "FlashAnimation.h"
+#include "TickAnimation.h"
 
 AnimationsParser*					AnimationsParser::singletonPtr;
 AnimationsParser::animationsMap		AnimationsParser::map; 
@@ -109,6 +110,9 @@ static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 	if( !strcmp(strType, "FlashAnimation") ){
 		retVal = new FlashAnimation( GetGetIntAtrr( anim, "repetitions" ), GetGetIntAtrr( anim, "showDelay" ),
 								 GetGetIntAtrr( anim, "hideDelay" ), 1 );
+	}else
+	if( !strcmp(strType, "TickAnimation") ){
+		retVal = new TickAnimation( 1, GetGetIntAtrr( anim, "delay" ), GetGetIntAtrr( anim, "repetitions" ), 0, 0);
 	}else
 		DASSERT(false);
 

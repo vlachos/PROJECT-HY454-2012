@@ -48,6 +48,8 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 
 		static void OnCollisionWithInvisibleDriverGoDown(Sprite *, Sprite *, void *);
 
+		static void OnBubbleExpiredTime(void*);
+
 		static void OnFinishCallback(Animator*, void*);
 };
 

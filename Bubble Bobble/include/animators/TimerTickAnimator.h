@@ -11,7 +11,14 @@ class TimerTickAnimator : public Animator{
 	public:
 		TimerTickAnimator(TickAnimation* _tick);
 		~TimerTickAnimator(void);
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return timeTickAnimator_t; }
+		
+		void Start (timestamp_t t);
+		TickAnimation* GetAnimation(void);
 		void Progress (timestamp_t currTime);
+		void Display(Bitmap at);
 };
 
 #endif

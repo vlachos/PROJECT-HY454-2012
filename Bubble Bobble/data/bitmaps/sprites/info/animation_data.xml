@@ -321,4 +321,7 @@
   </exampleforframelist>
 
   <exampleflashanimation type="FlashAnimation" repetitions="6" hideDelay="100" showDelay="100" />
+  
+  <BubBubbleExpired type="TickAnimation" repetitions="1" delay="4000"/>
+  
 </animations>
