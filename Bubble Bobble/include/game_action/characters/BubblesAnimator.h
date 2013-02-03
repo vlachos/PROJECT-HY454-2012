@@ -46,15 +46,10 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
-
 		static void OnCollisionWithInvisibleDriverGoDown(Sprite *, Sprite *, void *);
-
 		static void OnBubbleExpiredTime(void*);
 
-		static void OnFinishCallback(Animator*, void*);
-
 		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
-
 	private:
 		TimerTickAnimator*	BubBubbleTimer;
 };
@@ -70,11 +65,8 @@ class BubPingBubbleAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
-		static void OnFinishCallback(Animator*, void*);
-
 		static void OnBubbleExpiredTime(void*);
 		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
-
 	private:
 		TimerTickAnimator*	BubBubbleTimer;
 };
@@ -93,7 +85,7 @@ class PonEffectAnimator: public MovingAnimator{
 
 class ZenChanInBubbleAnimator: public FrameRangeAnimator{
 	public:
-		ZenChanInBubbleAnimator();
+		ZenChanInBubbleAnimator(TimerTickAnimator*);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanInBubble_t; }
@@ -103,6 +95,11 @@ class ZenChanInBubbleAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+		static void OnBubbleExpiredTime(void*);
+
+		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
+	private:
+		TimerTickAnimator*	BubBubbleTimer;
 };
 
 class ZenChanInBubbleMediumAngryAnimator : public MovingPathAnimator{
@@ -135,16 +132,20 @@ class ZenChanInBubbleHighAngryAnimator : public MovingPathAnimator{
 
 class MightaInBubbleAnimator: public FrameRangeAnimator{
 	public:
-		MightaInBubbleAnimator();
+		MightaInBubbleAnimator(TimerTickAnimator*);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return mightaInBubble_t; }
 
-		static void OnFinishCallback(Animator*, void*);
 		void RegistCollitions(Sprite*);
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+		static void OnBubbleExpiredTime(void*);
+
+		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
+	private:
+		TimerTickAnimator*	BubBubbleTimer;
 };
 
 class MightaInBubbleMediumAngryAnimator : public MovingPathAnimator{

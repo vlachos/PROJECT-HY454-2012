@@ -65,19 +65,19 @@ void BubbleMain::InitGameEngine(){
 	MightaStandAnimator* animr2 = new MightaStandAnimator();
 	//sprite2->AddStartFallingListener(animr2);
 	animr2->RegistCollitions(sprite2);
-	/*
+	
 	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
 	FrameRangeAnimation* anim3 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
 	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
 	sprite3->AddStartFallingListener(animr3);
 	animr3->RegistCollitions(sprite3);
-	*/
+	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 	
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
-	//START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
+	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 
 	redraw = true;
 }

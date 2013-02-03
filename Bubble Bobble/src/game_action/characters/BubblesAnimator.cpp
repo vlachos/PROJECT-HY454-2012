@@ -43,12 +43,30 @@
 #define KILL_ZEN_CHAN(animator_type, bubble, zenChan, args )			\
 		DASSERT( bubble && zenChan && args );							\
 		animator_type * _this = (animator_type *) args;					\
+		OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);		\
+		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
+		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
+		StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());		\
+		DESTROY_ANIMATOR( _this )	
+
+#define KILL_ZEN_CHAN_ANGRY(animator_type, bubble, zenChan, args )		\
+		DASSERT( bubble && zenChan && args );							\
+		animator_type * _this = (animator_type *) args;					\
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());		\
 		DESTROY_ANIMATOR( _this )	
 
 #define KILL_MIGHTA(animator_type, bubble, mighta, args )				\
+		DASSERT( bubble && mighta && args );							\
+		animator_type * _this = (animator_type *) args;					\
+		OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);		\
+		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
+		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
+		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
+		DESTROY_ANIMATOR( _this )	
+
+#define KILL_MIGHTA_ANGRY(animator_type, bubble, mighta, args )			\
 		DASSERT( bubble && mighta && args );							\
 		animator_type * _this = (animator_type *) args;					\
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
@@ -135,9 +153,17 @@ static void StartZenChanAtBubbleAnimator(int x, int y, bool goesLeft){
 								Terrain::GetActionLayer(), 
 								true
 							);
-	ZenChanInBubbleAnimator* zcibanmr = new ZenChanInBubbleAnimator();
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
+	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
+	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+
+	ZenChanInBubbleAnimator* zcibanmr = new ZenChanInBubbleAnimator(ttar);
 	zcibanmr->RegistCollitions(sprite);
+	ta->SetTickAction( ZenChanInBubbleAnimator::OnBubbleExpiredTime, zcibanmr );
 	START_ANIMATOR(zcibanmr, sprite, fra, GetGameTime() );
+	ttar->Start(GetGameTime());
+	AnimatorHolder::Register( ttar );				
+	AnimatorHolder::MarkAsRunning( ttar );
 }
 
 static void StartMightaAtBubbleAnimator(int x, int y, bool goesLeft){
@@ -150,9 +176,18 @@ static void StartMightaAtBubbleAnimator(int x, int y, bool goesLeft){
 								Terrain::GetActionLayer(), 
 								true
 							);
-	MightaInBubbleAnimator* mibanmr = new MightaInBubbleAnimator();
+
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
+	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
+	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+
+	MightaInBubbleAnimator* mibanmr = new MightaInBubbleAnimator(ttar);
 	mibanmr->RegistCollitions(sprite);
+	ta->SetTickAction( MightaInBubbleAnimator::OnBubbleExpiredTime, mibanmr );
 	START_ANIMATOR(mibanmr, sprite, fra, GetGameTime() );
+	ttar->Start(GetGameTime());
+	AnimatorHolder::Register( ttar );				
+	AnimatorHolder::MarkAsRunning( ttar );
 }
 
 
@@ -242,7 +277,6 @@ static void StartPonEffectAnimator(int x, int y){
 }
 
 BubBubbleAnimator::BubBubbleAnimator(TimerTickAnimator* _BubBubbleTimer){
-	this->SetOnFinish( OnFinishCallback, (void*)this );
 	BubBubbleTimer = _BubBubbleTimer;
 }
 
@@ -266,7 +300,7 @@ void BubBubbleAnimator::OnBubbleExpiredTime(void* args){
 								Terrain::GetActionLayer(), 
 								true
 							);
-	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubPigBubbleExpired");
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
 	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
 
@@ -280,10 +314,6 @@ void BubBubbleAnimator::OnBubbleExpiredTime(void* args){
 	AnimatorHolder::MarkAsRunning( ttar );
 	START_ANIMATOR(bpbamr, sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
-}
-
-void BubBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
-
 }
 
 void BubBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
@@ -317,7 +347,6 @@ void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *
 ////////////////////////////////////BubPingBubbleAnimator
 
 BubPingBubbleAnimator::BubPingBubbleAnimator(TimerTickAnimator* _bubBubbleTimer){
-	this->SetOnFinish( OnFinishCallback, this );
 	BubBubbleTimer = _bubBubbleTimer;
 }
 
@@ -325,13 +354,6 @@ void BubPingBubbleAnimator::RegistCollitions(Sprite* spr){
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, this, OnCollisionWithBubble);
 	CollisionChecker::RegisterBubbleDrivers(spr, this);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
-}
-
-void BubPingBubbleAnimator::OnFinishCallback(Animator* anim, void* args){
-	DASSERT( anim && anim==args );
-	BubPingBubbleAnimator* _this = (BubPingBubbleAnimator*) args;
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	DESTROY_ANIMATOR( _this );
 }
 
 void BubPingBubbleAnimator::OnCollisionWithBubFalling(Sprite *bub, Sprite *bubble, void *args){
@@ -386,8 +408,8 @@ static void StartZenChanDieAnimator( int x, int y ){
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
 
-ZenChanInBubbleAnimator::ZenChanInBubbleAnimator(){
-	this->SetOnFinish(OnFinishCallback, (void*)this);
+ZenChanInBubbleAnimator::ZenChanInBubbleAnimator(TimerTickAnimator* _BubBubbleTimer){
+	BubBubbleTimer = _BubBubbleTimer;
 }
 
 void ZenChanInBubbleAnimator::RegistCollitions(Sprite* spr){
@@ -396,9 +418,9 @@ void ZenChanInBubbleAnimator::RegistCollitions(Sprite* spr){
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
-void ZenChanInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
-	DASSERT( anim && anim==args );
-	ZenChanInBubbleAnimator* _this = (ZenChanInBubbleAnimator*) anim;
+void  ZenChanInBubbleAnimator::OnBubbleExpiredTime(void* args){
+	DASSERT( args );
+	ZenChanInBubbleAnimator* _this = (ZenChanInBubbleAnimator*) args;
 
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
 	Sprite *sprite  =new Sprite(
@@ -462,11 +484,11 @@ void ZenChanInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*ar
 }						
 
 void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *zenChan, Sprite *bubble, void *args){
-	KILL_ZEN_CHAN(ZenChanInBubbleMediumAngryAnimator, bubble, zenChan, args );
+	KILL_ZEN_CHAN_ANGRY(ZenChanInBubbleMediumAngryAnimator, bubble, zenChan, args );
 }
 
 void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *zenChan, Sprite *bubble, void *args){
-	KILL_ZEN_CHAN(ZenChanInBubbleMediumAngryAnimator, bubble, zenChan, args );
+	KILL_ZEN_CHAN_ANGRY(ZenChanInBubbleMediumAngryAnimator, bubble, zenChan, args );
 }
 
 void ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -503,12 +525,12 @@ void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args
 }
 
 void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *zenChan, Sprite *bubble, void *args){
-	KILL_ZEN_CHAN(ZenChanInBubbleHighAngryAnimator, bubble, zenChan, args );
+	KILL_ZEN_CHAN_ANGRY(ZenChanInBubbleHighAngryAnimator, bubble, zenChan, args );
 
 }
 
 void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *zenChan, Sprite *bubble, void *args){
-	KILL_ZEN_CHAN(ZenChanInBubbleHighAngryAnimator, bubble, zenChan, args );
+	KILL_ZEN_CHAN_ANGRY(ZenChanInBubbleHighAngryAnimator, bubble, zenChan, args );
 }
 
 void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -527,8 +549,8 @@ static void StartMightaDieAnimator( int x, int y ){
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
 
-MightaInBubbleAnimator::MightaInBubbleAnimator(){
-	this->SetOnFinish(OnFinishCallback, (void*)this);
+MightaInBubbleAnimator::MightaInBubbleAnimator(TimerTickAnimator* _bubBubbleTimer){
+	BubBubbleTimer = _bubBubbleTimer;
 }
 
 void MightaInBubbleAnimator::RegistCollitions(Sprite* spr){
@@ -537,9 +559,9 @@ void MightaInBubbleAnimator::RegistCollitions(Sprite* spr){
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
-void MightaInBubbleAnimator::OnFinishCallback(Animator*anim, void*args){
-	DASSERT( anim && anim==args );
-	MightaInBubbleAnimator* _this = (MightaInBubbleAnimator*) anim;
+void MightaInBubbleAnimator::OnBubbleExpiredTime(void* args){
+	DASSERT( args );
+	MightaInBubbleAnimator* _this = (MightaInBubbleAnimator*) args;
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("EnemyAgryBubble");
 	Sprite *sprite = new Sprite(
 								_this->GetSprite()->GetX(),
@@ -604,11 +626,11 @@ void MightaInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*arg
 }
 
 void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling(Sprite *mighta, Sprite *bubble, void *args){
-	KILL_MIGHTA(MightaInBubbleMediumAngryAnimator, bubble, mighta, args );
+	KILL_MIGHTA_ANGRY(MightaInBubbleMediumAngryAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubJump(Sprite *mighta, Sprite *bubble, void *args){
-	KILL_MIGHTA(MightaInBubbleMediumAngryAnimator, bubble, mighta, args );
+	KILL_MIGHTA_ANGRY(MightaInBubbleMediumAngryAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleMediumAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
@@ -646,11 +668,11 @@ void MightaInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args)
 }
 
 void MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling(Sprite *mighta, Sprite *bubble, void *args){
-	KILL_MIGHTA(MightaInBubbleHighAngryAnimator, bubble, mighta, args );
+	KILL_MIGHTA_ANGRY(MightaInBubbleHighAngryAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *mighta, Sprite *bubble, void *args){
-	KILL_MIGHTA(MightaInBubbleHighAngryAnimator, bubble, mighta, args );
+	KILL_MIGHTA_ANGRY(MightaInBubbleHighAngryAnimator, bubble, mighta, args );
 }
 
 void MightaInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){

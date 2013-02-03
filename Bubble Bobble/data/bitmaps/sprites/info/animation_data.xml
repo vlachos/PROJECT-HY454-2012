@@ -323,5 +323,5 @@
   <exampleflashanimation type="FlashAnimation" repetitions="6" hideDelay="100" showDelay="100" />
   
   <BubBubbleExpired type="TickAnimation" repetitions="1" delay="4000"/>
-  
+  <BubPigBubbleExpired type="TickAnimation" repetitions="1" delay="2000"/>
 </animations>
