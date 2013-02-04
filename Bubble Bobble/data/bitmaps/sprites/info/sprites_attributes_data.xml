@@ -31,7 +31,7 @@
 		<BlueSweet PonedBubblesNeeded = "5"/>
 		<PurpleSweet BlustedBubblesNeeded = "5"/>
 	</PowerUpConditions>
-	
+
 	<BarronVonBluba SecToDecrDelay = "5" DecrDelay = "10"/>
 	
 </Attributes>

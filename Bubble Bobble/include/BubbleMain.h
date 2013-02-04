@@ -8,6 +8,8 @@
 #include "MemoryManage.h"
 #include "InputManage.h"
 
+#include "BubbleLogic.h"
+
 #include "Terrain.h"
 #include "FrameRangeAnimation.h"
 #include "AnimationFilmHolder.h"

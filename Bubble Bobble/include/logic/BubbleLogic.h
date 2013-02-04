@@ -2,73 +2,90 @@
 #define BUBBLELOGIC_H
 
 #include "BubProfile.h"
+#include "Metrics.h"
+#include <vector>
 
 class BubbleLogic {
 
 	public:
-		void SingletonCreate(void);
+		static void SingletonCreate(void);
 
 	private:
-		BubProfile* bub;
-		BubProfile* bob;
+		static Points highScore;
 
-		Lifes startingLifes;
-		Points emptyBubblePoints;
-		Points zenChanBubblePoints;
-		Points mightaBubblePoints;
-		Points bananaPoints;
-		Points orangePoints;
-		Points peachPoints;
-		Points waterMelonPoints;
-		Points blueDiamondPoints;
-		Points powerUpPoints;
+		static BubProfile* bub;
+		static BubProfile* bob;
+		static Lifes startingLifes;
 
-		unsigned int enemiesForBanana;
-		unsigned int enemiesForOrange;
-		unsigned int enemiesForPeach;
-		unsigned int enemiesForWaterMelon;
+		static double baronSecToRaiseMS;
+		static double baronDecrDelay;
 
-		unsigned int crossStageForRedShoes;
-		unsigned int jumpsForYellowSwt;
-		unsigned int ponedBubblesForBlueSwt;
-		unsigned int blustedBubblesForPurpleSwt;
+		static Points emptyBubblePoints;
+		static Points zenChanBubblePoints;
+		static Points mightaBubblePoints;
+		static Points bananaPoints;
+		static Points orangePoints;
+		static Points peachPoints;
+		static Points waterMelonPoints;
+		static Points blueDiamondPoints;
+		static Points powerUpPoints;
 
-		double baronSecToRaiseMS;
-		double baronDecrDelay;
+		static unsigned int enemiesForBanana;
+		static unsigned int enemiesForOrange;
+		static unsigned int enemiesForPeach;
+		static unsigned int enemiesForWaterMelon;
 
-	public:
-		BubProfile* GetBubProfile(void);
-		BubProfile* GetBobProfile(void);
+		static unsigned int crossStageForRedShoes;
+		static unsigned int jumpsForYellowSwt;
+		static unsigned int ponedBubblesForBlueSwt;
+		static unsigned int blustedBubblesForPurpleSwt;
 
-		Lifes GetStartingLifes(void);
-		Points GetEmptyBubblePoints(void);
-		Points GetZenChanBubblePoints(void);
-		Points GetMightaBubblePoints(void);
-		Points GetBananaPoints(void);
-		Points GetOrangePoints(void);
-		Points GetPeachPoints(void);
-		Points GetWaterMelonPoints(void);
-		Points GetBlueDiamondPoints(void);
-		Points GetPowerUpPoints(void);
-
-		unsigned int GetEnemiesForBanana(void);
-		unsigned int GetEnemiesForOrange(void);
-		unsigned int GetEnemiesForPeach(void);
-		unsigned int GetEnemiesForWaterMelon(void);
-
-		unsigned int GetCrossStageForRedShoes(void);
-		unsigned int GetJumpsForYellowSwt(void);
-		unsigned int GetPonedBubblesForBlueSwt(void);
-		unsigned int GetBlustedBubblesForPurpleSwt(void);
-
-		double GetBaronSecToRaiseMS(void);
-		double GetBaronDecrDelay(void);
+		static std::vector<Coordinates> powerUpPosXY;
 
 	public:
-		Points GetPointsOfPoning(unsigned int enemiesPoned);
+		static BubProfile* GetBubProfile(void);
+		static BubProfile* GetBobProfile(void);
+
+		static void SetHighScore(Points newHighScore);
+		static Points GetHighScore(void);
+
+		static void SetBubScore(Points newScore);
+		static void IncrBubScore(Points somePoints);
+
+		static void SetBobScore(Points newScore);
+		static void IncrBobScore(Points somePoints);
+
+		static Lifes GetStartingLifes(void);
+
+		static double GetBaronSecToRaiseMS(void);
+		static double GetBaronDecrDelay(void);
+
+		static Points GetEmptyBubblePoints(void);
+		static Points GetZenChanBubblePoints(void);
+		static Points GetMightaBubblePoints(void);
+		static Points GetBananaPoints(void);
+		static Points GetOrangePoints(void);
+		static Points GetPeachPoints(void);
+		static Points GetWaterMelonPoints(void);
+		static Points GetBlueDiamondPoints(void);
+		static Points GetPowerUpPoints(void);
+
+		static unsigned int GetEnemiesForBanana(void);
+		static unsigned int GetEnemiesForOrange(void);
+		static unsigned int GetEnemiesForPeach(void);
+		static unsigned int GetEnemiesForWaterMelon(void);
+
+		static unsigned int GetCrossStageForRedShoes(void);
+		static unsigned int GetJumpsForYellowSwt(void);
+		static unsigned int GetPonedBubblesForBlueSwt(void);
+		static unsigned int GetBlustedBubblesForPurpleSwt(void);
+
+		static Coordinates GetPowerUpPosXY(unsigned int ith);
+
+		static Points GetPointsOfPoning(unsigned int enemiesPoned);
 
 	public:
-		void SingletonCleanUp(void);
+		static void SingletonCleanUp(void);
 
 };
 

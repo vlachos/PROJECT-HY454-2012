@@ -1,8 +1,43 @@
 #include "BubbleLogic.h"
 #include "MemoryManage.h"
+#include <math.h>
+
+	BubProfile* BubbleLogic::bub;
+	BubProfile* BubbleLogic::bob;
+
+	Points BubbleLogic::highScore;
+
+	Lifes BubbleLogic::startingLifes;
+
+	double BubbleLogic::baronSecToRaiseMS;
+	double BubbleLogic::baronDecrDelay;
+
+	Points BubbleLogic::emptyBubblePoints;
+	Points BubbleLogic::zenChanBubblePoints;
+	Points BubbleLogic::mightaBubblePoints;
+	Points BubbleLogic::bananaPoints;
+	Points BubbleLogic::orangePoints;
+	Points BubbleLogic::peachPoints;
+	Points BubbleLogic::waterMelonPoints;
+	Points BubbleLogic::blueDiamondPoints;
+	Points BubbleLogic::powerUpPoints;
+
+	unsigned int BubbleLogic::enemiesForBanana;
+	unsigned int BubbleLogic::enemiesForOrange;
+	unsigned int BubbleLogic::enemiesForPeach;
+	unsigned int BubbleLogic::enemiesForWaterMelon;
+
+	unsigned int BubbleLogic::crossStageForRedShoes;
+	unsigned int BubbleLogic::jumpsForYellowSwt;
+	unsigned int BubbleLogic::ponedBubblesForBlueSwt;
+	unsigned int BubbleLogic::blustedBubblesForPurpleSwt;
+
+	std::vector<Coordinates> BubbleLogic::powerUpPosXY;
+
 
 	void BubbleLogic::SingletonCreate(void){
 
+		highScore = 0;
 		startingLifes = 5;
 		emptyBubblePoints = 10;
 		powerUpPoints = 100;
@@ -29,12 +64,47 @@
 
 		bub = DNEWCLASS(BubProfile, (startingLifes) );
 		bob = DNEWCLASS(BubProfile, (startingLifes) );
+
+		powerUpPosXY.push_back( std::make_pair(100,111) );
+		powerUpPosXY.push_back( std::make_pair(210,191) );
+		powerUpPosXY.push_back( std::make_pair(100,271) );
+		powerUpPosXY.push_back( std::make_pair(210,431) );
 	}
+
 
 	BubProfile* BubbleLogic::GetBubProfile(void) { return bub; }
 	BubProfile* BubbleLogic::GetBobProfile(void) { return bob; }
 
+	void BubbleLogic::SetHighScore(Points newHighScore) { highScore = newHighScore; }
+	Points BubbleLogic::GetHighScore(void) { return highScore; }
+
+	void BubbleLogic::SetBubScore(Points newScore) {
+		bub->SetScore(newScore);
+		if (bub->GetScore() > highScore)
+			highScore = bub->GetScore();
+	}
+	void BubbleLogic::IncrBubScore(Points somePoints) {
+		bub->IncrScore(somePoints);
+		if (bub->GetScore() > highScore)
+			highScore = bub->GetScore();
+	}
+
+	void BubbleLogic::SetBobScore(Points newScore) {
+		bob->SetScore(newScore);
+		if (bob->GetScore() > highScore)
+			highScore = bob->GetScore();
+	}
+	void BubbleLogic::IncrBobScore(Points somePoints) {
+		bob->IncrScore(somePoints);
+		if (bob->GetScore() > highScore)
+			highScore = bob->GetScore();
+	}
+
 	Lifes BubbleLogic::GetStartingLifes(void) { return startingLifes; }
+
+	double BubbleLogic::GetBaronSecToRaiseMS(void) { return baronSecToRaiseMS; }
+	double BubbleLogic::GetBaronDecrDelay(void) { return baronDecrDelay; }
+
 	Points BubbleLogic::GetEmptyBubblePoints(void) { return emptyBubblePoints; }
 	Points BubbleLogic::GetPowerUpPoints(void) { return powerUpPoints; }
 	Points BubbleLogic::GetZenChanBubblePoints(void) { return zenChanBubblePoints; }
@@ -55,11 +125,13 @@
 	unsigned int BubbleLogic::GetPonedBubblesForBlueSwt(void) { return ponedBubblesForBlueSwt; }
 	unsigned int BubbleLogic::GetBlustedBubblesForPurpleSwt(void) { return blustedBubblesForPurpleSwt; }
 
-	double BubbleLogic::GetBaronSecToRaiseMS(void) { return baronSecToRaiseMS; }
-	double BubbleLogic::GetBaronDecrDelay(void) { return baronDecrDelay; }
+	Coordinates BubbleLogic::GetPowerUpPosXY(unsigned int ith){
+		DASSERT(ith < powerUpPosXY.size());
+		return powerUpPosXY[ith];
+	}
 
 	Points GetPointsOfPoning(unsigned int enemiesPoned){
-		return enemiesPoned;
+		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
 
 	void BubbleLogic::SingletonCleanUp(void){

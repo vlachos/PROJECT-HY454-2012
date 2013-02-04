@@ -1,4 +1,5 @@
-#include <Terrain.h>
+#include "Terrain.h"
+#include "BubbleLogic.h"
 
 Terrain* Terrain::terrain;
 TileLayer* Terrain::actionLayer;
@@ -34,7 +35,9 @@ TileLayer* Terrain::GetActionLayer(){
 
 void Terrain::DisplayTerrain(Bitmap at){
 	actionLayer->Display(at);
-	scores->DisplayScoreBoard(at, 12345, 99999999, -1);
+	scores->DisplayScoreBoard(at,	BubbleLogic::GetBubProfile()->GetScore(),
+									BubbleLogic::GetHighScore(),
+									BubbleLogic::GetBobProfile()->GetScore() );
 }
 
 void Terrain::SingeltonCleanUp(){

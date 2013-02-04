@@ -48,12 +48,15 @@ bool BubbleMain::InitAllegro(){
 
 void BubbleMain::InitGameEngine(){
 
+	BubbleLogic::SingletonCreate();
+
 	CollisionChecker::SingletonCreate();
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	Terrain::SingeltonCreate();
 	InvisibleSprites::SingletonCreate();
 	
+	BubbleLogic::SetBubScore(0);
 	Sprite* sprite = new Sprite(334,300,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
 	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
 	BubStandAnimator* animr = new BubStandAnimator();
@@ -149,7 +152,6 @@ bool BubbleMain::InputManagement(){
 
 void BubbleMain::AnimationProgress(timestamp_t timeNow){
 	AnimatorHolder::Progress(timeNow);
-	
 }
 
 void BubbleMain::ArtificialIntelligence(){
@@ -171,6 +173,8 @@ void BubbleMain::SystemLoopDispatching(){
 
 /* Game Termination */
 void BubbleMain::GameOver(){
+
+	BubbleLogic::SingletonCleanUp();
 
 	Terrain::SingeltonCleanUp();
 
