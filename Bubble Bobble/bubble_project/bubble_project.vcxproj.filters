@@ -171,12 +171,6 @@
     <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\logic\BubbleLogic.cpp">
-      <Filter>Source Files\logic</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\logic\BubProfile.cpp">
-      <Filter>Source Files\logic</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\terrain\ScoreBoard.cpp">
       <Filter>Source Files\terrain</Filter>
     </ClCompile>
@@ -188,6 +182,12 @@
     </ClCompile>
     <ClCompile Include="..\src\animators\TimerTickAnimator.cpp">
       <Filter>Source Files\animators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\logic\BubbleLogic.cpp">
+      <Filter>Source Files\logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\logic\BubProfile.cpp">
+      <Filter>Source Files\logic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,12 +299,6 @@
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\logic\BubbleLogic.h">
-      <Filter>Header Files\logic</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\logic\BubProfile.h">
-      <Filter>Header Files\logic</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\terrain\ScoreBoard.h">
       <Filter>Header Files\terrain</Filter>
     </ClInclude>
@@ -316,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="..\include\animators\TimerTickAnimator.h">
       <Filter>Header Files\animators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\logic\BubProfile.h">
+      <Filter>Header Files\logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\logic\BubbleLogic.h">
+      <Filter>Header Files\logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

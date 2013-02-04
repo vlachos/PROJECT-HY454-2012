@@ -12,8 +12,8 @@ Terrain::Terrain(){
 	DASSERT(scores);
 }
 Terrain::~Terrain(){
-	delete actionLayer;
-	delete scores;
+	DDELETE( actionLayer);
+	DDELETE( scores);
 }
 
 void Terrain::SingeltonCreate(){
@@ -34,7 +34,7 @@ TileLayer* Terrain::GetActionLayer(){
 
 void Terrain::DisplayTerrain(Bitmap at){
 	actionLayer->Display(at);
-	scores->DisplayScoreBoard(at, 12345, 99999999, 906);
+	scores->DisplayScoreBoard(at, 12345, 99999999, -1);
 }
 
 void Terrain::SingeltonCleanUp(){

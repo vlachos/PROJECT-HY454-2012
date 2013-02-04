@@ -47,7 +47,7 @@ typedef std::pair<ScoreBoardFont_t, const AnimationFilm*> FontPair;
 		Dim x = GetFontAnimationFilm(color)->GetFrameBox(FONT_FRAME_BOX).GetX();
 		Dim y = ScoreBoard::GetFontAnimationFilm(color)->GetFrameBox(FONT_FRAME_BOX).GetY();
 
-		return std::make_pair(x + LETTER_OFFSET(c), y/2);
+		return std::make_pair(x + LETTER_OFFSET(c), y);
 	}
 
 	void ScoreBoard::GenerateScoreLettersXY(unsigned int startIndex, std::string scoreStr, ScoreBoardFont_t color) {

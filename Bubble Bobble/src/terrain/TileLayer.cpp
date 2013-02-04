@@ -24,7 +24,7 @@
 				tilesSolidity[i][j][BBDown] = false;
 			}
 		}
-		delete tilesBitmap;
+		DDELETE( tilesBitmap);
 	}
 
 	/*layer info*/

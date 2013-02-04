@@ -239,23 +239,23 @@
   </PonEffect>
   
   <WhiteLettersFont w="1062" h="16">
-    <bbox x="4" y="3192"/>
+    <bbox x="4" y="1596"/>
   </WhiteLettersFont>
 
   <GreenLettersFont w="1062" h="16">
-    <bbox x="4" y="3216"/>
+    <bbox x="4" y="1608"/>
   </GreenLettersFont>
 
   <BlueLettersFont w="1062" h="16">
-    <bbox x="4" y="3240"/>
+    <bbox x="4" y="1620"/>
   </BlueLettersFont>
 
   <RedLettersFont w="1062" h="16">
-    <bbox x="4" y="3264"/>
+    <bbox x="4" y="1632"/>
   </RedLettersFont>
 
   <YellowLettersFont w="1062" h="16">
-    <bbox x="4" y="3288"/>
+    <bbox x="4" y="1644"/>
   </YellowLettersFont>
 
 

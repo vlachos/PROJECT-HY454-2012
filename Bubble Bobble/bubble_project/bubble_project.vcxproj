@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\include\game_action\characters;..\include\game_action;..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
-    <SourcePath>..\src\game_action\characters;..\src\game_action;..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\logic;..\include\game_action\characters;..\include\game_action;..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\logic;..\src\game_action\characters;..\src\game_action;..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
     <OutDir>..\lib\debug</OutDir>
     <IntDir>..\obj\debug</IntDir>
   </PropertyGroup>

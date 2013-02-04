@@ -18,13 +18,6 @@
     <points PowerUp = "100"/>   
   </Points>
   
-	<BubblesPon total = "4">
-		<WaterBubble TimeBetweenAppearances = "5"/>
-		<EmptyBubble TimeToBecomeRed = "5" TimeToPon = "8"/>
-		<ZenChanBubbles TimeToMediumAngry = "5" TimeToHighAngry = "7" TimeToPon = "10"/>
-		<MightaBubbles TimeToMediumAngry = "5" TimeToHighAngry = "7" TimeToPon = "10"/>
-	</BubblesPon>
-
 	<FruitConditions>
 		<Banana enemiesToDefeat = "1"/> 
 		<Orange enemiesToDefeat = "2"/>
@@ -39,6 +32,6 @@
 		<PurpleSweet BlustedBubblesNeeded = "5"/>
 	</PowerUpConditions>
 	
-	<BarronVonBluba HurryUpDisplay = "30" TimeToShowUp = "40" SecToDecrDelay = "5" DecrDelay = "10"/>
+	<BarronVonBluba SecToDecrDelay = "5" DecrDelay = "10"/>
 	
 </Attributes>

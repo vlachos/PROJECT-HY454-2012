@@ -48,11 +48,10 @@ bool BubbleMain::InitAllegro(){
 
 void BubbleMain::InitGameEngine(){
 
-	Terrain::SingeltonCreate();
-
 	CollisionChecker::SingletonCreate();
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
+	Terrain::SingeltonCreate();
 	InvisibleSprites::SingletonCreate();
 	
 	Sprite* sprite = new Sprite(334,300,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
