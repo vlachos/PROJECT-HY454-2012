@@ -369,7 +369,7 @@
   <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
  
 
-  <RedShoe type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
+  <RedShoes type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <YellowSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
   <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>

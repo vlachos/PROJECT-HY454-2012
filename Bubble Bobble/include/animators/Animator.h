@@ -58,7 +58,7 @@ enum animatorType_t {
 	PeachAnimator_t,
 	WaterMelonAnimator_t,
 	BlueDiamondAnimator_t,
-	RedShoeAnimator_t,
+	RedShoesAnimator_t,
 	YellowSweetAnimator_t,
 	BlueSweetAnimator_t,
 	PurpleSweetAnimator_t,

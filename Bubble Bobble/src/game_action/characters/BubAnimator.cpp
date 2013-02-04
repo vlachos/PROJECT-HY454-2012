@@ -62,6 +62,7 @@ void BubStandAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
 }
 
 void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){

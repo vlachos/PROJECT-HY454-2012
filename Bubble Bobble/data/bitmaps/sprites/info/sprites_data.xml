@@ -200,9 +200,9 @@
     <bbox x="245" y="333"/>
   </BaronVonBlubba>
 
-  <RedShoe w="15" h="10">
+  <RedShoes w="15" h="10">
     <bbox x="110" y="852"/>
-  </RedShoe>
+  </RedShoes>
   <YellowSweet w="15" h="10" >
     <bbox x="88" y="852" />
   </YellowSweet>

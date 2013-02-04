@@ -6,6 +6,7 @@
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
 #include "FruitsAnimator.h"
+#include "PowerUpsAnimator.h"
 #include "BarronVonBlubaAnimator.h"
 #include "InvisibleSprites.h"
 
@@ -53,10 +54,10 @@ static Sprite* GetSpriteFromOrangeAnimator(Animator* animr) { return  (( OrangeA
 static Sprite* GetSpriteFromPeachAnimator(Animator* animr) { return  (( PeachAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromWaterMelonAnimator(Animator* animr) { return  (( WaterMelonAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBlueDiamondAnimator(Animator* animr) { return  (( BlueDiamondAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return 0;} //(( RedShoeAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromYellowSweetAnimator(Animator* animr) { return  0;}//(( YellowSweetAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromBlueSweetAnimator(Animator* animr) { return  0;}//(( BlueSweetAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromPurpleSweetAnimator(Animator* animr) { return  0;}//(( PurpleSweetAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return (( RedShoesAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromYellowSweetAnimator(Animator* animr){ return (( YellowSweetAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromBlueSweetAnimator(Animator* animr) { return (( BlueSweetAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromPurpleSweetAnimator(Animator* animr) { return (( PurpleSweetAnimator*)animr )->GetSprite();}
 
 SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromUnkwownAnimator,
