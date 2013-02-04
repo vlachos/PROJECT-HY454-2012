@@ -102,7 +102,8 @@
     <ClCompile Include="..\src\game_action\characters\BubAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\FruitsAnimator.cpp" />
-    <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp" />
+    <ClCompile Include="..\src\game_action\characters\MightaAnimator.cpp" />
+    <ClCompile Include="..\src\game_action\characters\ZenChanAnimator.cpp" />
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp" />
     <ClCompile Include="..\src\game_action\InputManage.cpp" />
     <ClCompile Include="..\src\game_action\InvisibleSprites.cpp" />

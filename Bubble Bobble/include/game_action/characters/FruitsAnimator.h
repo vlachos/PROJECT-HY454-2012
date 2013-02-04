@@ -3,7 +3,7 @@
 
 #include "MovingAnimator.h"
 
-class BananaAnimator: public MovingAnimator, public Sprite::SpriteStartFallingListener{
+class BananaAnimator: public MovingAnimator{
 	public:
 		BananaAnimator();
 

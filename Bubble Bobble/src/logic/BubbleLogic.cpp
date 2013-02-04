@@ -121,12 +121,12 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	unsigned int BubbleLogic::GetEnemiesForOrange(void) { return enemiesForOrange; }
 	unsigned int BubbleLogic::GetEnemiesForPeach(void) { return enemiesForPeach; }
 	unsigned int BubbleLogic::GetEnemiesForWaterMelon(void) { return enemiesForWaterMelon; }
-	std::string BubbleLogic::GetFruitType(unsigned int enemiesTerminated){
+	unsigned int BubbleLogic::GetFruitType(unsigned int enemiesTerminated){
 
-		if (enemiesTerminated <= enemiesForBanana)		return "Banana";
-		else if (enemiesTerminated <= enemiesForOrange) return "Orange";
-		else if (enemiesTerminated <= enemiesForPeach)	return "Peach";
-		else											return "WaterMelon";
+		if (enemiesTerminated <= enemiesForBanana)		return 1;
+		else if (enemiesTerminated <= enemiesForOrange) return 2;
+		else if (enemiesTerminated <= enemiesForPeach)	return 3;
+		else											return 4;
 	}
 
 	unsigned int BubbleLogic::GetCrossStageForRedShoes(void) { return crossStageForRedShoes; }
