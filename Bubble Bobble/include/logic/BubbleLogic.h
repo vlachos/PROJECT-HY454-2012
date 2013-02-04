@@ -74,6 +74,7 @@ class BubbleLogic {
 		static unsigned int GetEnemiesForOrange(void);
 		static unsigned int GetEnemiesForPeach(void);
 		static unsigned int GetEnemiesForWaterMelon(void);
+		static std::string GetFruitType(unsigned int enemiesTerminated);
 
 		static unsigned int GetCrossStageForRedShoes(void);
 		static unsigned int GetJumpsForYellowSwt(void);

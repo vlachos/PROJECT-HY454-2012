@@ -37,8 +37,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\include\logic;..\include\game_action\characters;..\include\game_action;..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
-    <SourcePath>..\src\logic;..\src\game_action\characters;..\src\game_action;..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
+    <IncludePath>..\include\logic;..\include\game_action\items;..\include\game_action\characters;..\include\game_action;..\include\animations;..\include;..\include\utilities;..\include\animators;..\include\parsers;..\include\terrain;$(IncludePath)</IncludePath>
+    <SourcePath>..\src\logic;..src\game_action\items;..\src\game_action\characters;..\src\game_action;..\src\animators;..\src\animations;..\src;..\src\utilities;..\src\parsers;..\src\terrain;$(SourcePath)</SourcePath>
     <OutDir>..\lib\debug</OutDir>
     <IntDir>..\obj\debug</IntDir>
   </PropertyGroup>
@@ -106,6 +106,7 @@
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp" />
     <ClCompile Include="..\src\game_action\InputManage.cpp" />
     <ClCompile Include="..\src\game_action\InvisibleSprites.cpp" />
+    <ClCompile Include="..\src\game_action\items\PowerUpsAnimator.cpp" />
     <ClCompile Include="..\src\logic\BubbleLogic.cpp" />
     <ClCompile Include="..\src\logic\BubProfile.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="..\include\game_action\InputManage.h" />
     <ClInclude Include="..\include\game_action\GameActionUtilities.h" />
     <ClInclude Include="..\include\game_action\InvisibleSprites.h" />
+    <ClInclude Include="..\include\game_action\items\PowerUpsAnimator.h" />
     <ClInclude Include="..\include\logic\BubbleLogic.h" />
     <ClInclude Include="..\include\logic\BubProfile.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />

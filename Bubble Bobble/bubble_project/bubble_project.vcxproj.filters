@@ -73,6 +73,12 @@
     <Filter Include="Source Files\logic">
       <UniqueIdentifier>{ddfede13-a9f0-46d4-9df6-98dbf4d5208a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\game_action\items">
+      <UniqueIdentifier>{04c4847c-4d6e-4584-acc5-7597c6f341b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game_action\items">
+      <UniqueIdentifier>{c9dd86ed-d773-4fa9-997b-22296be58de4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\terrain\TileBitmap.cpp">
@@ -191,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="..\src\game_action\characters\FruitsAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\items\PowerUpsAnimator.cpp">
+      <Filter>Source Files\game_action\items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\characters\FruitsAnimator.h">
       <Filter>Header Files\game_action\characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\items\PowerUpsAnimator.h">
+      <Filter>Header Files\game_action\items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

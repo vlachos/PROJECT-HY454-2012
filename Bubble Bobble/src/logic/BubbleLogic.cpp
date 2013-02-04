@@ -2,6 +2,8 @@
 #include "MemoryManage.h"
 #include <math.h>
 
+typedef std::pair<unsigned int, std::string> fruitPair;
+
 	BubProfile* BubbleLogic::bub;
 	BubProfile* BubbleLogic::bob;
 
@@ -119,6 +121,13 @@
 	unsigned int BubbleLogic::GetEnemiesForOrange(void) { return enemiesForOrange; }
 	unsigned int BubbleLogic::GetEnemiesForPeach(void) { return enemiesForPeach; }
 	unsigned int BubbleLogic::GetEnemiesForWaterMelon(void) { return enemiesForWaterMelon; }
+	std::string BubbleLogic::GetFruitType(unsigned int enemiesTerminated){
+
+		if (enemiesTerminated <= enemiesForBanana)		return "Banana";
+		else if (enemiesTerminated <= enemiesForOrange) return "Orange";
+		else if (enemiesTerminated <= enemiesForPeach)	return "Peach";
+		else											return "WaterMelon";
+	}
 
 	unsigned int BubbleLogic::GetCrossStageForRedShoes(void) { return crossStageForRedShoes; }
 	unsigned int BubbleLogic::GetJumpsForYellowSwt(void) { return jumpsForYellowSwt; }
