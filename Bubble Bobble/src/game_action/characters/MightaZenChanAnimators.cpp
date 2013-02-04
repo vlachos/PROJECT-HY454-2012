@@ -8,6 +8,7 @@
 #include "Terrain.h"
 #include "CollisionChecker.h"
 #include "ZenChanAnimator.h"
+#include "FruitsAnimator.h"
 
 //////////////////////////////////////////////////////ZenChanAnimators//////////////////////////////////////////////
 
@@ -238,6 +239,17 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	ZenChanDieAnimator* _this = (ZenChanDieAnimator*) args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
+
+	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Orange");
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("Orange"), 
+						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+	OrangeAnimator *ban=new OrangeAnimator();
+
+	ban->RegistCollitions(n_sprite);
+
+	START_ANIMATOR( ban, n_sprite, mva, GetGameTime() );
+
 }
 
 
@@ -471,5 +483,15 @@ void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	MightaDieAnimator* _this = (MightaDieAnimator*) args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
+
+	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Peach");
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("Peach"), 
+						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+	PeachAnimator *ban=new PeachAnimator();
+
+	ban->RegistCollitions(n_sprite);
+
+	START_ANIMATOR( ban, n_sprite, mva, GetGameTime() );
 }
 

@@ -5,7 +5,7 @@
 #include "BubblesAnimator.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
-#include "ZenChanAnimator.h"
+#include "FruitsAnimator.h"
 #include "BarronVonBlubaAnimator.h"
 #include "InvisibleSprites.h"
 
@@ -48,12 +48,12 @@ static Sprite* GetSpriteFromMightaAngryJumpAnimator(Animator* animr) { return ((
 static Sprite* GetSpriteFromBaronVonBlubaStandAnimator(Animator* animr) { return (( BaronVonBlubaStandAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromZenChanDieAnimator(Animator* animr) { return (( ZenChanDieAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaDieAnimator(Animator* animr) { return (( MightaDieAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromBananaAnimator(Animator* animr) { return 0;}//(( BananaAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromOrangeAnimator(Animator* animr) { return  0;}//(( OrangeAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromPeachAnimator(Animator* animr) { return  0;}//(( PeachAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromWaterMelonAnimator(Animator* animr) { return  0;}//(( WaterMelonAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromBlueDiamondAnimator(Animator* animr) { return  0;}//(( BlueDiamondAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return  0;}//(( RedShoeAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromBananaAnimator(Animator* animr) { return (( BananaAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromOrangeAnimator(Animator* animr) { return  (( OrangeAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromPeachAnimator(Animator* animr) { return  (( PeachAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromWaterMelonAnimator(Animator* animr) { return  (( WaterMelonAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromBlueDiamondAnimator(Animator* animr) { return  (( BlueDiamondAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return 0;} //(( RedShoeAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromYellowSweetAnimator(Animator* animr) { return  0;}//(( YellowSweetAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBlueSweetAnimator(Animator* animr) { return  0;}//(( BlueSweetAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromPurpleSweetAnimator(Animator* animr) { return  0;}//(( PurpleSweetAnimator*)animr )->GetSprite();}

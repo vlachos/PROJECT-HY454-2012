@@ -101,6 +101,7 @@
     <ClCompile Include="..\src\game_action\characters\BarronVonBlubaAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp" />
+    <ClCompile Include="..\src\game_action\characters\FruitsAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\MightaZenChanAnimators.cpp" />
     <ClCompile Include="..\src\game_action\CollisionChecker.cpp" />
     <ClCompile Include="..\src\game_action\InputManage.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubblesAnimator.h" />
+    <ClInclude Include="..\include\game_action\characters\FruitsAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\MightaAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\ZenChanAnimator.h" />
     <ClInclude Include="..\include\game_action\CollisionChecker.h" />

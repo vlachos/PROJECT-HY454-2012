@@ -189,6 +189,9 @@
     <ClCompile Include="..\src\logic\BubProfile.cpp">
       <Filter>Source Files\logic</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\characters\FruitsAnimator.cpp">
+      <Filter>Source Files\game_action\characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="..\include\logic\BubbleLogic.h">
       <Filter>Header Files\logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\characters\FruitsAnimator.h">
+      <Filter>Header Files\game_action\characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

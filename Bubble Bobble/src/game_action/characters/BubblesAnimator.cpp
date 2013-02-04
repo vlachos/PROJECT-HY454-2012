@@ -544,7 +544,7 @@ static void StartMightaDieAnimator( int x, int y ){
 		new Sprite(x, y, false, AnimationFilmHolder::GetFilm("MightaDie"), Terrain::GetActionLayer(),false);
 
 	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("MightaDie");
-	ZenChanDieAnimator *bda = new ZenChanDieAnimator();
+	MightaDieAnimator *bda = new MightaDieAnimator();
 	bda->RegistCollitions(newSprite);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
