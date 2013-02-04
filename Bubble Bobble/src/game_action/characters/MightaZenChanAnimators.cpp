@@ -9,6 +9,7 @@
 #include "CollisionChecker.h"
 #include "ZenChanAnimator.h"
 #include "FruitsAnimator.h"
+#include "BubbleLogic.h"
 
 //////////////////////////////////////////////////////ZenChanAnimators//////////////////////////////////////////////
 
@@ -242,10 +243,9 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Orange");
 	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("Orange"), 
-						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	OrangeAnimator *ban=new OrangeAnimator();
+		true,AnimationFilmHolder::GetFilm("Orange"), Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
 
+	OrangeAnimator *ban=new OrangeAnimator();
 	ban->RegistCollitions(n_sprite);
 
 	START_ANIMATOR( ban, n_sprite, mva, GetGameTime() );
@@ -254,7 +254,7 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 
 
 
-/////////////////////////////////////////////////MigntaAnimator////////////////////////////////////////////////////
+////////////////////////////////////////////////MigntaAnimator////////////////////////////////////////////////////
 
 ////////////////MigntaStandAnimator
 MightaStandAnimator::MightaStandAnimator(){
@@ -484,13 +484,17 @@ void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 
-	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Peach");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("Peach"), 
-						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	PeachAnimator *ban=new PeachAnimator();
+	unsigned int EnemiesDefeated=0;
 
+	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation(BubbleLogic::GetFruitType(EnemiesDefeated));
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		true,AnimationFilmHolder::GetFilm("Peach"), Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+
+
+
+	PeachAnimator *ban=new PeachAnimator();
 	ban->RegistCollitions(n_sprite);
+	
 
 	START_ANIMATOR( ban, n_sprite, mva, GetGameTime() );
 }

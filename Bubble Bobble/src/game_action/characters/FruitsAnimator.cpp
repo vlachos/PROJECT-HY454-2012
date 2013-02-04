@@ -2,6 +2,7 @@
 #include "GameActionUtilities.h"
 #include "AnimatorHolder.h"
 #include "CollisionChecker.h"
+#include "BubbleLogic.h"
 
 
 //////////////BananaAnimator
@@ -14,12 +15,12 @@ void BananaAnimator::RegistCollitions(Sprite* sprite){
 }
 
 void BananaAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){std::cout<<"hndg\n";
-	//DASSERT( Bub && Fruit && args);
+	DASSERT( Bub && Fruit && args);
 	BananaAnimator * _this = (BananaAnimator*)args;
-	//DASSERT(_this->GetSprite()==Fruit);
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
+	BubbleLogic::IncrBubScore(BubbleLogic::GetBananaPoints());
 }
 
 void BananaAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -30,6 +31,7 @@ void BananaAnimator::OnFinishCallback(Animator* anim, void* args){
 	
 	DESTROY_ANIMATOR( _this );
 }
+
 
 //////////////OrangeAnimator
 OrangeAnimator::OrangeAnimator(){
@@ -43,10 +45,10 @@ void OrangeAnimator::RegistCollitions(Sprite* sprite){
 void OrangeAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	OrangeAnimator * _this = (OrangeAnimator*)args;
-	DASSERT(_this->GetSprite()==Fruit);
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
+	BubbleLogic::IncrBubScore(BubbleLogic::GetOrangePoints());
 }
 
 void OrangeAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -70,10 +72,10 @@ void PeachAnimator::RegistCollitions(Sprite* sprite){
 void PeachAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	PeachAnimator * _this = (PeachAnimator*)args;
-	DASSERT(_this->GetSprite()==Fruit);
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
+	BubbleLogic::IncrBubScore(BubbleLogic::GetPeachPoints());
 }
 
 void PeachAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -97,10 +99,10 @@ void WaterMelonAnimator::RegistCollitions(Sprite* sprite){
 void WaterMelonAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	WaterMelonAnimator * _this = (WaterMelonAnimator*)args;
-	DASSERT(_this->GetSprite()==Fruit);
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
+	BubbleLogic::IncrBubScore(BubbleLogic::GetWaterMelonPoints());
 }
 
 void WaterMelonAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -124,10 +126,10 @@ void BlueDiamondAnimator::RegistCollitions(Sprite* sprite){
 void BlueDiamondAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	BlueDiamondAnimator * _this = (BlueDiamondAnimator*)args;
-	DASSERT(_this->GetSprite()==Fruit);
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
+	BubbleLogic::IncrBubScore(BubbleLogic::GetBlueDiamondPoints());
 }
 
 void BlueDiamondAnimator::OnFinishCallback(Animator* anim, void* args){

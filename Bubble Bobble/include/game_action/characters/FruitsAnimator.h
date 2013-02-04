@@ -3,7 +3,7 @@
 
 #include "MovingAnimator.h"
 
-class BananaAnimator: public MovingAnimator{
+class BananaAnimator: public MovingAnimator, public Sprite::SpriteStartFallingListener{
 	public:
 		BananaAnimator();
 
@@ -14,6 +14,7 @@ class BananaAnimator: public MovingAnimator{
 		static void OnCollisionWithBub(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 };
+
 
 class OrangeAnimator: public MovingAnimator{
 	public:
