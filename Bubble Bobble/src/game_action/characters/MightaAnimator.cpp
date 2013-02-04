@@ -9,67 +9,7 @@
 #include "FruitsAnimator.h"
 #include "BubbleLogic.h"
 
-typedef void (*FruitSelector_t)(void* Animator);
 
-static void CreateBananaAnimator(void* Animator){
-	MightaDieAnimator* _this = (MightaDieAnimator*) Animator;
-
-	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Banana");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		true,AnimationFilmHolder::GetFilm("Banana"), Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	
-	BananaAnimator *ban=new BananaAnimator();
-	ban->RegistCollitions(n_sprite);
-	
-	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
-}
-
-static void CreateOrangeAnimator(void* Animator){
-	MightaDieAnimator* _this = (MightaDieAnimator*) Animator;
-
-	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Orange");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		true,AnimationFilmHolder::GetFilm("Orange"), Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	
-	OrangeAnimator *ban=new OrangeAnimator();
-	ban->RegistCollitions(n_sprite);
-	
-	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
-}
-
-static void CreatePeachAnimator(void* Animator){
-	MightaDieAnimator* _this = (MightaDieAnimator*) Animator;
-
-	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("Peach");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		true,AnimationFilmHolder::GetFilm("Peach"), Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	
-	PeachAnimator *ban=new PeachAnimator();
-	ban->RegistCollitions(n_sprite);
-	
-	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
-}
-
-static void CreateWaterMelonAnimator(void* Animator){
-	MightaDieAnimator* _this = (MightaDieAnimator*) Animator;
-
-	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("WaterMelon");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		true,AnimationFilmHolder::GetFilm("WaterMelon"), Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	
-	WaterMelonAnimator *ban=new WaterMelonAnimator();
-	ban->RegistCollitions(n_sprite);
-	
-	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
-}
-
-static FruitSelector_t fruitSelector[]={
-	0,
-	CreateBananaAnimator,
-	CreateOrangeAnimator,
-	CreatePeachAnimator,
-	CreateWaterMelonAnimator
-};
 
 ////////////////////////////////////////////////MigntaAnimator////////////////////////////////////////////////////
 
@@ -302,6 +242,6 @@ void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 
 	//ston asso 8elei na mpoun posoi psofisan
-	fruitSelector[BubbleLogic::GetFruitType(1)](_this);
+	FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(1), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 	
 }

@@ -1,8 +1,11 @@
-#ifndef FRUITS_H
-#define FRUITS_H
+#ifndef FRUITSANIMATOR_H
+#define FRUITSANIMATOR_H
 
 #include "MovingAnimator.h"
 
+namespace FruitsAnimators{
+	extern void StartFruitAnimator(int kind, int x, int y);
+}
 class BananaAnimator: public MovingAnimator{
 	public:
 		BananaAnimator();
