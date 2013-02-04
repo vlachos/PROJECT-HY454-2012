@@ -172,7 +172,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="..\data\bitmaps\sprites\info\sprites_attributes_data.xml" />
-    <None Include="..\data\bitmaps\sprites\info\sprites_data.xml" />
+    <None Include="..\data\bitmaps\sprites\info\sprites_data.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\data\bitmaps\sprites\info\stage1_starting_data.xml" />
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
