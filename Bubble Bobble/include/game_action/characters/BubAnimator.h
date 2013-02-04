@@ -84,6 +84,24 @@ class BubJumpAnimator : public MovingPathAnimator{
 		void RegistCollitions(Sprite*);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
+		void OnOpenMouth(void);
+};
+
+class BubJumpOpenMouthAnimator : public MovingPathAnimator{
+	public:
+		BubJumpOpenMouthAnimator(MovingPathAnimation *, int index);
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubJumpOpenMouthAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
+		static void OnFinishCallback(Animator*, void*);
+		MovingPathAnimation* GetJumpAnimation();
+		int					 GetIndex();
+	private:
+		MovingPathAnimation* jumpAnimation;
+		int index;
 };
 
 class BubDieAnimator : public MovingPathAnimator{

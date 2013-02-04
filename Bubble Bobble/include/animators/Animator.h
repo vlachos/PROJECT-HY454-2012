@@ -13,7 +13,7 @@ enum animatorstate_t {
 	ANIMATOR_STOPPED  = 2
 };
 
-#define ANIMATORS_SIZE 48
+#define ANIMATORS_SIZE 49
 
 enum animatorType_t {
 	unkwownAnimator_t,
@@ -63,7 +63,8 @@ enum animatorType_t {
 	BlueSweetAnimator_t,
 	PurpleSweetAnimator_t,
 	bubOpenMouthFallingAnimator_t,
-	timeTickAnimator_t
+	timeTickAnimator_t,
+	bubJumpOpenMouthAnimator_t
 };
 
 class Animator : public LatelyDestroyable{

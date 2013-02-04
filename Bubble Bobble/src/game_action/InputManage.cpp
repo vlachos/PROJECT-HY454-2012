@@ -53,22 +53,13 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 	DASSERT( bub.size()==1 );
 	BubWalkingAnimator* _this = (BubWalkingAnimator*) bub.front();
-	
-	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
-	animid_t id = _this->GetAnimation()->GetId();
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	Sprite* newSprite = _this->GetSprite();
 	newSprite->ClearListeners();
-	MovingPathAnimation * ma;
-	if(newSprite->GoesLeft())
-		ma=(MovingPathAnimation*) AnimationsParser::GetAnimation( "BubJumpWalkingLeft" );
-	else
-		ma=(MovingPathAnimation*) AnimationsParser::GetAnimation( "BubJumpWalkingRight" );
+	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( newSprite->GoesLeft()? "BubJumpWalkingLeft" :"BubJumpWalkingRight" );
 	BubJumpAnimator* mar = new BubJumpAnimator();
-	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
-
 	mar->RegistCollitions(newSprite);
 	
 	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
@@ -79,35 +70,18 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 	DASSERT( bub.size()==1 );
 	BubStandAnimator* _this = (BubStandAnimator*) bub.front();
-
-	timestamp_t timestamp = GetGameTime();
-	DASSERT( timestamp>0 );
-	AnimatorHolder::MarkAsSuspended(_this);
-	AnimatorHolder::Cancel(_this);
-	CollisionChecker::Cancel(_this->GetSprite());
-
-	DASSERT( _this->GetAnimation() );
-	DASSERT( _this->GetSprite() );
-
-	animid_t id = _this->GetAnimation()->GetId();
+	DASSERT( _this->GetAnimation() && _this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	Sprite* newSprite = _this->GetSprite();
 
-	_this->GetAnimation()->Destroy();
-	_this->Destroy(); 
-
-	newSprite->RemoveAllStartFallingListeners();
-	newSprite->RemoveAllStopFallingListeners();
+	newSprite->ClearListeners();
 	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( "BubJumpStand" );
-
 	BubJumpAnimator* mar = new BubJumpAnimator();
-	mar->SetOnFinish(BubJumpAnimator::OnFinishCallback, mar);
-	mar->Start(newSprite, ma, timestamp);
-
 	mar->RegistCollitions(newSprite);
 
-	AnimatorHolder::Register(mar);
-	AnimatorHolder::MarkAsRunning(mar);
+	START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 
 	return true;
 }
@@ -148,9 +122,13 @@ bool InputManageHandling::OnKeyLeft(void){
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
 		DASSERT( bub.size()==1 );
 		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
-		std::vector<PathEntry> e=bja->GetAnimation()->GetPath();
-		e[bja->GetCurrIndex()].x +=-2; 
-		bja->GetAnimation()->SetPath(e);
+		bja->GetSprite()->Move(-2,0);
+		bja->GetSprite()->SetGoesLeft(true);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(bubJumpOpenMouthAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		BubJumpOpenMouthAnimator *bja=(BubJumpOpenMouthAnimator *)bub.front();
+		bja->GetSprite()->Move(-2,0);
 		bja->GetSprite()->SetGoesLeft(true);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
@@ -172,13 +150,17 @@ bool InputManageHandling::OnKeyRight(void){
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
 		retVal = CheckDxDirectionStand(bub, false);
-	}else
+	}else 
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
 		DASSERT( bub.size()==1 );
 		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
-		std::vector<PathEntry> e=bja->GetAnimation()->GetPath();
-		e[bja->GetCurrIndex()].x +=2; 
-		bja->GetAnimation()->SetPath(e);
+		bja->GetSprite()->Move(2,0);
+		bja->GetSprite()->SetGoesLeft(false);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(bubJumpOpenMouthAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		BubJumpOpenMouthAnimator *bja=(BubJumpOpenMouthAnimator *)bub.front();
+		bja->GetSprite()->Move(2,0);
 		bja->GetSprite()->SetGoesLeft(false);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
@@ -206,6 +188,10 @@ bool InputManageHandling::OnKeySpace(void){
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
 		DASSERT( bub.size()==1 );
 		( (BubFallingAnimator*) bub.front() )->OnOpenMouth();
+	}else	
+	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
+		DASSERT( bub.size()==1 );
+		( (BubJumpAnimator*) bub.front() )->OnOpenMouth();
 	}
 		
 	return retVal;

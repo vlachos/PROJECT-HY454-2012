@@ -408,6 +408,106 @@ void BubJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 }
 
+void BubJumpAnimator::OnOpenMouth(){
+
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+
+	MovingPathAnimation *fra = (MovingPathAnimation*) AnimationsParser::GetAnimation("BubOpenMouthJump");
+	Sprite *n_sprite=new Sprite(
+								this->GetSprite()->GetX(),
+								this->GetSprite()->GetY(),
+								this->GetSprite()->IsGravityAddicted(),
+								AnimationFilmHolder::GetFilm("BubOpenMouth"), 
+								Terrain::GetActionLayer(), 
+								this->GetSprite()->GoesLeft()
+								);
+	BubJumpOpenMouthAnimator *bomfar = new BubJumpOpenMouthAnimator(this->GetAnimation(), this->GetCurrIndex());
+	bomfar->RegistCollitions(n_sprite);
+	START_ANIMATOR( bomfar, n_sprite, fra, GetGameTime() );
+	startBubBubbleAnimator( n_sprite );
+	this->GetSprite()->Destroy();
+	this->Destroy();
+}
+
+///////////////////////BubJumpOpenMouthAnimator
+
+BubJumpOpenMouthAnimator::BubJumpOpenMouthAnimator(MovingPathAnimation* _jumpAnimation, int _index){
+	this->SetOnFinish(OnFinishCallback,(void*)this);
+	jumpAnimation = _jumpAnimation;
+	index = _index;
+}
+
+void BubJumpOpenMouthAnimator::RegistCollitions(Sprite *spr){/*
+	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubJumpOpenMouthAnimator::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, zenChanInBubble_t, zenChanInBubble_t, ZenChanInBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, zenChanInBubbleMediumAngry_t, zenChanInBubbleMediumAngry_t, ZenChanInBubbleMediumAngryAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, zenChanInBubbleHighAngry_t, zenChanInBubbleHighAngry_t, ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, mightaInBubble_t, mightaInBubble_t, MightaInBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, BubPingBubbleAnimator::OnCollisionWithBubJump);*/
+}
+
+void BubJumpOpenMouthAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
+	DASSERT(args && bub && enem);
+	BubJumpOpenMouthAnimator * _this = (BubJumpOpenMouthAnimator*)args;
+	DASSERT( _this->GetAnimation() && _this->GetSprite() && _this->GetSprite()==bub);
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	
+	StartDieAnimator(bub->GetX(), bub->GetY());
+
+	DESTROY_ANIMATOR( _this );
+}
+
+
+void BubJumpOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
+	DASSERT( anim && args && anim==args);
+	BubJumpOpenMouthAnimator * _this = (BubJumpOpenMouthAnimator*)args;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+
+	int index = _this->GetIndex();
+	index+=_this->GetAnimation()->GetPath().size();
+	if( _this->GetJumpAnimation()->GetPath().size() <= index ){
+		MovingAnimation *fra = (MovingAnimation*)AnimationsParser::GetAnimation("BubFalling");
+		Sprite *n_sprite = new Sprite(
+										_this->GetSprite()->GetX(),
+										_this->GetSprite()->GetY(),
+										_this->GetSprite()->IsGravityAddicted(),
+										AnimationFilmHolder::GetFilm("BubWalk"), 
+										Terrain::GetActionLayer(), 
+										_this->GetSprite()->GoesLeft()
+									);
+		BubFallingAnimator *frtor=new BubFallingAnimator();
+		n_sprite->AddStopFallingListener(frtor);
+		frtor->RegistCollitions(n_sprite);
+		START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+		_this->GetJumpAnimation()->Destroy();
+	}else{
+
+		Sprite *n_sprite = new Sprite(
+										_this->GetSprite()->GetX(),
+										_this->GetSprite()->GetY(),
+										_this->GetSprite()->IsGravityAddicted(),
+										AnimationFilmHolder::GetFilm("BubWalk"), 
+										Terrain::GetActionLayer(), 
+										_this->GetSprite()->GoesLeft()
+									);
+		BubJumpAnimator* mar = new BubJumpAnimator();
+		START_ANIMATOR( mar, n_sprite, _this->GetJumpAnimation(), GetGameTime() );
+		mar->SetCurrIndex(index);
+	}
+
+	DESTROY_ANIMATOR( _this );
+}
+
+MovingPathAnimation* BubJumpOpenMouthAnimator::GetJumpAnimation(){
+	return jumpAnimation;
+}
+
+int	BubJumpOpenMouthAnimator::GetIndex(){
+	return index;
+}
+
 /////////////////////////BubDieAnimator
 
 BubDieAnimator::BubDieAnimator(){
