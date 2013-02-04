@@ -362,11 +362,11 @@
     <list  dx="0" dy="-5" delay="200" frame="1"/>
   </EnemyAgryBubble>
 
-  <Banana type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <Orange type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <Peach type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <WaterMelon type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
+  <Banana type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
+  <Orange type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
+  <Peach type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
+  <WaterMelon type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
+  <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
  
 
   <RedShoe type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
