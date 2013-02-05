@@ -6,7 +6,7 @@ void Sprite::Display(Bitmap dest){
 		frameBox.GetWidth(), frameBox.GetHeigth(), x, y, (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
 }
 
-static bool isSolidTerrain(const TileLayer * tileLayer, Rect frameBox, int x, int y, int _x, int _y){
+bool Sprite::IsSolidTerrain(int _x, int _y){
 	if (_y<0){
 		return tileLayer->isSolid(x+(frameBox.GetWidth()/2)+_x, y+_y, BBUp);
 	}
@@ -22,9 +22,9 @@ static bool isSolidTerrain(const TileLayer * tileLayer, Rect frameBox, int x, in
 	
 	return true;
 }
-static int i=0;
+
 void Sprite::Move( int _x, int _y ){
-	bool canNotMove = isSolidTerrain(tileLayer, frameBox, x, y, _x, _y);
+	bool canNotMove = IsSolidTerrain(_x, _y);
 
 	if(!canNotMove || onDrugs){
 		x += _x;

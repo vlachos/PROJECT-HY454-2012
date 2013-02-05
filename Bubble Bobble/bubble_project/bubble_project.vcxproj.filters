@@ -204,6 +204,9 @@
     <ClCompile Include="..\src\game_action\characters\MightaAnimator.cpp">
       <Filter>Source Files\game_action\characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\ArtificialIntelligence.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -337,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\items\PowerUpsAnimator.h">
       <Filter>Header Files\game_action\items</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\ArtificialIntelligence.h">
+      <Filter>Header Files\game_action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

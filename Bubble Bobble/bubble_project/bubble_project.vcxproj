@@ -98,6 +98,7 @@
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
     <ClCompile Include="..\src\animators\TimerTickAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
+    <ClCompile Include="..\src\game_action\ArtificialIntelligence.cpp" />
     <ClCompile Include="..\src\game_action\characters\BarronVonBlubaAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubAnimator.cpp" />
     <ClCompile Include="..\src\game_action\characters\BubblesAnimator.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
     <ClInclude Include="..\include\animators\TimerTickAnimator.h" />
     <ClInclude Include="..\include\BubbleMain.h" />
+    <ClInclude Include="..\include\game_action\ArtificialIntelligence.h" />
     <ClInclude Include="..\include\game_action\characters\BarronVonBlubaAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubAnimator.h" />
     <ClInclude Include="..\include\game_action\characters\BubblesAnimator.h" />

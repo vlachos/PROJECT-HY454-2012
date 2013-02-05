@@ -77,6 +77,7 @@ class Sprite : public LatelyDestroyable{
 		bool CollisionCheck( Sprite * s );
 		void Display(Bitmap dest);
 		void Move( int _x, int _y );
+		bool IsSolidTerrain(int _x, int _y);
 
 		void AddStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.push_back( sl ); }
 		void RemoveStartFallingListener(SpriteStartFallingListener * sl) { 
