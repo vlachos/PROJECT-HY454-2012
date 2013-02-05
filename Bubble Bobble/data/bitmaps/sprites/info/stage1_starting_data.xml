@@ -8,9 +8,9 @@
 	<Mighta x="250" y="79" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "false"/>
 
   <PowerUpXY>
-    <coordinates x = "100" y = "111"/>
-    <coordinates x = "210" y = "191"/>
-    <coordinates x = "100" y = "271"/>
+    <coordinates x = "100" y = "95"/>
+    <coordinates x = "210" y = "175"/>
+    <coordinates x = "100" y = "255"/>
     <coordinates x = "210" y = "415"/>
   </PowerUpXY>
 	

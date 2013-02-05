@@ -74,9 +74,9 @@ void BubbleMain::InitGameEngine(){
 	sprite3->AddStartFallingListener(animr3);
 	animr3->RegistCollitions(sprite3);
 	
-	Sprite* sprite4 = new Sprite(210,415,true,AnimationFilmHolder::GetFilm("RedShoes"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("RedShoes");															\
-	RedShoesAnimator* animr4 = new RedShoesAnimator();
+	Sprite* sprite4 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("YellowSweet"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("YellowSweet");															\
+	YellowSweetAnimator* animr4 = new YellowSweetAnimator();
 	animr4->RegistCollitions(sprite);
 	
 	al_start_timer(timer);

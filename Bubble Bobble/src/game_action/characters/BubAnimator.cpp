@@ -10,6 +10,8 @@
 #include "BubblesAnimator.h"
 #include "InvisibleSprites.h"
 #include "FruitsAnimator.h"
+#include "PowerUpsAnimator.h"
+#include "BubbleLogic.h"
 
 //////////////////////////static functions
 
@@ -62,7 +64,10 @@ void BubStandAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
-	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 void BubStandAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -113,6 +118,10 @@ void BubWalkingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 
@@ -211,7 +220,10 @@ void BubFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
-
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 void BubFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -272,6 +284,10 @@ void BubOpenMouthAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 void BubOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -338,6 +354,10 @@ void BubOpenMouthFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 void BubOpenMouthFallingAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -406,6 +426,10 @@ void BubJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 void BubJumpAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
@@ -482,6 +506,10 @@ void BubJumpOpenMouthAnimator::RegistCollitions(Sprite *spr){/*
 	CollisionChecker::Register(spr,PeachAnimator_t,PeachAnimator_t,PeachAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,WaterMelonAnimator_t,WaterMelonAnimator_t,WaterMelonAnimator::OnCollisionWithBub);
 	CollisionChecker::Register(spr,BlueDiamondAnimator_t,BlueDiamondAnimator_t,BlueDiamondAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,RedShoesAnimator_t,PurpleSweetAnimator_t, RedShoesAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);
 }
 
 void BubJumpOpenMouthAnimator::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * args){
@@ -560,4 +588,6 @@ void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
+
+	BubbleLogic::SetBubScore(BubbleLogic::GetBubProfile()->GetScore() / 2 );
 }

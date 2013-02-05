@@ -81,7 +81,7 @@ class BubbleLogic {
 		static unsigned int GetPonedBubblesForBlueSwt(void);
 		static unsigned int GetBlustedBubblesForPurpleSwt(void);
 
-		static Coordinates GetPowerUpPosXY(unsigned int ith);
+		static Coordinates GetPowerUpPosXY(void);
 
 		static Points GetPointsOfPoning(unsigned int enemiesPoned);
 

@@ -1,6 +1,7 @@
 #include "BubbleLogic.h"
 #include "MemoryManage.h"
 #include <math.h>
+#include <ctime>
 
 typedef std::pair<unsigned int, std::string> fruitPair;
 
@@ -67,10 +68,12 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		bub = DNEWCLASS(BubProfile, (startingLifes) );
 		bob = DNEWCLASS(BubProfile, (startingLifes) );
 
-		powerUpPosXY.push_back( std::make_pair(100,111) );
-		powerUpPosXY.push_back( std::make_pair(210,191) );
-		powerUpPosXY.push_back( std::make_pair(100,271) );
-		powerUpPosXY.push_back( std::make_pair(210,431) );
+		powerUpPosXY.push_back( std::make_pair(100,95) );
+		powerUpPosXY.push_back( std::make_pair(210,175) );
+		powerUpPosXY.push_back( std::make_pair(100,255) );
+		powerUpPosXY.push_back( std::make_pair(210,415) );
+
+		srand((unsigned)time(0));
 	}
 
 
@@ -134,9 +137,8 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	unsigned int BubbleLogic::GetPonedBubblesForBlueSwt(void) { return ponedBubblesForBlueSwt; }
 	unsigned int BubbleLogic::GetBlustedBubblesForPurpleSwt(void) { return blustedBubblesForPurpleSwt; }
 
-	Coordinates BubbleLogic::GetPowerUpPosXY(unsigned int ith){
-		DASSERT(ith < powerUpPosXY.size());
-		return powerUpPosXY[ith];
+	Coordinates BubbleLogic::GetPowerUpPosXY(void){
+		return powerUpPosXY[rand()%powerUpPosXY.size()];
 	}
 
 	Points GetPointsOfPoning(unsigned int enemiesPoned){

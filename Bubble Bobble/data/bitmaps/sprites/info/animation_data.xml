@@ -362,17 +362,17 @@
     <list  dx="0" dy="-5" delay="200" frame="1"/>
   </EnemyAgryBubble>
 
-  <Banana type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
-  <Orange type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
-  <Peach type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
-  <WaterMelon type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
-  <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="3000" continue="false"/>
+  <Banana type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <Orange type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <Peach type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <WaterMelon type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
  
 
-  <RedShoes type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <YellowSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
-  <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
+  <RedShoes type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <YellowSweet type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
 
   <PonEffect type="MovingAnimation" dx="0" dy="0" delay="300" continue="false"/>
   
