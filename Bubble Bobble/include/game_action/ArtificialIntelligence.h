@@ -4,6 +4,7 @@
 namespace ArtificialIntelligence{
 
 	extern void HandleZenChan();
+	extern void HandleMighta();
 }
 
 #endif

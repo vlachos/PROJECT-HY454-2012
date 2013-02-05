@@ -62,10 +62,10 @@ void BubbleMain::InitGameEngine(){
 	BubStandAnimator* animr = new BubStandAnimator();
 	animr->RegistCollitions(sprite);
 	
-	Sprite* sprite2 = new Sprite(400, 237,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaStand");															\
-	MightaStandAnimator* animr2 = new MightaStandAnimator();
-	//sprite2->AddStartFallingListener(animr2);
+	Sprite* sprite2 = new Sprite(200, 79,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															\
+	MightaWalkingAnimator* animr2 = new MightaWalkingAnimator();
+	sprite2->AddStartFallingListener(animr2);
 	animr2->RegistCollitions(sprite2);
 	
 	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
@@ -73,7 +73,7 @@ void BubbleMain::InitGameEngine(){
 	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
 	sprite3->AddStartFallingListener(animr3);
 	animr3->RegistCollitions(sprite3);
-
+	
 	Sprite* sprite4 = new Sprite(210,415,true,AnimationFilmHolder::GetFilm("RedShoes"), Terrain::GetActionLayer(), true);	
 	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("RedShoes");															\
 	RedShoesAnimator* animr4 = new RedShoesAnimator();
@@ -161,6 +161,8 @@ void BubbleMain::AnimationProgress(timestamp_t timeNow){
 }
 
 void BubbleMain::ArtificialIntelligence(){
+	ArtificialIntelligence::HandleZenChan();
+	ArtificialIntelligence::HandleMighta();
 }
 
 void BubbleMain::CollisionChecking(){

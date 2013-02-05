@@ -81,11 +81,11 @@ void ZenChanFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()?"ZenChanWalkLeft":"ZenChanWalkRight",
-						ZenChanStandAnimator, zenStandAnmr, this->GetSprite() );	
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()->GoesLeft()?"ZenChanWalkLeft":"ZenChanWalkRight",
+						ZenChanWalkingAnimator, zenStandAnmr, this->GetSprite() );	
 	
 	zenStandAnmr->RegistCollitions(this->GetSprite());
-
+	this->GetSprite()->AddStartFallingListener( zenStandAnmr );
 	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }
@@ -188,11 +188,11 @@ void ZenChanAngryFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()?"ZenChanAngryWalkLeft":"ZenChanAngryWalkRight",
-						ZenChanAngryStandAnimator, zenStandAnmr, this->GetSprite() );	
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()->GoesLeft()?"ZenChanAngryWalkLeft":"ZenChanAngryWalkRight",
+						ZenChanAngryWalkingAnimator, zenStandAnmr, this->GetSprite() );	
 	
 	zenStandAnmr->RegistCollitions(this->GetSprite());
-
+	this->GetSprite()->AddStartFallingListener( zenStandAnmr );
 	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }

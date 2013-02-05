@@ -26,6 +26,7 @@
 #include "MightaAnimator.h"
 #include "BarronVonBlubaAnimator.h"
 
+#include "ArtificialIntelligence.h"
 #include "PowerUpsAnimator.h"
 
 #include <allegro5\allegro5.h> 

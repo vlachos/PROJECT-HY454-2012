@@ -77,10 +77,10 @@ void MightaFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()?"MightaWalkLeft":"MightaWalkRight",
-						MightaStandAnimator, zenStandAnmr, this->GetSprite() );	
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()->GoesLeft()?"MightaWalkLeft":"MightaWalkRight",
+						MightaWalkingAnimator, zenStandAnmr, this->GetSprite() );	
 	zenStandAnmr->RegistCollitions(this->GetSprite());
-
+	this->GetSprite()->AddStartFallingListener( zenStandAnmr );
 	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }
@@ -185,11 +185,11 @@ void MightaAngryFallingAnimator::OnStopFalling(Sprite * sprite){
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
 
-	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()?"MightaAngryWalkLeft":"MightaAngryWalkRight",
-						MightaAngryStandAnimator, zenStandAnmr, this->GetSprite() );	
+	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenStandAnmn, this->GetSprite()->GoesLeft()?"MightaAngryWalkLeft":"MightaAngryWalkRight",
+						MightaAngryWalkingAnimator, zenStandAnmr, this->GetSprite() );	
 	
 	zenStandAnmr->RegistCollitions(this->GetSprite());
-
+	this->GetSprite()->AddStartFallingListener( zenStandAnmr );
 	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }
