@@ -36,7 +36,7 @@
 #define KILL_BUB_BUBBLE( animator_type, bubble, bub, args )					\
 	DASSERT( bubble && bub && args );										\
 	animator_type * _this = (animator_type *) args;							\
-	OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);				\
+	BubblesAnimatorActions::OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);\
 	REMOVE_FROM_ACTION_ANIMATOR( _this );									\
 	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );				\
 	DESTROY_ANIMATOR( _this );												\
@@ -45,7 +45,7 @@
 #define KILL_ZEN_CHAN(animator_type, bubble, zenChan, args )			\
 		DASSERT( bubble && zenChan && args );							\
 		animator_type * _this = (animator_type *) args;					\
-		OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);		\
+		BubblesAnimatorActions::OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);\
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());		\
@@ -64,7 +64,7 @@
 #define KILL_MIGHTA(animator_type, bubble, mighta, args )				\
 		DASSERT( bubble && mighta && args );							\
 		animator_type * _this = (animator_type *) args;					\
-		OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);		\
+		BubblesAnimatorActions::OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);\
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
@@ -80,7 +80,7 @@
 		DESTROY_ANIMATOR( _this );										\
 		BubbleLogic::BubPonMightaBubble()
 
-static void OnTickTimerFinishCallback(Animator* animr, void* args){
+void BubblesAnimatorActions::OnTickTimerFinishCallback(Animator* animr, void* args){
 	DASSERT( animr && !args );
 	TimerTickAnimator* ttar = (TimerTickAnimator*) animr;
 	AnimatorHolder::MarkAsSuspended( ttar );	
@@ -161,7 +161,7 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 
 	BubBubbleAnimator *bbar=new BubBubbleAnimator(ttar);
 	bbar->RegistCollitions(sprite);
@@ -187,7 +187,7 @@ static void StartZenChanAtBubbleAnimator(int x, int y, bool goesLeft){
 							);
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 
 	ZenChanInBubbleAnimator* zcibanmr = new ZenChanInBubbleAnimator(ttar);
 	zcibanmr->RegistCollitions(sprite);
@@ -211,7 +211,7 @@ static void StartMightaAtBubbleAnimator(int x, int y, bool goesLeft){
 
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubBubbleExpired");
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 
 	MightaInBubbleAnimator* mibanmr = new MightaInBubbleAnimator(ttar);
 	mibanmr->RegistCollitions(sprite);
@@ -334,7 +334,7 @@ void BubBubbleAnimator::OnBubbleExpiredTime(void* args){
 							);
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("BubPigBubbleExpired");
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(OnTickTimerFinishCallback, 0);
+	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 
 	BubPingBubbleAnimator* bpbamr = new BubPingBubbleAnimator(ttar);
 	bpbamr->RegistCollitions(sprite);

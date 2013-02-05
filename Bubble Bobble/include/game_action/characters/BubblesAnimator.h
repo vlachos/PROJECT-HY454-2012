@@ -9,6 +9,7 @@
 namespace BubblesAnimatorActions{
 	extern void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 	extern void OnCollisionWithBub(Sprite *, Sprite *, void *);
+	extern void OnTickTimerFinishCallback(Animator*, void*);
 }
 
 class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
