@@ -1,4 +1,5 @@
 #include "ZenChanAnimator.h"
+#include "BubAnimator.h"
 #include "GameActionUtilities.h"
 #include "MemoryManage.h"
 #include "AnimationsParser.h"
@@ -31,7 +32,7 @@ ZenChanWalkingAnimator::ZenChanWalkingAnimator(void) {
 }
 
 void ZenChanWalkingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -74,7 +75,7 @@ void ZenChanWalkingAnimator::OnFinishCallback(Animator* animr, void* args){
 ZenChanFallingAnimator::ZenChanFallingAnimator(){}
 
 void ZenChanFallingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -97,7 +98,7 @@ ZenChanJumpAnimator::ZenChanJumpAnimator(){
 }
 
 void ZenChanJumpAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanJumpAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -128,7 +129,7 @@ ZenChanAngryStandAnimator::ZenChanAngryStandAnimator(){
 }
 
 void ZenChanAngryStandAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanAngryStandAnimator::OnFinishCallback(Animator*, void*){}
@@ -140,7 +141,7 @@ ZenChanAngryWalkingAnimator::ZenChanAngryWalkingAnimator(){
 }
 
 void ZenChanAngryWalkingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanAngryWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -181,7 +182,7 @@ ZenChanAngryFallingAnimator::ZenChanAngryFallingAnimator(){
 }
 
 void ZenChanAngryFallingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanAngryFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -203,7 +204,7 @@ ZenChanAngryJumpAnimator::ZenChanAngryJumpAnimator(){
 }
 
 void ZenChanAngryJumpAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void ZenChanAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){

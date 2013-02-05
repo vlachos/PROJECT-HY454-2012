@@ -17,12 +17,12 @@ class InvisibleSprites{
 		static void	SingletonDestroy (void) { delete singletonPtr; singletonPtr = 0; }
 
 		static std::vector<InvisibleDrivers> GetInvisibleBubbleDriversForFrameRange();
-		static std::vector<InvisibleDrivers> GetInvisibleWrapAroundDriversForFrameRange();
+		static std::vector<InvisibleDrivers> GetInvisibleWrapAroundDrivers();
 
 	private:
 		static InvisibleSprites*	singletonPtr;
 		static std::vector<InvisibleDrivers> driversForFrameRange;
-		static std::vector<InvisibleDrivers> wrapAroundDriversForFrameRange;
+		static std::vector<InvisibleDrivers> wrapAroundDrivers;
 
 		InvisibleSprites();
 		~InvisibleSprites();

@@ -17,6 +17,8 @@ static Sprite* GetSpriteFromBubStandAnimator(Animator* animr) { return (( BubSta
 static Sprite* GetSpriteFromBubWalkAnimator(Animator* animr) { return (( BubWalkingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubFallingAnimator(Animator* animr) { return (( BubFallingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubOpenMouthAnimator(Animator* animr) { return (( BubOpenMouthAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromBubOpenMouthFallingAnimator(Animator* animr) { return (( BubOpenMouthFallingAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromBubOpenMouthJumpAnimator(Animator* animr) { return (( BubJumpOpenMouthAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubJumpAnimator(Animator* animr) { return (( BubJumpAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubDieAnimator(Animator* animr) { return (( BubDieAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromPonEffectAnimator(Animator* animr) { return (( PonEffectAnimator*)animr )->GetSprite(); }
@@ -65,6 +67,8 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromBubWalkAnimator,
 	GetSpriteFromBubFallingAnimator,
 	GetSpriteFromBubOpenMouthAnimator,
+	GetSpriteFromBubOpenMouthFallingAnimator,
+	GetSpriteFromBubOpenMouthJumpAnimator,
 	GetSpriteFromBubJumpAnimator,
 	GetSpriteFromBubDieAnimator,
 	GetSpriteFromPonEffectAnimator,
@@ -201,7 +205,7 @@ void CollisionChecker::RegisterBubbleDrivers(Sprite* spr, void* Args){
 }
 
 void CollisionChecker::RegisterBubbleWrapAroundDrivers(Sprite* spr, void* Args){
-	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleWrapAroundDriversForFrameRange();
+	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleWrapAroundDrivers();
 	for(int i=0; i<ibd.size(); ++i){
 		CollisionChecker::Register(spr, ibd[i].sprite, Args, ibd[i].callback);
 	}

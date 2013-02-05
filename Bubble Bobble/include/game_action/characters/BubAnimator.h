@@ -5,6 +5,10 @@
 #include "MovingPathAnimator.h"
 #include "MovingAnimator.h"
 #include "Sprite.h"
+
+namespace BubAnimatorActions{
+	extern void OnCollisionWithEnemy(Sprite*, Sprite*, void*);
+}
 		
 class BubStandAnimator : public MovingAnimator{
 	public:
@@ -16,7 +20,6 @@ class BubStandAnimator : public MovingAnimator{
 		void RegistCollitions(Sprite*);
 		void OnOpenMouth(void);
 		static void OnFinishCallback(Animator*, void*);
-		static void OnCollisionWithEnemy(Sprite*, Sprite*, void*);
 };
 
 class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStartFallingListener{
@@ -29,7 +32,6 @@ class BubWalkingAnimator : public FrameRangeAnimator, public Sprite::SpriteStart
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
 		void OnOpenMouth(void);
 };
@@ -43,7 +45,6 @@ class BubFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFalli
 			{ return bubFallingAnimator_t; }
 
 		void RegistCollitions(Sprite*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnOpenMouth(void);
 		void OnStopFalling(Sprite * sprite);
 };
@@ -57,7 +58,6 @@ class BubOpenMouthAnimator : public FrameRangeAnimator, public Sprite::SpriteSta
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStartFalling(Sprite * sprite);
 };
 
@@ -70,7 +70,6 @@ class BubOpenMouthFallingAnimator : public FrameRangeAnimator, public Sprite::Sp
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		void OnStopFalling(Sprite * sprite);
 };
 
@@ -82,7 +81,6 @@ class BubJumpAnimator : public MovingPathAnimator{
 			{ return bubJumpAnimator_t; }
 
 		void RegistCollitions(Sprite*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 		void OnOpenMouth(void);
 };
@@ -95,7 +93,6 @@ class BubJumpOpenMouthAnimator : public MovingPathAnimator{
 			{ return bubJumpOpenMouthAnimator_t; }
 
 		void RegistCollitions(Sprite*);
-		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);
 		MovingPathAnimation* GetJumpAnimation();
 		int					 GetIndex();

@@ -88,6 +88,32 @@ static void OnTickTimerFinishCallback(Animator* animr, void* args){
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( ttar );
 }
 
+
+void BubblesAnimatorActions::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
+	DASSERT( args );
+	BubBubbleAnimator* mmar = (BubBubbleAnimator*)args;
+	if(spr1->GetX()>spr2->GetX()){
+		spr1->Move( 5, 0 );
+	}else{
+		spr1->Move( -5, 0 );
+	}
+	if(spr1->GetY()>spr2->GetY()){
+		spr1->Move( 0, 2 );
+	}else{
+		spr1->Move( 0, -2 );
+	}
+}
+
+void BubblesAnimatorActions::OnCollisionWithBub(Sprite *spr1, Sprite *spr2, void *args){
+	DASSERT( args );
+	BubBubbleAnimator* mmar = (BubBubbleAnimator*)args;
+	if(spr1->GetX()>spr2->GetX()){
+		spr2->Move( -5, 0 );
+	}else{
+		spr2->Move( 5, 0 );
+	}
+}
+
 //////////////////////////////BubBubbleBlastOffAnimator
 
 BubBubbleBlastOffAnimator::BubBubbleBlastOffAnimator(){
@@ -287,7 +313,7 @@ BubBubbleAnimator::BubBubbleAnimator(TimerTickAnimator* _BubBubbleTimer){
 }
 
 void BubBubbleAnimator::RegistCollitions(Sprite *spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, mightaInBubbleHighAngry_t, this, BubblesAnimatorActions::OnCollisionWithBubble);
 	CollisionChecker::RegisterBubbleDrivers(spr, this);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
@@ -330,26 +356,6 @@ void BubBubbleAnimator::OnCollisionWithBubJump(Sprite *bub, Sprite *bubble, void
 	KILL_BUB_BUBBLE( BubBubbleAnimator, bubble, bub, args );
 }
 
-void BubBubbleAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
-	/*
-	DASSERT( args );
-	BubBubbleAnimator* mmar = (BubBubbleAnimator*)args;
-	MovingPathAnimation* mma = mmar->GetAnimation();
-	std::vector<PathEntry> path = mma->GetPath();
-	if(spr1->GetX()>spr2->GetX()){
-
-	}else{
-		//spr1->Move( -1, 0 );
-	}
-	mma->SetPath( path );
-	/*
-	if(spr1->GetY()>spr2->GetY()){
-		spr1->Move( 0, 1 );
-	}else{
-		spr1->Move( 0, -1 );
-	}*/
-}
-
 ////////////////////////////////////BubPingBubbleAnimator
 
 BubPingBubbleAnimator::BubPingBubbleAnimator(TimerTickAnimator* _bubBubbleTimer){
@@ -357,7 +363,7 @@ BubPingBubbleAnimator::BubPingBubbleAnimator(TimerTickAnimator* _bubBubbleTimer)
 }
 
 void BubPingBubbleAnimator::RegistCollitions(Sprite* spr){
-	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, mightaInBubbleHighAngry_t, this, BubblesAnimatorActions::OnCollisionWithBubble);
 	CollisionChecker::RegisterBubbleDrivers(spr, this);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
@@ -419,7 +425,7 @@ ZenChanInBubbleAnimator::ZenChanInBubbleAnimator(TimerTickAnimator* _BubBubbleTi
 }
 
 void ZenChanInBubbleAnimator::RegistCollitions(Sprite* spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, mightaInBubbleHighAngry_t, this, BubblesAnimatorActions::OnCollisionWithBubble);
 	CollisionChecker::RegisterBubbleDrivers(spr, this);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
@@ -464,7 +470,6 @@ ZenChanInBubbleMediumAngryAnimator::ZenChanInBubbleMediumAngryAnimator(){
 }
 
 void ZenChanInBubbleMediumAngryAnimator::RegistCollitions(Sprite* spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
 }
 
 void ZenChanInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*args){
@@ -508,7 +513,6 @@ ZenChanInBubbleHighAngryAnimator::ZenChanInBubbleHighAngryAnimator(){
 }
 
 void ZenChanInBubbleHighAngryAnimator::RegistCollitions(Sprite* spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
 }
 
 void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args){
@@ -560,7 +564,7 @@ MightaInBubbleAnimator::MightaInBubbleAnimator(TimerTickAnimator* _bubBubbleTime
 }
 
 void MightaInBubbleAnimator::RegistCollitions(Sprite* spr){
-	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, this, OnCollisionWithBubble);
+	CollisionChecker::Register(spr, bubBubbleAnimator_t, mightaInBubbleHighAngry_t, this, BubblesAnimatorActions::OnCollisionWithBubble);
 	CollisionChecker::RegisterBubbleDrivers(spr, this);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
@@ -605,8 +609,7 @@ MightaInBubbleMediumAngryAnimator::MightaInBubbleMediumAngryAnimator(){
 }
 
 void MightaInBubbleMediumAngryAnimator::RegistCollitions(Sprite* spr){
-
-
+	
 }
 
 void MightaInBubbleMediumAngryAnimator::OnFinishCallback(Animator*anim, void*args){

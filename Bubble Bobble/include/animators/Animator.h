@@ -21,6 +21,8 @@ enum animatorType_t {
 	bubWalkAnimator_t,
 	bubFallingAnimator_t,
 	bubOpenMouthAnimator_t,
+	bubOpenMouthFallingAnimator_t,
+	bubJumpOpenMouthAnimator_t,
 	bubJumpAnimator_t,
 	bubDieAnimator_t,
 	ponEffectAnimator_t,
@@ -62,9 +64,8 @@ enum animatorType_t {
 	YellowSweetAnimator_t,
 	BlueSweetAnimator_t,
 	PurpleSweetAnimator_t,
-	bubOpenMouthFallingAnimator_t,
 	timeTickAnimator_t,
-	bubJumpOpenMouthAnimator_t
+	
 };
 
 class Animator : public LatelyDestroyable{

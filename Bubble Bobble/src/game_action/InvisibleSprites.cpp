@@ -10,7 +10,7 @@
 #include "BubblesAnimator.h"
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::driversForFrameRange;
-std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::wrapAroundDriversForFrameRange;
+std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::wrapAroundDrivers;
 InvisibleSprites*								InvisibleSprites::singletonPtr;
 
 static std::list<AnimationFilm*>				animationFilmHolderLateDestraction;
@@ -82,16 +82,14 @@ static void InvisibleDrivererGoRightFRA(Sprite *obj, Sprite *driver, void *args)
 	}
 }
 
-static void InvisibleDrivererWrapAroundFRA1(Sprite *obj, Sprite *driver, void *args){
+static void InvisibleDrivererWrapAround1(Sprite *obj, Sprite *driver, void *args){
 	obj->SetX(160);
 	obj->SetY(0);
-	InvisibleDrivererGoDownFRA( driver, obj, args );
 }
 
-static void InvisibleDrivererWrapAroundFRA2(Sprite *obj, Sprite *driver, void *args){
+static void InvisibleDrivererWrapAround2(Sprite *obj, Sprite *driver, void *args){
 	obj->SetX(323);
 	obj->SetY(0);
-	InvisibleDrivererGoDownFRA( driver, obj, args );
 }
 
 InvisibleSprites::InvisibleSprites(){
@@ -189,14 +187,14 @@ InvisibleSprites::InvisibleSprites(){
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround2");
 	spr = new Sprite( 335, 450, false, af, Terrain::GetActionLayer(), true);
 	animationFilmHolderLateDestraction.push_back(af);
-	wrapAroundDriversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAroundFRA2 ) );
+	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround2 ) );
 
 	box.clear();
 	box.push_back( Rect(0, 0, 12, 2) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
 	spr = new Sprite( 173, 450, false, af, Terrain::GetActionLayer(), true);
 	animationFilmHolderLateDestraction.push_back(af);
-	wrapAroundDriversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAroundFRA1 ) );
+	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround1 ) );
 }
 
 InvisibleSprites::~InvisibleSprites(){
@@ -215,17 +213,17 @@ InvisibleSprites::~InvisibleSprites(){
 	driversForFrameRange.clear();
 
 	std::for_each(
-					wrapAroundDriversForFrameRange.begin(),
-					wrapAroundDriversForFrameRange.end(),
+					wrapAroundDrivers.begin(),
+					wrapAroundDrivers.end(),
 					InvisibleSpritesDelete::DeleteInvisibleDrivers()
 				);
-	wrapAroundDriversForFrameRange.clear();
+	wrapAroundDrivers.clear();
 }
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleBubbleDriversForFrameRange(){
 	return driversForFrameRange;
 }
 
-std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleWrapAroundDriversForFrameRange(){
-	return wrapAroundDriversForFrameRange;
+std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleWrapAroundDrivers(){
+	return wrapAroundDrivers;
 }

@@ -6,6 +6,11 @@
 #include "FrameRangeAnimator.h"
 #include "MovingPathAnimator.h"
 
+namespace BubblesAnimatorActions{
+	extern void OnCollisionWithBubble(Sprite *, Sprite *, void *);
+	extern void OnCollisionWithBub(Sprite *, Sprite *, void *);
+}
+
 class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 	public:
 		BubBubbleBlastOffAnimator();
@@ -45,7 +50,6 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 		void RegistCollitions(Sprite*);
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
-		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 		static void OnCollisionWithInvisibleDriverGoDown(Sprite *, Sprite *, void *);
 		static void OnBubbleExpiredTime(void*);
 

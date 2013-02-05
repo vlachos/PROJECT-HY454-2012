@@ -1,4 +1,5 @@
 #include "MightaAnimator.h"
+#include "BubAnimator.h"
 #include "GameActionUtilities.h"
 #include "MemoryManage.h"
 #include "AnimationsParser.h"
@@ -30,7 +31,7 @@ MightaWalkingAnimator::MightaWalkingAnimator(void) {
 }
 
 void MightaWalkingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -70,7 +71,7 @@ void MightaWalkingAnimator::OnFinishCallback(Animator* animr, void* args){
 MightaFallingAnimator::MightaFallingAnimator(){}
 
 void MightaFallingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -92,7 +93,7 @@ MightaJumpAnimator::MightaJumpAnimator(){
 }
 
 void MightaJumpAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaJumpAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -126,7 +127,7 @@ MightaAngryStandAnimator::MightaAngryStandAnimator(){
 }
 
 void MightaAngryStandAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaAngryStandAnimator::OnFinishCallback(Animator* anim, void* args){}
@@ -137,7 +138,7 @@ MightaAngryWalkingAnimator::MightaAngryWalkingAnimator(void) {
 }
 
 void MightaAngryWalkingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaAngryWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -178,7 +179,7 @@ void MightaAngryWalkingAnimator::OnFinishCallback(Animator* animr, void* args){
 MightaAngryFallingAnimator::MightaAngryFallingAnimator(){}
 
 void MightaAngryFallingAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaAngryFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -201,7 +202,7 @@ MightaAngryJumpAnimator::MightaAngryJumpAnimator(){
 }
 
 void MightaAngryJumpAnimator::RegistCollitions(Sprite *spr){
-	
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -232,7 +233,7 @@ MightaDieAnimator::MightaDieAnimator(){
 }
 
 void MightaDieAnimator::RegistCollitions(Sprite *spr){
-
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
