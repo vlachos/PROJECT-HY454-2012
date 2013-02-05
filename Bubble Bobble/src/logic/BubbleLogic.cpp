@@ -37,7 +37,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	std::vector<Coordinates> BubbleLogic::powerUpPosXY;
 
-
+	///////////// INITIALIZE
 	void BubbleLogic::SingletonCreate(void){
 
 		highScore = 0;
@@ -76,7 +76,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		srand((unsigned)time(0));
 	}
 
-
+	///////////// BUBBLUN
 	BubProfile* BubbleLogic::GetBubProfile(void) { return bub; }
 	BubProfile* BubbleLogic::GetBobProfile(void) { return bob; }
 
@@ -93,11 +93,37 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		if (bub->GetScore() > highScore)
 			highScore = bub->GetScore();
 	}
+	void BubbleLogic::BubRedShoesAcquired(void) {
+		BubbleLogic::IncrBubScore(powerUpPoints);
+		bub->SetRedShoes(true);
+	}
+	void BubbleLogic::BubYellowSwtAcquired(void) {
+		BubbleLogic::IncrBubScore(powerUpPoints);
+		bub->SetYellowSwt(true);
+	}
+	void BubbleLogic::BubBlueSwtAcquired(void) {
+		BubbleLogic::IncrBubScore(powerUpPoints);
+		bub->SetBlueSwt(true);
+	}
+	void BubbleLogic::BubPurpleSwtAcquired(void) {
+		BubbleLogic::IncrBubScore(powerUpPoints);
+		bub->SetPurpleSwt(true);
+	}
+	void BubbleLogic::BubBananaAcquired(void) { IncrBubScore(bananaPoints); }
+	void BubbleLogic::BubOrangeAcquired(void) { IncrBubScore(orangePoints); }
+	void BubbleLogic::BubPeachAcquired(void) { IncrBubScore(peachPoints); }
+	void BubbleLogic::BubWaterMelonAcquired(void) { IncrBubScore(waterMelonPoints); }
+	void BubbleLogic::BubBlueDiamondAcquired(void) { IncrBubScore(blueDiamondPoints); }
 
+	void BubbleLogic::BubPonEmptyBubble(void) { IncrBubScore(emptyBubblePoints); }
+	void BubbleLogic::BubPonZenChanBubble(void) { IncrBubScore(zenChanBubblePoints); }
+	void BubbleLogic::BubPonMightaBubble(void) { IncrBubScore(mightaBubblePoints); }
+
+
+	///////////// BOBBLUN
 	void BubbleLogic::SetBobScore(Points newScore) {
 		bob->SetScore(newScore);
-		if (bob->GetScore() > highScore)
-			highScore = bob->GetScore();
+		if (bob->GetScore() > highScore) highScore = bob->GetScore();
 	}
 	void BubbleLogic::IncrBobScore(Points somePoints) {
 		bob->IncrScore(somePoints);
@@ -105,21 +131,33 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 			highScore = bob->GetScore();
 	}
 
-	Lifes BubbleLogic::GetStartingLifes(void) { return startingLifes; }
+	void BubbleLogic::BobRedShoesAcquired(void) {
+		BubbleLogic::IncrBobScore(powerUpPoints);
+		bob->SetRedShoes(true);
+	}
+	void BubbleLogic::BobYellowSwtAcquired(void) {
+		BubbleLogic::IncrBobScore(powerUpPoints);
+		bob->SetYellowSwt(true);
+	}
+	void BubbleLogic::BobBlueSwtAcquired(void) {
+		BubbleLogic::IncrBobScore(powerUpPoints);
+		bob->SetBlueSwt(true);
+	}
+	void BubbleLogic::BobPurpleSwtAcquired(void) {
+		BubbleLogic::IncrBobScore(powerUpPoints);
+		bob->SetPurpleSwt(true);
+	}
+	void BubbleLogic::BobBananaAcquired(void) {	IncrBobScore(bananaPoints); }
+	void BubbleLogic::BobOrangeAcquired(void) {	IncrBobScore(orangePoints); }
+	void BubbleLogic::BobPeachAcquired(void) { IncrBobScore(peachPoints); }
+	void BubbleLogic::BobWaterMelonAcquired(void) { IncrBobScore(waterMelonPoints); }
+	void BubbleLogic::BobBlueDiamondAcquired(void) { IncrBobScore(blueDiamondPoints); }
 
-	double BubbleLogic::GetBaronSecToRaiseMS(void) { return baronSecToRaiseMS; }
-	double BubbleLogic::GetBaronDecrDelay(void) { return baronDecrDelay; }
+	void BubbleLogic::BobPonEmptyBubble(void) { IncrBobScore(emptyBubblePoints); }
+	void BubbleLogic::BobPonZenChanBubble(void) { IncrBobScore(zenChanBubblePoints); }
+	void BubbleLogic::BobPonMightaBubble(void) {IncrBobScore(mightaBubblePoints);  }
 
-	Points BubbleLogic::GetEmptyBubblePoints(void) { return emptyBubblePoints; }
-	Points BubbleLogic::GetPowerUpPoints(void) { return powerUpPoints; }
-	Points BubbleLogic::GetZenChanBubblePoints(void) { return zenChanBubblePoints; }
-	Points BubbleLogic::GetMightaBubblePoints(void) { return mightaBubblePoints; }
-	Points BubbleLogic::GetBananaPoints(void) { return bananaPoints; }
-	Points BubbleLogic::GetOrangePoints(void) { return orangePoints; }
-	Points BubbleLogic::GetPeachPoints(void) { return peachPoints; }
-	Points BubbleLogic::GetWaterMelonPoints(void) { return waterMelonPoints; }
-	Points BubbleLogic::GetBlueDiamondPoints(void) { return blueDiamondPoints; }
-
+	///////////// GENERAL
 	unsigned int BubbleLogic::GetEnemiesForBanana(void) { return enemiesForBanana; }
 	unsigned int BubbleLogic::GetEnemiesForOrange(void) { return enemiesForOrange; }
 	unsigned int BubbleLogic::GetEnemiesForPeach(void) { return enemiesForPeach; }
@@ -145,6 +183,11 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
 
+	///////////// BARRON VON BLUBA
+	double BubbleLogic::GetBaronSecToRaiseMS(void) { return baronSecToRaiseMS; }
+	double BubbleLogic::GetBaronDecrDelay(void) { return baronDecrDelay; }
+
+	///////////// CLEANUP
 	void BubbleLogic::SingletonCleanUp(void){
 		DDELETE( bub);
 		DDELETE( bob);

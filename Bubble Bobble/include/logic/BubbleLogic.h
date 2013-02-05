@@ -42,6 +42,10 @@ class BubbleLogic {
 
 		static std::vector<Coordinates> powerUpPosXY;
 
+	private:
+		static void IncrBubScore(Points somePoints);
+		static void IncrBobScore(Points somePoints);
+
 	public:
 		static BubProfile* GetBubProfile(void);
 		static BubProfile* GetBobProfile(void);
@@ -50,25 +54,32 @@ class BubbleLogic {
 		static Points GetHighScore(void);
 
 		static void SetBubScore(Points newScore);
-		static void IncrBubScore(Points somePoints);
+		static void BubRedShoesAcquired(void);
+		static void BubYellowSwtAcquired(void);
+		static void BubBlueSwtAcquired(void);
+		static void BubPurpleSwtAcquired(void);
+		static void BubBananaAcquired(void);
+		static void BubOrangeAcquired(void);
+		static void BubPeachAcquired(void);
+		static void BubWaterMelonAcquired(void);
+		static void BubBlueDiamondAcquired(void);
+		static void BubPonEmptyBubble(void);
+		static void BubPonZenChanBubble(void);
+		static void BubPonMightaBubble(void);
 
 		static void SetBobScore(Points newScore);
-		static void IncrBobScore(Points somePoints);
-
-		static Lifes GetStartingLifes(void);
-
-		static double GetBaronSecToRaiseMS(void);
-		static double GetBaronDecrDelay(void);
-
-		static Points GetEmptyBubblePoints(void);
-		static Points GetZenChanBubblePoints(void);
-		static Points GetMightaBubblePoints(void);
-		static Points GetBananaPoints(void);
-		static Points GetOrangePoints(void);
-		static Points GetPeachPoints(void);
-		static Points GetWaterMelonPoints(void);
-		static Points GetBlueDiamondPoints(void);
-		static Points GetPowerUpPoints(void);
+		static void BobRedShoesAcquired(void);
+		static void BobYellowSwtAcquired(void);
+		static void BobBlueSwtAcquired(void);
+		static void BobPurpleSwtAcquired(void);
+		static void BobBananaAcquired(void);
+		static void BobOrangeAcquired(void);
+		static void BobPeachAcquired(void);
+		static void BobWaterMelonAcquired(void);
+		static void BobBlueDiamondAcquired(void);
+		static void BobPonEmptyBubble(void);
+		static void BobPonZenChanBubble(void);
+		static void BobPonMightaBubble(void);
 
 		static unsigned int GetEnemiesForBanana(void);
 		static unsigned int GetEnemiesForOrange(void);
@@ -84,6 +95,9 @@ class BubbleLogic {
 		static Coordinates GetPowerUpPosXY(void);
 
 		static Points GetPointsOfPoning(unsigned int enemiesPoned);
+
+		static double GetBaronSecToRaiseMS(void);
+		static double GetBaronDecrDelay(void);
 
 	public:
 		static void SingletonCleanUp(void);

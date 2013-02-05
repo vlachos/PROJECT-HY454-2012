@@ -590,4 +590,8 @@ void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 
 	BubbleLogic::SetBubScore(BubbleLogic::GetBubProfile()->GetScore() / 2 );
+	BubbleLogic::GetBubProfile()->SetYellowSwt(false);
+	BubbleLogic::GetBubProfile()->SetBlueSwt(false);
+	BubbleLogic::GetBubProfile()->SetPurpleSwt(false);
+	BubbleLogic::GetBubProfile()->SetRedShoes(false);
 }

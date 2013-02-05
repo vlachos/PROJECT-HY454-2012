@@ -9,6 +9,7 @@
 #include "Terrain.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
+#include "BubbleLogic.h"
 
 
 #define DESTROY_PAIR( pair )						\
@@ -38,7 +39,8 @@
 	OnTickTimerFinishCallback(_this->getBubBubbleTimer(), 0);				\
 	REMOVE_FROM_ACTION_ANIMATOR( _this );									\
 	StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );				\
-	DESTROY_ANIMATOR( _this )
+	DESTROY_ANIMATOR( _this );												\
+	BubbleLogic::BubPonEmptyBubble()
 
 #define KILL_ZEN_CHAN(animator_type, bubble, zenChan, args )			\
 		DASSERT( bubble && zenChan && args );							\
@@ -47,7 +49,8 @@
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());		\
-		DESTROY_ANIMATOR( _this )	
+		DESTROY_ANIMATOR( _this );										\
+		BubbleLogic::BubPonZenChanBubble()
 
 #define KILL_ZEN_CHAN_ANGRY(animator_type, bubble, zenChan, args )		\
 		DASSERT( bubble && zenChan && args );							\
@@ -55,7 +58,8 @@
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartZenChanDieAnimator(bubble->GetX(), bubble->GetY());		\
-		DESTROY_ANIMATOR( _this )	
+		DESTROY_ANIMATOR( _this );										\
+		BubbleLogic::BubPonZenChanBubble()
 
 #define KILL_MIGHTA(animator_type, bubble, mighta, args )				\
 		DASSERT( bubble && mighta && args );							\
@@ -64,7 +68,8 @@
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
-		DESTROY_ANIMATOR( _this )	
+		DESTROY_ANIMATOR( _this );										\
+		BubbleLogic::BubPonMightaBubble()
 
 #define KILL_MIGHTA_ANGRY(animator_type, bubble, mighta, args )			\
 		DASSERT( bubble && mighta && args );							\
@@ -72,7 +77,8 @@
 		REMOVE_FROM_ACTION_ANIMATOR( _this );							\
 		StartPonEffectAnimator( bubble->GetX(), bubble->GetY() );		\
 		StartMightaDieAnimator(bubble->GetX(), bubble->GetY());			\
-		DESTROY_ANIMATOR( _this )	
+		DESTROY_ANIMATOR( _this );										\
+		BubbleLogic::BubPonMightaBubble()
 
 static void OnTickTimerFinishCallback(Animator* animr, void* args){
 	DASSERT( animr && !args );

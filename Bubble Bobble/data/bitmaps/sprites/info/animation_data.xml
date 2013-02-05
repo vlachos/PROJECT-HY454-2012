@@ -4,95 +4,88 @@
   <BubOpenMouth type="FrameRangeAnimation" dx="0" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubOpenMouthWalkingLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubOpenMouthWalkingRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="false" start="0" end="6"  />
-  <BubWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="false" start="0" end="6"  />
-  <BubWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="false" start="0" end="6"  />
-  <BubFalling type="MovingAnimation" dx="0" dy="1" delay="10" continue="true"/>
-  <BubBubbleBlastOffLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="50" continue="false" start="0" end="10"  />
-  <BubBubbleBlastOffRight type="FrameRangeAnimation" dx="10" dy="0" delay="50" continue="false" start="0" end="10"  />
-  <BubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="150" continue="true" start="0" end="2"  />
-  <BubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="150" continue="true" start="0" end="2"  />
+  <BubWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubFalling type="MovingAnimation" dx="0" dy="1" delay="12" continue="true"/>
+  <BubBubbleBlastOffLeft type="FrameRangeAnimation" dx="-13" dy="0" delay="35" continue="false" start="0" end="10"  />
+  <BubBubbleBlastOffRight type="FrameRangeAnimation" dx="13" dy="0" delay="35" continue="false" start="0" end="10"  />
+  <BubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="400" continue="true" start="0" end="2"  />
+  <BubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="400" continue="true" start="0" end="2"  />
 
-  <BubOpenMouthFalling type="FrameRangeAnimation" dx="0" dy="1" delay="10" continue="false" start="0" end="6"  />
+  <BubOpenMouthFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="false" start="0" end="6"  />
 
   <BubOpenMouthJump type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="5"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="4"/>
+    <list  dx="0" dy="-5" delay="30" frame="5"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
   </BubOpenMouthJump>
   
   <BubJumpStand type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
   </BubJumpStand>
 
   <BubJumpWalkingRight type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
   </BubJumpWalkingRight>
 
   <BubJumpWalkingLeft type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
-    <list  dx="0" dy="-5" delay="20" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
+    <list  dx="0" dy="-5" delay="30" frame="6"/>
   </BubJumpWalkingLeft>
 
   <BubDieByEnemy type="MovingPathAnimation">
@@ -137,55 +130,51 @@
     <list  dx="0" dy="0" delay="100" frame="15"/>
   </BubDieByEnemy>
 
-  <ZenChanStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="3"  />
-  <ZenChanWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="60" continue="true" start="0" end="3"  />
-  <ZenChanWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="60" continue="true" start="0" end="3"  />
-  <ZenChanFalling type="FrameRangeAnimation" dx="0" dy="1" delay="40" continue="true" start="0" end="3"  />
-  <ZenChanAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="50" continue="true" start="0" end="3"  />
-  <ZenChanAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="40" continue="true" start="0" end="3"  />
-  <ZenChanAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="40" continue="true" start="0" end="3"  />
-  <ZenChanAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="20" continue="true" start="0" end="3"  />
+  <ZenChanStand type="FrameRangeAnimation" dx="0" dy="0" delay="40" continue="true" start="0" end="3"  />
+  <ZenChanWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="40" continue="true" start="0" end="3"  />
+  <ZenChanWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="40" continue="true" start="0" end="3"  />
+  <ZenChanFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="true" start="0" end="3"  />
+  <ZenChanAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="20" continue="true" start="0" end="3"  />
+  <ZenChanAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="true" start="0" end="3"  />
+  <ZenChanAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="true" start="0" end="3"  />
+  <ZenChanAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="true" start="0" end="3"  />
 
   <ZenChanJump type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
   </ZenChanJump>
 
   <ZenChanJumpAngry type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
   </ZenChanJumpAngry>
 
   <ZenChanDie type="MovingPathAnimation">
@@ -217,55 +206,55 @@
   </ZenChanDie>
 
 
-  <MightaStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="4"  />
-  <MightaWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="60" continue="true" start="0" end="4"  />
-  <MightaWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="60" continue="true" start="0" end="4"  />
-  <MightaFalling type="FrameRangeAnimation" dx="0" dy="1" delay="40" continue="true" start="0" end="4"  />
-  <MightaAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="50" continue="true" start="0" end="4"  />
-  <MightaAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="true" start="0" end="4"  />
-  <MightaAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="true" start="0" end="4"  />
-  <MightaAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="20" continue="true" start="0" end="4"  />
+  <MightaStand type="FrameRangeAnimation" dx="0" dy="0" delay="40" continue="true" start="0" end="4"  />
+  <MightaWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="40" continue="true" start="0" end="4"  />
+  <MightaWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="40" continue="true" start="0" end="4"  />
+  <MightaFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="true" start="0" end="4"  />
+  <MightaAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="20" continue="true" start="0" end="4"  />
+  <MightaAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="true" start="0" end="4"  />
+  <MightaAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="true" start="0" end="4"  />
+  <MightaAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="true" start="0" end="4"  />
 
   <MightaJump type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="4"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="4"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="4"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
+    <list  dx="0" dy="-5" delay="30" frame="1"/>
+    <list  dx="0" dy="-5" delay="30" frame="2"/>
   </MightaJump>
 
   <MightaJumpAngry type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
-    <list  dx="0" dy="-5" delay="20" frame="3"/>
-    <list  dx="0" dy="-5" delay="20" frame="4"/>
-    <list  dx="0" dy="-5" delay="20" frame="0"/>
-    <list  dx="0" dy="-5" delay="20" frame="1"/>
-    <list  dx="0" dy="-5" delay="20" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="4"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="4"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="4"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
+    <list  dx="0" dy="-5" delay="15" frame="1"/>
+    <list  dx="0" dy="-5" delay="15" frame="2"/>
   </MightaJumpAngry>
 
   <MightaDie type="MovingPathAnimation">

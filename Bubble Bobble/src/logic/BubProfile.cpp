@@ -1,6 +1,5 @@
 #include "BubProfile.h"
 #include "MemoryManage.h"
-#include "BubbleLogic.h"
 
 	///////// constructors
 	BubProfile::BubProfile(Points aScore, Lifes lifes, bool redShoes, bool yellowSw, bool blueSw, bool purpleSw){
@@ -57,26 +56,14 @@
 	Lifes BubProfile::GetLifes(void) { return lifes; }
 
 	//////// power ups
-	void BubProfile::SetRedShoes(bool activate) {
-		BubbleLogic::IncrBubScore(BubbleLogic::GetPowerUpPoints() ); 
-		hasRedShoes = activate;
-	}
+	void BubProfile::SetRedShoes(bool activate) { hasRedShoes = activate; }
 	bool BubProfile::GetRedShoes(void) { return hasRedShoes; }
 
-	void BubProfile::SetYellowSwt(bool activate) {
-		BubbleLogic::IncrBubScore(BubbleLogic::GetPowerUpPoints() ); 
-		eatenYellowSweet = activate;
-	}
+	void BubProfile::SetYellowSwt(bool activate) { eatenYellowSweet = activate;	}
 	bool BubProfile::GetYellowSwt(void) { return eatenYellowSweet; }
 
-	void BubProfile::SetBlueSwt(bool activate) {
-		BubbleLogic::IncrBubScore(BubbleLogic::GetPowerUpPoints() ); 
-		eatenBlueSweet = activate;
-	}
+	void BubProfile::SetBlueSwt(bool activate) { eatenBlueSweet = activate;	}
 	bool BubProfile::GetBlueSwt(void) { return eatenBlueSweet; }
 
-	void BubProfile::SetPurpleSwt(bool activate) {
-		BubbleLogic::IncrBubScore(BubbleLogic::GetPowerUpPoints() ); 
-		eatenPurpleSweet = activate;
-	}
+	void BubProfile::SetPurpleSwt(bool activate) { eatenPurpleSweet = activate;	}
 	bool BubProfile::GetPurpleSwt(void) { return eatenPurpleSweet; }

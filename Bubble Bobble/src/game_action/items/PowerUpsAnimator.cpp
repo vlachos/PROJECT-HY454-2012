@@ -20,7 +20,7 @@ void RedShoesAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::GetBubProfile()->SetRedShoes(true);
+	BubbleLogic::BubRedShoesAcquired();
 }
 
 void RedShoesAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -48,7 +48,7 @@ void YellowSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::GetBubProfile()->SetYellowSwt(true);
+	BubbleLogic::BubYellowSwtAcquired();
 }
 
 void YellowSweetAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -75,7 +75,7 @@ void BlueSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *arg
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::GetBubProfile()->SetBlueSwt(true);
+	BubbleLogic::BubBlueSwtAcquired();
 }
 
 void BlueSweetAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -102,7 +102,7 @@ void PurpleSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::GetBubProfile()->SetPurpleSwt(true);
+	BubbleLogic::BubPurpleSwtAcquired();
 }
 
 void PurpleSweetAnimator::OnFinishCallback(Animator* anim, void* args){
