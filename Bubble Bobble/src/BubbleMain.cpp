@@ -57,39 +57,20 @@ void BubbleMain::InitGameEngine(){
 	InvisibleSprites::SingletonCreate();
 	
 	BubbleLogic::SetBubScore(0);
-	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(),BubbleLogic::GetBubProfile()->GetStartY(),
-								BubbleLogic::GetBubProfile()->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
-								Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());	
-	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
-	BubStandAnimator* animr = new BubStandAnimator();
-	animr->RegistCollitions(sprite);
-	
-	Sprite* sprite2 = new Sprite(200, 79,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															\
-	MightaWalkingAnimator* animr2 = new MightaWalkingAnimator();
-	sprite2->AddStartFallingListener(animr2);
-	animr2->RegistCollitions(sprite2);
-	
-	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim3 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
-	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
-	sprite3->AddStartFallingListener(animr3);
-	animr3->RegistCollitions(sprite3);
-	
-	Sprite* sprite4 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("PurpleSweet"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("PurpleSweet");															\
-	PurpleSweetAnimator* animr4 = new PurpleSweetAnimator();
-	animr4->RegistCollitions(sprite4);
-	
-	Sprite* sprite5 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("BlueSweet"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim5 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BlueSweet");															\
-	BlueSweetAnimator* animr5 = new BlueSweetAnimator();
-	animr5->RegistCollitions(sprite5);
 
-	Sprite* sprite6 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("RedShoes"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim6 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("RedShoes");															\
-	RedShoesAnimator* animr6 = new RedShoesAnimator();
-	animr6->RegistCollitions(sprite6);
+	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BubInBubble");
+	Sprite *sprite = new Sprite(
+								250,
+								30,
+								false,						
+								AnimationFilmHolder::GetFilm( "BubInBubble" ), 
+								Terrain::GetActionLayer(), 
+								false
+							);
+	sprite->SetOnDrugs(true);
+	BubInBubbleAnimator* bibamr = new BubInBubbleAnimator();
+	
+
 	/*
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("HurryUpStart");
 	ta->SetTickAction( BaronVonBlubaAnimatorActions::StartHurryUpAnimator, 0 );
@@ -98,13 +79,7 @@ void BubbleMain::InitGameEngine(){
 	*/
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
-	
-	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
-	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
-	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
-	START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
-	START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
-	START_ANIMATOR( animr6, sprite6, anim6, GetGameTime() );
+	START_ANIMATOR(bibamr, sprite, mpa, GetGameTime() );
 	//START_TIME_ANIMATOR(ttar, GetGameTime());
 
 	redraw = true;
