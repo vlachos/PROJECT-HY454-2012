@@ -123,8 +123,14 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::BubBlueDiamondAcquired(void) { IncrBubScore(blueDiamondPoints); }
 
 	void BubbleLogic::BubPonEmptyBubble(void) { IncrBubScore(emptyBubblePoints); }
-	void BubbleLogic::BubPonZenChanBubble(void) { IncrBubScore(zenChanBubblePoints); }
-	void BubbleLogic::BubPonMightaBubble(void) { IncrBubScore(mightaBubblePoints); }
+	void BubbleLogic::BubPonZenChanBubble(void) {
+		bub->IncrEnemiesKilledOnPon();
+		IncrBubScore(zenChanBubblePoints);
+	}
+	void BubbleLogic::BubPonMightaBubble(void) {
+		bub->IncrEnemiesKilledOnPon();
+		IncrBubScore(mightaBubblePoints);
+	}
 
 
 	///////////// BOBBLUN
@@ -161,16 +167,39 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::BobBlueDiamondAcquired(void) { IncrBobScore(blueDiamondPoints); }
 
 	void BubbleLogic::BobPonEmptyBubble(void) { IncrBobScore(emptyBubblePoints); }
-	void BubbleLogic::BobPonZenChanBubble(void) { IncrBobScore(zenChanBubblePoints); }
-	void BubbleLogic::BobPonMightaBubble(void) {IncrBobScore(mightaBubblePoints);  }
+	void BubbleLogic::BobPonZenChanBubble(void) {
+		bob->IncrEnemiesKilledOnPon();
+		IncrBobScore(zenChanBubblePoints);
+	}
+	void BubbleLogic::BobPonMightaBubble(void) {
+		bob->IncrEnemiesKilledOnPon();
+		IncrBobScore(mightaBubblePoints);
+	}
 
 	///////////// GENERAL
-	unsigned int BubbleLogic::GetFruitType(unsigned int enemiesTerminated){
+	unsigned int BubbleLogic::GetFruitType(void){
 
-		if (enemiesTerminated <= enemiesForBanana)		return 1;
-		else if (enemiesTerminated <= enemiesForOrange) return 2;
-		else if (enemiesTerminated <= enemiesForPeach)	return 3;
-		else											return 4;
+		unsigned int ret = 0;
+
+		if (bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon() <= enemiesForBanana)
+			ret = 1;
+		else if (bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon() <= enemiesForOrange)
+			ret = 2;
+		else if (bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon() <= enemiesForPeach)
+			ret = 3;
+		else
+			ret = 4;
+
+		bub->IncrScore ( GetPointsOfPoning(bub->GetEnemiesKilledOnPon() ) );
+		bub->SetEnemiesKilledOnPon(0);
+		bob->IncrScore ( GetPointsOfPoning(bob->GetEnemiesKilledOnPon() ) );
+		bob->SetEnemiesKilledOnPon(0);
+
+		return ret;
+	}
+
+	Points BubbleLogic::GetPointsOfPoning(unsigned int enemiesPoned){
+		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
 
 	///////////// Stating Sprite Attributes
@@ -204,10 +233,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	bool BubbleLogic::GetMightaGravity(unsigned int ith){
 		DASSERT(ith < mightaPosXY.size());
 		return mightaPosXY[ith].second.first;
-	}
-
-	Points GetPointsOfPoning(unsigned int enemiesPoned){
-		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
 
 	///////////// BARRON VON BLUBA

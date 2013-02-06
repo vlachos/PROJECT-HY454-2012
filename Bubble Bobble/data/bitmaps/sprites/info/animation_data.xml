@@ -241,10 +241,17 @@
   <MightaWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="40" continue="true" start="0" end="4"  />
   <MightaWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="40" continue="true" start="0" end="4"  />
   <MightaFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="true" start="0" end="4"  />
+  <MightaThrowFireBall type="FrameRangeAnimation" dx="0" dy="0" delay="40" continue="false" start="0" end="4"  />
+
   <MightaAngryStand type="FrameRangeAnimation" dx="0" dy="0" delay="20" continue="true" start="0" end="4"  />
   <MightaAngryWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="true" start="0" end="4"  />
   <MightaAngryWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="20" continue="true" start="0" end="4"  />
   <MightaAngryFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="true" start="0" end="4"  />
+  <MightaAngryThrowFireBall type="FrameRangeAnimation" dx="0" dy="0" delay="20" continue="false" start="0" end="4"  />
+
+  <MightaMovingFireBallLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="false" start="0" end="3"  />
+  <MightaMovingFireBallRight type="FrameRangeAnimation" dx="+2" dy="0" delay="20" continue="false" start="0" end="3"  />
+  <MightaDestroyedFireBall type="FrameRangeAnimation" dx="0" dy="0" delay="20" continue="false" start="4" end="6"  />
 
   <MightaJump type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="30" frame="0"/>

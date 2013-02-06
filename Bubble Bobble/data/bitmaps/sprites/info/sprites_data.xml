@@ -89,7 +89,22 @@
     <bbox x="275" y="16"  />
     <bbox x="296" y="16"  />
   </BubOpenMouthWalking>
-  
+
+  <BubEnteringBubble w="36" h="44">
+    <bbox x = "7" y = "186"  />
+    <bbox x = "25" y = "186"  />
+    <bbox x = "44" y = "186"  />
+    <bbox x = "64" y = "186"  />
+    <bbox x = "90" y = "186"  />
+  </BubEnteringBubble>
+
+  <BubInBubble w="60" h="64">
+    <bbox x = "119" y = "181"  />
+    <bbox x = "138" y = "181"  />
+    <bbox x = "173" y = "181"  />
+    <bbox x = "207" y = "181"  />
+    <bbox x = "241" y = "181"  />
+  </BubInBubble>
 
 
   <ZenChanWalk  w="16" h="16">
@@ -138,6 +153,13 @@
     <bbox x="62" y="278"  />
     <bbox x="81" y="278"  />
   </MightaWalk>
+  <MightaFireBubble w="16" h="16">
+    <bbox x="100" y="278" />
+    <bbox x="120" y="278" />
+    <bbox x="140" y="278" w="18" h="16" />
+    <bbox x="162" y="278" w="21" h="16" />
+    <bbox x="187" y="278" w="23" h="16" />
+  </MightaFireBubble>  
   <MightaAngry w="16" h="16">
     <bbox x="215" y="278"  />
     <bbox x="236" y="278"  />
@@ -145,6 +167,22 @@
     <bbox x="276" y="278"  />
     <bbox x="296" y="278"  />
   </MightaAngry>
+  <MightaAngryFireBubble w="16" h="16">
+    <bbox x="317" y="278" />
+    <bbox x="338" y="278" />
+    <bbox x="359" y="278" w="18" h="16" />
+    <bbox x="381" y="278" w="21" h="16" />
+    <bbox x="408" y="278" w="23" h="16" />
+  </MightaAngryFireBubble>
+  <MightaBubble w="16" h="16">
+    <bbox x="6" y="299"  />
+    <bbox x="24" y="299"  />
+    <bbox x="41" y="299"  />
+    <bbox x="59" y="299"  />    
+    <bbox x="78" y="299"  />
+    <bbox x="96" y="299"  />
+    <bbox x="114" y="299"  />
+  </MightaBubble>  
   <MightaDie w="16" h="16">
     <bbox x="435" y="278"  />
     <bbox x="456" y="278"  />
@@ -171,28 +209,6 @@
     <bbox x="317" y="299"/>
     <bbox x="335" y="299"/>
   </MightaInBubbleHighAngry>
-  <MightaAngryFireBubble w="16" h="16">
-    <bbox x="317" y="278" />
-    <bbox x="338" y="278" />
-    <bbox x="359" y="278" w="18" h="16" />
-    <bbox x="381" y="278" w="21" h="16" />
-    <bbox x="408" y="278" w="23" h="16" />
-  </MightaAngryFireBubble>
-  <MightaFireBubble w="16" h="16">
-    <bbox x="100" y="278" />
-    <bbox x="120" y="278" />
-    <bbox x="140" y="278" w="18" h="16" />
-    <bbox x="162" y="278" w="21" h="16" />
-    <bbox x="187" y="278" w="23" h="16" />
-  </MightaFireBubble>
-  <MightaBubble w="16" h="16">
-    <bbox x="6" y="299"  />
-    <bbox x="24" y="299"  />
-    <bbox x="41" y="299"  />
-    <bbox x="78" y="299"  />
-    <bbox x="96" y="299"  />
-    <bbox x="114" y="299"  />
-  </MightaBubble>
 
 
   <BaronVonBlubba w="16" h="16">

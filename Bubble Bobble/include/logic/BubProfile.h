@@ -30,6 +30,7 @@ class BubProfile{
 		bool startGravity;
 		Points score;
 		Lifes lifes;
+		unsigned int enemiesKilledOnPon;
 		bool hasRedShoes;
 		bool eatenYellowSweet;
 		bool eatenBlueSweet;
@@ -52,6 +53,10 @@ class BubProfile{
 		void IncrLifes(void);
 		void DecrLifes(void);
 		Lifes GetLifes(void);
+
+		void SetEnemiesKilledOnPon(unsigned int enemies);
+		void IncrEnemiesKilledOnPon(void);
+		unsigned int GetEnemiesKilledOnPon(void);
 
 		void SetRedShoes(bool activate);
 		bool GetRedShoes(void);

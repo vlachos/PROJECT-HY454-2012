@@ -243,6 +243,5 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 
-	//ston asso 8elei na mpoun posoi psofisan
-	FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(1), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+	FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 }

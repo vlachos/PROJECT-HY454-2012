@@ -9,6 +9,7 @@
 		startGravity = gravityAddict;
 		startDirection = isleft;
 		lifes = startLifes;
+		enemiesKilledOnPon = 0;
 		hasRedShoes = false;
 		eatenYellowSweet = false;
 		eatenBlueSweet = false;
@@ -24,6 +25,7 @@
 		startGravity = true;
 		startDirection = true;
 		lifes = DFLT_STARTING_LIFES;
+		enemiesKilledOnPon = 0;
 		hasRedShoes = false;
 		eatenYellowSweet = false;
 		eatenBlueSweet = false;
@@ -36,9 +38,10 @@
 	///////// destructor
 	BubProfile::~BubProfile(){
 		score = -1;
-		lifes = 0;
 		startGravity = false;
 		startDirection = false;
+		lifes = 0;
+		enemiesKilledOnPon = 0;
 		hasRedShoes = false;
 		eatenYellowSweet = false;
 		eatenBlueSweet = false;
@@ -69,6 +72,11 @@
 	void BubProfile::IncrLifes(void) { ++lifes; }
 	void BubProfile::DecrLifes(void) { --lifes; }
 	Lifes BubProfile::GetLifes(void) { return lifes; }
+
+	///////// Enemies poned
+	void BubProfile::SetEnemiesKilledOnPon(unsigned int enemies) { enemiesKilledOnPon = enemies; }
+	void BubProfile::IncrEnemiesKilledOnPon(void) { ++enemiesKilledOnPon; }
+	unsigned int BubProfile::GetEnemiesKilledOnPon(void) { return enemiesKilledOnPon; }
 
 	//////// power ups
 	void BubProfile::SetRedShoes(bool activate) { hasRedShoes = activate; }
