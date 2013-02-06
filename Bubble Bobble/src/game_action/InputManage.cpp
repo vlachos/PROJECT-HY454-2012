@@ -8,6 +8,7 @@
 #include "AnimationsParser.h"
 #include "ZenChanAnimator.h"
 #include "BubblesAnimator.h"
+#include "BubbleLogic.h"
 
 /////////////////////////static functions
 
@@ -35,7 +36,7 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 	animid_t id = _this->GetAnimation()->GetId();
 	Sprite* newSprite = _this->GetSprite();
 	newSprite->ClearListeners();
-	FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( direction ? "BubWalkLeft" : "BubWalkRight" );
+	FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubWalkAnimation(direction) );
 	newSprite->SetFrame(0);
 	newSprite->SetGoesLeft(direction);
 
@@ -58,7 +59,7 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 
 	Sprite* newSprite = _this->GetSprite();
 	newSprite->ClearListeners();
-	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( newSprite->GoesLeft()? "BubJumpWalkingLeft" :"BubJumpWalkingRight" );
+	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubJumpWalking());
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->RegistCollitions(newSprite);
 	
@@ -76,7 +77,7 @@ static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 	Sprite* newSprite = _this->GetSprite();
 
 	newSprite->ClearListeners();
-	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( "BubJumpStand" );
+	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubJumpStand() );
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->RegistCollitions(newSprite);
 

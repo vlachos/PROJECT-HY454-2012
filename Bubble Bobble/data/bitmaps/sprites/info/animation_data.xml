@@ -4,11 +4,21 @@
   <BubOpenMouth type="FrameRangeAnimation" dx="0" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubOpenMouthWalkingLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubOpenMouthWalkingRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubOpenMouthQuickWalkingLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="15" continue="false" start="0" end="6"  />
+  <BubOpenMouthQuickWalkingRight type="FrameRangeAnimation" dx="2" dy="0" delay="15" continue="false" start="0" end="6"  />
   <BubWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="30" continue="false" start="0" end="6"  />
   <BubWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="30" continue="false" start="0" end="6"  />
+  <BubQuickWalkLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="15" continue="false" start="0" end="6"  />
+  <BubQuickWalkRight type="FrameRangeAnimation" dx="2" dy="0" delay="15" continue="false" start="0" end="6"  />  
   <BubFalling type="MovingAnimation" dx="0" dy="1" delay="12" continue="true"/>
   <BubBubbleBlastOffLeft type="FrameRangeAnimation" dx="-13" dy="0" delay="35" continue="false" start="0" end="10"  />
   <BubBubbleBlastOffRight type="FrameRangeAnimation" dx="13" dy="0" delay="35" continue="false" start="0" end="10"  />
+  <BubBubbleQuickBlastOffLeft type="FrameRangeAnimation" dx="-13" dy="0" delay="15" continue="false" start="0" end="10"  />
+  <BubBubbleQuickBlastOffRight type="FrameRangeAnimation" dx="13" dy="0" delay="15" continue="false" start="0" end="10"  />
+  <BubBubblePowerBlastOffLeft type="FrameRangeAnimation" dx="-25" dy="0" delay="35" continue="false" start="0" end="10"  />
+  <BubBubblePowerBlastOffRight type="FrameRangeAnimation" dx="25" dy="0" delay="35" continue="false" start="0" end="10"  />
+  <BubBubbleQuickPowerBlastOffLeft type="FrameRangeAnimation" dx="-25" dy="0" delay="15" continue="false" start="0" end="10"  />
+  <BubBubbleQuickPowerBlastOffRight type="FrameRangeAnimation" dx="25" dy="0" delay="15" continue="false" start="0" end="10"  />  
   <BubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="400" continue="true" start="0" end="2"  />
   <BubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="400" continue="true" start="0" end="2"  />
 
@@ -44,29 +54,28 @@
     <list  dx="0" dy="-5" delay="30" frame="6"/>
   </BubJumpStand>
 
-  <BubJumpWalkingRight type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-  </BubJumpWalkingRight>
+  <BubQuickJumpStand type="MovingPathAnimation">
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+  </BubQuickJumpStand>
 
-  <BubJumpWalkingLeft type="MovingPathAnimation">
+  
+  <BubJumpWalking type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
@@ -86,7 +95,29 @@
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
-  </BubJumpWalkingLeft>
+  </BubJumpWalking>
+
+  <BubQuickJumpWalking type="MovingPathAnimation">
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+    <list  dx="0" dy="-5" delay="15" frame="6"/>
+  </BubQuickJumpWalking>
 
   <BubDieByEnemy type="MovingPathAnimation">
     <list  dx="-2" dy="-5" delay="60" frame="0"/>
@@ -351,17 +382,17 @@
     <list  dx="0" dy="-5" delay="200" frame="1"/>
   </EnemyAgryBubble>
 
-  <Banana type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <Orange type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <Peach type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <WaterMelon type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <Banana type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <Orange type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <Peach type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <WaterMelon type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <BlueDiamond type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
  
 
-  <RedShoes type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <YellowSweet type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
-  <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="8000" continue="false"/>
+  <RedShoes type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <YellowSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
+  <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
 
   <PonEffect type="MovingAnimation" dx="0" dy="0" delay="300" continue="false"/>
   

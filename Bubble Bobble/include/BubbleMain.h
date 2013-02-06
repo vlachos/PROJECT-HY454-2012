@@ -46,22 +46,28 @@ bool redraw = true;
 
 namespace BubbleMain{
 
-	extern int DrawTerrain();
+	extern int DrawTerrain(void);
 
-	extern bool InitAllegro();
-	extern void InitGameEngine();
+	extern bool InitAllegro(void);
+	extern void InitGameEngine(void);
 
-	extern void ManageGameLoop();
+	extern void InitSprites(void);
+	extern void InitBubblun(void);
+	extern void InitZenChan(void);
+	extern void InitMighta(void);
+	extern void StartAnimators(void);
 
-	extern void Rendering();
-	extern bool InputManagement();
+	extern void ManageGameLoop(void);
+
+	extern void Rendering(void);
+	extern bool InputManagement(void);
 	extern void AnimationProgress(timestamp_t timeNow);
-	extern void ArtificialIntelligence();
-	extern void CollisionChecking();
-	extern void CommitDestructions();
-	extern void FPSCalculation();
-	extern void SystemLoopDispatching();
-	extern void GameOver();
+	extern void ArtificialIntelligence(void);
+	extern void CollisionChecking(void);
+	extern void CommitDestructions(void);
+	extern void FPSCalculation(void);
+	extern void SystemLoopDispatching(void);
+	extern void GameOver(void);
 	
 }
 

@@ -74,11 +74,21 @@ void BubbleMain::InitGameEngine(){
 	sprite3->AddStartFallingListener(animr3);
 	animr3->RegistCollitions(sprite3);
 	
-	Sprite* sprite4 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("YellowSweet"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("YellowSweet");															\
-	YellowSweetAnimator* animr4 = new YellowSweetAnimator();
-	animr4->RegistCollitions(sprite);
+	Sprite* sprite4 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("PurpleSweet"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("PurpleSweet");															\
+	PurpleSweetAnimator* animr4 = new PurpleSweetAnimator();
+	animr4->RegistCollitions(sprite4);
 	
+	Sprite* sprite5 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("BlueSweet"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim5 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BlueSweet");															\
+	BlueSweetAnimator* animr5 = new BlueSweetAnimator();
+	animr5->RegistCollitions(sprite5);
+
+	Sprite* sprite6 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("RedShoes"), Terrain::GetActionLayer(), true);	
+	FrameRangeAnimation* anim6 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("RedShoes");															\
+	RedShoesAnimator* animr6 = new RedShoesAnimator();
+	animr6->RegistCollitions(sprite6);
+
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 	
@@ -86,10 +96,58 @@ void BubbleMain::InitGameEngine(){
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 	START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
+	START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
+	START_ANIMATOR( animr6, sprite6, anim6, GetGameTime() );
 
 	redraw = true;
 }
 
+void BubbleMain::InitSprites(void){
+	InitBubblun();
+	InitZenChan();
+	InitMighta();
+}
+
+void BubbleMain::InitBubblun(void){
+	BubbleLogic::SetBubScore(0);
+	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), BubbleLogic::GetBubProfile()->GetStartY(),
+								BubbleLogic::GetBubProfile()->GetStartGravity(), AnimationFilmHolder::GetFilm("BubWalk"),
+								Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());
+
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
+	BubStandAnimator* animr = new BubStandAnimator();
+	animr->RegistCollitions(sprite);
+}
+
+void BubbleMain::InitZenChan(void){
+	for (unsigned int i = 0; i < BubbleLogic::GetZenChanNum(); ++i){
+		Sprite* sprite = new Sprite(BubbleLogic::GetZenChanPosXY(i).first, BubbleLogic::GetZenChanPosXY(i).second,
+									BubbleLogic::GetZenChanGravity(i), AnimationFilmHolder::GetFilm("ZenChanWalk"),
+									Terrain::GetActionLayer(), BubbleLogic::GetZenChanDirection(i));	
+
+		FrameRangeAnimation* anim = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
+		MightaWalkingAnimator* animr = new MightaWalkingAnimator();
+		sprite->AddStartFallingListener(animr);
+		animr->RegistCollitions(sprite);
+	}
+}
+
+void BubbleMain::InitMighta(void){
+	for (unsigned int i = 0; i < BubbleLogic::GetMightaNum(); ++i){
+		Sprite* sprite = new Sprite(BubbleLogic::GetMightaPosXY(i).first, BubbleLogic::GetZenChanPosXY(i).second,
+									BubbleLogic::GetMightaGravity(i), AnimationFilmHolder::GetFilm("MightaWalk"),
+									Terrain::GetActionLayer(), BubbleLogic::GetMightaDirection(i));	
+
+		FrameRangeAnimation* anim = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															\
+		ZenChanWalkingAnimator* animr = new ZenChanWalkingAnimator();
+		sprite->AddStartFallingListener(animr);
+		animr->RegistCollitions(sprite);
+	}
+}
+
+void BubbleMain::StartAnimators(void){
+
+}
 
 /* Game Loop */
 void BubbleMain::ManageGameLoop(){

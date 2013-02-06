@@ -35,7 +35,9 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	unsigned int BubbleLogic::ponedBubblesForBlueSwt;
 	unsigned int BubbleLogic::blustedBubblesForPurpleSwt;
 
-	std::vector<Coordinates> BubbleLogic::powerUpPosXY;
+	std::vector<StartingAttributes_t> BubbleLogic::powerUpPosXY;
+	std::vector<StartingAttributes_t> BubbleLogic::zenChanPosXY;
+	std::vector<StartingAttributes_t> BubbleLogic::mightaPosXY;
 
 	///////////// INITIALIZE
 	void BubbleLogic::SingletonCreate(void){
@@ -65,13 +67,18 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		baronSecToRaiseMS = 5;
 		baronDecrDelay = 10;
 
-		bub = DNEWCLASS(BubProfile, (startingLifes) );
-		bob = DNEWCLASS(BubProfile, (startingLifes) );
+		bub = DNEWCLASS(BubProfile, (startingLifes, 50, 400, true, false) );
+		bob = DNEWCLASS(BubProfile, (startingLifes, 430, 400, true, true) );
 
-		powerUpPosXY.push_back( std::make_pair(100,95) );
-		powerUpPosXY.push_back( std::make_pair(210,175) );
-		powerUpPosXY.push_back( std::make_pair(100,255) );
-		powerUpPosXY.push_back( std::make_pair(210,415) );
+		powerUpPosXY.push_back( std::make_pair( std::make_pair(100,95), std::make_pair(true, true) ) );
+		powerUpPosXY.push_back( std::make_pair( std::make_pair(210,175), std::make_pair(true, true) ) );
+		powerUpPosXY.push_back( std::make_pair( std::make_pair(100,255), std::make_pair(true, true) ) );
+		powerUpPosXY.push_back( std::make_pair( std::make_pair(210,415), std::make_pair(true, true) ) );
+
+		zenChanPosXY.push_back( std::make_pair( std::make_pair(370,80), std::make_pair(true, false) ) );
+		zenChanPosXY.push_back( std::make_pair( std::make_pair(400,240), std::make_pair(true, false) ) );
+		mightaPosXY.push_back( std::make_pair( std::make_pair(300,160), std::make_pair(true, false) ) );
+		mightaPosXY.push_back( std::make_pair( std::make_pair(250,240), std::make_pair(true, true) ) );
 
 		srand((unsigned)time(0));
 	}
@@ -158,10 +165,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::BobPonMightaBubble(void) {IncrBobScore(mightaBubblePoints);  }
 
 	///////////// GENERAL
-	unsigned int BubbleLogic::GetEnemiesForBanana(void) { return enemiesForBanana; }
-	unsigned int BubbleLogic::GetEnemiesForOrange(void) { return enemiesForOrange; }
-	unsigned int BubbleLogic::GetEnemiesForPeach(void) { return enemiesForPeach; }
-	unsigned int BubbleLogic::GetEnemiesForWaterMelon(void) { return enemiesForWaterMelon; }
 	unsigned int BubbleLogic::GetFruitType(unsigned int enemiesTerminated){
 
 		if (enemiesTerminated <= enemiesForBanana)		return 1;
@@ -170,13 +173,37 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		else											return 4;
 	}
 
-	unsigned int BubbleLogic::GetCrossStageForRedShoes(void) { return crossStageForRedShoes; }
-	unsigned int BubbleLogic::GetJumpsForYellowSwt(void) { return jumpsForYellowSwt; }
-	unsigned int BubbleLogic::GetPonedBubblesForBlueSwt(void) { return ponedBubblesForBlueSwt; }
-	unsigned int BubbleLogic::GetBlustedBubblesForPurpleSwt(void) { return blustedBubblesForPurpleSwt; }
-
+	///////////// Stating Sprite Attributes
 	Coordinates BubbleLogic::GetPowerUpPosXY(void){
-		return powerUpPosXY[rand()%powerUpPosXY.size()];
+		return powerUpPosXY[rand()%powerUpPosXY.size()].first;
+	}
+
+	unsigned int BubbleLogic::GetZenChanNum(void) { return zenChanPosXY.size(); }
+	Coordinates BubbleLogic::GetZenChanPosXY(unsigned int ith){
+		DASSERT(ith < zenChanPosXY.size());
+		return zenChanPosXY[ith].first;
+	}
+	bool BubbleLogic::GetZenChanDirection(unsigned int ith){
+		DASSERT(ith < zenChanPosXY.size());
+		return zenChanPosXY[ith].second.second;
+	}
+	bool BubbleLogic::GetZenChanGravity(unsigned int ith){
+		DASSERT(ith < zenChanPosXY.size());
+		return zenChanPosXY[ith].second.first;
+	}
+
+	unsigned int BubbleLogic::GetMightaNum(void) { return mightaPosXY.size(); }
+	Coordinates BubbleLogic::GetMightaPosXY(unsigned int ith){
+		DASSERT(ith < mightaPosXY.size());
+		return mightaPosXY[ith].first;
+	}
+	bool BubbleLogic::GetMightaDirection(unsigned int ith){
+		DASSERT(ith < mightaPosXY.size());
+		return mightaPosXY[ith].second.second;
+	}
+	bool BubbleLogic::GetMightaGravity(unsigned int ith){
+		DASSERT(ith < mightaPosXY.size());
+		return mightaPosXY[ith].second.first;
 	}
 
 	Points GetPointsOfPoning(unsigned int enemiesPoned){

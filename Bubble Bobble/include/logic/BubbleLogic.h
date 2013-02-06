@@ -5,6 +5,8 @@
 #include "Metrics.h"
 #include <vector>
 
+typedef std::pair<Coordinates, std::pair<bool,bool> > StartingAttributes_t;
+
 class BubbleLogic {
 
 	public:
@@ -40,7 +42,9 @@ class BubbleLogic {
 		static unsigned int ponedBubblesForBlueSwt;
 		static unsigned int blustedBubblesForPurpleSwt;
 
-		static std::vector<Coordinates> powerUpPosXY;
+		static std::vector<StartingAttributes_t> powerUpPosXY;
+		static std::vector<StartingAttributes_t> zenChanPosXY;
+		static std::vector<StartingAttributes_t> mightaPosXY;
 
 	private:
 		static void IncrBubScore(Points somePoints);
@@ -54,10 +58,12 @@ class BubbleLogic {
 		static Points GetHighScore(void);
 
 		static void SetBubScore(Points newScore);
+		//acquired power up
 		static void BubRedShoesAcquired(void);
 		static void BubYellowSwtAcquired(void);
 		static void BubBlueSwtAcquired(void);
 		static void BubPurpleSwtAcquired(void);
+		//acquired fruit
 		static void BubBananaAcquired(void);
 		static void BubOrangeAcquired(void);
 		static void BubPeachAcquired(void);
@@ -66,12 +72,19 @@ class BubbleLogic {
 		static void BubPonEmptyBubble(void);
 		static void BubPonZenChanBubble(void);
 		static void BubPonMightaBubble(void);
+		//power up condition
+		static bool BubCrossedStage(void);
+		static bool BubJumped(void);
+		static bool BubPonedBubble(void);
+		static bool BubBlastedBubble(void);
 
 		static void SetBobScore(Points newScore);
+		//acquired power up
 		static void BobRedShoesAcquired(void);
 		static void BobYellowSwtAcquired(void);
 		static void BobBlueSwtAcquired(void);
 		static void BobPurpleSwtAcquired(void);
+		//acquired fruit
 		static void BobBananaAcquired(void);
 		static void BobOrangeAcquired(void);
 		static void BobPeachAcquired(void);
@@ -80,19 +93,26 @@ class BubbleLogic {
 		static void BobPonEmptyBubble(void);
 		static void BobPonZenChanBubble(void);
 		static void BobPonMightaBubble(void);
+		//power up condition
+		static bool BobCrossedStage(void);
+		static bool BobJumped(void);
+		static bool BobPonedBubble(void);
+		static bool BobBlastedBubble(void);
 
-		static unsigned int GetEnemiesForBanana(void);
-		static unsigned int GetEnemiesForOrange(void);
-		static unsigned int GetEnemiesForPeach(void);
-		static unsigned int GetEnemiesForWaterMelon(void);
 		static unsigned int GetFruitType(unsigned int enemiesTerminated);
 
-		static unsigned int GetCrossStageForRedShoes(void);
-		static unsigned int GetJumpsForYellowSwt(void);
-		static unsigned int GetPonedBubblesForBlueSwt(void);
-		static unsigned int GetBlustedBubblesForPurpleSwt(void);
-
+		//starting sprite attributes
 		static Coordinates GetPowerUpPosXY(void);
+
+		static unsigned int GetZenChanNum(void);
+		static Coordinates GetZenChanPosXY(unsigned int ith);
+		static bool GetZenChanDirection(unsigned int ith);
+		static bool GetZenChanGravity(unsigned int ith);
+
+		static unsigned int GetMightaNum(void);
+		static Coordinates GetMightaPosXY(unsigned int ith);
+		static bool GetMightaDirection(unsigned int ith);
+		static bool GetMightaGravity(unsigned int ith);
 
 		static Points GetPointsOfPoning(unsigned int enemiesPoned);
 
