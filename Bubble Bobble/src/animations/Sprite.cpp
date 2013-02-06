@@ -7,20 +7,27 @@ void Sprite::Display(Bitmap dest){
 }
 
 bool Sprite::IsSolidTerrain(int _x, int _y){
+	bool s=false;
 	if (_y<0){
-		return tileLayer->isSolid(x+(frameBox.GetWidth()/2)+_x, y+_y, BBUp);
+		s = tileLayer->isSolid(x+(frameBox.GetWidth()/2)+_x, y+_y, BBUp);
 	}
+	if(s) return true;
+	s=false;
 	if(_x>0){
-		return tileLayer->isSolid(x+(frameBox.GetWidth())+_x, y+frameBox.GetHeigth()/2+_y, BBRight);
+		s = tileLayer->isSolid(x+(frameBox.GetWidth())+_x, y+frameBox.GetHeigth()+_y, BBRight);
 	}
+	if(s) return true;
+	s=false;
 	if(_x<0){
-		return tileLayer->isSolid(x+_x, (y+frameBox.GetHeigth()/2)+_y, BBLeft);
+		s = tileLayer->isSolid(x+_x, (y+frameBox.GetHeigth())+_y, BBLeft);
 	}
+	if(s) return true;
+	s=false;
 	if (_y>0){
-		return tileLayer->isSolid(x+(frameBox.GetWidth()/2)+_x, y+frameBox.GetHeigth()+_y, BBDown);
+		s= tileLayer->isSolid(x+(frameBox.GetWidth()/2)+_x, y+frameBox.GetHeigth()+_y, BBDown);
 	}
 	
-	return true;
+	return s;
 }
 
 void Sprite::Move( int _x, int _y ){
