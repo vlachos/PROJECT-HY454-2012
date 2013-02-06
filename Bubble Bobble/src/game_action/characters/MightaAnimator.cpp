@@ -233,7 +233,6 @@ MightaDieAnimator::MightaDieAnimator(){
 }
 
 void MightaDieAnimator::RegistCollitions(Sprite *spr){
-	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
