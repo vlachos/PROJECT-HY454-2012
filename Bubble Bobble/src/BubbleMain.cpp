@@ -57,7 +57,9 @@ void BubbleMain::InitGameEngine(){
 	InvisibleSprites::SingletonCreate();
 	
 	BubbleLogic::SetBubScore(0);
-	Sprite* sprite = new Sprite(334,300,true,AnimationFilmHolder::GetFilm("BubWalk"), Terrain::GetActionLayer(), true);	
+	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(),BubbleLogic::GetBubProfile()->GetStartY(),
+								BubbleLogic::GetBubProfile()->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
+								Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());	
 	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
 	BubStandAnimator* animr = new BubStandAnimator();
 	animr->RegistCollitions(sprite);
