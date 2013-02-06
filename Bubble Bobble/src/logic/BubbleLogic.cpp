@@ -95,6 +95,22 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		if (bub->GetScore() > highScore)
 			highScore = bub->GetScore();
 	}
+	unsigned int BubbleLogic::BubPonAndGetFruitType(void){
+
+		unsigned int enemies = bub->GetEnemiesKilledOnPon();
+
+		bub->SetEnemiesKilledOnPon(0);
+		bub->IncrScore ( GetPointsOfPoning(enemies) );
+
+		if ( enemies <= enemiesForBanana)
+			return 1;
+		else if (enemies <= enemiesForOrange)
+			return 2;
+		else if (enemies <= enemiesForPeach)
+			return 3;
+		else
+			return 4;
+	}
 	void BubbleLogic::IncrBubScore(Points somePoints) {
 		bub->IncrScore(somePoints);
 		if (bub->GetScore() > highScore)
@@ -138,6 +154,22 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		bob->SetScore(newScore);
 		if (bob->GetScore() > highScore) highScore = bob->GetScore();
 	}
+	unsigned int BubbleLogic::BobPonAndGetFruitType(void){
+
+		unsigned int enemies = bob->GetEnemiesKilledOnPon();
+
+		bob->SetEnemiesKilledOnPon(0);
+		bob->IncrScore ( GetPointsOfPoning(enemies ) );
+
+		if ( enemies <= enemiesForBanana)
+			return 1;
+		else if (enemies <= enemiesForOrange)
+			return 2;
+		else if (enemies <= enemiesForPeach)
+			return 3;
+		else
+			return 4;
+	}
 	void BubbleLogic::IncrBobScore(Points somePoints) {
 		bob->IncrScore(somePoints);
 		if (bob->GetScore() > highScore)
@@ -177,25 +209,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	}
 
 	///////////// GENERAL
-	unsigned int BubbleLogic::GetFruitType(void){
-
-		unsigned int enemies = bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon();
-
-		bub->IncrScore ( GetPointsOfPoning(bub->GetEnemiesKilledOnPon() ) );
-		bub->SetEnemiesKilledOnPon(0);
-		bob->IncrScore ( GetPointsOfPoning(bob->GetEnemiesKilledOnPon() ) );
-		bob->SetEnemiesKilledOnPon(0);
-
-		if ( enemies <= enemiesForBanana)
-			return 1;
-		else if (enemies <= enemiesForOrange)
-			return 2;
-		else if (enemies <= enemiesForPeach)
-			return 3;
-		else
-			return 4;
-	}
-
 	Points BubbleLogic::GetPointsOfPoning(unsigned int enemiesPoned){
 		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
