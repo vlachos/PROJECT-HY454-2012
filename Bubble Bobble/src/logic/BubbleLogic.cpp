@@ -179,23 +179,21 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	///////////// GENERAL
 	unsigned int BubbleLogic::GetFruitType(void){
 
-		unsigned int ret = 0;
-
-		if (bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon() <= enemiesForBanana)
-			ret = 1;
-		else if (bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon() <= enemiesForOrange)
-			ret = 2;
-		else if (bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon() <= enemiesForPeach)
-			ret = 3;
-		else
-			ret = 4;
+		unsigned int enemies = bub->GetEnemiesKilledOnPon()+bob->GetEnemiesKilledOnPon();
 
 		bub->IncrScore ( GetPointsOfPoning(bub->GetEnemiesKilledOnPon() ) );
 		bub->SetEnemiesKilledOnPon(0);
 		bob->IncrScore ( GetPointsOfPoning(bob->GetEnemiesKilledOnPon() ) );
 		bob->SetEnemiesKilledOnPon(0);
 
-		return ret;
+		if ( enemies <= enemiesForBanana)
+			return 1;
+		else if (enemies <= enemiesForOrange)
+			return 2;
+		else if (enemies <= enemiesForPeach)
+			return 3;
+		else
+			return 4;
 	}
 
 	Points BubbleLogic::GetPointsOfPoning(unsigned int enemiesPoned){
