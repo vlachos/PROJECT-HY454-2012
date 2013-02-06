@@ -410,11 +410,11 @@ void PonEffectAnimator::OnCollisionWithBubble(Sprite * pon, Sprite *bubble, void
 
 static void StartZenChanDieAnimator( int x, int y ){
 	Sprite* newSprite = 
-		new Sprite(x, y, false, AnimationFilmHolder::GetFilm("ZenChanDie"), Terrain::GetActionLayer(),false);
+		new Sprite(x, y, true, AnimationFilmHolder::GetFilm("ZenChanDie"), Terrain::GetActionLayer(),false);
 
 	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("ZenChanDie");
 	ZenChanDieAnimator *bda = new ZenChanDieAnimator();
-	bda->RegistCollitions(newSprite);
+	newSprite->AddStartFallingListener(bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
 
@@ -522,12 +522,13 @@ void ZenChanInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args
 	Sprite *n_sprite = new Sprite(
 									_this->GetSprite()->GetX(),
 									_this->GetSprite()->GetY(),
-									_this->GetSprite()->IsGravityAddicted(),
+									true,
 									AnimationFilmHolder::GetFilm("ZenChanAngry"), 
 									Terrain::GetActionLayer(), 
 									_this->GetSprite()->GoesLeft()
 								);
 	ZenChanAngryWalkingAnimator *frtor=new ZenChanAngryWalkingAnimator();
+	n_sprite->AddStartFallingListener(frtor);
 	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }
@@ -549,11 +550,11 @@ void ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprit
 
 static void StartMightaDieAnimator( int x, int y ){
 	Sprite* newSprite = 
-		new Sprite(x, y, false, AnimationFilmHolder::GetFilm("MightaDie"), Terrain::GetActionLayer(),false);
+		new Sprite(x, y, true, AnimationFilmHolder::GetFilm("MightaDie"), Terrain::GetActionLayer(),false);
 
 	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("MightaDie");
 	MightaDieAnimator *bda = new MightaDieAnimator();
-	bda->RegistCollitions(newSprite);
+	newSprite->AddStartFallingListener(bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
 
@@ -664,12 +665,13 @@ void MightaInBubbleHighAngryAnimator::OnFinishCallback(Animator*anim, void*args)
 	Sprite *n_sprite = new Sprite(
 									_this->GetSprite()->GetX(),
 									_this->GetSprite()->GetY(),
-									_this->GetSprite()->IsGravityAddicted(),
+									true,
 									AnimationFilmHolder::GetFilm("MightaAngry"), 
 									Terrain::GetActionLayer(), 
 									_this->GetSprite()->GoesLeft()
 								);
 	MightaAngryWalkingAnimator *frtor=new MightaAngryWalkingAnimator();
+	n_sprite->AddStartFallingListener(frtor);
 	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 }

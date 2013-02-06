@@ -209,21 +209,22 @@
   </ZenChanJumpAngry>
 
   <ZenChanDie type="MovingPathAnimation">
-    <list  dx="-2" dy="-5" delay="60" frame="0"/>
-    <list  dx="-2" dy="-5" delay="60" frame="1"/>
-    <list  dx="-2" dy="-5" delay="60" frame="2"/>
-    <list  dx="-2" dy="-5" delay="60" frame="3"/>
-    <list  dx="-2" dy="5" delay="60" frame="4"/>
-    <list  dx="-2" dy="5" delay="60" frame="5"/>
-    <list  dx="-2" dy="5" delay="60" frame="6"/>
-    <list  dx="-2" dy="5" delay="60" frame="7"/>
-    <list  dx="-2" dy="-5" delay="60" frame="6"/>
-    <list  dx="-2" dy="-5" delay="60" frame="7"/>
-    <list  dx="-2" dy="-5" delay="60" frame="3"/>
-    <list  dx="-2" dy="-5" delay="60" frame="4"/>
-    <list  dx="-2" dy="5" delay="60" frame="5"/>
-    <list  dx="-2" dy="5" delay="60" frame="6"/>
-    <list  dx="-2" dy="5" delay="60" frame="7"/>
+    <list  dx="0" dy="-5" delay="60" frame="0"/>
+    <list  dx="0" dy="-5" delay="60" frame="1"/>
+    <list  dx="0" dy="-5" delay="60" frame="2"/>
+    <list  dx="0" dy="-5" delay="60" frame="3"/>
+    <list  dx="0" dy="5" delay="60" frame="4"/>
+    <list  dx="0" dy="5" delay="60" frame="5"/>
+    <list  dx="0" dy="5" delay="60" frame="6"/>
+    <list  dx="0" dy="5" delay="60" frame="7"/>
+    <list  dx="0" dy="-5" delay="60" frame="6"/>
+    <list  dx="0" dy="-5" delay="60" frame="7"/>
+    <list  dx="0" dy="-5" delay="60" frame="3"/>
+    <list  dx="0" dy="-5" delay="60" frame="4"/>
+    <list  dx="0" dy="5" delay="60" frame="5"/>
+    <list  dx="0" dy="5" delay="60" frame="6"/>
+    <list  dx="0" dy="10" delay="60" frame="7"/>
+    <!-->
     <list  dx="-2" dy="5" delay="60" frame="3"/>
     <list  dx="-2" dy="-5" delay="60" frame="4"/>
     <list  dx="-2" dy="-5" delay="60" frame="5"/>
@@ -233,7 +234,7 @@
     <list  dx="-2" dy="5" delay="60" frame="4"/>
     <list  dx="-2" dy="5" delay="60" frame="5"/>
     <list  dx="-2" dy="5" delay="60" frame="6"/>
-    <list  dx="0" dy="0" delay="100" frame="7"/>
+    <list  dx="0" dy="0" delay="100" frame="7"/><!-->
   </ZenChanDie>
 
 
@@ -296,31 +297,32 @@
   </MightaJumpAngry>
 
   <MightaDie type="MovingPathAnimation">
-    <list  dx="-2" dy="-5" delay="60" frame="0"/>
-    <list  dx="-2" dy="-5" delay="60" frame="1"/>
-    <list  dx="-2" dy="-5" delay="60" frame="2"/>
-    <list  dx="-2" dy="-5" delay="60" frame="3"/>
-    <list  dx="-2" dy="5" delay="60" frame="4"/>
-    <list  dx="-2" dy="5" delay="60" frame="5"/>
-    <list  dx="-2" dy="5" delay="60" frame="6"/>
-    <list  dx="-2" dy="5" delay="60" frame="7"/>
-    <list  dx="-2" dy="-5" delay="60" frame="8"/>
-    <list  dx="-2" dy="-5" delay="60" frame="7"/>
-    <list  dx="-2" dy="-5" delay="60" frame="3"/>
-    <list  dx="-2" dy="-5" delay="60" frame="4"/>
-    <list  dx="-2" dy="5" delay="60" frame="5"/>
-    <list  dx="-2" dy="5" delay="60" frame="6"/>
-    <list  dx="-2" dy="5" delay="60" frame="7"/>
+    <list  dx="0" dy="-5" delay="60" frame="0"/>
+    <list  dx="0" dy="-5" delay="60" frame="1"/>
+    <list  dx="0" dy="-5" delay="60" frame="2"/>
+    <list  dx="0" dy="-5" delay="60" frame="3"/>
+    <list  dx="0" dy="5" delay="60" frame="4"/>
+    <list  dx="0" dy="5" delay="60" frame="5"/>
+    <list  dx="0" dy="5" delay="60" frame="6"/>
+    <list  dx="0" dy="5" delay="60" frame="7"/>
+    <list  dx="0" dy="-5" delay="60" frame="6"/>
+    <list  dx="0" dy="-5" delay="60" frame="7"/>
+    <list  dx="0" dy="-5" delay="60" frame="3"/>
+    <list  dx="0" dy="-5" delay="60" frame="4"/>
+    <list  dx="0" dy="5" delay="60" frame="5"/>
+    <list  dx="0" dy="5" delay="60" frame="6"/>
+    <list  dx="0" dy="10" delay="60" frame="7"/>
+    <!-->
     <list  dx="-2" dy="5" delay="60" frame="3"/>
     <list  dx="-2" dy="-5" delay="60" frame="4"/>
     <list  dx="-2" dy="-5" delay="60" frame="5"/>
     <list  dx="-2" dy="-5" delay="60" frame="6"/>
-    <list  dx="-2" dy="-5" delay="60" frame="3"/>
+    <list  dx="-2" dy="-5" delay="60" frame="7"/>
+    <list  dx="-2" dy="5" delay="60" frame="3"/>
     <list  dx="-2" dy="5" delay="60" frame="4"/>
     <list  dx="-2" dy="5" delay="60" frame="5"/>
     <list  dx="-2" dy="5" delay="60" frame="6"/>
-    <list  dx="-2" dy="5" delay="60" frame="7"/>
-    <list  dx="0" dy="0" delay="100" frame="8"/>
+    <list  dx="0" dy="0" delay="100" frame="7"/><!-->
   </MightaDie>
 
   <BarronVonBlubaStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="1"  />

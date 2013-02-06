@@ -229,6 +229,8 @@ void BubbleMain::AnimationProgress(timestamp_t timeNow){
 void BubbleMain::ArtificialIntelligence(){
 	ArtificialIntelligence::HandleZenChan();
 	ArtificialIntelligence::HandleMighta();
+	ArtificialIntelligence::HandleAngryZenChan();
+	ArtificialIntelligence::HandleAngryMighta();
 }
 
 void BubbleMain::CollisionChecking(){

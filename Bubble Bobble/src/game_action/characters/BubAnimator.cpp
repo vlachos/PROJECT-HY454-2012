@@ -57,7 +57,7 @@ static void StartDieAnimator(int x, int y){
 	Sprite* newSprite = new Sprite(
 									x, 
 									y, 
-									false, 
+									true, 
 									AnimationFilmHolder::GetFilm("BubDieByEnemy"), 
 									Terrain::GetActionLayer(),
 									false
@@ -65,7 +65,7 @@ static void StartDieAnimator(int x, int y){
 
 	MovingPathAnimation* mpa=(MovingPathAnimation*)AnimationsParser::GetAnimation("BubDieByEnemy");
 	BubDieAnimator *bda=new BubDieAnimator();
-	bda->RegistCollitions(newSprite);
+	newSprite->AddStartFallingListener(bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime() );
 }
 
@@ -526,4 +526,36 @@ void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	BubbleLogic::GetBubProfile()->SetBlueSwt(false);
 	BubbleLogic::GetBubProfile()->SetPurpleSwt(false);
 	BubbleLogic::GetBubProfile()->SetRedShoes(false);
+}
+
+void BubDieAnimator::OnStartFalling(Sprite * sprite){
+	
+	DASSERT( sprite == this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+
+	INIT_NEW_INSTANCE_WITH_SPRITE(	MovingAnimation, zenFallAnmn, "BubFalling",
+						BubDieFallingAnimator, zenFallAnmr, this->GetSprite() );
+
+	this->GetSprite()->AddStopFallingListener(zenFallAnmr);
+	START_ANIMATOR( zenFallAnmr, this->GetSprite(), zenFallAnmn, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
+}
+
+////////////////BubDieFallingAnimtor
+
+BubDieFallingAnimator::BubDieFallingAnimator(){}
+
+void BubDieFallingAnimator::RegistCollitions(Sprite *spr){
+	
+}
+
+void BubDieFallingAnimator::OnStopFalling(Sprite * sprite){
+	DASSERT( sprite == this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+
+	INIT_NEW_INSTANCE_WITH_SPRITE(	MovingPathAnimation, zenStandAnmn, "BubDieByEnemy",
+					BubDieAnimator, zenStandAnmr, this->GetSprite() );	
+	
+	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }

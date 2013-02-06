@@ -102,7 +102,7 @@ class ZenChanAngryJumpAnimator : public FrameRangeAnimator{
 		static void OnFinishCallback(Animator*, void*);
 };
 ////////////////////////Die Animator is common
-class ZenChanDieAnimator : public MovingPathAnimator{
+class ZenChanDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
 	public:
 		ZenChanDieAnimator();
 
@@ -111,6 +111,20 @@ class ZenChanDieAnimator : public MovingPathAnimator{
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
+		void OnStartFalling(Sprite * sprite);
+};
+
+
+class ZenChanDieFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
+
+	public:
+		ZenChanDieFallingAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return zenChanDieFallingAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		void OnStopFalling(Sprite * sprite);
 };
 
 #endif

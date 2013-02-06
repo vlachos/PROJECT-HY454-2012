@@ -21,6 +21,7 @@ static Sprite* GetSpriteFromBubOpenMouthFallingAnimator(Animator* animr) { retur
 static Sprite* GetSpriteFromBubOpenMouthJumpAnimator(Animator* animr) { return (( BubJumpOpenMouthAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubJumpAnimator(Animator* animr) { return (( BubJumpAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubDieAnimator(Animator* animr) { return (( BubDieAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromBubDieFallingAnimator(Animator* animr) { return (( BubDieFallingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromPonEffectAnimator(Animator* animr) { return (( PonEffectAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleBlastOffAnimator(Animator* animr) { return (( BubBubbleBlastOffAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromBubBubbleAnimator(Animator* animr) { return (( BubBubbleAnimator*)animr )->GetSprite(); }
@@ -35,6 +36,7 @@ static Sprite* GetSpriteFromWaterSpecialBubbleAnimator(Animator* animr) { return
 static Sprite* GetSpriteFromZenChanStandAnimator(Animator* animr) { return (( ZenChanStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanWalkAnimator(Animator* animr) { return (( ZenChanWalkingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanFallingAnimator(Animator* animr) { return (( ZenChanFallingAnimator*)animr )->GetSprite(); }
+static Sprite* GetSpriteFromZenChanDieFallingAnimator(Animator* animr) { return (( ZenChanDieFallingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanJumpAnimator(Animator* animr) { return (( ZenChanJumpAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanAngryStandAnimator(Animator* animr) { return (( ZenChanAngryStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanAngryWalkAnimator(Animator* animr) { return (( ZenChanAngryWalkingAnimator*)animr )->GetSprite(); }
@@ -43,6 +45,7 @@ static Sprite* GetSpriteFromZenChanAngryJumpAnimator(Animator* animr) { return (
 static Sprite* GetSpriteFromMightaStandAnimator(Animator* animr) { return (( MightaStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaWalkAnimator(Animator* animr) { return (( MightaWalkingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaFallingAnimator(Animator* animr) { return (( MightaFallingAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaDieFallingAnimator(Animator* animr) { return (( MightaDieFallingAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaJumpAnimator(Animator* animr) { return (( MightaJumpAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaAngryStandAnimator(Animator* animr) { return (( MightaAngryStandAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaAngryWalkAnimator(Animator* animr) { return (( MightaAngryWalkingAnimator*)animr )->GetSprite();}
@@ -71,6 +74,7 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromBubOpenMouthJumpAnimator,
 	GetSpriteFromBubJumpAnimator,
 	GetSpriteFromBubDieAnimator,
+	GetSpriteFromBubDieFallingAnimator,
 	GetSpriteFromPonEffectAnimator,
 	GetSpriteFromBubBubbleBlastOffAnimator,
 	GetSpriteFromBubBubbleAnimator,
@@ -85,6 +89,7 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromZenChanStandAnimator,
 	GetSpriteFromZenChanWalkAnimator,
 	GetSpriteFromZenChanFallingAnimator,
+	GetSpriteFromZenChanFallingAnimator,
 	GetSpriteFromZenChanJumpAnimator,
 	GetSpriteFromZenChanAngryStandAnimator,
 	GetSpriteFromZenChanAngryWalkAnimator,
@@ -93,6 +98,7 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromMightaStandAnimator,
 	GetSpriteFromMightaWalkAnimator,
 	GetSpriteFromMightaFallingAnimator,
+	GetSpriteFromMightaDieFallingAnimator,
 	GetSpriteFromMightaJumpAnimator,
 	GetSpriteFromMightaAngryStandAnimator,
 	GetSpriteFromMightaAngryWalkAnimator,

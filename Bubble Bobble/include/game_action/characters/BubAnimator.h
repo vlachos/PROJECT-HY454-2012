@@ -101,7 +101,7 @@ class BubJumpOpenMouthAnimator : public MovingPathAnimator{
 		int index;
 };
 
-class BubDieAnimator : public MovingPathAnimator{
+class BubDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
 	public:
 		BubDieAnimator();
 
@@ -110,6 +110,19 @@ class BubDieAnimator : public MovingPathAnimator{
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
+		void OnStartFalling(Sprite * sprite);
+};
+
+class BubDieFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFallingListener{
+
+	public:
+		BubDieFallingAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubDieFallingAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		void OnStopFalling(Sprite * sprite);
 };
 
 #endif

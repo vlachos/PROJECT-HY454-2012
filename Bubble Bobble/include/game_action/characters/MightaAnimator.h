@@ -104,8 +104,8 @@ class MightaAngryJumpAnimator : public MovingPathAnimator{
 
 
 };
-
-class MightaDieAnimator : public MovingPathAnimator{
+//////////////////Die Animators are common
+class MightaDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
 	public:
 		MightaDieAnimator();
 
@@ -114,6 +114,19 @@ class MightaDieAnimator : public MovingPathAnimator{
 
 		void RegistCollitions(Sprite*);
 		static void OnFinishCallback(Animator*, void*);
+		void OnStartFalling(Sprite * sprite);
+};
+
+class MightaDieFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
+
+	public:
+		MightaDieFallingAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaDieFallingAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		void OnStopFalling(Sprite * sprite);
 };
 
 #endif

@@ -34,3 +34,33 @@ void ArtificialIntelligence::HandleMighta(){
 		}
 	}
 }
+
+void ArtificialIntelligence::HandleAngryZenChan(){
+	std::vector<Animator*> zenChan;
+
+	if(!(zenChan = AnimatorHolder::GetAnimators(zenChanAngryWalkAnimator_t)).empty()){
+		for(unsigned int i = 0; i<zenChan.size(); ++i){
+			ZenChanAngryWalkingAnimator* r = (ZenChanAngryWalkingAnimator*) zenChan[i];
+			int x =  r->GetSprite()->GoesLeft() ? -15 : 15;
+			if( r->GetSprite()->IsSolidTerrain( x, 0 ) ){
+				r->GetAnimation()->SetDx( -r->GetAnimation()->GetDx()  );
+				r->GetSprite()->SetGoesLeft( !r->GetSprite()->GoesLeft() );
+			}
+		}
+	}
+}
+
+void ArtificialIntelligence::HandleAngryMighta(){
+	std::vector<Animator*> mighta;
+
+	if(!(mighta = AnimatorHolder::GetAnimators(mightaAngryWalkAnimator_t)).empty()){
+		for(unsigned int i = 0; i<mighta.size(); ++i){
+			MightaAngryWalkingAnimator* r = (MightaAngryWalkingAnimator*) mighta[i];
+			int x =  r->GetSprite()->GoesLeft() ? -15 : 15;
+			if( r->GetSprite()->IsSolidTerrain( x, 0 ) ){
+				r->GetAnimation()->SetDx( -r->GetAnimation()->GetDx()  );
+				r->GetSprite()->SetGoesLeft( !r->GetSprite()->GoesLeft() );
+			}
+		}
+	}
+}
