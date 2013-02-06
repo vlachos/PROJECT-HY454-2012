@@ -68,7 +68,8 @@ enum animatorType_t {
 	BlueSweetAnimator_t,
 	PurpleSweetAnimator_t,
 	timeTickAnimator_t,
-	hurryUpAnimator_t
+	hurryUpAnimator_t,
+	bubInBubbleAnimator_t
 };
 
 class Animator : public LatelyDestroyable{

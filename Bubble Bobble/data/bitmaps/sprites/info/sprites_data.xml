@@ -90,20 +90,17 @@
     <bbox x="296" y="16"  />
   </BubOpenMouthWalking>
 
-  <BubEnteringBubble w="36" h="44">
-    <bbox x = "7" y = "186"  />
-    <bbox x = "25" y = "186"  />
-    <bbox x = "44" y = "186"  />
-    <bbox x = "64" y = "186"  />
-    <bbox x = "90" y = "186"  />
-  </BubEnteringBubble>
-
-  <BubInBubble w="60" h="64">
-    <bbox x = "119" y = "181"  />
-    <bbox x = "138" y = "181"  />
-    <bbox x = "173" y = "181"  />
-    <bbox x = "207" y = "181"  />
-    <bbox x = "241" y = "181"  />
+  <BubInBubble w="19" h="30">
+    <bbox x = "7" y = "181"  />
+    <bbox x = "25" y = "181"  />
+    <bbox x = "44" y = "181"  />
+    <bbox x = "64" y = "181"  />
+    <bbox x = "85" y = "181"  />
+    <bbox x = "105" y = "181" w="32" h="32" />
+    <bbox x = "137" y = "181" w="32" h="32" />
+    <bbox x = "172" y = "181" w="32" h="32" />
+    <bbox x = "206" y = "181" w="32" h="32" />
+    <bbox x = "240" y = "181" w="32" h="32" />
   </BubInBubble>
 
 
@@ -259,23 +256,23 @@
     <bbox x="228" y="1127"/>
   </HurryUp>
   
-  <WhiteLettersFont w="1062" h="16">
+  <WhiteLettersFont w="531" h="8">
     <bbox x="4" y="1596"/>
   </WhiteLettersFont>
 
-  <GreenLettersFont w="1062" h="16">
+  <GreenLettersFont w="531" h="8">
     <bbox x="4" y="1608"/>
   </GreenLettersFont>
 
-  <BlueLettersFont w="1062" h="16">
+  <BlueLettersFont w="531" h="8">
     <bbox x="4" y="1620"/>
   </BlueLettersFont>
 
-  <RedLettersFont w="1062" h="16">
+  <RedLettersFont w="531" h="8">
     <bbox x="4" y="1632"/>
   </RedLettersFont>
 
-  <YellowLettersFont w="1062" h="16">
+  <YellowLettersFont w="531" h="8">
     <bbox x="4" y="1644"/>
   </YellowLettersFont>
 

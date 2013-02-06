@@ -9,6 +9,16 @@
 namespace BubAnimatorActions{
 	extern void OnCollisionWithEnemy(Sprite*, Sprite*, void*);
 }
+
+class BubInBubbleAnimator : public MovingPathAnimator{
+	public:
+		BubInBubbleAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubInBubbleAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+};
 		
 class BubStandAnimator : public MovingAnimator{
 	public:
