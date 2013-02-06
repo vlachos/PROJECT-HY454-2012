@@ -14,6 +14,11 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 	DASSERT(currIndex>=0 && currIndex<anim->GetPath().size());
 	while (currTime > lastTime && currTime - lastTime >= anim->GetPath()[currIndex].delay){
 		
+		if (currIndex == anim->GetPath().size()-1)
+			currIndex = 0;
+	    else
+			++currIndex;
+
 		sprite->Move(	
 						anim->GetPath()[currIndex].x, 
 						anim->GetPath()[currIndex].y
@@ -22,12 +27,8 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 		sprite->SetFrame(anim->GetPath()[currIndex].frame);
 	    lastTime += anim->GetPath()[currIndex].delay;
 
-		if (currIndex == anim->GetPath().size())
-			currIndex = 0;
-	    else
-			++currIndex;
 
-	    if (currIndex == anim->GetPath().size() && !anim->GetContinuous()){
+	    if (currIndex == anim->GetPath().size()-1 && !anim->GetContinuous()){
 			state = ANIMATOR_FINISHED;
 			NotifyStopped();
 			return;

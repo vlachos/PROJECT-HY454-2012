@@ -17,14 +17,17 @@
 #include "FrameRangeAnimator.h"
 #include "AnimatorHolder.h"
 #include "InvisibleSprites.h"
+#include "TickAnimation.h"
 
 #include "GameActionUtilities.h"
 #include "AnimationsParser.h"
 #include "CollisionChecker.h"
 #include "BubAnimator.h"
+#include "BubblesAnimator.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
 #include "BarronVonBlubaAnimator.h"
+#include "TimerTickAnimator.h"
 
 #include "ArtificialIntelligence.h"
 #include "PowerUpsAnimator.h"

@@ -238,6 +238,11 @@
     <bbox x="614" y="1050"/>
   </PonEffect>
   
+  <HurryUp w="57" h="8">
+    <bbox x="228" y="1117"/>
+    <bbox x="228" y="1127"/>
+  </HurryUp>
+  
   <WhiteLettersFont w="1062" h="16">
     <bbox x="4" y="1596"/>
   </WhiteLettersFont>
@@ -257,6 +262,5 @@
   <YellowLettersFont w="1062" h="16">
     <bbox x="4" y="1644"/>
   </YellowLettersFont>
-
 
 </sprites>

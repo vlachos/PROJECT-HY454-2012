@@ -168,9 +168,7 @@ void BubBubbleBlastOffAnimator::OnFinishCallback(Animator* anim, void* args){
 	ta->SetTickAction( BubBubbleAnimator::OnBubbleExpiredTime, bbar );
 
 	START_ANIMATOR(bbar, sprite, fra, GetGameTime() );
-	ttar->Start(GetGameTime());
-	AnimatorHolder::Register( ttar );				
-	AnimatorHolder::MarkAsRunning( ttar );
+	START_TIME_ANIMATOR(ttar, GetGameTime());
 	DESTROY_ANIMATOR( _this );
 	
 }

@@ -91,6 +91,11 @@ void BubbleMain::InitGameEngine(){
 	RedShoesAnimator* animr6 = new RedShoesAnimator();
 	animr6->RegistCollitions(sprite6);
 
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("HurryUpStart");
+	ta->SetTickAction( BaronVonBlubaAnimatorActions::StartHurryUpAnimator, 0 );
+	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
+	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
+	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 	
@@ -100,6 +105,7 @@ void BubbleMain::InitGameEngine(){
 	START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
 	START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
 	START_ANIMATOR( animr6, sprite6, anim6, GetGameTime() );
+	START_TIME_ANIMATOR(ttar, GetGameTime());
 
 	redraw = true;
 }

@@ -16,6 +16,11 @@
 	AnimatorHolder::Register( animr );				\
 	AnimatorHolder::MarkAsRunning( animr )
 
+#define START_TIME_ANIMATOR( animr, time )			\
+	animr->Start( time);							\
+	AnimatorHolder::Register( animr );				\
+	AnimatorHolder::MarkAsRunning( animr )
+
 #define DESTROY_ANIMATOR( anim )				\
 	anim->GetSprite()->Destroy();				\
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( anim )
