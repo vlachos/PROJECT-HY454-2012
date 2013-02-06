@@ -59,7 +59,6 @@ class BubbleLogic {
 
 		//////bub
 		static void SetBubScore(Points newScore);
-		static unsigned int BubPonAndGetFruitType(void);
 		//acquired power up
 		static void BubRedShoesAcquired(void);
 		static void BubYellowSwtAcquired(void);
@@ -82,7 +81,6 @@ class BubbleLogic {
 
 		//////bob
 		static void SetBobScore(Points newScore);
-		static unsigned int BobPonAndGetFruitType(void);
 		//acquired power up
 		static void BobRedShoesAcquired(void);
 		static void BobYellowSwtAcquired(void);
@@ -104,6 +102,7 @@ class BubbleLogic {
 		static bool BobBlastedBubble(void);
 
 		static Points GetPointsOfPoning(unsigned int enemiesPoned);
+		static unsigned int GetFruitType(void);
 
 		//starting sprite attributes
 		static Coordinates GetPowerUpPosXY(void);

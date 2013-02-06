@@ -75,9 +75,9 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		powerUpPosXY.push_back( std::make_pair( std::make_pair(100,255), std::make_pair(true, true) ) );
 		powerUpPosXY.push_back( std::make_pair( std::make_pair(210,415), std::make_pair(true, true) ) );
 
-		zenChanPosXY.push_back( std::make_pair( std::make_pair(370,80), std::make_pair(true, false) ) );
-		zenChanPosXY.push_back( std::make_pair( std::make_pair(400,240), std::make_pair(true, false) ) );
-		mightaPosXY.push_back( std::make_pair( std::make_pair(300,160), std::make_pair(true, false) ) );
+		zenChanPosXY.push_back( std::make_pair( std::make_pair(370,80), std::make_pair(true, true) ) );
+		zenChanPosXY.push_back( std::make_pair( std::make_pair(400,240), std::make_pair(true, true) ) );
+		mightaPosXY.push_back( std::make_pair( std::make_pair(300,160), std::make_pair(true, true) ) );
 		mightaPosXY.push_back( std::make_pair( std::make_pair(250,240), std::make_pair(true, true) ) );
 
 		srand((unsigned)time(0));
@@ -95,22 +95,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		if (bub->GetScore() > highScore)
 			highScore = bub->GetScore();
 	}
-	unsigned int BubbleLogic::BubPonAndGetFruitType(void){
 
-		unsigned int enemies = bub->GetEnemiesKilledOnPon();
-
-		bub->SetEnemiesKilledOnPon(0);
-		bub->IncrScore ( GetPointsOfPoning(enemies) );
-
-		if ( enemies <= enemiesForBanana)
-			return 1;
-		else if (enemies <= enemiesForOrange)
-			return 2;
-		else if (enemies <= enemiesForPeach)
-			return 3;
-		else
-			return 4;
-	}
 	void BubbleLogic::IncrBubScore(Points somePoints) {
 		bub->IncrScore(somePoints);
 		if (bub->GetScore() > highScore)
@@ -154,22 +139,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		bob->SetScore(newScore);
 		if (bob->GetScore() > highScore) highScore = bob->GetScore();
 	}
-	unsigned int BubbleLogic::BobPonAndGetFruitType(void){
 
-		unsigned int enemies = bob->GetEnemiesKilledOnPon();
-
-		bob->SetEnemiesKilledOnPon(0);
-		bob->IncrScore ( GetPointsOfPoning(enemies ) );
-
-		if ( enemies <= enemiesForBanana)
-			return 1;
-		else if (enemies <= enemiesForOrange)
-			return 2;
-		else if (enemies <= enemiesForPeach)
-			return 3;
-		else
-			return 4;
-	}
 	void BubbleLogic::IncrBobScore(Points somePoints) {
 		bob->IncrScore(somePoints);
 		if (bob->GetScore() > highScore)
@@ -211,6 +181,20 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	///////////// GENERAL
 	Points BubbleLogic::GetPointsOfPoning(unsigned int enemiesPoned){
 		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
+	}
+
+	unsigned int BubbleLogic::GetFruitType(void){
+
+		unsigned int enemies = bob->GetEnemiesKilledOnPon();
+
+		if ( enemies <= enemiesForBanana)
+			return 1;
+		else if (enemies <= enemiesForOrange)
+			return 2;
+		else if (enemies <= enemiesForPeach)
+			return 3;
+		else
+			return 4;
 	}
 
 	///////////// Stating Sprite Attributes

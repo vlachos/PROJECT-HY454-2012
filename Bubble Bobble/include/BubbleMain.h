@@ -58,7 +58,6 @@ namespace BubbleMain{
 	extern void InitBubblun(void);
 	extern void InitZenChan(void);
 	extern void InitMighta(void);
-	extern void StartAnimators(void);
 
 	extern void ManageGameLoop(void);
 

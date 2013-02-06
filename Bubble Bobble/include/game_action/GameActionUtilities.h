@@ -40,4 +40,10 @@
 		CollisionChecker::Register(mysprite, ( (subAnimator_t*)v[i] )->GetSprite(), 0, 0);	\
 	}
 
+#define REFRESH_KILLED_ENEMIES_COUNTER();																						\
+	if (AnimatorHolder::GetAnimators(zenChanDieAnimator_t, mightaDieAnimator_t).empty() ){										\
+		BubbleLogic::GetBubProfile()->IncrScore ( BubbleLogic::GetPointsOfPoning(BubbleLogic::GetBubProfile()->GetEnemiesKilledOnPon()) );	\
+		BubbleLogic::GetBubProfile()->SetEnemiesKilledOnPon(0);																	\
+	}
+
 #endif

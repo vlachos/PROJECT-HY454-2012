@@ -125,6 +125,7 @@ void BubbleMain::InitBubblun(void){
 	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
 	BubStandAnimator* animr = new BubStandAnimator();
 	animr->RegistCollitions(sprite);
+	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 }
 
 void BubbleMain::InitZenChan(void){
@@ -137,6 +138,7 @@ void BubbleMain::InitZenChan(void){
 		MightaWalkingAnimator* animr = new MightaWalkingAnimator();
 		sprite->AddStartFallingListener(animr);
 		animr->RegistCollitions(sprite);
+		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	}
 }
 
@@ -150,11 +152,8 @@ void BubbleMain::InitMighta(void){
 		ZenChanWalkingAnimator* animr = new ZenChanWalkingAnimator();
 		sprite->AddStartFallingListener(animr);
 		animr->RegistCollitions(sprite);
+		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	}
-}
-
-void BubbleMain::StartAnimators(void){
-
 }
 
 /* Game Loop */
