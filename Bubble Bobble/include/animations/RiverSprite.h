@@ -4,6 +4,7 @@
 #include "Sprite.h"
 
 #define MAX_RIVER_PARTS 8
+
 typedef std::vector<Sprite*> RiverQueue_t;
 
 class RiverSprite : public Sprite{
@@ -13,9 +14,11 @@ class RiverSprite : public Sprite{
 		~RiverSprite();
 
 	private:
+		bool riverGoesLeft;
 		RiverQueue_t riverQueue;
 
 	public:
+		bool IsRiverDirectionLeft(void);
 		unsigned int GetRiverLength(void);
 		Sprite* GetRiverItem(unsigned int ith);
 
@@ -30,6 +33,9 @@ class RiverSprite : public Sprite{
 		void SwapHFrontWithMid(void);
 		void SwapVFrontWithMid(void);
 		void Dequeue(void);
+
+	public:
+		void Display(Bitmap dest);
 };
 
 #endif
