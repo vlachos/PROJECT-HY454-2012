@@ -213,6 +213,9 @@
     <ClCompile Include="..\src\game_action\items\RiverAnimator.cpp">
       <Filter>Source Files\game_action\items</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animators\ScrollingAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -355,6 +358,9 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\items\RiverAnimator.h">
       <Filter>Header Files\game_action\items</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\ScrollingAnimator.h">
+      <Filter>Header Files\animators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

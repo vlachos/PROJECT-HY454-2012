@@ -13,13 +13,6 @@ class RiverSprite : public Sprite{
 		~RiverSprite();
 
 	private:
-		Sprite* RiverHFront;
-		Sprite* RiverWFront;
-		Sprite* RiverHMid;
-		Sprite* RiverWMid;
-		Sprite* RiverBigCorner;
-		Sprite* RiverSmallCorner;
-
 		RiverQueue_t riverQueue;
 
 	public:
