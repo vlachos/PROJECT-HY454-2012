@@ -74,6 +74,9 @@ class Sprite : public LatelyDestroyable{
 		void SetGoesLeft( bool _goesLeft ) { goesLeft = _goesLeft; }
 		void SetOnDrugs(bool b) { onDrugs = b; }
 		bool IsOnDrugs() { return onDrugs; }
+		const TileLayer * GetActionLayer(void) { return tileLayer; }
+		const AnimationFilm* GetFilm(void) { return currFilm; }
+		void SetFilm(const AnimationFilm * film) { currFilm = film; }
 		bool CollisionCheck( Sprite * s );
 		void Display(Bitmap dest);
 		void Move( int _x, int _y );

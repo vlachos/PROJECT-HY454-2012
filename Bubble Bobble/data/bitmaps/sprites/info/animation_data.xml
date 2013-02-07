@@ -436,7 +436,7 @@
 
   <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="300" continue="true"/>
   <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="300" continue="true"/>
-  <Waterfall type="MovingAnimation" dx="0" dy="16" delay="300" continue="true"/>
+  <WaterFall type="MovingAnimation" dx="0" dy="16" delay="300" continue="true"/>
   
   <HurryUp type="MovingPathAnimation">
     <list  dx="0" dy="15" delay="200" frame="0"/>

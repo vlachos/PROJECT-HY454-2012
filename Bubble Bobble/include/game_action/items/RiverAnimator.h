@@ -21,6 +21,9 @@ class RiverAnimator: public MovingAnimator, public Sprite::SpriteStopFallingList
 		static void OnCollisionWithBub(Sprite*, Sprite*, void*);
 		static void OnCollisionWithZenChan(Sprite*, Sprite*, void*);
 		static void OnCollisionWithMighta(Sprite*, Sprite*, void*);
+
+		void Progress (timestamp_t currTime);
+		void Display(Bitmap at);
 };
 
 

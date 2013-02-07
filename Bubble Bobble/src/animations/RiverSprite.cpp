@@ -1,9 +1,16 @@
 #include "RiverSprite.h"
+#include "AnimationFilmHolder.h"
 
 
 	/////////// constructor / destructor
 	RiverSprite::RiverSprite(int _x, int _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft)
-		: Sprite(_x, _y, _gravityAddicted, film, _tileLayer, goesLeft) { riverGoesLeft = goesLeft; }
+		: Sprite(_x, _y, _gravityAddicted, film, _tileLayer, goesLeft) {
+			riverGoesLeft = goesLeft;
+			Coordinates tileStart = _tileLayer->GetTileCoordinates(_y, _x);
+			Coordinates startXY = _tileLayer->GetXYCoordinates(tileStart.first, tileStart.second);
+			SetX(startXY.first);
+			SetY(startXY.second-1);
+	}
 	RiverSprite::~RiverSprite() {  }
 
 
@@ -17,38 +24,62 @@
 	}
 
 	////////// mutate queue
-	void RiverSprite::AppendHFrontLeft(void){
+	void RiverSprite::RiverRush(bool left){
+		RiverStepForward("RiverHMid");
+
+		SetFilm(AnimationFilmHolder::GetFilm("RiverHFront"));
+		SetGoesLeft(left);
 	}
 
-	void RiverSprite::AppendHFrontRight(void){
+	void RiverSprite::RiverFalling(void){
+		RiverStepForward("RiverVMid");
+
+		SetFilm(AnimationFilmHolder::GetFilm("RiverVFront"));
+		SetGoesLeft(true);
 	}
 
-	void RiverSprite::AppendVFront(void){
+	void RiverSprite::RiverStartFalling(void){
+
+		// and change the leading sprite accordingly
+		SetFilm(AnimationFilmHolder::GetFilm("RiverBigCorner"));
 	}
 
-	void RiverSprite::AppendBigCornerLeft(void){
+	void RiverSprite::RiverStopFalling(void){
+
+		// and change the leading sprite accordingly
+		SetFilm(AnimationFilmHolder::GetFilm("RiverSmallCorner"));
+		SetGoesLeft(riverGoesLeft);
 	}
 
-	void RiverSprite::AppendBigCornerRight(void){
+	///////// private mutators
+	void RiverSprite::RiverStepForward(std::string str){
+
+		//push the leading river, to the front of the river queue
+		SetFilm(AnimationFilmHolder::GetFilm(str));
+		riverQueue.push_front(this->Clone());
+
+		//deque
+		if (riverQueue.size() > MAX_RIVER_PARTS)
+			riverQueue.pop_back();
 	}
 
-	void RiverSprite::AppendSmallCornerLeft(void){
-	}
+	///////// move
+	void RiverSprite::Move( int _x, int _y ){
+		Sprite::Move(_x, _y);
 
-	void RiverSprite::AppendSmallCornerRight(void){
+		if ( IsFalling() ){
+			RiverFalling();
+		}
+		else{
+			RiverRush(GoesLeft());
+		}
+		
 	}
-
-	void RiverSprite::SwapHFrontWithMid(void){
-	}
-
-	void RiverSprite::SwapVFrontWithMid(void){
-	}
-
-	void RiverSprite::Dequeue(void){
-	}
-
 
 	///////// display
 	void RiverSprite::Display(Bitmap dest){
 		Sprite::Display(dest);
+
+		for (unsigned int i=0; i<riverQueue.size(); ++i)
+			riverQueue[i]->Display(dest);
 	}

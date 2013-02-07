@@ -2,10 +2,12 @@
 #define RIVERSPRITE_H
 
 #include "Sprite.h"
+#include <deque>
 
 #define MAX_RIVER_PARTS 8
+#define RIVER_DX_DY 16
 
-typedef std::vector<Sprite*> RiverQueue_t;
+typedef std::deque<Sprite*> RiverQueue_t;
 
 class RiverSprite : public Sprite{
 
@@ -23,18 +25,17 @@ class RiverSprite : public Sprite{
 		Sprite* GetRiverItem(unsigned int ith);
 
 	public:
-		void AppendHFrontLeft(void);
-		void AppendHFrontRight(void);
-		void AppendVFront(void);
-		void AppendBigCornerLeft(void);
-		void AppendBigCornerRight(void);
-		void AppendSmallCornerLeft(void);
-		void AppendSmallCornerRight(void);
-		void SwapHFrontWithMid(void);
-		void SwapVFrontWithMid(void);
-		void Dequeue(void);
+		void RiverRush(bool left);
+		void RiverFalling(void);
+		void RiverStartFalling(void);
+		void RiverStopFalling(void);
+
+	private:
+		void RiverStepForward(std::string str);
+		void RiverFallAndForward(void);
 
 	public:
+		void Move( int _x, int _y );
 		void Display(Bitmap dest);
 };
 

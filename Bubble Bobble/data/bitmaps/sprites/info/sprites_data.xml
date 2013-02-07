@@ -279,23 +279,23 @@
   </YellowLettersFont>
 
   
-  <RiverHFront w="8" h="8">
+  <RiverVFront w="8" h="8">
     <bbox x="140" y="1151"/>
-  </RiverHFront>
-  <RiverWFront w="8" h="8">
-    <bbox x="144" y="1151"/>
-  </RiverWFront>
-  <RiverHMid w="8" h="8">
-    <bbox x="148" y="1151"/>
-  </RiverHMid>
-  <RiverWMid w="8" h="8">
+  </RiverVFront>
+  <RiverHFront w="8" h="8">
     <bbox x="152" y="1151"/>
-  </RiverWMid>
+  </RiverHFront>
+  <RiverVMid w="8" h="8">
+    <bbox x="164" y="1151"/>
+  </RiverVMid>
+  <RiverHMid w="8" h="8">
+    <bbox x="176" y="1151"/>
+  </RiverHMid>
   <RiverSmallCorner w="8" h="8">
-    <bbox x="156" y="1151"/>
+    <bbox x="188" y="1151"/>
   </RiverSmallCorner>
   <RiverBigCorner w="8" h="8">
-    <bbox x="160" y="1151"/>
+    <bbox x="200" y="1151"/>
   </RiverBigCorner>
 
 </sprites>
