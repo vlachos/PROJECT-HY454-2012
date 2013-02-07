@@ -181,4 +181,8 @@ class MightaInBubbleHighAngryAnimator : public MovingPathAnimator{
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 };
 
+class MightaMovingFireBallLeftAnimator : public FrameRangeAnimator{
+
+};
+
 #endif

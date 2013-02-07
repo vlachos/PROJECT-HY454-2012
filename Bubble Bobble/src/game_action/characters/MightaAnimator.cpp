@@ -119,6 +119,37 @@ void MightaJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 }
 
+MightaThrowFireBallAnimator::MightaThrowFireBallAnimator(){
+	this->SetOnFinish( OnFinishCallback, (void*)this );
+}
+
+void MightaThrowFireBallAnimator::RegistCollitions(Sprite *spr){
+	
+}
+
+void MightaThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* args){
+	DASSERT( anim && args);
+	MightaThrowFireBallAnimator * _this = (MightaThrowFireBallAnimator*)args;
+	DASSERT( anim==_this );
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"MightaWalkLeft":"MightaWalkRight");
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaWalk"), 
+						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+
+	MightaWalkingAnimator *frtor=new MightaWalkingAnimator();
+	n_sprite->AddStartFallingListener(frtor);
+
+	frtor->RegistCollitions(n_sprite);
+
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
+
+
+}
+
 /////////////////////////////////////Migta Angry Animator
 
 ////////////////MigntaAngryStandAnimator
@@ -132,7 +163,7 @@ void MightaAngryStandAnimator::RegistCollitions(Sprite *spr){
 
 void MightaAngryStandAnimator::OnFinishCallback(Animator* anim, void* args){}
 
-////////////////MightaWalkingAnimator
+////////////////MightaAngryWalkingAnimator
 MightaAngryWalkingAnimator::MightaAngryWalkingAnimator(void) {
 	this->SetOnFinish( OnFinishCallback , (void*)this);
 }
@@ -175,7 +206,7 @@ void MightaAngryWalkingAnimator::OnFinishCallback(Animator* animr, void* args){
 }
 
 
-////////////////MightaFallingAnimator
+////////////////MightaAngryFallingAnimator
 MightaAngryFallingAnimator::MightaAngryFallingAnimator(){}
 
 void MightaAngryFallingAnimator::RegistCollitions(Sprite *spr){
@@ -196,7 +227,7 @@ void MightaAngryFallingAnimator::OnStopFalling(Sprite * sprite){
 }
 
 
-////////////////MightaJumpAnimator
+////////////////MightaAngryJumpAnimator
 MightaAngryJumpAnimator::MightaAngryJumpAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
 }
@@ -255,6 +286,38 @@ void MightaDieAnimator::OnStartFalling(Sprite * sprite){
 	this->GetSprite()->AddStopFallingListener(zenFallAnmr);
 	START_ANIMATOR( zenFallAnmr, this->GetSprite(), zenFallAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
+}
+
+/////////////////MightaAngryThrowFireballAnimator
+MightaAngryThrowFireBallAnimator::MightaAngryThrowFireBallAnimator(){
+	this->SetOnFinish( OnFinishCallback, (void*)this );
+}
+
+void MightaAngryThrowFireBallAnimator::RegistCollitions(Sprite *spr){
+	
+}
+
+void MightaAngryThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* args){
+	DASSERT( anim && args);
+	MightaAngryThrowFireBallAnimator * _this = (MightaAngryThrowFireBallAnimator*)args;
+	DASSERT( anim==_this );
+
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"MightaAngryWalkLeft":"MightaAngryWalkRight");
+	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaAngry"), 
+						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+
+	MightaAngryWalkingAnimator *frtor=new MightaAngryWalkingAnimator();
+	n_sprite->AddStartFallingListener(frtor);
+
+	frtor->RegistCollitions(n_sprite);
+
+	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
+
+
 }
 
 ////////////////MightaDieFallingAnimtor

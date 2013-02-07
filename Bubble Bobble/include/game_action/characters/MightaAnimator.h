@@ -55,6 +55,17 @@ class MightaJumpAnimator : public MovingPathAnimator{
 
 
 };
+
+class MightaThrowFireBallAnimator : public FrameRangeAnimator{
+	public:
+		MightaThrowFireBallAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaThrowFireBallAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
+};
 //////////////////////////////Angry Animators
 class MightaAngryStandAnimator : public FrameRangeAnimator{
 	public:
@@ -104,6 +115,17 @@ class MightaAngryJumpAnimator : public MovingPathAnimator{
 
 
 };
+
+class MightaAngryThrowFireBallAnimator : public FrameRangeAnimator{
+	public:
+		MightaAngryThrowFireBallAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaAngryThrowFireBallAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
+};
 //////////////////Die Animators are common
 class MightaDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
 	public:
@@ -128,5 +150,7 @@ class MightaDieFallingAnimator : public FrameRangeAnimator, public Sprite::Sprit
 		void RegistCollitions(Sprite*);
 		void OnStopFalling(Sprite * sprite);
 };
+
+
 
 #endif

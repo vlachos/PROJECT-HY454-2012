@@ -9,6 +9,9 @@
 #include "ZenChanAnimator.h"
 #include "BubblesAnimator.h"
 #include "BubbleLogic.h"
+#include "MightaAnimator.h"
+#include "AnimationFilmHolder.h"
+#include "Terrain.h"
 
 /////////////////////////static functions
 
@@ -100,6 +103,22 @@ bool InputManageHandling::OnKeyUp(void){
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
 		retVal = CheckDyDirectionStand(bub);
+	}
+
+	if(!(bub=AnimatorHolder::GetAnimators(mightaAngryWalkAnimator_t)).empty()){
+		MightaAngryWalkingAnimator* _this = (MightaAngryWalkingAnimator*) bub.front();
+		
+		REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+		Sprite* newSprite = new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),true,
+			AnimationFilmHolder::GetFilm("MightaAngryFireBubble"),Terrain::GetActionLayer(),_this->GetSprite()->GoesLeft());
+
+		FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaAngryThrowFireBall");
+		MightaAngryThrowFireBallAnimator* mar = new MightaAngryThrowFireBallAnimator();
+		//mar->RegistCollitions(newSprite);
+
+		START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+		DESTROY_ANIMATOR( _this );
 	}
 
 	return retVal;

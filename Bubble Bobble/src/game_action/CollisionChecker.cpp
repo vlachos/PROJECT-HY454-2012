@@ -36,7 +36,6 @@ static Sprite* GetSpriteFromWaterSpecialBubbleAnimator(Animator* animr) { return
 static Sprite* GetSpriteFromZenChanStandAnimator(Animator* animr) { return (( ZenChanStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanWalkAnimator(Animator* animr) { return (( ZenChanWalkingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanFallingAnimator(Animator* animr) { return (( ZenChanFallingAnimator*)animr )->GetSprite(); }
-static Sprite* GetSpriteFromZenChanDieFallingAnimator(Animator* animr) { return (( ZenChanDieFallingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanJumpAnimator(Animator* animr) { return (( ZenChanJumpAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanAngryStandAnimator(Animator* animr) { return (( ZenChanAngryStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromZenChanAngryWalkAnimator(Animator* animr) { return (( ZenChanAngryWalkingAnimator*)animr )->GetSprite(); }
@@ -45,15 +44,18 @@ static Sprite* GetSpriteFromZenChanAngryJumpAnimator(Animator* animr) { return (
 static Sprite* GetSpriteFromMightaStandAnimator(Animator* animr) { return (( MightaStandAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaWalkAnimator(Animator* animr) { return (( MightaWalkingAnimator*)animr )->GetSprite(); }
 static Sprite* GetSpriteFromMightaFallingAnimator(Animator* animr) { return (( MightaFallingAnimator*)animr )->GetSprite();}
-static Sprite* GetSpriteFromMightaDieFallingAnimator(Animator* animr) { return (( MightaDieFallingAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaJumpAnimator(Animator* animr) { return (( MightaJumpAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaAngryStandAnimator(Animator* animr) { return (( MightaAngryStandAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaAngryWalkAnimator(Animator* animr) { return (( MightaAngryWalkingAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaAngryFallingAnimator(Animator* animr) { return (( MightaAngryFallingAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaAngryJumpAnimator(Animator* animr) { return (( MightaAngryJumpAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaAngryThrowFireballAnimator(Animator* animr) { return (( MightaAngryThrowFireBallAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaThrowFireballAnimator(Animator* animr) { return (( MightaThrowFireBallAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBaronVonBlubaStandAnimator(Animator* animr) { return (( BaronVonBlubaStandAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromZenChanDieAnimator(Animator* animr) { return (( ZenChanDieAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaDieAnimator(Animator* animr) { return (( MightaDieAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromZenChanDieFallingAnimator(Animator* animr) { return (( ZenChanDieFallingAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaDieFallingAnimator(Animator* animr) { return (( MightaDieFallingAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBananaAnimator(Animator* animr) { return (( BananaAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromOrangeAnimator(Animator* animr) { return  (( OrangeAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromPeachAnimator(Animator* animr) { return  (( PeachAnimator*)animr )->GetSprite();}
@@ -104,6 +106,8 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromMightaAngryWalkAnimator,
 	GetSpriteFromMightaAngryFallingAnimator,
 	GetSpriteFromMightaAngryJumpAnimator,
+	GetSpriteFromMightaAngryThrowFireballAnimator,
+	GetSpriteFromMightaThrowFireballAnimator,
 	GetSpriteFromBaronVonBlubaStandAnimator,
 	GetSpriteFromZenChanDieAnimator,
 	GetSpriteFromMightaDieAnimator,
