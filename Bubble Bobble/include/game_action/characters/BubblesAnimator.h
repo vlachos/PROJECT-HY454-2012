@@ -181,8 +181,29 @@ class MightaInBubbleHighAngryAnimator : public MovingPathAnimator{
 		static void OnCollisionWithBubble(Sprite *, Sprite *, void *);
 };
 
-class MightaMovingFireBallLeftAnimator : public FrameRangeAnimator{
+class MightaMovingFireBallAnimator : public FrameRangeAnimator{
+	public:
+		MightaMovingFireBallAnimator();
 
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaMovingFireBallAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
+		static void OnCollisionWithBub(Sprite *, Sprite *, void *);
+		static void OnCollisionWithWall(Sprite *, Sprite *, void *);
+};
+
+
+class MightaDestroyedFireBallAnimator : public FrameRangeAnimator{
+	public:
+		MightaDestroyedFireBallAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return mightaDestroyedFireBallAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+		void RegistCollitions(Sprite*);
 };
 
 #endif

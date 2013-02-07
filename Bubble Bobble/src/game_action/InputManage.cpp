@@ -105,6 +105,27 @@ bool InputManageHandling::OnKeyUp(void){
 		retVal = CheckDyDirectionStand(bub);
 	}
 
+	return retVal;
+}
+
+bool InputManageHandling::OnKeyDown(void){
+	std::vector<Animator*> bub;
+
+	if(!(bub=AnimatorHolder::GetAnimators(mightaWalkAnimator_t)).empty()){
+		MightaWalkingAnimator* _this = (MightaWalkingAnimator*) bub.front();
+		
+		REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+		Sprite* newSprite = new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),true,
+			AnimationFilmHolder::GetFilm("MightaFireBubble"),Terrain::GetActionLayer(),_this->GetSprite()->GoesLeft());
+
+		FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaThrowFireBall");
+		MightaThrowFireBallAnimator* mar = new MightaThrowFireBallAnimator();
+		//mar->RegistCollitions(newSprite);
+
+		START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
+		DESTROY_ANIMATOR( _this );
+	}
 	if(!(bub=AnimatorHolder::GetAnimators(mightaAngryWalkAnimator_t)).empty()){
 		MightaAngryWalkingAnimator* _this = (MightaAngryWalkingAnimator*) bub.front();
 		
@@ -120,12 +141,6 @@ bool InputManageHandling::OnKeyUp(void){
 		START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 		DESTROY_ANIMATOR( _this );
 	}
-
-	return retVal;
-}
-
-bool InputManageHandling::OnKeyDown(void){
-
 	return true;
 }
 

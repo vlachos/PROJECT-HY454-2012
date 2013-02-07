@@ -175,11 +175,13 @@
     <bbox x="6" y="299"  />
     <bbox x="24" y="299"  />
     <bbox x="41" y="299"  />
-    <bbox x="59" y="299"  />    
+    <bbox x="59" y="299"  />
+  </MightaBubble>
+  <MightaDestroyBubble w="16" h="16">
     <bbox x="78" y="299"  />
     <bbox x="96" y="299"  />
     <bbox x="114" y="299"  />
-  </MightaBubble>  
+  </MightaDestroyBubble>
   <MightaDie w="16" h="16">
     <bbox x="435" y="278"  />
     <bbox x="456" y="278"  />

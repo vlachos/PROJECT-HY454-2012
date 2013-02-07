@@ -67,6 +67,8 @@ static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return (( RedShoe
 static Sprite* GetSpriteFromYellowSweetAnimator(Animator* animr){ return (( YellowSweetAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBlueSweetAnimator(Animator* animr) { return (( BlueSweetAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromPurpleSweetAnimator(Animator* animr) { return (( PurpleSweetAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaMovingFireBallAnimator(Animator* animr) { return (( MightaMovingFireBallAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromMightaDestroyedFireBallAnimator(Animator* animr) { return (( MightaDestroyedFireBallAnimator*)animr )->GetSprite();}
 
 SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromUnkwownAnimator,
@@ -122,7 +124,9 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromRedShoeAnimator,
 	GetSpriteFromYellowSweetAnimator,
 	GetSpriteFromBlueSweetAnimator,
-	GetSpriteFromPurpleSweetAnimator
+	GetSpriteFromPurpleSweetAnimator,
+	GetSpriteFromMightaMovingFireBallAnimator,
+	GetSpriteFromMightaDestroyedFireBallAnimator
 };
 
 CollisionChecker* CollisionChecker::Checker;

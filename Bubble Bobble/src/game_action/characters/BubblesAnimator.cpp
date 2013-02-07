@@ -687,3 +687,46 @@ void MightaInBubbleHighAngryAnimator::OnCollisionWithBubJump(Sprite *mighta, Spr
 void MightaInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite *spr2, void *args){
 
 }
+
+
+//////////////////////////////FireBallMovingAnimator
+MightaMovingFireBallAnimator::MightaMovingFireBallAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void MightaMovingFireBallAnimator::RegistCollitions(Sprite* spr){
+	
+}
+
+void MightaMovingFireBallAnimator::OnFinishCallback(Animator*anim, void*args){
+
+	DASSERT( anim && anim==args );
+	MightaMovingFireBallAnimator* _this = (MightaMovingFireBallAnimator*) anim;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+
+	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaDestroyedFireBall");
+	Sprite *n_sprite = new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),_this->GetSprite()->IsGravityAddicted(),
+									AnimationFilmHolder::GetFilm("MightaDestroyBubble"), Terrain::GetActionLayer(), 
+									_this->GetSprite()->GoesLeft());
+
+	MightaDestroyedFireBallAnimator *frtor=new MightaDestroyedFireBallAnimator();
+	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
+	DESTROY_ANIMATOR( _this );
+}
+
+/////////////////////FireBallDestroyAnimator
+MightaDestroyedFireBallAnimator::MightaDestroyedFireBallAnimator(){
+	this->SetOnFinish(OnFinishCallback, (void*)this);
+}
+
+void MightaDestroyedFireBallAnimator::RegistCollitions(Sprite* spr){
+	
+}
+
+void MightaDestroyedFireBallAnimator::OnFinishCallback(Animator*anim, void*args){
+
+	DASSERT( anim && anim==args );
+	MightaDestroyedFireBallAnimator* _this = (MightaDestroyedFireBallAnimator*) anim;
+	REMOVE_FROM_ACTION_ANIMATOR( _this );
+	DESTROY_ANIMATOR( _this );
+}

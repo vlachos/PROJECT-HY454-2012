@@ -9,6 +9,7 @@
 #include "CollisionChecker.h"
 #include "FruitsAnimator.h"
 #include "BubbleLogic.h"
+#include "BubblesAnimator.h"
 
 
 
@@ -139,12 +140,25 @@ void MightaThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* args){
 		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaWalk"), 
 						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
 
+	FrameRangeAnimation *ball=(FrameRangeAnimation*)AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"MightaMovingFireBallLeft":"MightaMovingFireBallRight");
+	Sprite *newSprite=new Sprite(_this->GetSprite()->GoesLeft()?(_this->GetSprite()->GetX()-35):(_this->GetSprite()->GetX()+35),
+		_this->GetSprite()->GetY(),false,AnimationFilmHolder::GetFilm("MightaBubble"), 
+					Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+
+	MightaMovingFireBallAnimator *mmfa=new MightaMovingFireBallAnimator();
+
+
+	
 	MightaWalkingAnimator *frtor=new MightaWalkingAnimator();
 	n_sprite->AddStartFallingListener(frtor);
 
+
+
 	frtor->RegistCollitions(n_sprite);
+	mmfa->RegistCollitions(newSprite);
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	START_ANIMATOR( mmfa, newSprite, ball, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 
 
@@ -308,13 +322,22 @@ void MightaAngryThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* ar
 	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
 		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaAngry"), 
 						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+	std::cout<<"sdvsv\n";
+	FrameRangeAnimation *ball=(FrameRangeAnimation*)AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"MightaMovingFireBallLeft":"MightaMovingFireBallRight");
+	Sprite *newSprite=new Sprite(_this->GetSprite()->GoesLeft()?(_this->GetSprite()->GetX()-35):(_this->GetSprite()->GetX()+35),
+		_this->GetSprite()->GetY(),false,AnimationFilmHolder::GetFilm("MightaBubble"), 
+					Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
 
+	MightaMovingFireBallAnimator *mmfa=new MightaMovingFireBallAnimator();
 	MightaAngryWalkingAnimator *frtor=new MightaAngryWalkingAnimator();
+	
 	n_sprite->AddStartFallingListener(frtor);
 
 	frtor->RegistCollitions(n_sprite);
+	mmfa->RegistCollitions(newSprite);
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	START_ANIMATOR( mmfa, newSprite, ball, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
 
 
