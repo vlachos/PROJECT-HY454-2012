@@ -207,6 +207,12 @@
     <ClCompile Include="..\src\game_action\items\FruitsAnimator.cpp">
       <Filter>Source Files\game_action\items</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animations\RiverSprite.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\items\RiverAnimator.cpp">
+      <Filter>Source Files\game_action\items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -342,6 +348,12 @@
       <Filter>Header Files\game_action</Filter>
     </ClInclude>
     <ClInclude Include="..\include\game_action\items\FruitsAnimator.h">
+      <Filter>Header Files\game_action\items</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\RiverSprite.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\items\RiverAnimator.h">
       <Filter>Header Files\game_action\items</Filter>
     </ClInclude>
   </ItemGroup>

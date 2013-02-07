@@ -88,6 +88,7 @@
     <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingPathAnimation.cpp" />
+    <ClCompile Include="..\src\animations\RiverSprite.cpp" />
     <ClCompile Include="..\src\animations\Sprite.cpp" />
     <ClCompile Include="..\src\animations\TickAnimation.cpp" />
     <ClCompile Include="..\src\animators\Animator.cpp" />
@@ -109,6 +110,7 @@
     <ClCompile Include="..\src\game_action\InvisibleSprites.cpp" />
     <ClCompile Include="..\src\game_action\items\FruitsAnimator.cpp" />
     <ClCompile Include="..\src\game_action\items\PowerUpsAnimator.cpp" />
+    <ClCompile Include="..\src\game_action\items\RiverAnimator.cpp" />
     <ClCompile Include="..\src\logic\BubbleLogic.cpp" />
     <ClCompile Include="..\src\logic\BubProfile.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
@@ -132,6 +134,7 @@
     <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />
     <ClInclude Include="..\include\animations\MovingAnimation.h" />
     <ClInclude Include="..\include\animations\MovingPathAnimation.h" />
+    <ClInclude Include="..\include\animations\RiverSprite.h" />
     <ClInclude Include="..\include\animations\Sprite.h" />
     <ClInclude Include="..\include\animations\TickAnimation.h" />
     <ClInclude Include="..\include\animators\Animator.h" />
@@ -154,6 +157,7 @@
     <ClInclude Include="..\include\game_action\InvisibleSprites.h" />
     <ClInclude Include="..\include\game_action\items\FruitsAnimator.h" />
     <ClInclude Include="..\include\game_action\items\PowerUpsAnimator.h" />
+    <ClInclude Include="..\include\game_action\items\RiverAnimator.h" />
     <ClInclude Include="..\include\logic\BubbleLogic.h" />
     <ClInclude Include="..\include\logic\BubProfile.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />

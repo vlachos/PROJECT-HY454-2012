@@ -5,9 +5,10 @@
 #include "BubblesAnimator.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
+#include "BarronVonBlubaAnimator.h"
 #include "FruitsAnimator.h"
 #include "PowerUpsAnimator.h"
-#include "BarronVonBlubaAnimator.h"
+#include "RiverAnimator.h"
 #include "InvisibleSprites.h"
 
 typedef Sprite* (*SpriteDispacher_t) (Animator* animr);
@@ -60,6 +61,7 @@ static Sprite* GetSpriteFromBananaAnimator(Animator* animr) { return (( BananaAn
 static Sprite* GetSpriteFromOrangeAnimator(Animator* animr) { return  (( OrangeAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromPeachAnimator(Animator* animr) { return  (( PeachAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromWaterMelonAnimator(Animator* animr) { return  (( WaterMelonAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromRiverAnimator(Animator* animr) { return  (( RiverAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBlueDiamondAnimator(Animator* animr) { return  (( BlueDiamondAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return (( RedShoesAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromYellowSweetAnimator(Animator* animr){ return (( YellowSweetAnimator*)animr )->GetSprite();}
@@ -115,6 +117,7 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromOrangeAnimator,
 	GetSpriteFromPeachAnimator,
 	GetSpriteFromWaterMelonAnimator,
+	GetSpriteFromRiverAnimator,
 	GetSpriteFromBlueDiamondAnimator,
 	GetSpriteFromRedShoeAnimator,
 	GetSpriteFromYellowSweetAnimator,
