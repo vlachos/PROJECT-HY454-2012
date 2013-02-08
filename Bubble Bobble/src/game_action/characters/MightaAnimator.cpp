@@ -73,6 +73,7 @@ MightaFallingAnimator::MightaFallingAnimator(){}
 
 void MightaFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void MightaFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -224,6 +225,7 @@ MightaAngryFallingAnimator::MightaAngryFallingAnimator(){}
 
 void MightaAngryFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void MightaAngryFallingAnimator::OnStopFalling(Sprite * sprite){

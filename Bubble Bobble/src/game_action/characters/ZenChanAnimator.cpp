@@ -76,6 +76,7 @@ ZenChanFallingAnimator::ZenChanFallingAnimator(){}
 
 void ZenChanFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void ZenChanFallingAnimator::OnStopFalling(Sprite * sprite){
@@ -195,11 +196,11 @@ void ZenChanAngryWalkingAnimator::OnFinishCallback(Animator* animr, void* args){
 
 ///////////////////////////ZenChanAngryFallingAnimator
 ZenChanAngryFallingAnimator::ZenChanAngryFallingAnimator(){
-
 }
 
 void ZenChanAngryFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
 void ZenChanAngryFallingAnimator::OnStopFalling(Sprite * sprite){
