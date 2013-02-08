@@ -6,63 +6,25 @@
 #include "AnimationFilm.h"
 #include <algorithm>
 
-typedef std::pair<ScoreBoardFont_t, const AnimationFilm*> FontPair;
-
-	struct DeleteAnimation{
-		void operator()(std::pair<ScoreBoardFont_t, const AnimationFilm*> _pair){
-			_pair.first = white;
-			_pair.second = 0;
-		}
-	};
-
 	/////////// Constructor / Destructor
-	ScoreBoard::ScoreBoard(){
-		spritesBitmap = BitmapLoader::Load(BubblePathnames::GetSpritesBitmap() );
+	ScoreBoard::ScoreBoard()  { }
 
-		FontsStartXYMap.insert(FontPair(white, AnimationFilmHolder::GetFilm("WhiteLettersFont")) );
-		FontsStartXYMap.insert(FontPair(green, AnimationFilmHolder::GetFilm("GreenLettersFont")) );
-		FontsStartXYMap.insert(FontPair(blue, AnimationFilmHolder::GetFilm("BlueLettersFont")) );
-		FontsStartXYMap.insert(FontPair(red, AnimationFilmHolder::GetFilm("RedLettersFont")) );
-		FontsStartXYMap.insert(FontPair(yellow, AnimationFilmHolder::GetFilm("YellowLettersFont")) );
-	}
+	ScoreBoard::~ScoreBoard() { }
 
-	ScoreBoard::~ScoreBoard(){
-		std::for_each(  FontsStartXYMap.begin(),
-						FontsStartXYMap.end(),
-						DeleteAnimation() );
 
-		FontsStartXYMap.clear();
-	}
-
-	/////////// Generate starting points of each letter on the score board
-	const AnimationFilm* ScoreBoard::GetFontAnimationFilm(ScoreBoardFont_t font){
-		DASSERT(white<=font<=yellow);
-
-		return FontsStartXYMap.find(font)->second;
-	}
-
-	Coordinates ScoreBoard::GetLetterXY(unsigned char c, ScoreBoardFont_t color){
-		DASSERT(FONT_START <= c <= FONT_END);
-
-		Dim x = GetFontAnimationFilm(color)->GetFrameBox(FONT_FRAME_BOX).GetX();
-		Dim y = ScoreBoard::GetFontAnimationFilm(color)->GetFrameBox(FONT_FRAME_BOX).GetY();
-
-		return std::make_pair(x + LETTER_OFFSET(c), y);
-	}
-
-	void ScoreBoard::GenerateScoreLettersXY(unsigned int startIndex, std::string scoreStr, ScoreBoardFont_t color) {
+	void ScoreBoard::GenerateScoreLettersXY(unsigned int startIndex, std::string scoreStr, FontColor_t color) {
 		DASSERT(scoreStr.length()+startIndex <= MAX_ROW_LETTER);
 		
 		for (unsigned int i=startIndex; i < scoreStr.length()+startIndex; ++i){
-			scores[i] = GetLetterXY(scoreStr.at(i-startIndex), color);
+			scores[i] = BitmapFontHolder::GetLetterXY(scoreStr.at(i-startIndex), color);
 		}
 	}
 
-	void ScoreBoard::GenerateAboveScoreLettersXY(unsigned int startIndex, std::string aboveScoreStr, ScoreBoardFont_t color) {
+	void ScoreBoard::GenerateAboveScoreLettersXY(unsigned int startIndex, std::string aboveScoreStr, FontColor_t color) {
 		DASSERT(aboveScoreStr.length()+startIndex <= MAX_ROW_LETTER);
 		
 		for (unsigned int i=startIndex; i < aboveScoreStr.length()+startIndex; ++i){
-			aboveScores[i] = GetLetterXY(aboveScoreStr.at(i-startIndex), color);
+			aboveScores[i] = BitmapFontHolder::GetLetterXY(aboveScoreStr.at(i-startIndex), color);
 		}
 	}
 
@@ -99,7 +61,7 @@ typedef std::pair<ScoreBoardFont_t, const AnimationFilm*> FontPair;
 	}
 
 
-	/////////// integer score to string
+	/////////// integer to string
 	std::string ScoreBoard::ScoreToString(int score){
 		unsigned int d1 = 1, d2 = 10;
 		std::string scoreStr = "";
@@ -112,14 +74,11 @@ typedef std::pair<ScoreBoardFont_t, const AnimationFilm*> FontPair;
 		return scoreStr;
 	}
 
+	void ScoreBoard::DisplayLetter(Bitmap at, int destX, int destY, Coordinates coord){
 
-	/////////// display
-	void ScoreBoard::DisplayLetter(Bitmap at, Dim destX, Dim destY, Coordinates coord){
-
-		al_draw_bitmap_region(spritesBitmap, coord.first, coord.second, LETTER_W, LETTER_H,
+		al_draw_bitmap_region(BitmapFontHolder::GetFontsBitmap(), coord.first, coord.second, LETTER_W, LETTER_H,
 										destX, destY, NULL);
 	}
-
 
 	void ScoreBoard::DisplayScoreBoard(Bitmap at, int bubScore, int highScore, int bobScore){
 		DASSERT(at == al_get_target_bitmap() );
@@ -127,7 +86,7 @@ typedef std::pair<ScoreBoardFont_t, const AnimationFilm*> FontPair;
 		GenerateScoreBoardInfo(bubScore, highScore, bobScore);
 
 		for (unsigned int i=0; i < MAX_ROW_LETTER; ++i){
-			DisplayLetter(at, i*LETTER_W, 0,ScoreBoard::aboveScores[i]);
-			DisplayLetter(at, i*LETTER_W, LETTER_H, ScoreBoard::scores[i]);
+			DisplayLetter(at, i*LETTER_W, 0, aboveScores[i]);
+			DisplayLetter(at, i*LETTER_W, LETTER_H, scores[i]);
 		}
 	}

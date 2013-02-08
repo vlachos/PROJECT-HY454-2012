@@ -54,6 +54,7 @@ void BubbleMain::InitGameEngine(){
 	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
 	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
 	Terrain::SingeltonCreate();
+	BitmapFontHolder::SingletonCreate();
 	InvisibleSprites::SingletonCreate();
 	
 	BubbleLogic::SetBubScore(0);
@@ -260,6 +261,7 @@ void BubbleMain::GameOver(){
 
 	BubbleLogic::SingletonCleanUp();
 
+	BitmapFontHolder::SingletonCleanUp();
 	Terrain::SingeltonCleanUp();
 
 	CollisionChecker::SingletonCleanUp();

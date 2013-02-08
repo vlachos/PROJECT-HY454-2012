@@ -10,6 +10,7 @@
 
 #include "BubbleLogic.h"
 
+#include "BitmapFontHolder.h"
 #include "Terrain.h"
 #include "FrameRangeAnimation.h"
 #include "AnimationFilmHolder.h"
