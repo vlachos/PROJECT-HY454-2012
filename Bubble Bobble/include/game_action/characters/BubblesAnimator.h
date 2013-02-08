@@ -188,9 +188,7 @@ class MightaMovingFireBallAnimator : public FrameRangeAnimator{
 		enum animatorType_t GetAnimatorType(void)
 			{ return mightaMovingFireBallAnimator_t; }
 
-		static void OnFinishCallback(Animator*, void*);
 		void RegistCollitions(Sprite*);
-		static void OnCollisionWithBub(Sprite *, Sprite *, void *);
 		static void OnCollisionWithWall(Sprite *, Sprite *, void *);
 };
 

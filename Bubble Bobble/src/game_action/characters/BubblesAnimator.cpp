@@ -10,6 +10,8 @@
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
 #include "BubbleLogic.h"
+#include "InvisibleSprites.h"
+#include "BubAnimator.h"
 
 
 #define DESTROY_PAIR( pair )						\
@@ -691,24 +693,26 @@ void MightaInBubbleHighAngryAnimator::OnCollisionWithBubble(Sprite *spr1, Sprite
 
 //////////////////////////////FireBallMovingAnimator
 MightaMovingFireBallAnimator::MightaMovingFireBallAnimator(){
-	this->SetOnFinish(OnFinishCallback, (void*)this);
 }
 
 void MightaMovingFireBallAnimator::RegistCollitions(Sprite* spr){
-	
+	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleMightaBubbleBreakers();
+	for(int i=0; i<ibd.size(); ++i){
+		CollisionChecker::Register(spr, ibd[i].sprite, this, OnCollisionWithWall);
+	}
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
-void MightaMovingFireBallAnimator::OnFinishCallback(Animator*anim, void*args){
-
-	DASSERT( anim && anim==args );
-	MightaMovingFireBallAnimator* _this = (MightaMovingFireBallAnimator*) anim;
+void MightaMovingFireBallAnimator::OnCollisionWithWall(Sprite *ball, Sprite *wall, void * args){
+	DASSERT( ball && wall && args );
+	MightaMovingFireBallAnimator * _this = (MightaMovingFireBallAnimator*) args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaDestroyedFireBall");
 	Sprite *n_sprite = new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),_this->GetSprite()->IsGravityAddicted(),
 									AnimationFilmHolder::GetFilm("MightaDestroyBubble"), Terrain::GetActionLayer(), 
 									_this->GetSprite()->GoesLeft());
-
+	n_sprite->SetOnDrugs(true);
 	MightaDestroyedFireBallAnimator *frtor=new MightaDestroyedFireBallAnimator();
 	START_ANIMATOR(frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );

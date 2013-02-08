@@ -11,6 +11,7 @@
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::driversForFrameRange;
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::wrapAroundDrivers;
+std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::MightaBubbleBreakers;
 InvisibleSprites*								InvisibleSprites::singletonPtr;
 
 static std::list<AnimationFilm*>				animationFilmHolderLateDestraction;
@@ -91,6 +92,8 @@ static void InvisibleDrivererWrapAround2(Sprite *obj, Sprite *driver, void *args
 	obj->SetX(323);
 	obj->SetY(0);
 }
+
+
 
 InvisibleSprites::InvisibleSprites(){
 	AnimationFilm* af;
@@ -195,6 +198,20 @@ InvisibleSprites::InvisibleSprites(){
 	spr = new Sprite( 173, 450, false, af, Terrain::GetActionLayer(), true);
 	animationFilmHolderLateDestraction.push_back(af);
 	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround1 ) );
+
+	box.clear();
+	box.push_back( Rect(0, 0, 20, 450) );
+	af = new AnimationFilm(0, box, "invisibleDriver_mightaBubbleBreaker1");
+	spr = new Sprite( 0, 0, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
+	MightaBubbleBreakers.push_back( InvisibleDrivers( spr, 0 ) );
+
+	box.clear();
+	box.push_back( Rect(0, 0, 20, 450) );
+	af = new AnimationFilm(0, box, "invisibleDriver_mightaBubbleBreaker2");
+	spr = new Sprite( 490, 0, false, af, Terrain::GetActionLayer(), true);
+	animationFilmHolderLateDestraction.push_back(af);
+	MightaBubbleBreakers.push_back( InvisibleDrivers( spr, 0 ) );
 }
 
 InvisibleSprites::~InvisibleSprites(){
@@ -221,9 +238,16 @@ InvisibleSprites::~InvisibleSprites(){
 }
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleBubbleDriversForFrameRange(){
+	DASSERT(!driversForFrameRange.empty());
 	return driversForFrameRange;
 }
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleWrapAroundDrivers(){
+	DASSERT(!wrapAroundDrivers.empty());
 	return wrapAroundDrivers;
+}
+
+std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::GetInvisibleMightaBubbleBreakers(){
+	DASSERT(!MightaBubbleBreakers.empty());
+	return MightaBubbleBreakers;
 }

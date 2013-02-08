@@ -127,9 +127,8 @@ void ZenChanJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanFalling");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm(_this->GetSprite()->GoesLeft()?"ZenChanWalkLeft":"ZenChanWalkRight"), 
-						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+	Sprite *n_sprite = _this->GetSprite();
+	n_sprite->ClearListeners();
 
 	ZenChanFallingAnimator *frtor=new ZenChanFallingAnimator();
 	n_sprite->AddStopFallingListener(frtor);
@@ -137,7 +136,7 @@ void ZenChanJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	frtor->RegistCollitions(n_sprite);
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
-	DESTROY_ANIMATOR( _this );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 
 }
 

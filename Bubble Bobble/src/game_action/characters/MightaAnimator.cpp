@@ -105,9 +105,8 @@ void MightaJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaFalling");
-	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm(_this->GetSprite()->GoesLeft()?"MightaWalkLeft":"MightaWalkRight"), 
-						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
+	Sprite *n_sprite = _this->GetSprite();
+	n_sprite->ClearListeners();
 
 	MightaFallingAnimator *frtor=new MightaFallingAnimator();
 	n_sprite->AddStopFallingListener(frtor);
@@ -115,7 +114,7 @@ void MightaJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 	frtor->RegistCollitions(n_sprite);
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
-	DESTROY_ANIMATOR( _this );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 
 
 }
@@ -144,7 +143,7 @@ void MightaThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* args){
 	Sprite *newSprite=new Sprite(_this->GetSprite()->GoesLeft()?(_this->GetSprite()->GetX()-35):(_this->GetSprite()->GetX()+35),
 		_this->GetSprite()->GetY(),false,AnimationFilmHolder::GetFilm("MightaBubble"), 
 					Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-
+	newSprite->SetOnDrugs(true);
 	MightaMovingFireBallAnimator *mmfa=new MightaMovingFireBallAnimator();
 
 
@@ -327,7 +326,7 @@ void MightaAngryThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* ar
 	Sprite *newSprite=new Sprite(_this->GetSprite()->GoesLeft()?(_this->GetSprite()->GetX()-35):(_this->GetSprite()->GetX()+35),
 		_this->GetSprite()->GetY(),false,AnimationFilmHolder::GetFilm("MightaBubble"), 
 					Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-
+	newSprite->SetOnDrugs(true);
 	MightaMovingFireBallAnimator *mmfa=new MightaMovingFireBallAnimator();
 	MightaAngryWalkingAnimator *frtor=new MightaAngryWalkingAnimator();
 	

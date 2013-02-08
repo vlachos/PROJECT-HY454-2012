@@ -149,7 +149,7 @@ BubStandAnimator::BubStandAnimator(){
 }
 
 void BubStandAnimator::RegistCollitions(Sprite *spr){
-
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	REGIST_FRUITS_AND_POWER_UPS( spr );
 }
@@ -186,7 +186,7 @@ BubWalkingAnimator::BubWalkingAnimator(void) {
 }
 
 void BubWalkingAnimator::RegistCollitions(Sprite *spr){
-
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, waterSpecialBubble_t, BubblesAnimatorActions::OnCollisionWithBub);
 	REGIST_FRUITS_AND_POWER_UPS( spr );
@@ -261,6 +261,7 @@ BubFallingAnimator::BubFallingAnimator(){
 }
 
 void BubFallingAnimator::RegistCollitions(Sprite *spr){
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubFalling);
@@ -317,7 +318,7 @@ BubOpenMouthAnimator::BubOpenMouthAnimator(){
 }
 
 void BubOpenMouthAnimator::RegistCollitions(Sprite *spr){
-
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, waterSpecialBubble_t, BubblesAnimatorActions::OnCollisionWithBub);
 	REGIST_FRUITS_AND_POWER_UPS( spr );
@@ -371,6 +372,7 @@ BubOpenMouthFallingAnimator::BubOpenMouthFallingAnimator(){
 }
 
 void BubOpenMouthFallingAnimator::RegistCollitions(Sprite *spr){
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubFalling);
@@ -429,6 +431,7 @@ BubJumpAnimator::BubJumpAnimator(){
 }
 
 void BubJumpAnimator::RegistCollitions(Sprite *spr){
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubJump);
 	CollisionChecker::Register(spr, zenChanInBubble_t, zenChanInBubble_t, ZenChanInBubbleAnimator::OnCollisionWithBubJump);
@@ -494,7 +497,7 @@ BubJumpOpenMouthAnimator::BubJumpOpenMouthAnimator(MovingPathAnimation* _jumpAni
 }
 
 void BubJumpOpenMouthAnimator::RegistCollitions(Sprite *spr){
-
+	CollisionChecker::Register(spr, mightaMovingFireBallAnimator_t, mightaMovingFireBallAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, zenChanStandAnimator_t, baronVonBlubaStandAnimator_t, this, BubAnimatorActions::OnCollisionWithEnemy);
 	CollisionChecker::Register(spr, bubBubbleAnimator_t, bubBubbleAnimator_t, BubBubbleAnimator::OnCollisionWithBubJump);
 	CollisionChecker::Register(spr, zenChanInBubble_t, zenChanInBubble_t, ZenChanInBubbleAnimator::OnCollisionWithBubJump);

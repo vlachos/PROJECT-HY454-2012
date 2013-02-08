@@ -67,6 +67,8 @@ static Sprite* GetSpriteFromRedShoeAnimator(Animator* animr) { return (( RedShoe
 static Sprite* GetSpriteFromYellowSweetAnimator(Animator* animr){ return (( YellowSweetAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromBlueSweetAnimator(Animator* animr) { return (( BlueSweetAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromPurpleSweetAnimator(Animator* animr) { return (( PurpleSweetAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromHurryUpAnimator(Animator* animr) { return (( HurryUpAnimator*)animr )->GetSprite();}
+static Sprite* GetSpriteFromBubInBubbleAnimator(Animator* animr) { return (( BubInBubbleAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaMovingFireBallAnimator(Animator* animr) { return (( MightaMovingFireBallAnimator*)animr )->GetSprite();}
 static Sprite* GetSpriteFromMightaDestroyedFireBallAnimator(Animator* animr) { return (( MightaDestroyedFireBallAnimator*)animr )->GetSprite();}
 
@@ -104,7 +106,6 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromMightaStandAnimator,
 	GetSpriteFromMightaWalkAnimator,
 	GetSpriteFromMightaFallingAnimator,
-	GetSpriteFromMightaDieFallingAnimator,
 	GetSpriteFromMightaJumpAnimator,
 	GetSpriteFromMightaAngryStandAnimator,
 	GetSpriteFromMightaAngryWalkAnimator,
@@ -115,6 +116,8 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromBaronVonBlubaStandAnimator,
 	GetSpriteFromZenChanDieAnimator,
 	GetSpriteFromMightaDieAnimator,
+	GetSpriteFromZenChanDieFallingAnimator,
+	GetSpriteFromMightaDieFallingAnimator,
 	GetSpriteFromBananaAnimator,
 	GetSpriteFromOrangeAnimator,
 	GetSpriteFromPeachAnimator,
@@ -125,6 +128,9 @@ SpriteDispacher_t spriteDispatcher[] = {
 	GetSpriteFromYellowSweetAnimator,
 	GetSpriteFromBlueSweetAnimator,
 	GetSpriteFromPurpleSweetAnimator,
+	0,
+	GetSpriteFromHurryUpAnimator,
+	GetSpriteFromBubInBubbleAnimator,
 	GetSpriteFromMightaMovingFireBallAnimator,
 	GetSpriteFromMightaDestroyedFireBallAnimator
 };

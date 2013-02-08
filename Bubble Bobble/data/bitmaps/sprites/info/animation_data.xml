@@ -281,7 +281,7 @@
 
   <MightaMovingFireBallLeft type="FrameRangeAnimation" dx="-2" dy="0" delay="20" continue="true" start="0" end="3"  />
   <MightaMovingFireBallRight type="FrameRangeAnimation" dx="+2" dy="0" delay="20" continue="true" start="0" end="3"  />
-  <MightaDestroyedFireBall type="FrameRangeAnimation" dx="0" dy="0" delay="20" continue="true" start="0" end="3"  />
+  <MightaDestroyedFireBall type="FrameRangeAnimation" dx="0" dy="0" delay="200" continue="false" start="0" end="2"  />
 
   <MightaJump type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="30" frame="0"/>
