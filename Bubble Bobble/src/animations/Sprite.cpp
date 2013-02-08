@@ -54,53 +54,25 @@ void Sprite::Move( int _x, int _y ){
 
 bool Sprite::CollisionCheck( Sprite * s ){
 	DASSERT( s && s!=this );
-	int _H = frameBox.GetHeigth();
-	int _W = frameBox.GetWidth();
-	int _x = x;
-	int _y = y;
-	//std::cout << "Bub x:" << _x << " ,y:" << _y << " , Height:" << frameBox.GetHeigth()<< " ,Width: "<< frameBox.GetWidth() <<"\n";
-	int __H = s->GetFrameBox().GetHeigth();
-	int __W = s->GetFrameBox().GetWidth();
-	int __x = s->GetX();
-	int __y = s->GetY();
+	int _H = frameBox.GetHeigth()-COLLISION_OFFSET;
+	int _W = frameBox.GetWidth()-COLLISION_OFFSET;
+	int _x = x+COLLISION_OFFSET;
+	int _y = y+COLLISION_OFFSET;
 
-	/*
-	return( !( ( _x > __x + __W || _x + _W < __x ) &&
-		    (_y > __y + __H || _y + _H < __y) )  );
-	*/
-	bool res = (	(( (__x <= _x) && (_x <= (__x + __W)) ) || ( (_x <= __x) && (__x <= (_x + _W)) )) &&
-						(( (__y <= _y) && (_y <= (__y + __H)) )	 || ( ( _y <= __y) && (__y <= (_y + _H)) ) ) );
+	int __H = s->GetFrameBox().GetHeigth()-COLLISION_OFFSET;
+	int __W = s->GetFrameBox().GetWidth()-COLLISION_OFFSET;
+	int __x = s->GetX()+COLLISION_OFFSET;
+	int __y = s->GetY()+COLLISION_OFFSET;
+
+	return  (	(( (__x <= _x) && (_x <= (__x + __W)) ) || 
+								( (_x <= __x) && (__x <= (_x + _W)) ))
+								&&
+						(( (__y <= _y) && (_y <= (__y + __H )) )	 ||
+								( ( _y <= __y) && (__y <= (_y + _H )) ) ) );
 								
+
+	//std::cout << "Bub x:" << _x << " ,y:" << _y << " , Height:" << frameBox.GetHeigth()<< " ,Width: "<< frameBox.GetWidth() <<"\n";
+
 	//std::cout << _x<< "<=" <<__x<< "&&"<< __x<< "<="<< _x +_W<< " bool " << (_x <= __x && __x <= (_x + _W)  )<<"\n" ;
 	//std::cout << s->currFilm->GetId()<< ", " << res << ", Zen x: "<< __x << " ,y:" << __y << " , Height:" << s->GetFrameBox().GetHeigth()<< " ,Width: "<< s->GetFrameBox().GetWidth() <<"\n";
-	
-	return res;
-	/*
-	return (
-			 (	( (__x <= _x) && (_x <= (__x + __W)) ) &&
-						( (__y <= _y) && (_y <= (__y + __H)) )	)
-								||
-		     (	( (_x <= __x) && (__x <= (_x + _W)) ) &&
-						( ( _y <= __y) && (__y <= (_y + _H)) )	)
-		   );
-		   */
-	/*
-	if (goesLeft){
-	return (
-			 (	( (__x <= _x) && (_x <= (__x + __W)) ) &&
-						( (__y <= _y) && (_y <= (__y + __H)) )	)
-								||
-		     (	( (_x <= __x) && (__x <= (_x + _W)) ) &&
-						( ( _y <= __y) && (__y <= (_y + _H)) )	)
-		   );
-	}
-	else{
-		return (
-			 (	( (__x <= _x) && (_x <= (__x + __W)) ) &&
-						( ( _y <= __y) && (__y <= (_y + _H)) )	)
-								||
-		     (	( (_x <= __x) && (__x <= (_x + _W)) ) &&
-						( (__y <= _y) && (_y <= (__y + __H)) )	)
-		   );
-	}*/
 }

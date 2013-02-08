@@ -120,6 +120,7 @@
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
     <ClCompile Include="..\src\terrain\TileBitmap.cpp" />
     <ClCompile Include="..\src\terrain\TileLayer.cpp" />
+    <ClCompile Include="..\src\utilities\BitmapFonts.cpp" />
     <ClCompile Include="..\src\utilities\MemoryManage.cpp" />
     <ClCompile Include="..\src\utilities\PathNames.cpp" />
     <ClCompile Include="..\src\utilities\utilities.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="..\include\terrain\TerrainUtilities.h" />
     <ClInclude Include="..\include\terrain\TileBitmap.h" />
     <ClInclude Include="..\include\terrain\TileLayer.h" />
+    <ClInclude Include="..\include\utilities\BitmapFonts.h" />
     <ClInclude Include="..\include\utilities\MemoryManage.h" />
     <ClInclude Include="..\include\utilities\Metrics.h" />
     <ClInclude Include="..\include\utilities\PathNames.h" />

@@ -432,11 +432,10 @@
   <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
   <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
 
-  <PonEffect type="MovingAnimation" dx="0" dy="0" delay="300" continue="false"/>
+  <PonEffect type="MovingAnimation" dx="0" dy="0" delay="100" continue="false"/>
 
-  <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="300" continue="true"/>
-  <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="300" continue="true"/>
-  <WaterFall type="MovingAnimation" dx="0" dy="16" delay="300" continue="true"/>
+  <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="100" continue="true"/>
+  <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="100" continue="true"/>
   
   <HurryUp type="MovingPathAnimation">
     <list  dx="0" dy="15" delay="200" frame="0"/>

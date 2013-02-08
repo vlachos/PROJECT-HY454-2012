@@ -126,8 +126,8 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	RedShoesAnimator* animr6 = new RedShoesAnimator();
 	animr6->RegistCollitions(sprite6);
 
-	RiverSprite* sprite7 = new RiverSprite(50,270,true,AnimationFilmHolder::GetFilm("RiverVFront"), Terrain::GetActionLayer(), false);	
-	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushRight");															
+	RiverSprite* sprite7 = new RiverSprite(150,50,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
+	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushLeft");
 	RiverAnimator* animr7 = new RiverAnimator();
 	sprite7->AddStartFallingListener( animr7 );
 	sprite7->AddStopFallingListener( animr7 );

@@ -37,7 +37,6 @@ void RiverAnimator::OnStopFalling(Sprite* spr){
 									-this->GetAnimation()->GetDy(): 
 									this->GetAnimation()->GetDy() );
 	this->GetAnimation()->SetDy(0);
-
 }
 
 
@@ -45,6 +44,7 @@ void RiverAnimator::OnCollisionWithBub(Sprite * spr1, Sprite * spr2, void* args)
 }
 
 void RiverAnimator::OnCollisionWithZenChan(Sprite * spr1, Sprite * spr2, void* args){
+
 }
 
 void RiverAnimator::OnCollisionWithMighta(Sprite * spr1, Sprite * spr2, void* args){

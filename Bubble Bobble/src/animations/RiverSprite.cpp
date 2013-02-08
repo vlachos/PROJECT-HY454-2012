@@ -6,9 +6,12 @@
 	RiverSprite::RiverSprite(int _x, int _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft)
 		: Sprite(_x, _y, _gravityAddicted, film, _tileLayer, goesLeft) {
 			riverGoesLeft = goesLeft;
+
 			Coordinates tileStart = _tileLayer->GetTileCoordinates(_y, _x);
 			Coordinates startXY = _tileLayer->GetXYCoordinates(tileStart.first, tileStart.second);
-			SetX(startXY.first);
+
+			if (goesLeft)	SetX(startXY.first);
+			else	SetX(startXY.first-1);
 			SetY(startXY.second-1);
 	}
 	RiverSprite::~RiverSprite() {  }

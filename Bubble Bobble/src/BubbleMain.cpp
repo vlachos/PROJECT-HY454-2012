@@ -238,6 +238,7 @@ void BubbleMain::ArtificialIntelligence(){
 	ArtificialIntelligence::HandleMighta();
 	ArtificialIntelligence::HandleAngryZenChan();
 	ArtificialIntelligence::HandleAngryMighta();
+	ArtificialIntelligence::HandleRiver();
 }
 
 void BubbleMain::CollisionChecking(){

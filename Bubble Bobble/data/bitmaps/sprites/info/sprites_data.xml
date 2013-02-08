@@ -297,5 +297,13 @@
   <RiverBigCorner w="8" h="8">
     <bbox x="200" y="1151"/>
   </RiverBigCorner>
+  
+  
+  <BubbleBobbleIntro w="176" h="143">
+    <bbox x="6" y="1440"/>    
+  </BubbleBobbleIntro>
+  <UOCEmblem w="50" h="50">
+    <bbox x="0" y="1680"/>
+  </UOCEmblem>  
 
 </sprites>

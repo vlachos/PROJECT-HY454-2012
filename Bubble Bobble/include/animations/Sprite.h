@@ -10,6 +10,8 @@
 #include "Sprite.h"
 #include "TileLayer.h"
 
+#define COLLISION_OFFSET 8
+
 class Sprite : public LatelyDestroyable{
 	public:
 		class SpriteStartFallingListener{

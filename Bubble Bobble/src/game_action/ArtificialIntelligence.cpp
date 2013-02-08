@@ -3,6 +3,7 @@
 #include "Animator.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
+#include "RiverAnimator.h"
 #include "AnimatorHolder.h"
 
 void ArtificialIntelligence::HandleZenChan(){
@@ -58,6 +59,22 @@ void ArtificialIntelligence::HandleAngryMighta(){
 			MightaAngryWalkingAnimator* r = (MightaAngryWalkingAnimator*) mighta[i];
 			int x =  r->GetSprite()->GoesLeft() ? -15 : 15;
 			if( r->GetSprite()->IsSolidTerrain( x, 0 ) ){
+				r->GetAnimation()->SetDx( -r->GetAnimation()->GetDx()  );
+				r->GetSprite()->SetGoesLeft( !r->GetSprite()->GoesLeft() );
+			}
+		}
+	}
+}
+
+
+void ArtificialIntelligence::HandleRiver(){
+	std::vector<Animator*> river;
+
+	if(!(river = AnimatorHolder::GetAnimators(riverAnimator_t)).empty()){
+		for(unsigned int i = 0; i<river.size(); ++i){
+			RiverAnimator* r = (RiverAnimator*) river[i];
+			if( r->GetSprite()->IsSolidTerrain( r->GetSprite()->GoesLeft() ? -1 : 1, 0 ) ){
+
 				r->GetAnimation()->SetDx( -r->GetAnimation()->GetDx()  );
 				r->GetSprite()->SetGoesLeft( !r->GetSprite()->GoesLeft() );
 			}
