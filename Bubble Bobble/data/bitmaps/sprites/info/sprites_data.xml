@@ -297,7 +297,27 @@
   <RiverBigCorner w="8" h="8">
     <bbox x="200" y="1151"/>
   </RiverBigCorner>
-  
+
+
+  <ScoreLabel100 w="18" h="10">
+    <bbox  x="165" y="1314"/>
+  </ScoreLabel100>
+  <ScoreLabel500 w="18" h="10">
+    <bbox  x="308" y="1314"/>
+  </ScoreLabel500>
+  <ScoreLabel1000 w="18" h="10">
+    <bbox  x="489" y="1314"/>
+  </ScoreLabel1000>
+  <ScoreLabel2000 w="18" h="10">
+    <bbox  x="524" y="1314"/>
+  </ScoreLabel2000>
+  <ScoreLabel3000 w="18" h="10">
+    <bbox  x="542" y="1314"/>
+  </ScoreLabel3000>
+  <ScoreLabel5000 w="18" h="10">
+    <bbox  x="578" y="1314"/>
+  </ScoreLabel5000>
+ 
   
   <BubbleBobbleIntro w="176" h="143">
     <bbox x="6" y="1440"/>    
@@ -305,5 +325,7 @@
   <UOCEmblem w="50" h="50">
     <bbox x="0" y="1680"/>
   </UOCEmblem>  
+  
+  
 
 </sprites>

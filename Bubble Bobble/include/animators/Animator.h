@@ -74,7 +74,8 @@ enum animatorType_t {
 	hurryUpAnimator_t,
 	bubInBubbleAnimator_t,
 	mightaMovingFireBallAnimator_t,
-	mightaDestroyedFireBallAnimator_t
+	mightaDestroyedFireBallAnimator_t,
+	scoreLabelAnimator_t
 };
 
 class Animator : public LatelyDestroyable{

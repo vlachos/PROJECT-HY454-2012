@@ -2,10 +2,23 @@
 #define FRUITSANIMATOR_H
 
 #include "MovingAnimator.h"
+#include "MovingPathAnimator.h"
 
 namespace FruitsAnimators{
 	extern void StartFruitAnimator(int kind, int x, int y);
+	extern void StartScoreLabel(int x, int y, const char* kind);
 }
+
+class ScoreLabelAnimator: public MovingPathAnimator{
+	public:
+		ScoreLabelAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return scoreLabelAnimator_t; }
+
+		static void OnFinishCallback(Animator*, void*);
+};
+
 class BananaAnimator: public MovingAnimator{
 	public:
 		BananaAnimator();

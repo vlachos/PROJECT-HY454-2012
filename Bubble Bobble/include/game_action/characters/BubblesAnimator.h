@@ -76,7 +76,7 @@ class BubPingBubbleAnimator: public FrameRangeAnimator{
 		TimerTickAnimator*	BubBubbleTimer;
 };
 
-class PonEffectAnimator: public MovingAnimator{
+class PonEffectAnimator: public FrameRangeAnimator{
 	public:
 		PonEffectAnimator();
 		

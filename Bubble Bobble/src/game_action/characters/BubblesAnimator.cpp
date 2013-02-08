@@ -294,7 +294,7 @@ void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryJump(Sprite *bubble, S
 
 static void StartPonEffectAnimator(int x, int y){
 
-	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("PonEffect");
+	FrameRangeAnimation *mpa = (FrameRangeAnimation*) AnimationsParser::GetAnimation("PonEffect");
 	Sprite *sprite=new Sprite(
 								x,
 								y,

@@ -432,7 +432,7 @@
   <BlueSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
   <PurpleSweet type="MovingAnimation" dx="0" dy="0" delay="15000" continue="false"/>
 
-  <PonEffect type="MovingAnimation" dx="0" dy="0" delay="100" continue="false"/>
+  <PonEffect type="FrameRangeAnimation" dx="0" dy="0" delay="500" continue="false" start="0" end="1"/>
 
   <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="100" continue="true"/>
   <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="100" continue="true"/>
@@ -464,6 +464,13 @@
     <list  dx="0" dy="-15" delay="200" frame="1"/>
   </HurryUp>
 
+  <ScoreLabel type="MovingPathAnimation">
+    <list  dx="0" dy="-15" delay="200" frame="0"/>
+    <list  dx="0" dy="-15" delay="200" frame="0"/>
+    <list  dx="0" dy="-15" delay="200" frame="0"/>
+    <list  dx="0" dy="-15" delay="200" frame="0"/>
+    <list  dx="0" dy="-15" delay="200" frame="0"/>
+  </ScoreLabel>
 
   <HurryUpStart type="TickAnimation" repetitions="1" delay="2000"/>
   <BarronVonBlubaStart type="TickAnimation" repetitions="1" delay="4000"/>

@@ -3,6 +3,7 @@
 #include "AnimatorHolder.h"
 #include "CollisionChecker.h"
 #include "BubbleLogic.h"
+#include "FruitsAnimator.h"
 
 
 //////////////RedShoesAnimator
@@ -18,7 +19,7 @@ void RedShoesAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args
 	DASSERT( Bub && Fruit && args);
 	RedShoesAnimator * _this = (RedShoesAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel100");
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubRedShoesAcquired();
 }
@@ -46,7 +47,7 @@ void YellowSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	DASSERT( Bub && Fruit && args);
 	YellowSweetAnimator * _this = (YellowSweetAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel100");
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubYellowSwtAcquired();
 }
@@ -73,7 +74,7 @@ void BlueSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *arg
 	DASSERT( Bub && Fruit && args);
 	BlueSweetAnimator * _this = (BlueSweetAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel100");
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBlueSwtAcquired();
 }
@@ -100,7 +101,7 @@ void PurpleSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	DASSERT( Bub && Fruit && args);
 	PurpleSweetAnimator * _this = (PurpleSweetAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel100");
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubPurpleSwtAcquired();
 }
