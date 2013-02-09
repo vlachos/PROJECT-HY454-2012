@@ -182,6 +182,13 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	Points BubbleLogic::GetPointsOfPoning(unsigned int enemiesPoned){
 		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
+	Points BubbleLogic::GetPowerUpPoints(void) { return powerUpPoints; }
+	Points BubbleLogic::GetBananaPoints(void) { return bananaPoints; }
+	Points BubbleLogic::GetOrangePoints(void) { return orangePoints; }
+	Points BubbleLogic::GetPeachPoints(void) { return peachPoints; }
+	Points BubbleLogic::GetWaterMelonPoints(void) { return waterMelonPoints; }
+	Points BubbleLogic::GetBlueDiamondPoints(void) { return blueDiamondPoints; }
+
 
 	unsigned int BubbleLogic::GetFruitType(){
 

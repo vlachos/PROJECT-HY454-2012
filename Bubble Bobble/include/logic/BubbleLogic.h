@@ -102,6 +102,12 @@ class BubbleLogic {
 		static bool BobBlastedBubble(void);
 
 		static Points GetPointsOfPoning(unsigned int enemiesPoned);
+		static Points GetPowerUpPoints(void);
+		static Points GetBananaPoints(void);
+		static Points GetOrangePoints(void);
+		static Points GetPeachPoints(void);
+		static Points GetWaterMelonPoints(void);
+		static Points GetBlueDiamondPoints(void);
 		static unsigned int GetFruitType();
 
 		//starting sprite attributes
