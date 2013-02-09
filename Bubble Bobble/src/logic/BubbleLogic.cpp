@@ -187,8 +187,9 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 		unsigned int enemies = bob->GetEnemiesKilledOnPon();
 
-		
-		if ( enemies <= enemiesForBanana)
+		if (enemies == 0)
+			return 5;
+		else if ( enemies <= enemiesForBanana)
 			return 1;
 		else if (enemies <= enemiesForOrange)
 			return 2;
@@ -196,8 +197,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 			return 3;
 		else if(enemies <= enemiesForWaterMelon)
 			return 4;
-		else
-			return 5;
 	}
 
 	///////////// Stating Sprite Attributes
