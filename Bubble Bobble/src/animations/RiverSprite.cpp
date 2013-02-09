@@ -58,9 +58,8 @@
 	void RiverSprite::RiverStepForward(std::string str){
 
 		//push the leading river, to the front of the river queue
-		SetFilm(AnimationFilmHolder::GetFilm(str));
-		riverQueue.push_front(this->Clone());
-
+		riverQueue.push_front(new Sprite(GetX(), GetY(),IsGravityAddicted(),
+									AnimationFilmHolder::GetFilm(str),GetActionLayer(),GoesLeft()));
 		//deque
 		if (riverQueue.size() > MAX_RIVER_PARTS)
 			riverQueue.pop_back();
@@ -68,21 +67,25 @@
 
 	///////// move
 	void RiverSprite::Move( int _x, int _y ){
-		Sprite::Move(_x, _y);
-
 		if ( IsFalling() ){
 			RiverFalling();
 		}
 		else{
 			RiverRush(GoesLeft());
 		}
+		Sprite::Move(_x, _y);
 		
 	}
 
 	///////// display
 	void RiverSprite::Display(Bitmap dest){
+		std::cout << this->GetFilm()->GetId() << "\n";
 		Sprite::Display(dest);
-
 		for (unsigned int i=0; i<riverQueue.size(); ++i)
 			riverQueue[i]->Display(dest);
+	}
+
+	void RiverSprite::Display2(Bitmap dest){
+		Sprite::Display(dest);
+		std::cout << "hello\n";
 	}

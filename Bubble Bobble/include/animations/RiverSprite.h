@@ -37,6 +37,7 @@ class RiverSprite : public Sprite{
 	public:
 		void Move( int _x, int _y );
 		void Display(Bitmap dest);
+		void Display2(Bitmap dest);
 };
 
 #endif

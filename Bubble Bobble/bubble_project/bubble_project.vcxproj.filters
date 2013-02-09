@@ -70,9 +70,6 @@
     <Filter Include="Header Files\logic">
       <UniqueIdentifier>{5da167c7-5f65-45a9-9e55-a536f6024301}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\logic">
-      <UniqueIdentifier>{ddfede13-a9f0-46d4-9df6-98dbf4d5208a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\game_action\items">
       <UniqueIdentifier>{04c4847c-4d6e-4584-acc5-7597c6f341b5}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,9 @@
     </Filter>
     <Filter Include="Source Files\game_action\start_screen">
       <UniqueIdentifier>{936d1fd4-be2a-4bbd-8445-bd69f9bb2619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game_action\logic">
+      <UniqueIdentifier>{ddfede13-a9f0-46d4-9df6-98dbf4d5208a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -193,10 +193,10 @@
       <Filter>Source Files\animators</Filter>
     </ClCompile>
     <ClCompile Include="..\src\logic\BubbleLogic.cpp">
-      <Filter>Source Files\logic</Filter>
+      <Filter>Source Files\game_action\logic</Filter>
     </ClCompile>
     <ClCompile Include="..\src\logic\BubProfile.cpp">
-      <Filter>Source Files\logic</Filter>
+      <Filter>Source Files\game_action\logic</Filter>
     </ClCompile>
     <ClCompile Include="..\src\game_action\items\PowerUpsAnimator.cpp">
       <Filter>Source Files\game_action\items</Filter>

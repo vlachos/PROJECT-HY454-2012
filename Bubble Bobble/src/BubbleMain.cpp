@@ -18,6 +18,7 @@ bool BubbleMain::InitAllegro(){
 		al_destroy_timer(timer);
 		return false;
 	}
+
 	palette = al_create_bitmap(SCREEN_WINDOW_WIDTH, SCREEN_WINDOW_HEIGHT);
 	if(!palette) {
 		al_show_native_message_box(NULL, "Error", NULL, "failed to create bouncer bitmap!\n", NULL, NULL);
@@ -26,9 +27,25 @@ bool BubbleMain::InitAllegro(){
 		return false;
 	}
 	al_set_window_position(display, 0, 0);
+
 	al_install_keyboard();
 	al_init_image_addon();
-	
+	if(!al_install_audio()){
+		al_show_native_message_box(NULL, "Error", NULL, "failed to initialize audio!\n", NULL, NULL);
+		al_destroy_display(display);
+		al_destroy_timer(timer);
+		fprintf(stderr, "failed to initialize audio!\n");
+		return false;
+	}
+ 
+	if(!al_init_acodec_addon()){
+		al_show_native_message_box(NULL, "Error", NULL, "failed to initialize audio codecs!\n", NULL, NULL);
+		al_destroy_display(display);
+		al_destroy_timer(timer);
+		fprintf(stderr, "failed to initialize audio codecs!\n");
+		return false;
+	}
+
 	event_queue = al_create_event_queue();
 	if(!event_queue) {
 		al_show_native_message_box(NULL, "Error", NULL, "failed to create event_queue!\n", NULL, NULL);
@@ -58,6 +75,11 @@ void BubbleMain::InitGameEngine(){
 	InvisibleSprites::SingletonCreate();
 	
 	BubbleLogic::SetBubScore(0);
+	//std::string s = BubblePathnames::GetSoundtrackDataPath() ;
+	ALLEGRO_SAMPLE *soundEffect = al_load_sample( ("..\\data\\soundtrack\\talkie-nudge.wav") );
+	DASSERT(soundEffect);
+	al_play_sample(soundEffect, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+
 
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());

@@ -80,10 +80,10 @@ class Sprite : public LatelyDestroyable{
 		bool IsOnDrugs() { return onDrugs; }
 		const TileLayer * GetActionLayer(void) { return tileLayer; }
 		const AnimationFilm* GetFilm(void) { return currFilm; }
-		void SetFilm(const AnimationFilm * film) { currFilm = film; }
+		virtual void SetFilm(const AnimationFilm * film) {currFilm = film; SetFrame(0);}
 		bool CollisionCheck( Sprite * s );
 		virtual void Display(Bitmap dest);
-		void Move( int _x, int _y );
+		virtual void Move( int _x, int _y );
 		bool IsSolidTerrain(int _x, int _y);
 
 		void AddStartFallingListener(SpriteStartFallingListener * sl) { spriteStartFallingListener.push_back( sl ); }

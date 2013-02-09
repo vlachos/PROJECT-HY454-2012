@@ -81,28 +81,3 @@ void RiverAnimator::OnCollisionWithMighta(Sprite * spr1, Sprite * spr2, void* ar
 	newSprite->AddStartFallingListener(bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime());
 }
-
-
-void RiverAnimator :: Progress (timestamp_t currTime){
-	DASSERT(currTime>=0);
-	DASSERT(this->GetAnimation());
-	DASSERT(lastTime<=currTime);
-
-	while (currTime > lastTime && currTime - lastTime >= this->GetAnimation()->GetDelay()){
-
-		((RiverSprite*)this->GetSprite() )->Move(this->GetAnimation()->GetDx(), this->GetAnimation()->GetDy());
-
-		if (!this->GetAnimation()->GetContinuous()) {
-			state = ANIMATOR_FINISHED;
-			NotifyStopped();
-			return;
-		}
-		else
-			lastTime += this->GetAnimation()->GetDelay();
-	}
-
-}
-
-void RiverAnimator::Display(Bitmap at){
-	((RiverSprite*)this->GetSprite() )->Display(at);
-}

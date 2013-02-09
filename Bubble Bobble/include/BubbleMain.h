@@ -38,6 +38,8 @@
 #include <allegro5\allegro5.h> 
 #include <allegro5\allegro_native_dialog.h> 
 #include <allegro5\allegro_image.h>
+#include <allegro5\allegro_audio.h>
+#include <allegro5\allegro_acodec.h>
 
 Display display = NULL;
 Bitmap palette = NULL;
