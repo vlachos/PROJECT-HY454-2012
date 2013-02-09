@@ -8,10 +8,15 @@
 #include "AnimationsParser.h"
 #include "ZenChanAnimator.h"
 #include "BubblesAnimator.h"
+#include "StartScreenAnimator.h"
+#include "OptionsScreenAnimator.h"
 #include "BubbleLogic.h"
 #include "MightaAnimator.h"
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
+
+#define START_MENU_SELECTOR_DELAY 200
+
 
 /////////////////////////static functions
 
@@ -97,12 +102,30 @@ static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 bool InputManageHandling::OnKeyUp(void){
 	bool retVal = true;
 	std::vector<Animator*> bub;
-
+	static timestamp_t oldTime = -1;
 	if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
 		retVal = CheckDyDirectionWalking(bub);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
 		retVal = CheckDyDirectionStand(bub);
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(startScreenSelectorAnimator_t)).empty()){
+		timestamp_t nowTime;
+		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
+			oldTime = nowTime;
+			DASSERT(bub.size() == 1);
+			StartScreenSelectorAnimator* selector = (StartScreenSelectorAnimator*) bub.front();
+			selector->GoUp();
+		}
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(optionsScreenSelectorAnimator_t)).empty()){
+		timestamp_t nowTime;
+		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
+			oldTime = nowTime;
+			DASSERT(bub.size() == 1);
+			OptionsScreenSelectorAnimator* selector = (OptionsScreenSelectorAnimator*) bub.front();
+			selector->GoUp();
+		}
 	}
 
 	return retVal;
@@ -110,36 +133,24 @@ bool InputManageHandling::OnKeyUp(void){
 
 bool InputManageHandling::OnKeyDown(void){
 	std::vector<Animator*> bub;
-
-	if(!(bub=AnimatorHolder::GetAnimators(mightaWalkAnimator_t)).empty()){
-		MightaWalkingAnimator* _this = (MightaWalkingAnimator*) bub.front();
-		
-		REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-		Sprite* newSprite = new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),true,
-			AnimationFilmHolder::GetFilm("MightaFireBubble"),Terrain::GetActionLayer(),_this->GetSprite()->GoesLeft());
-
-		FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaThrowFireBall");
-		MightaThrowFireBallAnimator* mar = new MightaThrowFireBallAnimator();
-		//mar->RegistCollitions(newSprite);
-
-		START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
-		DESTROY_ANIMATOR( _this );
-	}
-	if(!(bub=AnimatorHolder::GetAnimators(mightaAngryWalkAnimator_t)).empty()){
-		MightaAngryWalkingAnimator* _this = (MightaAngryWalkingAnimator*) bub.front();
-		
-		REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-		Sprite* newSprite = new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),true,
-			AnimationFilmHolder::GetFilm("MightaAngryFireBubble"),Terrain::GetActionLayer(),_this->GetSprite()->GoesLeft());
-
-		FrameRangeAnimation * ma = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaAngryThrowFireBall");
-		MightaAngryThrowFireBallAnimator* mar = new MightaAngryThrowFireBallAnimator();
-		//mar->RegistCollitions(newSprite);
-
-		START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
-		DESTROY_ANIMATOR( _this );
+	static timestamp_t oldTime = -1;
+	if(!(bub = AnimatorHolder::GetAnimators(startScreenSelectorAnimator_t)).empty()){
+		timestamp_t nowTime;
+		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
+			oldTime = nowTime;
+			DASSERT(bub.size() == 1);
+			StartScreenSelectorAnimator* selector = (StartScreenSelectorAnimator*) bub.front();
+			selector->GoDown();
+		}
+	}else
+	if(!(bub = AnimatorHolder::GetAnimators(optionsScreenSelectorAnimator_t)).empty()){
+		timestamp_t nowTime;
+		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
+			oldTime = nowTime;
+			DASSERT(bub.size() == 1);
+			OptionsScreenSelectorAnimator* selector = (OptionsScreenSelectorAnimator*) bub.front();
+			selector->GoDown();
+		}
 	}
 	return true;
 }
@@ -212,21 +223,35 @@ bool InputManageHandling::OnKeySpace(void){
 	bool retVal = true;
 	std::vector<Animator*> bub;
 
-	if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
-		( (BubWalkingAnimator*) bub.front() )->OnOpenMouth();
-	}else	
-	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
-		( (BubStandAnimator*) bub.front() )->OnOpenMouth();
-	}else	
-	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
-		( (BubFallingAnimator*) bub.front() )->OnOpenMouth();
-	}else	
-	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
-		( (BubJumpAnimator*) bub.front() )->OnOpenMouth();
+	static timestamp_t oldTime = -1;
+
+	timestamp_t nowTime;
+	if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
+		oldTime = nowTime;
+		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			( (BubWalkingAnimator*) bub.front() )->OnOpenMouth();
+		}else	
+		if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			( (BubStandAnimator*) bub.front() )->OnOpenMouth();
+		}else	
+		if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			( (BubFallingAnimator*) bub.front() )->OnOpenMouth();
+		}else	
+		if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			( (BubJumpAnimator*) bub.front() )->OnOpenMouth();
+		}else	
+		if(!(bub = AnimatorHolder::GetAnimators(startScreenSelectorAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			retVal = ( (StartScreenSelectorAnimator*) bub.front() )->PressEnter();
+		}else	
+		if(!(bub = AnimatorHolder::GetAnimators(optionsScreenSelectorAnimator_t)).empty()){
+			DASSERT( bub.size()==1 );
+			retVal = ( (OptionsScreenSelectorAnimator*) bub.front() )->PressEnter();
+		}
 	}
 		
 	return retVal;

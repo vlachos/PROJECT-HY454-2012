@@ -78,9 +78,11 @@ void FruitsAnimators::StartFruitAnimator(int kind, int x, int y){
 	fruitSelector[kind](x, y);
 }
 
-void FruitsAnimators::StartScoreLabel(int x, int y, const char* kind){
+void FruitsAnimators::StartScoreLabel(int x, int y, int kind){
 	MovingPathAnimation* mva = (MovingPathAnimation*)AnimationsParser::GetAnimation("ScoreLabel");
-	Sprite *n_sprite = new Sprite(x,y,true,AnimationFilmHolder::GetFilm(kind), Terrain::GetActionLayer(), true);
+	std::ostringstream result;
+	result << "ScoreLabel" << kind;
+	Sprite *n_sprite = new Sprite(x,y,true,AnimationFilmHolder::GetFilm(result.str()), Terrain::GetActionLayer(), true);
 	ScoreLabelAnimator *ban = new ScoreLabelAnimator();
 	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
 }
@@ -113,7 +115,7 @@ void BananaAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	BananaAnimator * _this = (BananaAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel500");
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 500);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBananaAcquired();
 }
@@ -141,7 +143,7 @@ void OrangeAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	OrangeAnimator * _this = (OrangeAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel1000");
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 1000);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubOrangeAcquired();
 }
@@ -168,7 +170,7 @@ void PeachAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	PeachAnimator * _this = (PeachAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel2000");
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 2000);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubPeachAcquired();
 }
@@ -195,7 +197,7 @@ void WaterMelonAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *ar
 	DASSERT( Bub && Fruit && args);
 	WaterMelonAnimator * _this = (WaterMelonAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel3000");
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 3000);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubWaterMelonAcquired();
 }
@@ -222,7 +224,7 @@ void BlueDiamondAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	DASSERT( Bub && Fruit && args);
 	BlueDiamondAnimator * _this = (BlueDiamondAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), "ScoreLabel5000");
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 5000);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBlueDiamondAcquired();
 }

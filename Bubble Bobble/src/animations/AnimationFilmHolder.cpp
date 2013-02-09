@@ -47,6 +47,8 @@ AnimationFilmHolder :: AnimationFilmHolder (const char* path){
 	}
 	DASSERT( i==SpritesNum );
 	
+
+
 	SpriteParser::SingletonDestroy();
 } 
     

@@ -7,6 +7,7 @@
 #include "utilities.h"
 #include "MemoryManage.h"
 #include "InputManage.h"
+#include "BitmapFontHolder.h"
 
 #include "BubbleLogic.h"
 
@@ -28,6 +29,7 @@
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
 #include "BarronVonBlubaAnimator.h"
+#include "StartScreenAnimator.h"
 #include "TimerTickAnimator.h"
 
 #include "ArtificialIntelligence.h"

@@ -39,12 +39,15 @@ class BitmapFontHolder {
 		static FontMap_t yellowLettersMap;
 
 	public:
+		static Rect GetLetterRect(unsigned char c, FontColor_t color);
 		static Coordinates GetLetterXY(unsigned char c, FontColor_t color);
 		static Bitmap GetFontsBitmap(void);
 
 	private:
 		static void DisplayLetter (Dim destX, Dim destY, FontColor_t color, char letter);
 	public:
+		static Bitmap GetWordBitmap(std::string str, FontColor_t color);
+		static std::vector<Rect> GetWordRects(std::string str, FontColor_t color);
 		static void DisplayString (Bitmap at, Dim destX, Dim destY, FontColor_t color, std::string str);
 
 	public:

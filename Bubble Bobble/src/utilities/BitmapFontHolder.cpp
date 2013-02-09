@@ -43,7 +43,13 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 
 
 	//////////// accessors
+	Rect BitmapFontHolder::GetLetterRect(unsigned char c, FontColor_t color){
+		Coordinates coord = fontsMap.find(color)->second.find(c)->second;
+		return Rect(coord.first, coord.second, LETTER_W, LETTER_H);
+	}
+
 	Coordinates BitmapFontHolder::GetLetterXY(unsigned char c, FontColor_t color){
+		DASSERT( FONT_START<=c<=FONT_END );
 		return fontsMap.find(color)->second.find(c)->second;
 	}
 
@@ -59,10 +65,36 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 										destX, destY, NULL);
 	}
 
+	Bitmap BitmapFontHolder::GetWordBitmap(std::string str, FontColor_t color){
+		DASSERT( !str.empty() );
+
+		Bitmap prevAt = al_get_target_bitmap();
+		Bitmap wordBitmap;
+		al_set_target_bitmap(wordBitmap);
+
+		for (int i = 0; i < str.length() ; ++i){
+			DisplayLetter (i*LETTER_W, 0, color, (unsigned char)str[i]);
+		}
+		al_set_target_bitmap(prevAt);
+
+		return wordBitmap;
+	}
+
+	std::vector<Rect> BitmapFontHolder::GetWordRects(std::string str, FontColor_t color){
+		DASSERT( !str.empty() );
+
+		std::vector<Rect> v;
+		for (int i = str.length()-1; i >=0 ; --i){
+			DASSERT( FONT_START <= (unsigned char)str[i] <= FONT_END );
+			v.push_back( GetLetterRect( (unsigned char)str[i], color) );
+		}
+		return v;
+	}
+
 	void BitmapFontHolder::DisplayString (Bitmap at, Dim destX, Dim destY, FontColor_t color, std::string str){
 		DASSERT(at == al_get_target_bitmap() );
 		for (unsigned int i = 0; i < str.length(); ++i){
-			DisplayLetter (destX*i, destY, color, str.at(i) );
+			DisplayLetter (destX+i*LETTER_W, destY, color, str.at(i) );
 		}
 	}
 

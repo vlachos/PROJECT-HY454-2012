@@ -58,19 +58,8 @@ void BubbleMain::InitGameEngine(){
 	InvisibleSprites::SingletonCreate();
 	
 	BubbleLogic::SetBubScore(0);
-
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BubInBubble");
-	Sprite *sprite = new Sprite(
-								250,
-								30,
-								false,						
-								AnimationFilmHolder::GetFilm( "BubInBubble" ), 
-								Terrain::GetActionLayer(), 
-								false
-							);
-	sprite->SetOnDrugs(true);
-	BubInBubbleAnimator* bibamr = new BubInBubbleAnimator();
 	
+	StartScreenAnimatorActions::StartStartScreen();
 
 	/*
 	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("HurryUpStart");
@@ -80,8 +69,8 @@ void BubbleMain::InitGameEngine(){
 	*/
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
-	START_ANIMATOR(bibamr, sprite, mpa, GetGameTime() );
-	//START_TIME_ANIMATOR(ttar, GetGameTime());
+
+	
 
 	redraw = true;
 }
@@ -144,14 +133,14 @@ void BubbleMain::ManageGameLoop(){
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 			timestamp_t nowTime = GetCurrTime();
 			Rendering();
-			InputManagement();
+			if(!InputManagement())
+				break;
 			AnimationProgress(nowTime);
 			ArtificialIntelligence();
 			CollisionChecking();
 			CommitDestructions();
 			FPSCalculation();
 			SystemLoopDispatching();
-
 			SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));
 		}
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -166,7 +155,7 @@ void BubbleMain::Rendering(){
 		al_set_target_bitmap(palette);
 		al_clear_to_color(BB_BLACK);
 
-		Terrain::DisplayTerrain(palette);
+		//Terrain::DisplayTerrain(palette);
 		AnimatorHolder::Display(palette);
 
 		al_set_target_bitmap(al_get_backbuffer(display));

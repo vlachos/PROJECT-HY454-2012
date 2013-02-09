@@ -75,7 +75,11 @@ enum animatorType_t {
 	bubInBubbleAnimator_t,
 	mightaMovingFireBallAnimator_t,
 	mightaDestroyedFireBallAnimator_t,
-	scoreLabelAnimator_t
+	scoreLabelAnimator_t,
+	startScreenStaticAnimator_t,
+	startScreenSelectorAnimator_t,
+	optionsScreenStaticAnimator_t,
+	optionsScreenSelectorAnimator_t
 };
 
 class Animator : public LatelyDestroyable{

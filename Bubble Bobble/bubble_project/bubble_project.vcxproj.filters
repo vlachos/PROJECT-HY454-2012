@@ -79,6 +79,12 @@
     <Filter Include="Header Files\game_action\items">
       <UniqueIdentifier>{c9dd86ed-d773-4fa9-997b-22296be58de4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game_action\start_screen">
+      <UniqueIdentifier>{11643fda-acf4-4dd7-824d-2b59509258e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game_action\start_screen">
+      <UniqueIdentifier>{936d1fd4-be2a-4bbd-8445-bd69f9bb2619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\terrain\TileBitmap.cpp">
@@ -215,6 +221,15 @@
     </ClCompile>
     <ClCompile Include="..\src\utilities\BitmapFontHolder.cpp">
       <Filter>Source Files\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\start_screen\StartScreenAnimator.cpp">
+      <Filter>Source Files\game_action\start_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_action\start_screen\OptionsScreenAnimator.cpp">
+      <Filter>Source Files\game_action\start_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\LetterSprite.cpp">
+      <Filter>Source Files\animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +376,15 @@
     </ClInclude>
     <ClInclude Include="..\include\utilities\BitmapFontHolder.h">
       <Filter>Header Files\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\start_screen\StartScreenAnimator.h">
+      <Filter>Header Files\game_action\start_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\start_screen\OptionsScreenAnimator.h">
+      <Filter>Header Files\game_action\start_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\LetterSprite.h">
+      <Filter>Header Files\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

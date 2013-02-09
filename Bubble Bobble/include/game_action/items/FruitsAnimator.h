@@ -6,7 +6,7 @@
 
 namespace FruitsAnimators{
 	extern void StartFruitAnimator(int kind, int x, int y);
-	extern void StartScoreLabel(int x, int y, const char* kind);
+	extern void StartScoreLabel(int x, int y, int kind);
 }
 
 class ScoreLabelAnimator: public MovingPathAnimator{

@@ -29,7 +29,9 @@ class Sprite : public LatelyDestroyable{
 		Rect			frameBox;
 		int				x,y;
 		bool			isVisible, gravityAddicted, isFalling, goesLeft, onDrugs;
+	protected:
 		const AnimationFilm *	currFilm;
+	private:
 		const TileLayer *		tileLayer;
 
 		std::vector<SpriteStartFallingListener *> spriteStartFallingListener;
