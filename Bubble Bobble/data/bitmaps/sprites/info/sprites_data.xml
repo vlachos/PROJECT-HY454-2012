@@ -244,8 +244,8 @@
     <bbox x="241" y="299"  />
     <bbox x="259" y="299" />
   </WaterBubble>
-  <BlueDiamond w="29" h="23">
-    <bbox x="309" y="893"  />
+  <BlueDiamond w="14" h="12">
+    <bbox x="277" y="827"  />
   </BlueDiamond>
 
   <PonEffect w="16" h="16">

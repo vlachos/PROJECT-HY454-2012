@@ -17,6 +17,29 @@
 #include "AnimationFilm.h"
 #include "BitmapLoader.h"
 
+static std::list<AnimationFilm*>				animationFilmHolderLateDestraction;
+
+namespace StartWordAnimatorDeleter{
+
+	struct DeleteAnimationFilm{
+		void operator()(AnimationFilm* af){
+			delete af;
+		}
+	};
+
+}
+
+static void StartWordAnimator(const char* word, int x, int y){
+	std::vector<Rect> wordRect = BitmapFontHolder::GetWordRects( std::string(word), white);
+	AnimationFilm* af = new AnimationFilm( BitmapFontHolder::GetFontsBitmap(), wordRect, word);
+	animationFilmHolderLateDestraction.push_back(af);
+	LetterSprite* sprite = new LetterSprite( x, y, false, af, Terrain::GetActionLayer(), true);
+	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
+	StartScreenStaticAnimator* sssamr = new StartScreenStaticAnimator();
+
+	START_ANIMATOR(sssamr, sprite, mpa, GetGameTime() );
+}
+
 void StartScreenAnimatorActions::CleanUpStartScreen(){
 	std::vector<Animator*> startScreenAnimators;
 		
@@ -32,6 +55,13 @@ void StartScreenAnimatorActions::CleanUpStartScreen(){
 	StartScreenSelectorAnimator* startScreenSelectorAnimator = (StartScreenSelectorAnimator*) startScreenAnimators.front();
 	REMOVE_FROM_ACTION_ANIMATOR( startScreenSelectorAnimator );
 	DESTROY_ANIMATOR( startScreenSelectorAnimator );
+
+	std::for_each(
+					animationFilmHolderLateDestraction.begin(),
+					animationFilmHolderLateDestraction.end(),
+					StartWordAnimatorDeleter::DeleteAnimationFilm()
+				);
+	animationFilmHolderLateDestraction.clear();
 }
 
 void StartScreenAnimatorActions::StartGame(){
@@ -88,19 +118,17 @@ void StartScreenAnimatorActions::StartStartScreen(){
 	sprite2->SetOnDrugs(true);
 	StartScreenSelectorAnimator* sssamr2 = new StartScreenSelectorAnimator();
 
-	
-	std::vector<Rect> test = BitmapFontHolder::GetWordRects( std::string("TEST"), white);
-	//std::cout<< test.size()<<"\n";
-	AnimationFilm* af = new AnimationFilm( BitmapFontHolder::GetFontsBitmap(), test, "testSprite");
-	LetterSprite* sprite3 = new LetterSprite( 150, 200, false, af, Terrain::GetActionLayer(), true);
-	MovingAnimation *mpa3 = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
-	StartScreenStaticAnimator* sssamr3 = new StartScreenStaticAnimator();
+	StartWordAnimator("START GAME", 210, 220);
+	StartWordAnimator("OPTIONS", 210, 240);
+	StartWordAnimator("EXIT", 210, 260);
+
 
 	START_ANIMATOR(sssamr, sprite, mpa, GetGameTime() );
 	START_ANIMATOR(sssamr1, sprite1, mpa1, GetGameTime() );
 	START_ANIMATOR(sssamr2, sprite2, mpa2, GetGameTime() );
-	START_ANIMATOR(sssamr3, sprite3, mpa3, GetGameTime() );
+
 }
+
 
 StartScreenStaticAnimator::StartScreenStaticAnimator(){
 

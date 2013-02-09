@@ -8,6 +8,7 @@
 #include "AnimationsParser.h"
 #include "AnimatorHolder.h"
 #include "CollisionChecker.h"
+#include "LetterSprite.h"
 
 #define OPTIONS_SCREEN_SELECTOR_OPTION1 210
 #define OPTIONS_SCREEN_SELECTOR_OPTION2 230
@@ -15,6 +16,29 @@
 #define OPTIONS_SCREEN_SELECTOR_OPTION4 270
 #define OPTIONS_SCREEN_SELECTOR_BACK	290
 #define OPTIONS_SCREEN_SELECTOR_OFFSET	20
+
+static std::list<AnimationFilm*>				animationFilmHolderLateDestraction;
+
+namespace OptionsDeleteAnimationFilm{
+
+	struct DeleteAnimationFilm{
+		void operator()(AnimationFilm* af){
+			delete af;
+		}
+	};
+
+}
+
+static void StartWordAnimator(const char* word, int x, int y){
+	std::vector<Rect> wordRect = BitmapFontHolder::GetWordRects( std::string(word), white);
+	AnimationFilm* af = new AnimationFilm( BitmapFontHolder::GetFontsBitmap(), wordRect, word);
+	animationFilmHolderLateDestraction.push_back(af);
+	LetterSprite* sprite = new LetterSprite( x, y, false, af, Terrain::GetActionLayer(), true);
+	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
+	OptionsScreenStaticAnimator* sssamr = new OptionsScreenStaticAnimator();
+
+	START_ANIMATOR(sssamr, sprite, mpa, GetGameTime() );
+}
 
 void OptionsScreenAnimatorActions::CleanUpOptionsScreen(){
 	std::vector<Animator*> optionScreenAnimators;
@@ -31,6 +55,13 @@ void OptionsScreenAnimatorActions::CleanUpOptionsScreen(){
 	OptionsScreenSelectorAnimator* optionScreenSelectorAnimator = (OptionsScreenSelectorAnimator*) optionScreenAnimators.front();
 	REMOVE_FROM_ACTION_ANIMATOR( optionScreenSelectorAnimator );
 	DESTROY_ANIMATOR( optionScreenSelectorAnimator );
+
+	std::for_each(
+					animationFilmHolderLateDestraction.begin(),
+					animationFilmHolderLateDestraction.end(),
+					OptionsDeleteAnimationFilm::DeleteAnimationFilm()
+				);
+	animationFilmHolderLateDestraction.clear();
 }
 
 void OptionsScreenAnimatorActions::StartOptionsScreen(){
@@ -57,6 +88,12 @@ void OptionsScreenAnimatorActions::StartOptionsScreen(){
 							);
 	sprite2->SetOnDrugs(true);
 	OptionsScreenSelectorAnimator* sssamr2 = new OptionsScreenSelectorAnimator();
+
+	StartWordAnimator("OPTION 1", 210, 220);
+	StartWordAnimator("OPTION 2", 210, 240);
+	StartWordAnimator("OPTION 3", 210, 260);
+	StartWordAnimator("OPTION 4", 210, 280);
+	StartWordAnimator("BACK", 210, 300);
 
 	START_ANIMATOR(sssamr1, sprite1, mpa1, GetGameTime() );
 	START_ANIMATOR(sssamr2, sprite2, mpa2, GetGameTime() );

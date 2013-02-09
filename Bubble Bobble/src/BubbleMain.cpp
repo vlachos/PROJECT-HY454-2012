@@ -58,7 +58,10 @@ void BubbleMain::InitGameEngine(){
 	InvisibleSprites::SingletonCreate();
 	
 	BubbleLogic::SetBubScore(0);
-	
+
+	al_start_timer(timer);
+	SetGameTime(GetCurrTime());
+
 	StartScreenAnimatorActions::StartStartScreen();
 
 	/*
@@ -67,8 +70,7 @@ void BubbleMain::InitGameEngine(){
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
 	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 	*/
-	al_start_timer(timer);
-	SetGameTime(GetCurrTime());
+
 
 	
 

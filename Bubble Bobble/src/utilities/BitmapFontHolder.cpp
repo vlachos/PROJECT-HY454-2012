@@ -84,7 +84,7 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 		DASSERT( !str.empty() );
 
 		std::vector<Rect> v;
-		for (int i = str.length()-1; i >=0 ; --i){
+		for (int i = 0; i<str.length(); ++i){
 			DASSERT( FONT_START <= (unsigned char)str[i] <= FONT_END );
 			v.push_back( GetLetterRect( (unsigned char)str[i], color) );
 		}

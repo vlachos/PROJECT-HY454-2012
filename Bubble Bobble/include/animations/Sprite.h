@@ -82,7 +82,7 @@ class Sprite : public LatelyDestroyable{
 		const AnimationFilm* GetFilm(void) { return currFilm; }
 		void SetFilm(const AnimationFilm * film) { currFilm = film; }
 		bool CollisionCheck( Sprite * s );
-		void Display(Bitmap dest);
+		virtual void Display(Bitmap dest);
 		void Move( int _x, int _y );
 		bool IsSolidTerrain(int _x, int _y);
 
