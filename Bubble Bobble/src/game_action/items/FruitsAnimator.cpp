@@ -54,12 +54,24 @@ static void CreateWaterMelonAnimator(int x, int y){
 	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
 }
 
+static void CreateBlueDiamondAnimator(int x, int y){
+
+	MovingAnimation* mva=(MovingAnimation*)AnimationsParser::GetAnimation("BlueDiamond");
+	Sprite *n_sprite=new Sprite(x,y,true,AnimationFilmHolder::GetFilm("BlueDiamond"), Terrain::GetActionLayer(), true);
+	
+	BlueDiamondAnimator *ban=new BlueDiamondAnimator();
+	ban->RegistCollitions(n_sprite);
+	
+	START_ANIMATOR( ban, n_sprite, mva, GetGameTime());
+}
+
 static FruitSelector_t fruitSelector[]={
 	0,
 	CreateBananaAnimator,
 	CreateOrangeAnimator,
 	CreatePeachAnimator,
-	CreateWaterMelonAnimator
+	CreateWaterMelonAnimator,
+	CreateBlueDiamondAnimator
 };
 
 void FruitsAnimators::StartFruitAnimator(int kind, int x, int y){

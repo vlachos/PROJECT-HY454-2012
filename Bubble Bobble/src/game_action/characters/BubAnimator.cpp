@@ -126,19 +126,21 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	RedShoesAnimator* animr6 = new RedShoesAnimator();
 	animr6->RegistCollitions(sprite6);
 
-	RiverSprite* sprite7 = new RiverSprite(150,50,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
-	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushLeft");
-	RiverAnimator* animr7 = new RiverAnimator();
-	sprite7->AddStartFallingListener( animr7 );
-	sprite7->AddStopFallingListener( animr7 );
-	animr7->RegistCollitions(sprite7);
-
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 	START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
 	START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
 	START_ANIMATOR( animr6, sprite6, anim6, GetGameTime() );
+
+	RiverSprite* sprite7 = new RiverSprite(400,50,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
+	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushLeft");
+	RiverAnimator* animr7 = new RiverAnimator();
+	sprite7->AddStartFallingListener( animr7 );
+	sprite7->AddStopFallingListener( animr7 );
+	animr7->RegistCollitions(sprite7);
+
+
 	START_ANIMATOR( animr7, sprite7, anim7, GetGameTime() );
 }
 

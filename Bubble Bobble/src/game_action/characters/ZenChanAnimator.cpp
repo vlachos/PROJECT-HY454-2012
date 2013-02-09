@@ -9,6 +9,7 @@
 #include "CollisionChecker.h"
 #include "FruitsAnimator.h"
 #include "BubbleLogic.h"
+#include "RiverAnimator.h"
 #include <string>
 
 
@@ -33,6 +34,7 @@ ZenChanWalkingAnimator::ZenChanWalkingAnimator(void) {
 
 void ZenChanWalkingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 }
 
 void ZenChanWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -76,6 +78,7 @@ ZenChanFallingAnimator::ZenChanFallingAnimator(){}
 
 void ZenChanFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
@@ -118,6 +121,7 @@ ZenChanJumpAnimator::ZenChanJumpAnimator(){
 
 void ZenChanJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 }
 
 void ZenChanJumpAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -148,6 +152,7 @@ ZenChanAngryStandAnimator::ZenChanAngryStandAnimator(){
 
 void ZenChanAngryStandAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 }
 
 void ZenChanAngryStandAnimator::OnFinishCallback(Animator*, void*){}
@@ -160,6 +165,7 @@ ZenChanAngryWalkingAnimator::ZenChanAngryWalkingAnimator(){
 
 void ZenChanAngryWalkingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 }
 
 void ZenChanAngryWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -200,6 +206,7 @@ ZenChanAngryFallingAnimator::ZenChanAngryFallingAnimator(){
 
 void ZenChanAngryFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
@@ -223,6 +230,7 @@ ZenChanAngryJumpAnimator::ZenChanAngryJumpAnimator(){
 
 void ZenChanAngryJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithZenChan);
 }
 
 void ZenChanAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){

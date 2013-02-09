@@ -183,18 +183,21 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
 
-	unsigned int BubbleLogic::GetFruitType(void){
+	unsigned int BubbleLogic::GetFruitType(){
 
 		unsigned int enemies = bob->GetEnemiesKilledOnPon();
 
+		
 		if ( enemies <= enemiesForBanana)
 			return 1;
 		else if (enemies <= enemiesForOrange)
 			return 2;
 		else if (enemies <= enemiesForPeach)
 			return 3;
-		else
+		else if(enemies <= enemiesForWaterMelon)
 			return 4;
+		else
+			return 5;
 	}
 
 	///////////// Stating Sprite Attributes

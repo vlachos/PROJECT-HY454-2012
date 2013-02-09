@@ -10,6 +10,7 @@
 #include "FruitsAnimator.h"
 #include "BubbleLogic.h"
 #include "BubblesAnimator.h"
+#include "RiverAnimator.h"
 
 
 
@@ -33,6 +34,7 @@ MightaWalkingAnimator::MightaWalkingAnimator(void) {
 
 void MightaWalkingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 }
 
 void MightaWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -73,6 +75,7 @@ MightaFallingAnimator::MightaFallingAnimator(){}
 
 void MightaFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
@@ -96,6 +99,7 @@ MightaJumpAnimator::MightaJumpAnimator(){
 
 void MightaJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 }
 
 void MightaJumpAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -173,6 +177,7 @@ MightaAngryStandAnimator::MightaAngryStandAnimator(){
 
 void MightaAngryStandAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 }
 
 void MightaAngryStandAnimator::OnFinishCallback(Animator* anim, void* args){}
@@ -184,6 +189,7 @@ MightaAngryWalkingAnimator::MightaAngryWalkingAnimator(void) {
 
 void MightaAngryWalkingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 }
 
 void MightaAngryWalkingAnimator::OnStartFalling(Sprite * sprite){
@@ -225,6 +231,7 @@ MightaAngryFallingAnimator::MightaAngryFallingAnimator(){}
 
 void MightaAngryFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 	CollisionChecker::RegisterBubbleWrapAroundDrivers(spr, this);
 }
 
@@ -249,6 +256,7 @@ MightaAngryJumpAnimator::MightaAngryJumpAnimator(){
 
 void MightaAngryJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,riverAnimator_t,riverAnimator_t, this, RiverAnimator::OnCollisionWithMighta);
 }
 
 void MightaAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
