@@ -1,37 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Attributes total = "6">
+<Attributes>
 
-	<BubLifes StartingLifes = "3"/>
+  <BubStartingLifes v = "3"/>
 
-  <Bubbles MaximumNumberOfBubbles = "30"/>
-  
-  <Points>
-    <points EmptyBubble = "10"/>
-    <points ZenChanBubble = "800"/>
-    <points MightaBubble = "1000"/>
-    <points Banana = "500"/>
-    <points Orange = "1000"/>
-    <points Peach = "2000"/>
-    <points WaterMelon = "3000"/>
-    <points BlueDiamond = "5000"/>
-    <points PowerUp = "100"/>   
-  </Points>
-  
-	<FruitConditions>
-		<Banana enemiesToDefeat = "1"/> 
-		<Orange enemiesToDefeat = "2"/>
-		<Peach enemiesToDefeat = "3"/>
-		<WaterMelon enemiesToDefeat = "4"/>
-	</FruitConditions>
-	
-	<PowerUpConditions>
-		<RedShoe TimesToCrossTheStage = "2"/> 
-		<YellowSweet JumpsNeeded = "5"/>
-		<BlueSweet PonedBubblesNeeded = "5"/>
-		<PurpleSweet BlustedBubblesNeeded = "5"/>
-	</PowerUpConditions>
+  <MaximumNumberOfBubbles v = "30"/>
 
-	<BarronVonBluba SecToDecrDelay = "5" DecrDelay = "10"/>
+  <PointsEmptyBubble v = "10"/>
+  <PointsZenChanBubble v = "800"/>
+  <PointsMightaBubble v = "1000"/>
+  <PointsBanana v = "500"/>
+  <PointsOrange v = "1000"/>
+  <PointsPeach v = "2000"/>
+  <PointsWaterMelon v = "3000"/>
+  <PointsBlueDiamond v = "5000"/>
+  <PointsPowerUp v = "100"/>
+
+  <BananaConditionEnemiesToDefeat v = "1"/>
+  <OrangeConditionEnemiesToDefeat v = "2"/>
+  <PeachConditionEnemiesToDefeat v = "3"/>
+  <WaterMelonConditionEnemiesToDefeat v = "4"/>
+
+  <RedShoeConditionTimesToCrossTheStage v = "2"/>
+  <YellowSweetConditionJumpsNeeded v = "5"/>
+  <BlueSweetConditionPonedBubblesNeeded v = "5"/>
+  <PurpleSweetConditionBlustedBubblesNeeded v = "5"/>
 	
 </Attributes>

@@ -3,10 +3,10 @@
 #include <algorithm>
 #include <fstream>
 #include <list>
-#include <vector>
 #include <string.h>
 #include <stdlib.h>
 
+#include "ParsersUtilities.h"
 #include "MemoryManage.h"
 #include "MovingAnimation.h"
 #include "FrameRangeAnimation.h"
@@ -20,41 +20,13 @@ AnimationsParser::animationsMap		AnimationsParser::map;
 AnimationsParser::animationsName	AnimationsParser::animName;
 const char *						AnimationsParser::xmlFilePath;
 
-
-static int GetGetIntAtrr(rapidxml::xml_node<>* anim, const char * atrr ){				
-	rapidxml::xml_attribute<>* getter = anim->first_attribute(atrr);	
-	DASSERT( getter );						
-	return atoi( getter->value() )	;
-}
-
-
-
-static bool GetGetBoolAtrr(rapidxml::xml_node<>* anim, const char * atrr ){							
-		rapidxml::xml_attribute<>* getter = (anim)->first_attribute(atrr);
-		DASSERT( getter );
-
-		bool cont;
-		if( !strcmp( getter->value(), "true" ) ){
-			cont = true;
-		}else 
-		if( !strcmp( getter->value(), "false" ) ){
-			cont = false;
-		}else
-			DASSERT(false);
-
-		return cont;
-}
-
 namespace AnimationLoaderDelete{
-
 	struct DeleteAnimation{
 		void operator()(std::pair<std::string, Animation*> _pair){
 			_pair.second->Destroy();
 		}
 	};
-
 }
-
 
 static Animation* GetCurrentAnimation(rapidxml::xml_node<>* anim){
 	DASSERT( anim );
@@ -149,8 +121,6 @@ AnimationsParser::AnimationsParser(const char * path){
 		animName.push_back( iterate->name() );
 		map[ iterate->name() ] = animation;
 	}
-
-	//DASSERT( animName.size() == totalAnimations && map.size() == totalAnimations );
 }
 
 

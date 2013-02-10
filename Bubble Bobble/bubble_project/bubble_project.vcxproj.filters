@@ -231,6 +231,9 @@
     <ClCompile Include="..\src\animations\LetterSprite.cpp">
       <Filter>Source Files\animations</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\parsers\SpritesAttributeParser.cpp">
+      <Filter>Source Files\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -385,6 +388,12 @@
     </ClInclude>
     <ClInclude Include="..\include\animations\LetterSprite.h">
       <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\parsers\SpritesAttributeParser.h">
+      <Filter>Header Files\parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\parsers\ParsersUtilities.h">
+      <Filter>Header Files\parsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,10 @@
 #include "BubbleLogic.h"
-#include "MemoryManage.h"
+
 #include <math.h>
 #include <ctime>
+
+#include "SpritesAttributeParser.h"
+#include "MemoryManage.h"
 
 typedef std::pair<unsigned int, std::string> fruitPair;
 
@@ -42,27 +45,29 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	///////////// INITIALIZE
 	void BubbleLogic::SingletonCreate(void){
 
+		SpritesAttributeParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\sprites_attributes_data.xml");
+
 		highScore = 0;
-		startingLifes = 5;
-		emptyBubblePoints = 10;
-		powerUpPoints = 100;
-		zenChanBubblePoints = 800;
-		mightaBubblePoints = 1000;
-		bananaPoints = 500;
-		orangePoints = 1000;
-		peachPoints = 2000;
-		waterMelonPoints = 3000;
-		blueDiamondPoints = 5000;
+		startingLifes = SpritesAttributeParser::GetAttribute("BubStartingLifes");
+		emptyBubblePoints = SpritesAttributeParser::GetAttribute("PointsEmptyBubble");
+		powerUpPoints = SpritesAttributeParser::GetAttribute("PointsPowerUp");
+		zenChanBubblePoints = SpritesAttributeParser::GetAttribute("PointsZenChanBubble");
+		mightaBubblePoints = SpritesAttributeParser::GetAttribute("PointsMightaBubble");
+		bananaPoints = SpritesAttributeParser::GetAttribute("PointsBanana");
+		orangePoints = SpritesAttributeParser::GetAttribute("PointsOrange");
+		peachPoints = SpritesAttributeParser::GetAttribute("PointsPeach");
+		waterMelonPoints = SpritesAttributeParser::GetAttribute("PointsWaterMelon");
+		blueDiamondPoints = SpritesAttributeParser::GetAttribute("PointsBlueDiamond");
 
-		enemiesForBanana = 1;
-		enemiesForOrange = 2;
-		enemiesForPeach = 3;
-		enemiesForWaterMelon = 4;
+		enemiesForBanana = SpritesAttributeParser::GetAttribute("BananaConditionEnemiesToDefeat");
+		enemiesForOrange = SpritesAttributeParser::GetAttribute("OrangeConditionEnemiesToDefeat");
+		enemiesForPeach = SpritesAttributeParser::GetAttribute("PeachConditionEnemiesToDefeat");
+		enemiesForWaterMelon = SpritesAttributeParser::GetAttribute("WaterMelonConditionEnemiesToDefeat");
 
-		crossStageForRedShoes = 2;
-		jumpsForYellowSwt = 5;
-		ponedBubblesForBlueSwt = 5;
-		blustedBubblesForPurpleSwt = 5;
+		crossStageForRedShoes = SpritesAttributeParser::GetAttribute("RedShoeConditionTimesToCrossTheStage");
+		jumpsForYellowSwt = SpritesAttributeParser::GetAttribute("YellowSweetConditionJumpsNeeded");
+		ponedBubblesForBlueSwt = SpritesAttributeParser::GetAttribute("BlueSweetConditionPonedBubblesNeeded");
+		blustedBubblesForPurpleSwt = SpritesAttributeParser::GetAttribute("PurpleSweetConditionBlustedBubblesNeeded");
 
 		baronSecToRaiseMS = 5;
 		baronDecrDelay = 10;
@@ -81,6 +86,8 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		mightaPosXY.push_back( std::make_pair( std::make_pair(250,240), std::make_pair(true, true) ) );
 
 		srand((unsigned)time(0));
+
+		SpritesAttributeParser::SingletonDestroy();
 	}
 
 	///////////// BUBBLUN

@@ -117,6 +117,7 @@
     <ClCompile Include="..\src\logic\BubbleLogic.cpp" />
     <ClCompile Include="..\src\logic\BubProfile.cpp" />
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
+    <ClCompile Include="..\src\parsers\SpritesAttributeParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesParser.cpp" />
     <ClCompile Include="..\src\terrain\ScoreBoard.cpp" />
     <ClCompile Include="..\src\terrain\Terrain.cpp" />
@@ -168,7 +169,9 @@
     <ClInclude Include="..\include\logic\BubbleLogic.h" />
     <ClInclude Include="..\include\logic\BubProfile.h" />
     <ClInclude Include="..\include\parsers\AnimationsParser.h" />
+    <ClInclude Include="..\include\parsers\ParsersUtilities.h" />
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
+    <ClInclude Include="..\include\parsers\SpritesAttributeParser.h" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />
     <ClInclude Include="..\include\terrain\ScoreBoard.h" />
     <ClInclude Include="..\include\terrain\Terrain.h" />

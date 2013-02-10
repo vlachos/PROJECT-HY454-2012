@@ -289,8 +289,9 @@ void BubbleMain::GameOver(){
 	al_destroy_event_queue(event_queue);
 }
 
-
 int main(int argc, char **argv){
+
+	
 	using namespace BubbleMain;
 
 	if (InitAllegro() ){

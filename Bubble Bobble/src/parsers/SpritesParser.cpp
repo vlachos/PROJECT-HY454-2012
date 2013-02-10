@@ -4,7 +4,9 @@
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
+
 #include "MemoryManage.h"
+#include "ParsersUtilities.h"
 
 #define ALIGN_SIZE(a, s) ( (a) << (s) )
 
@@ -13,20 +15,6 @@ SpriteParser *				SpriteParser::singletonPtr;
 std::string					SpriteParser::bitmapName;
 SpriteParser::spritesMap	SpriteParser::map;
 SpriteParser::spritesName	SpriteParser::SpritesName;
-
-static int GetGetIntAtrr(rapidxml::xml_node<>* anim, const char * atrr ){				
-	rapidxml::xml_attribute<>* getter = anim->first_attribute(atrr);	
-	DASSERT( getter );						
-	return atoi( getter->value() );
-}
-
-static char * GetGetStringAtrr(rapidxml::xml_node<>* anim, const char * atrr ){				
-	rapidxml::xml_attribute<>* getter = anim->first_attribute(atrr);	
-	DASSERT( getter );
-	char * getVal = getter->value();
-	DASSERT( getVal );
-	return getVal;
-}
 
 static std::vector<Rect> GetCurrentSprite(rapidxml::xml_node<>* current, byte spritesSize){
 	DASSERT( current && spritesSize>=0 );
