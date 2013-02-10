@@ -17,6 +17,9 @@
 #define SPRITE_XML "sprites_data.xml"
 
 #define TERRAIN_FOLDER "terrain"
+#define STAGE_INDEX_FOLDER "stage_index_info"
+#define STAGE_SOLIDITY_FOLDER "stage_solidity_info"
+
 
 #define TILES_BITMAP_16 "tiles_bitmap_16x16.png"
 #define ACTION_LAYER_INFO "action_layer_info.txt"
@@ -28,7 +31,7 @@ const std::string stageIndexPostfix = "_index_info.txt";
 const std::string stageSldtyPostfix = "_sldty_info.txt";
 
 
-class BubblePathnames{
+class PathNames{
 
 	public:
 		static void	SingletonCreate (void);
@@ -49,6 +52,8 @@ class BubblePathnames{
 
 		static std::string GetTerrainBitmapDataPath();
 		static std::string GetTerrainInfoDataPath();
+		static std::string GetTerrainStageIndexInfoDataPath();
+		static std::string GetTerrainStageSolidityInfoDataPath();
 		static std::string GetTilesBitmap();
 		static std::string GetActionLayerInfo();
 		static std::string GetStageIndexInfo(unsigned int stageLevel);

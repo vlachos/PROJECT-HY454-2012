@@ -17,7 +17,7 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 
 	//////////// Initialization
 	void BitmapFontHolder::SingletonCreate() {
-		fontsBitmap = BitmapLoader::Load(BubblePathnames::GetSpritesBitmap() );
+		fontsBitmap = BitmapLoader::Load(PathNames::GetSpritesBitmap() );
 
 		InitAFont(whiteLettersMap, AnimationFilmHolder::GetFilm("WhiteLettersFont"));
 		InitAFont(greenLettersMap, AnimationFilmHolder::GetFilm("GreenLettersFont"));

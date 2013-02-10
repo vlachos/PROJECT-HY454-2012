@@ -90,6 +90,7 @@
     <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingPathAnimation.cpp" />
     <ClCompile Include="..\src\animations\RiverSprite.cpp" />
+    <ClCompile Include="..\src\animations\ScrollingAnimation.cpp" />
     <ClCompile Include="..\src\animations\Sprite.cpp" />
     <ClCompile Include="..\src\animations\TickAnimation.cpp" />
     <ClCompile Include="..\src\animators\Animator.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="..\src\animators\FrameRangeAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingAnimator.cpp" />
     <ClCompile Include="..\src\animators\MovingPathAnimator.cpp" />
+    <ClCompile Include="..\src\animators\ScrollingAnimator.cpp" />
     <ClCompile Include="..\src\animators\TimerTickAnimator.cpp" />
     <ClCompile Include="..\src\BubbleMain.cpp" />
     <ClCompile Include="..\src\game_action\ArtificialIntelligence.cpp" />
@@ -143,6 +145,7 @@
     <ClInclude Include="..\include\animations\MovingAnimation.h" />
     <ClInclude Include="..\include\animations\MovingPathAnimation.h" />
     <ClInclude Include="..\include\animations\RiverSprite.h" />
+    <ClInclude Include="..\include\animations\ScrollingAnimation.h" />
     <ClInclude Include="..\include\animations\Sprite.h" />
     <ClInclude Include="..\include\animations\TickAnimation.h" />
     <ClInclude Include="..\include\animators\Animator.h" />
@@ -151,6 +154,7 @@
     <ClInclude Include="..\include\animators\FrameRangeAnimator.h" />
     <ClInclude Include="..\include\animators\MovingAnimator.h" />
     <ClInclude Include="..\include\animators\MovingPathAnimator.h" />
+    <ClInclude Include="..\include\animators\ScrollingAnimator.h" />
     <ClInclude Include="..\include\animators\TimerTickAnimator.h" />
     <ClInclude Include="..\include\BubbleMain.h" />
     <ClInclude Include="..\include\game_action\ArtificialIntelligence.h" />

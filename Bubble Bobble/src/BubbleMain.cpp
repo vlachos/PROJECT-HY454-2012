@@ -69,8 +69,8 @@ void BubbleMain::InitGameEngine(){
 	BubbleLogic::SingletonCreate();
 
 	CollisionChecker::SingletonCreate();
-	AnimationsParser::SingletonCreate((char*) BubblePathnames::GetAnimationXML().c_str() );
-	AnimationFilmHolder::SingletonCreate((char*) BubblePathnames::GetSpritesXML().c_str() );
+	AnimationsParser::SingletonCreate((char*) PathNames::GetAnimationXML().c_str() );
+	AnimationFilmHolder::SingletonCreate((char*) PathNames::GetSpritesXML().c_str() );
 	Terrain::SingeltonCreate();
 	BitmapFontHolder::SingletonCreate();
 	InvisibleSprites::SingletonCreate();

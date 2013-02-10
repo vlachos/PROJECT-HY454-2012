@@ -1,5 +1,6 @@
 #include <TileLayer.h>
 #include "MemoryManage.h"
+#include "PathNames.h"
 #include <fstream>
 
 	/*constructors and destructor*/
@@ -29,11 +30,20 @@
 
 	/*layer info*/
 	bool TileLayer::ReadMap (std::string aPath){
+		DASSERT(GetFileAttributesA(aPath.c_str()) != INVALID_FILE_ATTRIBUTES );
+		std::ifstream actionLayerInfo(aPath);
 
-		std::ifstream openfile(aPath);
-		if (openfile.is_open()){
+		unsigned int maxStages = 0;
+		unsigned int nextStage = 0;
+		if (actionLayerInfo.is_open()){
+			
+			actionLayerInfo >> maxStages;
+			for (unsigned int i=0; i<maxStages; ++i){
+				actionLayerInfo >> nextStage;
+				ReadStage ( nextStage );
+			}
 
-			openfile.close();
+			actionLayerInfo.close();
 			return true;
 		}
 		else{
@@ -41,7 +51,12 @@
 		}
 	}
 
-	bool TileLayer::ReadStage (std::string indexPath, std::string sldtyPath){
+	bool TileLayer::ReadStage (unsigned int stageNum){
+		std::string indexPath;
+		indexPath.assign(PathNames::GetStageIndexInfo(stageNum) );
+		std::string	sldtyPath;
+		sldtyPath.assign(PathNames::GetStageSldtyInfo(stageNum) );
+
 		DASSERT(GetFileAttributesA(indexPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 		DASSERT(GetFileAttributesA(sldtyPath.c_str()) != INVALID_FILE_ATTRIBUTES );
 
@@ -49,8 +64,10 @@
 		std::ifstream sldtyStage(sldtyPath);
 		unsigned int nextInteger = 0;
 		if (indexStage.is_open() && sldtyStage.is_open() ){
-			for (Dim i=0; i<TILE_LAYER_HEIGHT; ++i){
-				for (Dim j=0; j<TILE_LAYER_WIDTH; ++j){
+
+			unsigned int lastI = stageNum * TILE_LAYER_STAGE_HEIGHT;
+			for (unsigned int i=lastI; i<lastI+TILE_LAYER_STAGE_HEIGHT; ++i){
+				for (unsigned int j=0; j<TILE_LAYER_STAGE_WIDTH; ++j){
 					indexStage >> nextInteger;
 					map[i][j] = nextInteger;
 
@@ -171,8 +188,10 @@
 
 	/*scrolling*/
 	void TileLayer::Scroll (HorizScroll h, VertScroll v){
-		viewWindow.SetX(viewWindow.GetX() + (Dim)h );
-		viewWindow.SetY(viewWindow.GetY() + (Dim)v );
+		if ( CanScroll(h) )
+			viewWindow.SetX(viewWindow.GetX() + (Dim)h );
+		if ( CanScroll(v) )
+ 			viewWindow.SetY(viewWindow.GetY() + (Dim)v );
 	}
 
 	bool TileLayer::CanScroll (HorizScroll h) const{	

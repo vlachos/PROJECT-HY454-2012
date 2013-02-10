@@ -4,7 +4,7 @@
 
 	/*constructor and destructor*/
 	TileBitmap::TileBitmap(){
-		LoadTiles (BubblePathnames::GetTilesBitmap() );
+		LoadTiles (PathNames::GetTilesBitmap() );
 		DASSERT(tiles );
 	}
 

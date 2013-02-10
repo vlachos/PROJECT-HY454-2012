@@ -240,6 +240,12 @@
     <ClCompile Include="..\src\game_action\SoundAPI.cpp">
       <Filter>Source Files\game_action</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animations\ScrollingAnimation.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animators\ScrollingAnimator.cpp">
+      <Filter>Source Files\animators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -406,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\SoundAPI.h">
       <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\ScrollingAnimation.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animators\ScrollingAnimator.h">
+      <Filter>Header Files\animators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
