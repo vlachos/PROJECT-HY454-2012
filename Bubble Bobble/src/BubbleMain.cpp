@@ -241,6 +241,11 @@ bool BubbleMain::InputManagement(){
 
 void BubbleMain::AnimationProgress(timestamp_t timeNow){
 	AnimatorHolder::Progress(timeNow);
+	//test prints
+	std::cout << "  blasts : " << BubbleLogic::GetBubProfile()->GetTimesBlastedBubble();
+	std::cout << "  Crosses: " << BubbleLogic::GetBubProfile()->GetTimesCrossedStage();
+	std::cout << "  jumps  : " << BubbleLogic::GetBubProfile()->GetTimesJumped();
+	std::cout << "  ponings: " << BubbleLogic::GetBubProfile()->GetTimesPonedBubble() << "\n";
 }
 
 void BubbleMain::ArtificialIntelligence(){

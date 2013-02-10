@@ -433,8 +433,8 @@
 
   <PonEffect type="FrameRangeAnimation" dx="0" dy="0" delay="500" continue="false" start="0" end="1"/>
 
-  <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="400" continue="true"/>
-  <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="400" continue="true"/>
+  <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="40" continue="true"/>
+  <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="40" continue="true"/>
   
   <HurryUp type="MovingPathAnimation">
     <list  dx="0" dy="15" delay="200" frame="0"/>

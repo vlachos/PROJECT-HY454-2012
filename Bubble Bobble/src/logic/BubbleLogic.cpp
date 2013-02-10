@@ -214,7 +214,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	unsigned int BubbleLogic::GetFruitType(){
 
-		unsigned int enemies = bob->GetEnemiesKilledOnPon();
+		unsigned int enemies = bub->GetEnemiesKilledOnPon();
 
 		if ( enemies <= enemiesForBanana)
 			return 1;

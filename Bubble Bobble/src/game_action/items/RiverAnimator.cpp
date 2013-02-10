@@ -13,9 +13,9 @@
 
 RiverAnimator::RiverAnimator() { this->SetOnFinish(OnFinishCallback, this); }
 
-void RiverAnimator::RegistCollitions(Sprite* spr){
-	CollisionChecker::Register(spr,zenChanStandAnimator_t,zenChanJumpAnimator_t,RiverAnimator::OnCollisionWithZenChan);
-	CollisionChecker::Register(spr,mightaStandAnimator_t,mightaJumpAnimator_t,RiverAnimator::OnCollisionWithMighta);
+void RiverAnimator::RegistCollitions(RiverSprite* rSpr){
+	CollisionChecker::Register(rSpr, zenChanStandAnimator_t,zenChanJumpAnimator_t,RiverAnimator::OnCollisionWithZenChan);
+	CollisionChecker::Register(rSpr, mightaStandAnimator_t,mightaJumpAnimator_t,RiverAnimator::OnCollisionWithMighta);
 }
 
 void RiverAnimator::OnFinishCallback(Animator* anmr, void* args) {  }

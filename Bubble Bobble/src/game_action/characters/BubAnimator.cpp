@@ -24,7 +24,8 @@
 	CollisionChecker::Register(spr,RedShoesAnimator_t,RedShoesAnimator_t, RedShoesAnimator::OnCollisionWithBub);				\
 	CollisionChecker::Register(spr,YellowSweetAnimator_t,YellowSweetAnimator_t, YellowSweetAnimator::OnCollisionWithBub);		\
 	CollisionChecker::Register(spr,BlueSweetAnimator_t,BlueSweetAnimator_t, BlueSweetAnimator::OnCollisionWithBub);				\
-	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub)
+	CollisionChecker::Register(spr,PurpleSweetAnimator_t,PurpleSweetAnimator_t, PurpleSweetAnimator::OnCollisionWithBub);		\
+	REFRESH_KILLED_ENEMIES_COUNTER();
 
 //////////////////////////static functions
 
@@ -288,9 +289,6 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	frtor->RegistCollitions(n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
-
-	//logic
-	REFRESH_KILLED_ENEMIES_COUNTER();
 }
 
 void BubFallingAnimator::OnOpenMouth(){

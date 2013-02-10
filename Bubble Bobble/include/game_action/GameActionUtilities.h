@@ -41,7 +41,7 @@
 	}
 
 #define REFRESH_KILLED_ENEMIES_COUNTER();																						\
-	if (AnimatorHolder::GetAnimators(zenChanDieAnimator_t, mightaDieAnimator_t).empty() ){										\
+	if (AnimatorHolder::GetAnimators(zenChanDieAnimator_t, mightaDieFallingAnimator_t).empty() ){										\
 		BubbleLogic::GetBubProfile()->IncrScore ( BubbleLogic::GetPointsOfPoning(BubbleLogic::GetBubProfile()->GetEnemiesKilledOnPon()) );	\
 		BubbleLogic::GetBubProfile()->SetEnemiesKilledOnPon(0);																	\
 	}

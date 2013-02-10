@@ -12,7 +12,7 @@ class RiverAnimator: public MovingAnimator, public Sprite::SpriteStopFallingList
 		enum animatorType_t GetAnimatorType(void)
 			{ return riverAnimator_t; }
 
-		void RegistCollitions(Sprite*);
+		void RegistCollitions(RiverSprite*);
 
 		static void OnFinishCallback(Animator*, void*);
 		void OnStartFalling(Sprite*);
