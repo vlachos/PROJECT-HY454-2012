@@ -24,6 +24,20 @@
       <coordinates x = "210" y = "415" gravityAddict = "true" goesLeft = "true"/>
     </PowerUpXY>
 
+    <BubbleDrivers>
+      <driver x="338" y="380" w="2" h="32"/>
+      <driver x="175" y="380" w="2" h="32"/>
+      <driver x="40" y="404" w="100" h="30"/>
+      <driver x="383" y="409" w="100" h="34"/>
+      <driver x="453" y="292" w="30" h="90"/>
+      <driver x="40" y="326" w="377" h="27"/>
+      <driver x="40" y="220" w="30" h="87"/>
+      <driver x="118" y="247" w="366" h="27"/>
+      <driver x="452" y="137" w="30" h="90"/>
+      <driver x="39" y="168" w="360" h="24"/>
+      <driver x="40" y="57" w="30" h="90"/>
+      <driver x="115" y="92" w="362" h="24"/>
+    </BubbleDrivers>
   </stage>
   
 </StartingSprites>

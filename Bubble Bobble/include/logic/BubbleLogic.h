@@ -17,9 +17,6 @@ class BubbleLogic {
 		static BubProfile* bob;
 		static Lifes startingLifes;
 
-		static double baronSecToRaiseMS;
-		static double baronDecrDelay;
-
 		static Points emptyBubblePoints;
 		static Points zenChanBubblePoints;
 		static Points mightaBubblePoints;
@@ -120,10 +117,6 @@ class BubbleLogic {
 		static Coordinates GetMightaPosXY(unsigned int ith);
 		static bool GetMightaDirection(unsigned int ith);
 		static bool GetMightaGravity(unsigned int ith);
-
-
-		static double GetBaronSecToRaiseMS(void);
-		static double GetBaronDecrDelay(void);
 
 	public:
 		static void SingletonCleanUp(void);

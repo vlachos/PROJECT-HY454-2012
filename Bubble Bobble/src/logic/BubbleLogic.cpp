@@ -16,9 +16,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	Lifes BubbleLogic::startingLifes;
 
-	double BubbleLogic::baronSecToRaiseMS;
-	double BubbleLogic::baronDecrDelay;
-
 	Points BubbleLogic::emptyBubblePoints;
 	Points BubbleLogic::zenChanBubblePoints;
 	Points BubbleLogic::mightaBubblePoints;
@@ -70,9 +67,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		jumpsForYellowSwt = SpritesAttributeParser::GetAttribute("YellowSweetConditionJumpsNeeded");
 		ponedBubblesForBlueSwt = SpritesAttributeParser::GetAttribute("BlueSweetConditionPonedBubblesNeeded");
 		blustedBubblesForPurpleSwt = SpritesAttributeParser::GetAttribute("PurpleSweetConditionBlustedBubblesNeeded");
-
-		baronSecToRaiseMS = 5;
-		baronDecrDelay = 10;
 
 		SpritesAttributeParser::SingletonDestroy();
 	
@@ -260,10 +254,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		DASSERT(ith < mightaPosXY.size());
 		return mightaPosXY[ith].second.first;
 	}
-
-	///////////// BARRON VON BLUBA
-	double BubbleLogic::GetBaronSecToRaiseMS(void) { return baronSecToRaiseMS; }
-	double BubbleLogic::GetBaronDecrDelay(void) { return baronDecrDelay; }
 
 	///////////// CLEANUP
 	void BubbleLogic::SingletonCleanUp(void){

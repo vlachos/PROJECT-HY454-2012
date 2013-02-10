@@ -81,7 +81,7 @@ void BubbleMain::InitGameEngine(){
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 
-	SoundAPI::PlaySoundContinue(SoundAPI::enterYourInitials_t);
+	SoundAPI::PlaySoundContinue(SoundAPI::soundKind_enterYourInitials_t, true);
 	StartScreenAnimatorActions::StartStartScreen();
 
 	/*

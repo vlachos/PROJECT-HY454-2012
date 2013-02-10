@@ -8,16 +8,16 @@
 class SoundAPI{
 	public:
 		typedef enum _soundKinds{
-			amigaCredits_t,
-			ecranTitre_t,
-			theStoryBegin_t,
-			ingameMusic_t,
-			booAppears_t,
-			ingameMusicHurryUp_t,
-			allLettersExtend_t,
-			extendBonusLife_t,
-			gameOver_t,
-			enterYourInitials_t
+			soundKind_amigaCredits_t,
+			soundKind_ecranTitre_t,
+			soundKind_theStoryBegin_t,
+			soundKind_ingameMusic_t,
+			soundKind_booAppears_t,
+			soundKind_ingameMusicHurryUp_t,
+			soundKind_allLettersExtend_t,
+			soundKind_extendBonusLife_t,
+			soundKind_gameOver_t,
+			soundKind_enterYourInitials_t
 		}soundKinds;
 		
 		static void				SingletonCreate (const char * path) 
@@ -25,13 +25,14 @@ class SoundAPI{
 		static void				SingletonDestroy (void) 
 				{ delete singletonPtr; singletonPtr = 0; }
 		
-		static  bool PlaySoundOnce(soundKinds kind);
-		static  bool PlaySoundContinue(soundKinds kind);
+		static  bool PlaySoundOnce(soundKinds kind, bool stopPrev);
+		static  bool PlaySoundContinue(soundKinds kind, bool stopPrev);
 
 	private:
 		static SoundAPI*					singletonPtr;
 		static std::string					SoundsFilePath;
 		static std::vector<ALLEGRO_SAMPLE*> sounds;
+		static ALLEGRO_SAMPLE_ID			spl_id;
 
 		struct DeleteAttribute{
 			void operator()(ALLEGRO_SAMPLE* sample){

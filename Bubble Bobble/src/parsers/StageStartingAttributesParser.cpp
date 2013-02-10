@@ -78,6 +78,8 @@ StageStartingAttributesParser::StageStartingAttributesParser(const char * path){
 		}
 		attrMap["PowerUpXY"] = charAttrs;
 		
+
+
 		attributes[stages-1] = attrMap;
 	}
 }

@@ -23,6 +23,7 @@ class StageStartingAttributesParser{
 		static  StartingAttributes_t GetBobStartingAttribute(unsigned int stageNum);
 		static  std::list<StartingAttributes_t> GetPowerUpStartingAttribute(unsigned int stageNum);
 
+
 	private:
 		typedef std::map< std::string, std::list<StartingAttributes_t> > attributeMap;
 		typedef std::vector< attributeMap > attributeStages;

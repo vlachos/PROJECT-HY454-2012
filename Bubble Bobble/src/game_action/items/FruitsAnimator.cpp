@@ -115,7 +115,7 @@ void BananaAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	BananaAnimator * _this = (BananaAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 500);
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetBananaPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBananaAcquired();
 }
@@ -143,7 +143,7 @@ void OrangeAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	OrangeAnimator * _this = (OrangeAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 1000);
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetOrangePoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubOrangeAcquired();
 }
@@ -170,7 +170,7 @@ void PeachAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
 	PeachAnimator * _this = (PeachAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 2000);
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetPeachPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubPeachAcquired();
 }
@@ -197,7 +197,7 @@ void WaterMelonAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *ar
 	DASSERT( Bub && Fruit && args);
 	WaterMelonAnimator * _this = (WaterMelonAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 3000);
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetWaterMelonPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubWaterMelonAcquired();
 }
@@ -224,7 +224,7 @@ void BlueDiamondAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	DASSERT( Bub && Fruit && args);
 	BlueDiamondAnimator * _this = (BlueDiamondAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
-	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 5000);
+	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetBlueDiamondPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBlueDiamondAcquired();
 }
