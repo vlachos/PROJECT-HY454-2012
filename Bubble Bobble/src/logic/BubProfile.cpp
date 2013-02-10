@@ -3,11 +3,11 @@
 
 
 	///////// constructors
-	BubProfile::BubProfile(Lifes startLifes, int x, int y, bool gravityAddict, bool isleft){
+	BubProfile::BubProfile(Lifes startLifes, StartingAttributes_t startAttr){
 		score = -1;
-		startXY = std::make_pair(x, y);
-		startGravity = gravityAddict;
-		startDirection = isleft;
+		startXY = startAttr.first;
+		startGravity = startAttr.second.first;
+		startDirection = startAttr.second.second;
 		lifes = startLifes;
 		enemiesKilledOnPon = 0;
 		hasRedShoes = false;

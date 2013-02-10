@@ -119,6 +119,7 @@
     <ClCompile Include="..\src\parsers\AnimationsParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesAttributeParser.cpp" />
     <ClCompile Include="..\src\parsers\SpritesParser.cpp" />
+    <ClCompile Include="..\src\parsers\StageStartingAttributesParser.cpp" />
     <ClCompile Include="..\src\terrain\ScoreBoard.cpp" />
     <ClCompile Include="..\src\terrain\Terrain.cpp" />
     <ClCompile Include="..\src\terrain\TerrainUtilities.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="..\include\parsers\rapidxml.hpp" />
     <ClInclude Include="..\include\parsers\SpritesAttributeParser.h" />
     <ClInclude Include="..\include\parsers\SpritesParser.h" />
+    <ClInclude Include="..\include\parsers\StageStartingAttributesParser.h" />
     <ClInclude Include="..\include\terrain\ScoreBoard.h" />
     <ClInclude Include="..\include\terrain\Terrain.h" />
     <ClInclude Include="..\include\terrain\TerrainUtilities.h" />
@@ -192,7 +194,7 @@
     <None Include="..\data\bitmaps\sprites\info\sprites_data.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="..\data\bitmaps\sprites\info\stage1_starting_data.xml" />
+    <None Include="..\data\bitmaps\sprites\info\stages_starting_data.xml" />
     <None Include="..\data\bitmaps\sprites\sprites.png" />
     <None Include="..\data\bitmaps\terrain\readme.txt" />
     <None Include="..\data\bitmaps\terrain\stage1.txt" />

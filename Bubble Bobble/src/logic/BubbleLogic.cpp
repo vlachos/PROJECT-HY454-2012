@@ -4,6 +4,7 @@
 #include <ctime>
 
 #include "SpritesAttributeParser.h"
+#include "StageStartingAttributesParser.h"
 #include "MemoryManage.h"
 
 typedef std::pair<unsigned int, std::string> fruitPair;
@@ -44,6 +45,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	///////////// INITIALIZE
 	void BubbleLogic::SingletonCreate(void){
+		int stageLevel = 1;
 
 		SpritesAttributeParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\sprites_attributes_data.xml");
 
@@ -72,22 +74,33 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		baronSecToRaiseMS = 5;
 		baronDecrDelay = 10;
 
-		bub = DNEWCLASS(BubProfile, (startingLifes, 50, 400, true, false) );
-		bob = DNEWCLASS(BubProfile, (startingLifes, 430, 400, true, true) );
+		SpritesAttributeParser::SingletonDestroy();
+	
+		StageStartingAttributesParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\stages_starting_data.xml");
+		
+		bub = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) ) );
+		bob = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) ) );
 
-		powerUpPosXY.push_back( std::make_pair( std::make_pair(100,95), std::make_pair(true, true) ) );
-		powerUpPosXY.push_back( std::make_pair( std::make_pair(210,175), std::make_pair(true, true) ) );
-		powerUpPosXY.push_back( std::make_pair( std::make_pair(100,255), std::make_pair(true, true) ) );
-		powerUpPosXY.push_back( std::make_pair( std::make_pair(210,415), std::make_pair(true, true) ) );
+		std::list<StartingAttributes_t> StartingAttributes = StageStartingAttributesParser::GetPowerUpStartingAttribute(stageLevel);
+		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){
+			powerUpPosXY.push_back( (*ci) );
+		}
 
-		zenChanPosXY.push_back( std::make_pair( std::make_pair(370,80), std::make_pair(true, true) ) );
-		zenChanPosXY.push_back( std::make_pair( std::make_pair(400,240), std::make_pair(true, true) ) );
-		mightaPosXY.push_back( std::make_pair( std::make_pair(300,160), std::make_pair(true, true) ) );
-		mightaPosXY.push_back( std::make_pair( std::make_pair(250,240), std::make_pair(true, true) ) );
+		StartingAttributes = StageStartingAttributesParser::GetZenChanStartingAttribute(stageLevel);
+		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){
+			zenChanPosXY.push_back( (*ci) );
+		}
+
+		StartingAttributes = StageStartingAttributesParser::GetMightaStartingAttribute(stageLevel);
+		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){
+			mightaPosXY.push_back( (*ci) );
+		}
+		
+		StageStartingAttributesParser::SingletonDestroy();
 
 		srand((unsigned)time(0));
 
-		SpritesAttributeParser::SingletonDestroy();
+		
 	}
 
 	///////////// BUBBLUN

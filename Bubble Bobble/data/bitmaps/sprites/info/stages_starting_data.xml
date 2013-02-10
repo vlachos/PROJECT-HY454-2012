@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<StartingSprites totalStages="1">
+  
+  <stage stageNum="1">
+
+    <BubXY x="50" y="400" gravityAddict = "true" FildID = "BubWalk" goesLeft = "false"/>
+    <BobXY x="430" y="400" gravityAddict = "true" FildID = "BubWalk" goesLeft = "true"/>
+
+    <ZenChanXY>
+      <ZenChan x="400" y="95" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "false"/>
+      <ZenChan x="370" y="255" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "false"/>
+    </ZenChanXY>
+
+    <MightaXY>
+      <Mighta x="300" y="175" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "false"/>
+      <Mighta x="250" y="255" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "true"/>
+    </MightaXY>  
+
+    <PowerUpXY>
+      <coordinates x = "100" y = "95" gravityAddict = "true" goesLeft = "true"/>
+      <coordinates x = "210" y = "175" gravityAddict = "true" goesLeft = "true"/>
+      <coordinates x = "100" y = "255" gravityAddict = "true" goesLeft = "true"/>
+      <coordinates x = "210" y = "415" gravityAddict = "true" goesLeft = "true"/>
+    </PowerUpXY>
+
+  </stage>
+  
+</StartingSprites>

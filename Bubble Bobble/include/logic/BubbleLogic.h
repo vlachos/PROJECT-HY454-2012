@@ -5,8 +5,6 @@
 #include "Metrics.h"
 #include <vector>
 
-typedef std::pair<Coordinates, std::pair<bool,bool> > StartingAttributes_t;
-
 class BubbleLogic {
 
 	public:

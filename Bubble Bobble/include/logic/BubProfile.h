@@ -16,7 +16,7 @@ typedef std::map<BlastAnimationMapKey_t, std::string> BlastAnimationMap_t;
 class BubProfile{
 
 	public:
-		BubProfile(Lifes startLifes, int x, int y, bool isleft, bool gravityAddict);
+		BubProfile(Lifes startLifes, StartingAttributes_t startAttr);
 		BubProfile();
 		~BubProfile();
 
