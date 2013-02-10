@@ -183,7 +183,7 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 	std::vector<Animator*> relatedAnimators = AnimatorHolder::GetAnimators(start,end);
 	
 	for(unsigned int i=0; i<relatedAnimators.size(); ++i){
-		DASSERT(0 <= start<= ANIMATORS_SIZE);
+		DASSERT(0 <= start && start <= ANIMATORS_SIZE);
 		
 		s2 = spriteDispatcher[(relatedAnimators[i]->GetAnimatorType())](relatedAnimators[i]);
 		
@@ -199,7 +199,7 @@ void CollisionChecker::Register (Sprite* s1, animatorType_t start, animatorType_
 	Sprite* s2 = 0;
 	std::vector<Animator*> relatedAnimators = AnimatorHolder::GetAnimators(start,end);
 	for(unsigned int i=0; i<relatedAnimators.size(); ++i){
-		DASSERT(0 <= start<= ANIMATORS_SIZE);
+		DASSERT(0 <= start && start <= ANIMATORS_SIZE);
 		s2 = spriteDispatcher[(relatedAnimators[i]->GetAnimatorType())](relatedAnimators[i]);
 		DASSERT(s2);
 		CollisionChecker::Register (s1, s2, relatedAnimators[i], callBack);
@@ -222,14 +222,14 @@ void CollisionChecker::RegisterPair (Sprite* s1, animatorType_t start, animatorT
 
 void CollisionChecker::RegisterBubbleDrivers(Sprite* spr, void* Args){
 	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleBubbleDriversForFrameRange();
-	for(int i=0; i<ibd.size(); ++i){
+	for(unsigned int i=0; i<ibd.size(); ++i){
 		CollisionChecker::Register(spr, ibd[i].sprite, Args, ibd[i].callback);
 	}
 }
 
 void CollisionChecker::RegisterBubbleWrapAroundDrivers(Sprite* spr, void* Args){
 	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleWrapAroundDrivers();
-	for(int i=0; i<ibd.size(); ++i){
+	for(unsigned int i=0; i<ibd.size(); ++i){
 		CollisionChecker::Register(spr, ibd[i].sprite, Args, ibd[i].callback);
 	}
 }

@@ -122,18 +122,22 @@
 
 	const std::string BubProfile::GetBubWalkAnimation(bool goesLeft) {
 
-		if (!hasRedShoes && goesLeft )		return "BubWalkLeft";
-		else if (!hasRedShoes && !goesLeft )return "BubWalkRight";
-		else if (hasRedShoes && goesLeft )	return "BubQuickWalkLeft";
-		else if (hasRedShoes && !goesLeft ) return "BubQuickWalkRight";
+		if (!hasRedShoes && goesLeft )		return std::string("BubWalkLeft");
+		else if (!hasRedShoes && !goesLeft )return std::string("BubWalkRight");
+		else if (hasRedShoes && goesLeft )	return std::string("BubQuickWalkLeft");
+		else if (hasRedShoes && !goesLeft ) return std::string("BubQuickWalkRight");
+
+		return std::string();
 	}
 
 	const std::string BubProfile::GetBubOpenMouthWalkAnimation(bool goesLeft) {
 
-		if (!hasRedShoes && goesLeft )		return "BubOpenMouthWalkingLeft";
-		else if (!hasRedShoes && !goesLeft )return "BubOpenMouthWalkingRight";
-		else if (hasRedShoes && goesLeft )	return "BubOpenMouthQuickWalkingLeft";
-		else if (hasRedShoes && !goesLeft ) return "BubOpenMouthQuickWalkingRight";
+		if (!hasRedShoes && goesLeft )		return std::string("BubOpenMouthWalkingLeft");
+		else if (!hasRedShoes && !goesLeft )return std::string("BubOpenMouthWalkingRight");
+		else if (hasRedShoes && goesLeft )	return std::string("BubOpenMouthQuickWalkingLeft");
+		else if (hasRedShoes && !goesLeft ) return std::string("BubOpenMouthQuickWalkingRight");
+
+		return std::string();
 	}
 
 	const std::string BubProfile::GetBubJumpStand(void) {

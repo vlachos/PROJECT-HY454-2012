@@ -518,7 +518,7 @@ void BubJumpOpenMouthAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	int index = _this->GetIndex();
 	index+=_this->GetAnimation()->GetPath().size();
-	if( _this->GetJumpAnimation()->GetPath().size() <= index ){
+	if( ((int) _this->GetJumpAnimation()->GetPath().size()) <= index ){
 		MovingAnimation *fra = (MovingAnimation*)AnimationsParser::GetAnimation("BubFalling");
 		Sprite *n_sprite = new Sprite(
 										_this->GetSprite()->GetX(),

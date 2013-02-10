@@ -11,7 +11,7 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 	DASSERT(anim);
 	DASSERT(lastTime<=currTime);
 
-	DASSERT(currIndex>=0 && currIndex<anim->GetPath().size());
+	DASSERT(currIndex>=0 && currIndex< ((int)anim->GetPath().size()));
 	while (currTime > lastTime && currTime - lastTime >= anim->GetPath()[currIndex].delay){
 
 		sprite->Move(	
@@ -30,7 +30,7 @@ void MovingPathAnimator::Progress (timestamp_t currTime){
 			}else
 				currIndex = 0;
 		}
-		DASSERT(currIndex>=0 && currIndex<anim->GetPath().size());
+		DASSERT(currIndex>=0 && currIndex<((int)anim->GetPath().size()));
 	}
 
 }

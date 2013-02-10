@@ -13,7 +13,7 @@ enum animatorstate_t {
 	ANIMATOR_STOPPED  = 2
 };
 
-#define ANIMATORS_SIZE 50
+#define ANIMATORS_SIZE 64
 
 enum animatorType_t {
 	unkwownAnimator_t,

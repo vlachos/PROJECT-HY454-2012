@@ -176,14 +176,14 @@
 	}
 
 	bool TileLayer::CanScroll (HorizScroll h) const{	
-		return	viewWindow.GetX() >= -(Dim) h &&
-				viewWindow.GetX() + ((Dim) h) + viewWindow.GetWidth() <= TILE_LAYER_WIDTH;	
+		return	((int)viewWindow.GetX()) >= -((int)h) &&
+				((int)viewWindow.GetX()) + ((int) h) + ((int)viewWindow.GetWidth()) <= TILE_LAYER_WIDTH;	
 		return false;
 	}
 
 	bool TileLayer::CanScroll (VertScroll v) const{
-		return	viewWindow.GetY() >= -(Dim) v &&
-				viewWindow.GetY() + ((Dim) v) + viewWindow.GetHeigth() <= TILE_LAYER_HEIGHT;
+		return	((int)viewWindow.GetY()) >= -((int)v) &&
+				((int)viewWindow.GetY()) + ((int) v) + ((int)viewWindow.GetHeigth()) <= TILE_LAYER_HEIGHT;
 		return false;
 	}
 

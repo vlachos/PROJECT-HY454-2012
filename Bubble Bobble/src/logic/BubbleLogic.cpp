@@ -180,7 +180,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	///////////// GENERAL
 	Points BubbleLogic::GetPointsOfPoning(unsigned int enemiesPoned){
-		return std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
+		return (Points) std::pow((double)2, (double)enemiesPoned-1 ) * 1000;
 	}
 	Points BubbleLogic::GetPowerUpPoints(void) { return powerUpPoints; }
 	Points BubbleLogic::GetBananaPoints(void) { return bananaPoints; }
@@ -204,6 +204,8 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 			return 3;
 		else if(enemies <= enemiesForWaterMelon)
 			return 4;
+
+		return -1;
 	}
 
 	///////////// Stating Sprite Attributes

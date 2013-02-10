@@ -49,7 +49,7 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 	}
 
 	Coordinates BitmapFontHolder::GetLetterXY(unsigned char c, FontColor_t color){
-		DASSERT( FONT_START<=c<=FONT_END );
+		DASSERT( FONT_START <= c  && c <= FONT_END );
 		return fontsMap.find(color)->second.find(c)->second;
 	}
 
@@ -72,7 +72,7 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 		Bitmap wordBitmap;
 		al_set_target_bitmap(wordBitmap);
 
-		for (int i = 0; i < str.length() ; ++i){
+		for (unsigned int i = 0; i < str.length() ; ++i){
 			DisplayLetter (i*LETTER_W, 0, color, (unsigned char)str[i]);
 		}
 		al_set_target_bitmap(prevAt);
@@ -84,8 +84,8 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 		DASSERT( !str.empty() );
 
 		std::vector<Rect> v;
-		for (int i = 0; i<str.length(); ++i){
-			DASSERT( FONT_START <= (unsigned char)str[i] <= FONT_END );
+		for (unsigned int i = 0; i<str.length(); ++i){
+			DASSERT( FONT_START <= (unsigned char)str[i] &&  (unsigned char)str[i] <= FONT_END );
 			v.push_back( GetLetterRect( (unsigned char)str[i], color) );
 		}
 		return v;

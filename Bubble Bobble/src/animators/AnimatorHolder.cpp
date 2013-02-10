@@ -57,7 +57,7 @@ void AnimatorHolder :: Progress (timestamp_t currTime){
 
 void AnimatorHolder :: Display(Bitmap at){
 
-	for (int i=0; i<running.size(); ++i)
+	for (unsigned int i=0; i<running.size(); ++i)
 		running[i]->Display(at);
 	
 }
@@ -77,7 +77,7 @@ std::vector<Animator*> AnimatorHolder:: GetAnimators(enum animatorType_t type){
 }
 
 std::vector<Animator*> AnimatorHolder::GetAnimators(animatorType_t start, animatorType_t end){
-	DASSERT(0 <= start<= ANIMATORS_SIZE);
+	DASSERT(0 <= start && start<= ANIMATORS_SIZE);
 
 	std::vector<Animator*> animators;
 	for(std::vector<Animator*>::const_iterator ci = running.begin(); ci != running.end(); ++ci){

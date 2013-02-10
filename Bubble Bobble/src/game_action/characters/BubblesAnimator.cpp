@@ -697,7 +697,7 @@ MightaMovingFireBallAnimator::MightaMovingFireBallAnimator(){
 
 void MightaMovingFireBallAnimator::RegistCollitions(Sprite* spr){
 	std::vector<InvisibleSprites::InvisibleDrivers> ibd = InvisibleSprites::GetInvisibleMightaBubbleBreakers();
-	for(int i=0; i<ibd.size(); ++i){
+	for(unsigned int i=0; i<ibd.size(); ++i){
 		CollisionChecker::Register(spr, ibd[i].sprite, this, OnCollisionWithWall);
 	}
 	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);

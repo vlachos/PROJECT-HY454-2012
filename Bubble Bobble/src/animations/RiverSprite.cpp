@@ -25,7 +25,7 @@
 
 	unsigned int RiverSprite::GetRiverLength(void) { return riverQueue.size(); }
 	Sprite* RiverSprite::GetRiverItem(unsigned int ith){
-		DASSERT(0 <= ith < riverQueue.size() );
+		DASSERT(0 <= ((int)ith) && ith< riverQueue.size() );
 		return riverQueue[ith];
 	}
 
