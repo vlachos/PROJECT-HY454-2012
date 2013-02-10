@@ -43,12 +43,12 @@
 	}
 
 	void RiverSprite::RiverStartFalling(void){
-		SetNewFront("RiverBigCorner");
+		//SetNewFront("RiverBigCorner");
 		SetGoesLeft(true);
 	}
 
 	void RiverSprite::RiverStopFalling(void){
-		SetNewFront("RiverSmallCorner");
+		//SetNewFront("RiverSmallCorner");
 		SetGoesLeft(riverGoesLeft);
 	}
 
@@ -80,8 +80,6 @@
 
 		riverQueue.push_front(new Sprite(GetX(), GetY(),IsGravityAddicted(),
 								AnimationFilmHolder::GetFilm(frontStr),GetActionLayer(),GoesLeft()));
-
-		//SetNewBack(frontStr);
 
 		//deque
 		if (riverQueue.size() > MAX_RIVER_PARTS)
