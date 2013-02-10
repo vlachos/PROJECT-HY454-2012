@@ -77,7 +77,7 @@ StageStartingAttributesParser::StageStartingAttributesParser(const char * path){
 			charAttrs.push_front(getNewAttribute( charAttrsIterate ));
 		}
 		attrMap["PowerUpXY"] = charAttrs;
-
+		
 		attributes[stages-1] = attrMap;
 	}
 }
@@ -94,16 +94,19 @@ StageStartingAttributesParser::~StageStartingAttributesParser(){
 }
 
 std::list<StartingAttributes_t> StageStartingAttributesParser::GetZenChanStartingAttribute(unsigned int stageNum){
+	--stageNum;
 	DASSERT( stageNum<attributes.size() );
 	return attributes[stageNum]["ZenChanXY"];
 }
 
 std::list<StartingAttributes_t> StageStartingAttributesParser::GetMightaStartingAttribute(unsigned int stageNum){
+	--stageNum;
 	DASSERT( stageNum<attributes.size() );
 	return attributes[stageNum]["MightaXY"];
 }
 
 StartingAttributes_t StageStartingAttributesParser::GetBubStartingAttribute(unsigned int stageNum){
+	--stageNum;
 	DASSERT( stageNum<attributes.size() );
 	std::list<StartingAttributes_t> bub = attributes[stageNum]["BubXY"];
 	DASSERT(bub.size()==1);
@@ -111,6 +114,7 @@ StartingAttributes_t StageStartingAttributesParser::GetBubStartingAttribute(unsi
 }
 
 StartingAttributes_t StageStartingAttributesParser::GetBobStartingAttribute(unsigned int stageNum){
+	--stageNum;
 	DASSERT( stageNum<attributes.size() );
 	std::list<StartingAttributes_t> bob = attributes[stageNum]["BobXY"];
 	DASSERT(bob.size()==1);
@@ -118,6 +122,7 @@ StartingAttributes_t StageStartingAttributesParser::GetBobStartingAttribute(unsi
 }
 
 std::list<StartingAttributes_t> StageStartingAttributesParser::GetPowerUpStartingAttribute(unsigned int stageNum){
+	--stageNum;
 	DASSERT( stageNum<attributes.size() );
 	return attributes[stageNum]["PowerUpXY"];
 }
