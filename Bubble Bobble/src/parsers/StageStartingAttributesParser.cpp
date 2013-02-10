@@ -8,9 +8,9 @@
 #include "ParsersUtilities.h"
 
 StageStartingAttributesParser::attributeStages		StageStartingAttributesParser::attributes;
+StageStartingAttributesParser::positionStages		StageStartingAttributesParser::positions;
 StageStartingAttributesParser*						StageStartingAttributesParser::singletonPtr;
 const char *										StageStartingAttributesParser::xmlFilePath;
-
 
 static StartingAttributes_t getNewAttribute( rapidxml::xml_node<>* node ){
 	return std::make_pair( 
@@ -23,6 +23,12 @@ static StartingAttributes_t getNewAttribute( rapidxml::xml_node<>* node ){
 											GetGetBoolAtrr( node, "goesLeft" )
 										  ) 
 						 );
+}
+
+static StageStartingAttributesParser::StartingPosition_t getNewPosition( rapidxml::xml_node<>* node ){
+	return StageStartingAttributesParser::StartingPosition(GetGetIntAtrr( node, "x" ), GetGetIntAtrr( node, "y" ),
+															GetGetIntAtrr( node, "w" ), GetGetIntAtrr( node, "h" ), 
+															((StageStartingAttributesParser::directionDrive)GetGetIntAtrr(node, "d")));
 }
 
 StageStartingAttributesParser::StageStartingAttributesParser(const char * path){
@@ -43,14 +49,17 @@ StageStartingAttributesParser::StageStartingAttributesParser(const char * path){
 	DASSERT(totealStages>0);
 
 	attributes.resize(totealStages);
+	positions.resize(totealStages);
 
 	int stages = 0;
 	attributeMap attrMap;
+	positionMap posMap;
 	for(rapidxml::xml_node<>* stagesIterate = rootNode->first_node(); stagesIterate; stagesIterate = stagesIterate->next_sibling()){
 		int currStage = GetGetIntAtrr( stagesIterate, "stageNum" );
 		DASSERT( currStage == ++stages);
 
 		attrMap.clear();
+		posMap.clear();
 
 		std::list<StartingAttributes_t> charAttrs;
 		charAttrs.push_front(getNewAttribute( stagesIterate->first_node("BubXY") ));
@@ -78,9 +87,15 @@ StageStartingAttributesParser::StageStartingAttributesParser(const char * path){
 		}
 		attrMap["PowerUpXY"] = charAttrs;
 		
-
+		std::list<StartingPosition_t> charPoss;
+		for(rapidxml::xml_node<>* charAttrsIterate = stagesIterate->first_node("BubbleDrivers")->first_node(); charAttrsIterate; charAttrsIterate = charAttrsIterate->next_sibling()){
+			charPoss.push_front( getNewPosition(charAttrsIterate) );
+		}
+		
+		posMap["BubbleDrivers"] = charPoss;
 
 		attributes[stages-1] = attrMap;
+		positions[stages-1] = posMap;
 	}
 }
 
@@ -127,4 +142,10 @@ std::list<StartingAttributes_t> StageStartingAttributesParser::GetPowerUpStartin
 	--stageNum;
 	DASSERT( stageNum<attributes.size() );
 	return attributes[stageNum]["PowerUpXY"];
+}
+
+std::list<StageStartingAttributesParser::StartingPosition_t> StageStartingAttributesParser::GetInvisibleSpritesPos(unsigned int stageNum){
+	--stageNum;
+	DASSERT( stageNum<positions.size() );
+	return positions[stageNum]["BubbleDrivers"];
 }

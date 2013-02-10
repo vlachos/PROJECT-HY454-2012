@@ -70,7 +70,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 		SpritesAttributeParser::SingletonDestroy();
 	
-		StageStartingAttributesParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\stages_starting_data.xml");
+		
 		
 		bub = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) ) );
 		bob = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) ) );
@@ -90,7 +90,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 			mightaPosXY.push_back( (*ci) );
 		}
 		
-		StageStartingAttributesParser::SingletonDestroy();
+		
 
 		srand((unsigned)time(0));
 

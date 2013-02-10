@@ -10,7 +10,6 @@ typedef unsigned char byte;
 typedef unsigned int Dim;
 typedef std::pair<int, int> Coordinates;
 typedef std::pair<Coordinates, std::pair<bool,bool> > StartingAttributes_t;
-typedef std::pair<Coordinates, Coordinates > StartingPosition_t;
 
 template <typename T>
 std::string NumberToString ( T Number )

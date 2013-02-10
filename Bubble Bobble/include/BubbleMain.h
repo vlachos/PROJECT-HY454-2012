@@ -31,6 +31,7 @@
 #include "BarronVonBlubaAnimator.h"
 #include "StartScreenAnimator.h"
 #include "TimerTickAnimator.h"
+#include "StageStartingAttributesParser.h"
 
 #include "ArtificialIntelligence.h"
 #include "PowerUpsAnimator.h"

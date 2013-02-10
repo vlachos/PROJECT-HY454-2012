@@ -66,6 +66,7 @@ bool BubbleMain::InitAllegro(){
 
 void BubbleMain::InitGameEngine(){
 
+	StageStartingAttributesParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\stages_starting_data.xml");
 	BubbleLogic::SingletonCreate();
 
 	CollisionChecker::SingletonCreate();
@@ -76,7 +77,7 @@ void BubbleMain::InitGameEngine(){
 	InvisibleSprites::SingletonCreate();
 	BubbleLogic::SetBubScore(0);
 	SoundAPI::SingletonCreate("..\\data\\soundtrack");
-
+	StageStartingAttributesParser::SingletonDestroy();
 	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
