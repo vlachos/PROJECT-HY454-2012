@@ -52,7 +52,6 @@
 	}
 
 	bool TileLayer::ReadStage (unsigned int stageNum, unsigned int ithStage){
-		std::cout << "Reading stage: " << stageNum << "\n";
 		std::string indexPath;
 		indexPath.assign(PathNames::GetStageIndexInfo(stageNum) );
 		std::string	sldtyPath;

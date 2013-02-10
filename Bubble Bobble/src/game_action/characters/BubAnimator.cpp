@@ -92,7 +92,7 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 
-	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(),BubbleLogic::GetBubProfile()->GetStartY()-300,
+	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(),BubbleLogic::GetBubProfile()->GetStartY(),
 								BubbleLogic::GetBubProfile()->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
 								Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());	
 	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															

@@ -19,6 +19,7 @@ class ScrollingAnimator : public Animator{
 		ScrollingAnimation* GetAnimation(void);
 		TileLayer* GetActionLayer(void);
 
+		static void OnFinishCallback(Animator*, void*);
 		void Progress (timestamp_t currTime);
 		void Start (TileLayer* aLayer, ScrollingAnimation* anim, timestamp_t t);
 		void Display(Bitmap at);

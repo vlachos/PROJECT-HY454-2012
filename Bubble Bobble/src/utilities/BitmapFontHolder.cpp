@@ -69,7 +69,7 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 		DASSERT( !str.empty() );
 
 		Bitmap prevAt = al_get_target_bitmap();
-		Bitmap wordBitmap;
+		Bitmap wordBitmap = 0;
 		al_set_target_bitmap(wordBitmap);
 
 		for (unsigned int i = 0; i < str.length() ; ++i){

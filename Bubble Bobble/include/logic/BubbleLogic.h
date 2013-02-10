@@ -11,6 +11,7 @@ class BubbleLogic {
 		static void SingletonCreate(void);
 
 	private:
+		static int stageLevel;
 		static Points highScore;
 
 		static BubProfile* bub;
@@ -46,6 +47,9 @@ class BubbleLogic {
 		static void IncrBobScore(Points somePoints);
 
 	public:
+
+		static int GetStageLevel(void);
+
 		static BubProfile* GetBubProfile(void);
 		static BubProfile* GetBobProfile(void);
 

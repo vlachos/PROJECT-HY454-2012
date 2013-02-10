@@ -82,10 +82,8 @@ void StartScreenAnimatorActions::StartGame(){
 
 	ScrollingAnimation* scrlAnim = new ScrollingAnimation();
 	ScrollingAnimator* scrlAnimr = new ScrollingAnimator();
+	START_ANIMATOR(scrlAnimr, Terrain::GetActionLayer(), scrlAnim, GetGameTime() );
 
-	scrlAnimr->Start(Terrain::GetActionLayer(), scrlAnim, GetGameTime());
-	AnimatorHolder::Register(scrlAnimr);
-	AnimatorHolder::MarkAsRunning(scrlAnimr);
 }
 
 void StartScreenAnimatorActions::StartStartScreen(){

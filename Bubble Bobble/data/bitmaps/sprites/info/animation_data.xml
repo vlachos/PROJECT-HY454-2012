@@ -162,7 +162,6 @@
   </BubDieByEnemy>
 
   <BubInBubble type="MovingPathAnimation">
-    <!--
     <list  dx="0" dy="15" delay="200" frame="0"/>
     <list  dx="0" dy="15" delay="200" frame="0"/>
     <list  dx="0" dy="15" delay="200" frame="1"/>
@@ -186,7 +185,7 @@
     <list  dx="-15" dy="15" delay="200" frame="8"/>
     <list  dx="-15" dy="10" delay="200" frame="8"/>
     <list  dx="-15" dy="10" delay="200" frame="8"/>
-    <list  dx="-10" dy="10" delay="200" frame="9"/> -->
+    <list  dx="-10" dy="10" delay="200" frame="9"/> 
     <list  dx="-10" dy="10" delay="200" frame="9"/>
   </BubInBubble>
 

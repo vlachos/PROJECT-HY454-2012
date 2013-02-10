@@ -9,6 +9,7 @@
 
 typedef std::pair<unsigned int, std::string> fruitPair;
 
+	int BubbleLogic::stageLevel;
 	BubProfile* BubbleLogic::bub;
 	BubProfile* BubbleLogic::bob;
 
@@ -42,7 +43,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	///////////// INITIALIZE
 	void BubbleLogic::SingletonCreate(void){
-		int stageLevel = 1;
+		stageLevel = 1;
 
 		SpritesAttributeParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\sprites_attributes_data.xml");
 
@@ -89,13 +90,10 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){
 			mightaPosXY.push_back( (*ci) );
 		}
-		
-		
-
 		srand((unsigned)time(0));
-
-		
 	}
+
+	int BubbleLogic::GetStageLevel(void) { return stageLevel; }
 
 	///////////// BUBBLUN
 	BubProfile* BubbleLogic::GetBubProfile(void) { return bub; }
