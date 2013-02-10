@@ -4,6 +4,69 @@
 #include "CollisionChecker.h"
 #include "BubbleLogic.h"
 #include "FruitsAnimator.h"
+#include "AnimationsParser.h"
+#include "AnimationFilmHolder.h"
+#include "Terrain.h"
+
+void powerUpsAnimatorStart::startRedShoesAnimator(){
+	Sprite* sprite = new Sprite(															
+									BubbleLogic::GetPowerUpPosXY().first,					
+									BubbleLogic::GetPowerUpPosXY().second,					
+									true,													
+									AnimationFilmHolder::GetFilm( "RedShoes" ),					
+									Terrain::GetActionLayer(),								
+									true													
+								);															
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation( "RedShoes" );		
+	RedShoesAnimator* type = new RedShoesAnimator();
+	type->RegistCollitions(sprite);															
+	START_ANIMATOR( type, sprite, anim, GetGameTime() )	;	
+}
+
+void powerUpsAnimatorStart::startYellowSweetAnimator(){
+	Sprite* sprite = new Sprite(															
+									BubbleLogic::GetPowerUpPosXY().first,					
+									BubbleLogic::GetPowerUpPosXY().second,					
+									true,													
+									AnimationFilmHolder::GetFilm( "YellowSweet" ),					
+									Terrain::GetActionLayer(),								
+									true													
+								);															
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation( "YellowSweet" );		
+	RedShoesAnimator* type = new RedShoesAnimator();
+	type->RegistCollitions(sprite);															
+	START_ANIMATOR( type, sprite, anim, GetGameTime() )	;	
+}
+
+void powerUpsAnimatorStart::startBlueSweetAnimator(){
+	Sprite* sprite = new Sprite(															
+									BubbleLogic::GetPowerUpPosXY().first,					
+									BubbleLogic::GetPowerUpPosXY().second,					
+									true,													
+									AnimationFilmHolder::GetFilm( "BlueSweet" ),					
+									Terrain::GetActionLayer(),								
+									true													
+								);															
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation( "BlueSweet" );		
+	BlueSweetAnimator* type = new BlueSweetAnimator();
+	type->RegistCollitions(sprite);															
+	START_ANIMATOR( type, sprite, anim, GetGameTime() )	;	
+}
+
+void powerUpsAnimatorStart::startPurpleSweetAnimator(){
+	Sprite* sprite = new Sprite(															
+									BubbleLogic::GetPowerUpPosXY().first,					
+									BubbleLogic::GetPowerUpPosXY().second,					
+									true,													
+									AnimationFilmHolder::GetFilm( "PurpleSweet" ),					
+									Terrain::GetActionLayer(),								
+									true													
+								);															
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation( "PurpleSweet" );		
+	PurpleSweetAnimator* type = new PurpleSweetAnimator();
+	type->RegistCollitions(sprite);															
+	START_ANIMATOR( type, sprite, anim, GetGameTime() )	;	
+}
 
 
 //////////////RedShoesAnimator

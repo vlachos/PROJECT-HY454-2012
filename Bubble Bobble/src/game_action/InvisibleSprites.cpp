@@ -126,7 +126,7 @@ InvisibleSprites::InvisibleSprites(){
 		af = new AnimationFilm(0, box, (std::string("invisibleDriver_") + index).c_str() );
 		spr = new Sprite( ci->x, ci->y, false, af, Terrain::GetActionLayer(), true);
 		animationFilmHolderLateDestraction.push_back(af);
-		std::cout<< ci->w<<"\n";
+
 		switch(ci->d){
 			case StageStartingAttributesParser::directionDrive_Down: driversForFrameRange.push_back( InvisibleDrivers( spr, InvisibleDrivererGoDownFRA ) );
 																	break;

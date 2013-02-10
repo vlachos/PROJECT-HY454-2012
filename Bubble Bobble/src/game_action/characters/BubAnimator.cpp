@@ -121,17 +121,14 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	BlueSweetAnimator* animr5 = new BlueSweetAnimator();
 	animr5->RegistCollitions(sprite5);
 
-	Sprite* sprite6 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("RedShoes"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim6 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("RedShoes");															
-	RedShoesAnimator* animr6 = new RedShoesAnimator();
-	animr6->RegistCollitions(sprite6);
+
 
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 	START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
 	START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
-	START_ANIMATOR( animr6, sprite6, anim6, GetGameTime() );
+	
 
 	RiverSprite* sprite7 = new RiverSprite(400,50,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
 	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushLeft");

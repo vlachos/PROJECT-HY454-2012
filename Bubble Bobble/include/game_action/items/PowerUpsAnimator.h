@@ -3,6 +3,13 @@
 
 #include "MovingAnimator.h"
 
+namespace powerUpsAnimatorStart{
+	extern void startRedShoesAnimator();
+	extern void startYellowSweetAnimator();
+	extern void startBlueSweetAnimator();
+	extern void startPurpleSweetAnimator();
+}
+
 class RedShoesAnimator: public MovingAnimator{
 	public:
 		RedShoesAnimator();
