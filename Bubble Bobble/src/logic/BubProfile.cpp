@@ -62,7 +62,7 @@
 
 	///////// score
 	void BubProfile::IncrScore(Points addedPoints) {
-		DASSERT(addedPoints > 0);
+		DASSERT(addedPoints >= 0);
 		score += addedPoints;
 	}
 	void BubProfile::SetScore(Points newScore) { score = newScore; }

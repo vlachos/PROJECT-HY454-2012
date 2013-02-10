@@ -9,6 +9,7 @@
 #include "Terrain.h"
 #include "BubblesAnimator.h"
 #include "StageStartingAttributesParser.h"
+#include "BubbleLogic.h"
 
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::driversForFrameRange;
 std::vector<InvisibleSprites::InvisibleDrivers> InvisibleSprites::wrapAroundDrivers;
@@ -102,11 +103,19 @@ static void InvisibleDrivererGoRightFRA(Sprite *obj, Sprite *driver, void *args)
 }
 
 static void InvisibleDrivererWrapAround1(Sprite *obj, Sprite *driver, void *args){
+	DASSERT(args);
+	if ( ((Animator*)args)->GetAnimatorType() == bubFallingAnimator_t)
+		BubbleLogic::GetBubProfile()->IncrTimesCrossedStage();
+
 	obj->SetX(160);
 	obj->SetY(0);
 }
 
 static void InvisibleDrivererWrapAround2(Sprite *obj, Sprite *driver, void *args){
+	DASSERT(args);
+	if ( ((Animator*)args)->GetAnimatorType() == bubFallingAnimator_t)
+		BubbleLogic::GetBubProfile()->IncrTimesCrossedStage();
+
 	obj->SetX(323);
 	obj->SetY(0);
 }

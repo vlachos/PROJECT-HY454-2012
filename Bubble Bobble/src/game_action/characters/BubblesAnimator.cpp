@@ -120,6 +120,8 @@ void BubblesAnimatorActions::OnCollisionWithBub(Sprite *spr1, Sprite *spr2, void
 
 BubBubbleBlastOffAnimator::BubBubbleBlastOffAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
+	//logic
+	BubbleLogic::GetBubProfile()->IncrTimesBlastedABubble();
 }
 
 void BubBubbleBlastOffAnimator::RegistCollitions(Sprite *spr){

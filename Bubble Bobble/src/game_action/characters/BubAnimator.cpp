@@ -288,6 +288,9 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	frtor->RegistCollitions(n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
+
+	//logic
+	REFRESH_KILLED_ENEMIES_COUNTER();
 }
 
 void BubFallingAnimator::OnOpenMouth(){
@@ -420,6 +423,9 @@ void BubOpenMouthFallingAnimator::OnStopFalling(Sprite * sprite){
 	frtor->RegistCollitions(n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
+
+	//logic
+	REFRESH_KILLED_ENEMIES_COUNTER();
 }
 
 
@@ -427,6 +433,8 @@ void BubOpenMouthFallingAnimator::OnStopFalling(Sprite * sprite){
 
 BubJumpAnimator::BubJumpAnimator(){
 	this->SetOnFinish(OnFinishCallback,(void*)this);
+	//logic
+	BubbleLogic::GetBubProfile()->IncrTimesJumped();
 }
 
 void BubJumpAnimator::RegistCollitions(Sprite *spr){

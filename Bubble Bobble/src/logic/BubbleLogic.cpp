@@ -135,12 +135,17 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::BubWaterMelonAcquired(void) { IncrBubScore(waterMelonPoints); }
 	void BubbleLogic::BubBlueDiamondAcquired(void) { IncrBubScore(blueDiamondPoints); }
 
-	void BubbleLogic::BubPonEmptyBubble(void) { IncrBubScore(emptyBubblePoints); }
+	void BubbleLogic::BubPonEmptyBubble(void) {
+		bub->IncrTimesPonedABubble();
+		IncrBubScore(emptyBubblePoints);
+	}
 	void BubbleLogic::BubPonZenChanBubble(void) {
+		bub->IncrTimesPonedABubble();
 		bub->IncrEnemiesKilledOnPon();
 		IncrBubScore(zenChanBubblePoints);
 	}
 	void BubbleLogic::BubPonMightaBubble(void) {
+		bub->IncrTimesPonedABubble();
 		bub->IncrEnemiesKilledOnPon();
 		IncrBubScore(mightaBubblePoints);
 	}
@@ -180,12 +185,17 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::BobWaterMelonAcquired(void) { IncrBobScore(waterMelonPoints); }
 	void BubbleLogic::BobBlueDiamondAcquired(void) { IncrBobScore(blueDiamondPoints); }
 
-	void BubbleLogic::BobPonEmptyBubble(void) { IncrBobScore(emptyBubblePoints); }
+	void BubbleLogic::BobPonEmptyBubble(void) {
+		bob->IncrTimesPonedABubble();
+		IncrBobScore(emptyBubblePoints);
+	}
 	void BubbleLogic::BobPonZenChanBubble(void) {
+		bob->IncrTimesPonedABubble();
 		bob->IncrEnemiesKilledOnPon();
 		IncrBobScore(zenChanBubblePoints);
 	}
 	void BubbleLogic::BobPonMightaBubble(void) {
+		bob->IncrTimesPonedABubble();
 		bob->IncrEnemiesKilledOnPon();
 		IncrBobScore(mightaBubblePoints);
 	}
@@ -206,9 +216,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 		unsigned int enemies = bob->GetEnemiesKilledOnPon();
 
-		if (enemies == 0)
-			return 5;
-		else if ( enemies <= enemiesForBanana)
+		if ( enemies <= enemiesForBanana)
 			return 1;
 		else if (enemies <= enemiesForOrange)
 			return 2;
