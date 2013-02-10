@@ -34,8 +34,10 @@
 
 #include "ArtificialIntelligence.h"
 #include "PowerUpsAnimator.h"
+#include "SoundAPI.h"
 
 #include <allegro5\allegro5.h> 
+#include <allegro5\allegro.h> 
 #include <allegro5\allegro_native_dialog.h> 
 #include <allegro5\allegro_image.h>
 #include <allegro5\allegro_audio.h>

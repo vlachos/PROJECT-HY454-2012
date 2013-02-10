@@ -237,6 +237,9 @@
     <ClCompile Include="..\src\parsers\StageStartingAttributesParser.cpp">
       <Filter>Source Files\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\game_action\SoundAPI.cpp">
+      <Filter>Source Files\game_action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -400,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="..\include\parsers\StageStartingAttributesParser.h">
       <Filter>Header Files\parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\game_action\SoundAPI.h">
+      <Filter>Header Files\game_action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

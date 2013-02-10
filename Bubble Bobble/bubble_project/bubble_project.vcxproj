@@ -112,6 +112,7 @@
     <ClCompile Include="..\src\game_action\items\FruitsAnimator.cpp" />
     <ClCompile Include="..\src\game_action\items\PowerUpsAnimator.cpp" />
     <ClCompile Include="..\src\game_action\items\RiverAnimator.cpp" />
+    <ClCompile Include="..\src\game_action\SoundAPI.cpp" />
     <ClCompile Include="..\src\game_action\start_screen\OptionsScreenAnimator.cpp" />
     <ClCompile Include="..\src\game_action\start_screen\StartScreenAnimator.cpp" />
     <ClCompile Include="..\src\logic\BubbleLogic.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="..\include\game_action\items\FruitsAnimator.h" />
     <ClInclude Include="..\include\game_action\items\PowerUpsAnimator.h" />
     <ClInclude Include="..\include\game_action\items\RiverAnimator.h" />
+    <ClInclude Include="..\include\game_action\SoundAPI.h" />
     <ClInclude Include="..\include\game_action\start_screen\OptionsScreenAnimator.h" />
     <ClInclude Include="..\include\game_action\start_screen\StartScreenAnimator.h" />
     <ClInclude Include="..\include\logic\BubbleLogic.h" />

@@ -30,6 +30,7 @@ bool BubbleMain::InitAllegro(){
 
 	al_install_keyboard();
 	al_init_image_addon();
+
 	if(!al_install_audio()){
 		al_show_native_message_box(NULL, "Error", NULL, "failed to initialize audio!\n", NULL, NULL);
 		al_destroy_display(display);
@@ -37,7 +38,7 @@ bool BubbleMain::InitAllegro(){
 		fprintf(stderr, "failed to initialize audio!\n");
 		return false;
 	}
- 
+
 	if(!al_init_acodec_addon()){
 		al_show_native_message_box(NULL, "Error", NULL, "failed to initialize audio codecs!\n", NULL, NULL);
 		al_destroy_display(display);
@@ -73,17 +74,14 @@ void BubbleMain::InitGameEngine(){
 	Terrain::SingeltonCreate();
 	BitmapFontHolder::SingletonCreate();
 	InvisibleSprites::SingletonCreate();
-	
 	BubbleLogic::SetBubScore(0);
-	//std::string s = BubblePathnames::GetSoundtrackDataPath() ;
-	ALLEGRO_SAMPLE *soundEffect = al_load_sample( ("..\\data\\soundtrack\\talkie-nudge.wav") );
-	DASSERT(soundEffect);
-	al_play_sample(soundEffect, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+	SoundAPI::SingletonCreate("..\\data\\soundtrack");
 
-
+	
 	al_start_timer(timer);
 	SetGameTime(GetCurrTime());
 
+	SoundAPI::PlaySoundContinue(SoundAPI::enterYourInitials_t);
 	StartScreenAnimatorActions::StartStartScreen();
 
 	/*
@@ -92,9 +90,6 @@ void BubbleMain::InitGameEngine(){
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
 	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 	*/
-
-
-	
 
 	redraw = true;
 }
@@ -281,6 +276,7 @@ void BubbleMain::GameOver(){
 	AnimationsParser::SingletonDestroy();
 	AnimationFilmHolder::SingletonDestroy();
 	InvisibleSprites::SingletonDestroy();
+	SoundAPI::SingletonDestroy();
 	DestructionManager::Commit();
 
 	al_destroy_bitmap(palette);
