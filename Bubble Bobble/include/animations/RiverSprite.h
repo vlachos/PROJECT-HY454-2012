@@ -31,8 +31,10 @@ class RiverSprite : public Sprite{
 		void RiverStopFalling(void);
 
 	private:
-		void RiverStepForward(std::string str);
+		void RiverStepForward(std::string frontStr, std::string midStr);
 		void RiverFallAndForward(void);
+		void SetNewFront(std::string str);
+		void SetNewBack(std::string str);
 
 	public:
 		void Move( int _x, int _y );

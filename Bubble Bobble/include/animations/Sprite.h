@@ -80,7 +80,6 @@ class Sprite : public LatelyDestroyable{
 		bool IsOnDrugs() { return onDrugs; }
 		const TileLayer * GetActionLayer(void) { return tileLayer; }
 		const AnimationFilm* GetFilm(void) { return currFilm; }
-		virtual void SetFilm(const AnimationFilm * film) {currFilm = film; SetFrame(0);}
 		bool CollisionCheck( Sprite * s );
 		virtual void Display(Bitmap dest);
 		virtual void Move( int _x, int _y );
@@ -111,8 +110,6 @@ class Sprite : public LatelyDestroyable{
 			SetFrame(0);
 			onDrugs = false;
 		}
-
-		Sprite* Clone() { return new Sprite(x,y,gravityAddicted,currFilm,tileLayer,goesLeft); }
 };
 
 #endif
