@@ -1,13 +1,15 @@
 #include "StartScreenAnimator.h"
 #include "OptionsScreenAnimator.h"
-#include "MovingPathAnimation.h"
+#include "AnimatorHolder.h"
 #include "AnimationFilmHolder.h"
+#include "BitmapFontHolder.h"
 #include "Terrain.h"
+#include "ScrollingAnimator.h"
+#include "ScrollingAnimation.h"
+#include "MovingPathAnimation.h"
 #include "BubAnimator.h"
 #include "GameActionUtilities.h"
 #include "AnimationsParser.h"
-#include "AnimatorHolder.h"
-#include "BitmapFontHolder.h"
 #include "CollisionChecker.h"
 #include "BitmapLoader.h"
 #include "LetterSprite.h"
@@ -77,6 +79,13 @@ void StartScreenAnimatorActions::StartGame(){
 	sprite->SetOnDrugs(true);
 	BubInBubbleAnimator* bibamr = new BubInBubbleAnimator();
 	START_ANIMATOR(bibamr, sprite, mpa, GetGameTime() );
+
+	ScrollingAnimation* scrlAnim = new ScrollingAnimation();
+	ScrollingAnimator* scrlAnimr = new ScrollingAnimator();
+
+	scrlAnimr->Start(Terrain::GetActionLayer(), scrlAnim, GetGameTime());
+	AnimatorHolder::Register(scrlAnimr);
+	AnimatorHolder::MarkAsRunning(scrlAnimr);
 }
 
 void StartScreenAnimatorActions::StartStartScreen(){

@@ -40,7 +40,7 @@
 			actionLayerInfo >> maxStages;
 			for (unsigned int i=0; i<maxStages; ++i){
 				actionLayerInfo >> nextStage;
-				ReadStage ( nextStage );
+				ReadStage ( nextStage, i );
 			}
 
 			actionLayerInfo.close();
@@ -51,7 +51,8 @@
 		}
 	}
 
-	bool TileLayer::ReadStage (unsigned int stageNum){
+	bool TileLayer::ReadStage (unsigned int stageNum, unsigned int ithStage){
+		std::cout << "Reading stage: " << stageNum << "\n";
 		std::string indexPath;
 		indexPath.assign(PathNames::GetStageIndexInfo(stageNum) );
 		std::string	sldtyPath;
@@ -65,7 +66,7 @@
 		unsigned int nextInteger = 0;
 		if (indexStage.is_open() && sldtyStage.is_open() ){
 
-			unsigned int lastI = stageNum * TILE_LAYER_STAGE_HEIGHT;
+			unsigned int lastI = ithStage * TILE_LAYER_STAGE_HEIGHT;
 			for (unsigned int i=lastI; i<lastI+TILE_LAYER_STAGE_HEIGHT; ++i){
 				for (unsigned int j=0; j<TILE_LAYER_STAGE_WIDTH; ++j){
 					indexStage >> nextInteger;

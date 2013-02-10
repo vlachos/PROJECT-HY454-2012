@@ -5,6 +5,12 @@
 		DASSERT(!_scroll.empty());
 		DASSERT(id>0);
 	}
+	ScrollingAnimation::ScrollingAnimation(void):Animation(1), continuous(false){
+		for (unsigned int i=0; i<TILE_LAYER_STAGE_HEIGHT; ++i){
+			scroll.push_back(ScrollEntry (HorizIntact, Down, 150) );
+		}
+	}
+
 	ScrollingAnimation::~ScrollingAnimation (void){}
 
 
@@ -14,6 +20,8 @@
 	}
 
 	void ScrollingAnimation::SetScroll (const std::vector<ScrollEntry>& p) { 
+		DASSERT(!p.empty());
+		DASSERT(!scroll.empty());
 		scroll.clear();
 		scroll = p;
 	}

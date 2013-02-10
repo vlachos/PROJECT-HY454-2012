@@ -10,9 +10,13 @@
 
 	void ScrollingAnimator::Progress (timestamp_t currTime){
 		DASSERT(currIndex>=0 && currIndex< ((int)anim->GetScroll().size()));
+		DASSERT(anim);
+		DASSERT(lastTime<=currTime);
+
+		DASSERT(currIndex>=0 && currIndex< ((int)anim->GetScroll().size()));
 		while (currTime > lastTime && currTime - lastTime >= anim->GetScroll()[currIndex].delay){
 
-			actionLayer->Scroll(	
+			actionLayer->Scroll(
 							anim->GetScroll()[currIndex].h, 
 							anim->GetScroll()[currIndex].v
 						);

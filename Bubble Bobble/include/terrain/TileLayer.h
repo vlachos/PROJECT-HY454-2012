@@ -44,7 +44,7 @@ class TileLayer{
 
 	public:
 		bool ReadMap (std::string aPath);
-		bool ReadStage (unsigned int stageNum);
+		bool ReadStage (unsigned int stageNum, unsigned int ithStage);
 		void WriteMap (std::string testIndexPath, std::string testSldtyPath);
 
 		void Display (Bitmap at);

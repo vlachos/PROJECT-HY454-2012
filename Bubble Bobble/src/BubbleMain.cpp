@@ -175,7 +175,7 @@ void BubbleMain::Rendering(){
 		al_set_target_bitmap(palette);
 		al_clear_to_color(BB_BLACK);
 
-		//Terrain::DisplayTerrain(palette);
+		Terrain::DisplayTerrain(palette);
 		AnimatorHolder::Display(palette);
 
 		al_set_target_bitmap(al_get_backbuffer(display));

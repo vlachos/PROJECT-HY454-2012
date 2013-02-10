@@ -27,6 +27,7 @@ class ScrollingAnimation : public Animation {
 
 	public:
 		ScrollingAnimation (const std::vector<ScrollEntry>& _scroll, animid_t id, bool c);
+		ScrollingAnimation (void);
 		~ScrollingAnimation (void);
 
 	public:
@@ -35,7 +36,6 @@ class ScrollingAnimation : public Animation {
 		const std::vector<ScrollEntry>& GetScroll (void) const;
 		bool GetContinuous (void) const;
 		void SetContinuous (bool c);
-
 };
 
 #endif
