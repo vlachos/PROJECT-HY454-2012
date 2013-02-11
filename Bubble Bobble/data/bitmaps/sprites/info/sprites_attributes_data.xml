@@ -21,9 +21,9 @@
   <PeachConditionEnemiesToDefeat v = "3"/>
   <WaterMelonConditionEnemiesToDefeat v = "4"/>
 
-  <RedShoeConditionTimesToCrossTheStage v = "2"/>
-  <YellowSweetConditionJumpsNeeded v = "5"/>
-  <BlueSweetConditionPonedBubblesNeeded v = "5"/>
-  <PurpleSweetConditionBlustedBubblesNeeded v = "5"/>
+  <RedShoeConditionTimesToCrossTheStage v = "1"/>
+  <YellowSweetConditionJumpsNeeded v = "3"/>
+  <BlueSweetConditionPonedBubblesNeeded v = "3"/>
+  <PurpleSweetConditionBlustedBubblesNeeded v = "3"/>
 	
 </Attributes>

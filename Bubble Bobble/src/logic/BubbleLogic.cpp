@@ -185,6 +185,23 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::BobWaterMelonAcquired(void) { IncrBobScore(waterMelonPoints); }
 	void BubbleLogic::BobBlueDiamondAcquired(void) { IncrBobScore(blueDiamondPoints); }
 
+
+	unsigned int BubbleLogic::GetCrossStageForRedShoes(){
+		return crossStageForRedShoes;
+	}
+
+	unsigned int BubbleLogic::GetJumpsForYellowSwt(){
+		return jumpsForYellowSwt;
+	}
+
+	unsigned int BubbleLogic::GetJonedBubblesForBlueSwt(){
+		return ponedBubblesForBlueSwt;
+	}
+
+	unsigned int BubbleLogic::GetBlustedBubblesForPurpleSwt(){
+		return blustedBubblesForPurpleSwt;
+	}
+
 	void BubbleLogic::BobPonEmptyBubble(void) {
 		bob->IncrTimesPonedABubble();
 		IncrBobScore(emptyBubblePoints);

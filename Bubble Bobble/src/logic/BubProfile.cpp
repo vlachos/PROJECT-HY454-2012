@@ -1,5 +1,7 @@
 #include "BubProfile.h"
 #include "MemoryManage.h"
+#include "BubbleLogic.h"
+#include "PowerUpsAnimator.h"
 
 
 	///////// constructors
@@ -91,16 +93,36 @@
 	void BubProfile::SetPurpleSwt(bool activate) { eatenPurpleSweet = activate;	}
 	bool BubProfile::GetPurpleSwt(void) { return eatenPurpleSweet; }
 
-	void BubProfile::IncrTimesCrossedStage(void) { ++timesCrossedStage; }
+	void BubProfile::IncrTimesCrossedStage(void) { 
+		++timesCrossedStage;
+		if(GetTimesCrossedStage()==BubbleLogic::GetCrossStageForRedShoes()){
+			powerUpsAnimatorStart::startRedShoesAnimator();
+		}
+	}
 	unsigned int BubProfile::GetTimesCrossedStage(void) { return timesCrossedStage; }
 
-	void BubProfile::IncrTimesJumped(void) { ++timesJumped; }
+	void BubProfile::IncrTimesJumped(void) { 
+		++timesJumped; 
+		if(GetTimesJumped()==BubbleLogic::GetJumpsForYellowSwt()){
+			powerUpsAnimatorStart::startYellowSweetAnimator();
+		}
+	}
 	unsigned int BubProfile::GetTimesJumped(void) { return timesJumped; }
 
-	void BubProfile::IncrTimesBlastedABubble(void) { ++timesBlastedBubble; }
+	void BubProfile::IncrTimesBlastedABubble(void) { 
+		++timesBlastedBubble; 
+		if(GetTimesBlastedBubble()==BubbleLogic::GetBlustedBubblesForPurpleSwt()){
+			powerUpsAnimatorStart::startPurpleSweetAnimator();
+		}
+	}
 	unsigned int BubProfile::GetTimesBlastedBubble(void) { return timesBlastedBubble; }
 
-	void BubProfile::IncrTimesPonedABubble(void) { ++timesPonedBubble; }
+	void BubProfile::IncrTimesPonedABubble(void) { 
+		++timesPonedBubble; 
+		if(GetTimesPonedBubble()==BubbleLogic::GetJonedBubblesForBlueSwt()){
+			powerUpsAnimatorStart::startBlueSweetAnimator();
+		}
+	}
 	unsigned int BubProfile::GetTimesPonedBubble(void) { return timesPonedBubble; }
 
 

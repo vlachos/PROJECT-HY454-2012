@@ -109,6 +109,12 @@ class BubbleLogic {
 		static Points GetBlueDiamondPoints(void);
 		static unsigned int GetFruitType();
 
+		static unsigned int GetCrossStageForRedShoes();
+		static unsigned int GetJumpsForYellowSwt();
+		static unsigned int GetJonedBubblesForBlueSwt();
+		static unsigned int GetBlustedBubblesForPurpleSwt();
+
+
 		//starting sprite attributes
 		static Coordinates GetPowerUpPosXY(void);
 

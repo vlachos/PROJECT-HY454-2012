@@ -112,6 +112,7 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	sprite3->AddStartFallingListener(animr3);
 	animr3->RegistCollitions(sprite3);
 	
+	/*
 	Sprite* sprite4 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("PurpleSweet"), Terrain::GetActionLayer(), true);	
 	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("PurpleSweet");															
 	PurpleSweetAnimator* animr4 = new PurpleSweetAnimator();
@@ -121,14 +122,14 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	FrameRangeAnimation* anim5 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BlueSweet");															
 	BlueSweetAnimator* animr5 = new BlueSweetAnimator();
 	animr5->RegistCollitions(sprite5);
-
+	*/
 
 
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
-	START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
-	START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
+	//START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
+	//START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
 	
 
 	RiverSprite* sprite7 = new RiverSprite(400,50,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
