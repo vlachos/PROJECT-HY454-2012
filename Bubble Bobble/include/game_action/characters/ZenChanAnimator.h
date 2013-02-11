@@ -91,7 +91,7 @@ class ZenChanAngryFallingAnimator : public FrameRangeAnimator, public Sprite::Sp
 		void OnStopFalling(Sprite * sprite);
 };
 
-class ZenChanAngryJumpAnimator : public FrameRangeAnimator{
+class ZenChanAngryJumpAnimator : public MovingPathAnimator{
 	public:
 		ZenChanAngryJumpAnimator();
 

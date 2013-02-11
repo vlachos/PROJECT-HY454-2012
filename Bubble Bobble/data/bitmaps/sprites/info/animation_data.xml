@@ -216,6 +216,7 @@
     <list  dx="0" dy="-5" delay="30" frame="1"/>
     <list  dx="0" dy="-5" delay="30" frame="2"/>
     <list  dx="0" dy="-5" delay="30" frame="3"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
   </ZenChanJump>
 
   <ZenChanJumpAngry type="MovingPathAnimation">
@@ -235,6 +236,7 @@
     <list  dx="0" dy="-5" delay="15" frame="1"/>
     <list  dx="0" dy="-5" delay="15" frame="2"/>
     <list  dx="0" dy="-5" delay="15" frame="3"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
   </ZenChanJumpAngry>
 
   <ZenChanDie type="MovingPathAnimation">
@@ -302,6 +304,7 @@
     <list  dx="0" dy="-5" delay="30" frame="0"/>
     <list  dx="0" dy="-5" delay="30" frame="1"/>
     <list  dx="0" dy="-5" delay="30" frame="2"/>
+    <list  dx="0" dy="-5" delay="30" frame="0"/>
   </MightaJump>
 
   <MightaJumpAngry type="MovingPathAnimation">
@@ -323,6 +326,7 @@
     <list  dx="0" dy="-5" delay="15" frame="0"/>
     <list  dx="0" dy="-5" delay="15" frame="1"/>
     <list  dx="0" dy="-5" delay="15" frame="2"/>
+    <list  dx="0" dy="-5" delay="15" frame="0"/>
   </MightaJumpAngry>
 
   <MightaDie type="MovingPathAnimation">
