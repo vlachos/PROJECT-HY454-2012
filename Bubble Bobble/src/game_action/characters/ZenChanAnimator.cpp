@@ -224,7 +224,7 @@ void ZenChanAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("ZenChanAngryFalling");
 	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm(_this->GetSprite()->GoesLeft()?"ZenChanAngryWalkLeft":"ZenChanAngryWalkRight"), 
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm(_this->GetSprite()->GoesLeft()?"ZenChanAngry":"ZenChanAngry"), 
 						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
 
 	ZenChanAngryFallingAnimator *frtor=new ZenChanAngryFallingAnimator();
@@ -234,6 +234,7 @@ void ZenChanAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
+	std::cout<<"in callback\n";
 }
 
 ////////////////ZenChanDieAnimator////////die for both angry and normal

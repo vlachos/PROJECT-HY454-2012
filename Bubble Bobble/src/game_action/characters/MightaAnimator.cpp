@@ -268,7 +268,7 @@ void MightaAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	FrameRangeAnimation *fra= (FrameRangeAnimation*)AnimationsParser::GetAnimation("MightaAngryFalling");
 	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
-		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm(_this->GetSprite()->GoesLeft()?"MightaAngryWalkLeft":"MightaAngryWalkRight"), 
+		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm(_this->GetSprite()->GoesLeft()?"MightaAngry":"MightaAngryWalk"), 
 						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
 
 	MightaAngryFallingAnimator *frtor=new MightaAngryFallingAnimator();
