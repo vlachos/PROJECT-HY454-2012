@@ -34,9 +34,11 @@ TileLayer* Terrain::GetActionLayer(){
 
 void Terrain::DisplayTerrain(Bitmap at){
 	actionLayer->Display(at);
-	scores->DisplayScoreBoard(at,	BubbleLogic::GetBubProfile()->GetScore(),
-									BubbleLogic::GetHighScore(),
-									BubbleLogic::GetBobProfile()->GetScore() );
+	if (BubbleLogic::GetStageLevel() != 0){
+		scores->DisplayScoreBoard(at,	BubbleLogic::GetBubProfile()->GetScore(),
+										BubbleLogic::GetHighScore(),
+										BubbleLogic::GetBobProfile()->GetScore() );
+	}
 }
 
 void Terrain::SingeltonCleanUp(){

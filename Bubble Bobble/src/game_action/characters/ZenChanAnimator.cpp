@@ -269,7 +269,8 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 
-	FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+	//logic
+	FruitsAnimators::StartFruitAnimator(5, _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 }
 
 void ZenChanDieAnimator::OnStartFalling(Sprite * sprite){
