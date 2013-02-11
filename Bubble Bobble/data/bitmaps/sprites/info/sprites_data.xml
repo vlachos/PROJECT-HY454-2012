@@ -241,8 +241,8 @@
   </WaterMelon>
   <WaterBubble  w="16" h="16">
     <bbox x="223" y="1095" />
-    <bbox x="241" y="299"  />
-    <bbox x="259" y="299" />
+    <bbox x="241" y="1095"  />
+    <bbox x="259" y="1095" />
   </WaterBubble>
   <BlueDiamond w="14" h="12">
     <bbox x="277" y="827"  />

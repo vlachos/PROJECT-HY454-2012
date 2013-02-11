@@ -111,36 +111,16 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
 	sprite3->AddStartFallingListener(animr3);
 	animr3->RegistCollitions(sprite3);
-	
-	/*
-	Sprite* sprite4 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("PurpleSweet"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim4 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("PurpleSweet");															
-	PurpleSweetAnimator* animr4 = new PurpleSweetAnimator();
-	animr4->RegistCollitions(sprite4);
-	
-	Sprite* sprite5 = new Sprite(BubbleLogic::GetPowerUpPosXY().first,BubbleLogic::GetPowerUpPosXY().second,true,AnimationFilmHolder::GetFilm("BlueSweet"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim5 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("BlueSweet");															
-	BlueSweetAnimator* animr5 = new BlueSweetAnimator();
-	animr5->RegistCollitions(sprite5);
-	*/
 
+	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("WaterBubblePeriod");
+	ta->SetTickAction( RiverAnimatorActions::StartWaterBubble, 0 );
+	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
+	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
-	//START_ANIMATOR( animr4, sprite4, anim4, GetGameTime() );
-	//START_ANIMATOR( animr5, sprite5, anim5, GetGameTime() );
-	
-
-	RiverSprite* sprite7 = new RiverSprite(400,50,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
-	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushLeft");
-	RiverAnimator* animr7 = new RiverAnimator();
-	sprite7->AddStartFallingListener( animr7 );
-	sprite7->AddStopFallingListener( animr7 );
-	animr7->RegistCollitions(sprite7);
-
-
-	START_ANIMATOR( animr7, sprite7, anim7, GetGameTime() );
+	START_TIME_ANIMATOR(ttar, GetGameTime());
 }
 
 ////////////////BubStandAnimator
@@ -273,6 +253,7 @@ void BubFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, mightaInBubbleMediumAngry_t, mightaInBubbleMediumAngry_t, MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, mightaInBubbleHighAngry_t, mightaInBubbleHighAngry_t, MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, BubPingBubbleAnimator::OnCollisionWithBubFalling);
+	CollisionChecker::Register(spr, waterSpecialBubble_t, waterSpecialBubble_t, WaterBubbleAnimator::OnCollisionWithBubFalling);
 
 	REGIST_FRUITS_AND_POWER_UPS( spr );
 }
@@ -384,6 +365,7 @@ void BubOpenMouthFallingAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, mightaInBubbleMediumAngry_t, mightaInBubbleMediumAngry_t, MightaInBubbleMediumAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, mightaInBubbleHighAngry_t, mightaInBubbleHighAngry_t, MightaInBubbleHighAngryAnimator::OnCollisionWithBubFalling);
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, BubPingBubbleAnimator::OnCollisionWithBubFalling);
+	CollisionChecker::Register(spr, waterSpecialBubble_t, waterSpecialBubble_t, WaterBubbleAnimator::OnCollisionWithBubFalling);
 
 	REGIST_FRUITS_AND_POWER_UPS( spr );
 }
@@ -447,6 +429,7 @@ void BubJumpAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, mightaInBubbleMediumAngry_t, mightaInBubbleMediumAngry_t, MightaInBubbleMediumAngryAnimator::OnCollisionWithBubJump);
 	CollisionChecker::Register(spr, mightaInBubbleHighAngry_t, mightaInBubbleHighAngry_t, MightaInBubbleHighAngryAnimator::OnCollisionWithBubJump);
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, BubPingBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, waterSpecialBubble_t, waterSpecialBubble_t, WaterBubbleAnimator::OnCollisionWithBubJump);
 
 	REGIST_FRUITS_AND_POWER_UPS( spr );
 }
@@ -511,6 +494,8 @@ void BubJumpOpenMouthAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::Register(spr, zenChanInBubbleHighAngry_t, zenChanInBubbleHighAngry_t, ZenChanInBubbleHighAngryAnimator::OnCollisionWithBubJump);
 	CollisionChecker::Register(spr, mightaInBubble_t, mightaInBubble_t, MightaInBubbleAnimator::OnCollisionWithBubJump);
 	CollisionChecker::Register(spr, bubPingBubbleAnimator_t, bubPingBubbleAnimator_t, BubPingBubbleAnimator::OnCollisionWithBubJump);
+	CollisionChecker::Register(spr, waterSpecialBubble_t, waterSpecialBubble_t, WaterBubbleAnimator::OnCollisionWithBubJump);
+	
 	REGIST_FRUITS_AND_POWER_UPS( spr );
 }
 

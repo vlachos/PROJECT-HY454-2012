@@ -121,8 +121,6 @@ static void InvisibleDrivererWrapAround2(Sprite *obj, Sprite *driver, void *args
 	obj->SetY(0);
 }
 
-
-
 InvisibleSprites::InvisibleSprites(){
 	AnimationFilm* af;
 	Sprite* spr;

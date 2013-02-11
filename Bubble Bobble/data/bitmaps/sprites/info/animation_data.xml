@@ -21,7 +21,8 @@
   <BubBubbleQuickPowerBlastOffRight type="FrameRangeAnimation" dx="25" dy="0" delay="15" continue="false" start="0" end="10"  />  
   <BubbleLeft type="FrameRangeAnimation" dx="-10" dy="0" delay="400" continue="true" start="0" end="2"  />
   <BubbleRight type="FrameRangeAnimation" dx="10" dy="0" delay="400" continue="true" start="0" end="2"  />
-
+  <BubbleDown type="FrameRangeAnimation" dx="0" dy="10" delay="400" continue="true" start="0" end="2"  />
+  
   <BubOpenMouthFalling type="FrameRangeAnimation" dx="0" dy="1" delay="12" continue="false" start="0" end="6"  />
 
   <BubOpenMouthJump type="MovingPathAnimation">
@@ -435,6 +436,8 @@
 
   <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="40" continue="true"/>
   <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="40" continue="true"/>
+
+  <WaterBubblePeriod type="TickAnimation" repetitions="100" delay="3000"/>
   
   <HurryUp type="MovingPathAnimation">
     <list  dx="0" dy="15" delay="200" frame="0"/>

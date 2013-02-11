@@ -51,7 +51,6 @@ class BubBubbleAnimator: public FrameRangeAnimator{
 		void RegistCollitions(Sprite*);
 		static void OnCollisionWithBubFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithBubJump(Sprite *, Sprite *, void *);
-		static void OnCollisionWithInvisibleDriverGoDown(Sprite *, Sprite *, void *);
 		static void OnBubbleExpiredTime(void*);
 
 		TimerTickAnimator* getBubBubbleTimer(){ return BubBubbleTimer;}
