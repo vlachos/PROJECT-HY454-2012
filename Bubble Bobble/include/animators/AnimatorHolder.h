@@ -15,6 +15,7 @@ public:
 	static void MarkAsSuspended (Animator* a);
 	static void Progress (timestamp_t currTime);
 	static void Display(Bitmap at);
+	static void TimeShiftAnimators(timestamp_t addTime);
 	static std::vector<Animator*> GetAnimators(enum animatorType_t);
 	static std::vector<Animator*> GetAnimators(animatorType_t start, animatorType_t end);
 };

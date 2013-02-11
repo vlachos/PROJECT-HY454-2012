@@ -106,15 +106,17 @@ void BubbleMain::ManageGameLoop(){
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 			timestamp_t nowTime = GetCurrTime();
 			Rendering();
-			if(!InputManagement())
-				break;
-			AnimationProgress(nowTime);
-			ArtificialIntelligence();
-			CollisionChecking();
-			CommitDestructions();
-			FPSCalculation();
-			SystemLoopDispatching();
-			SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));
+			if(true){//////////////if not paused
+				if(!InputManagement())
+					break;
+				AnimationProgress(nowTime);
+				ArtificialIntelligence();
+				CollisionChecking();
+				CommitDestructions();
+				FPSCalculation();
+				SystemLoopDispatching();
+				SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));
+			}
 		}
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			break;

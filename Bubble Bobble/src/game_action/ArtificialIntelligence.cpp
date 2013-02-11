@@ -317,6 +317,14 @@ void ArtificialIntelligence::HandleBarronVonBluba(){
 			bvbrar->RegistCollitions(baron);
 
 			REMOVE_FROM_ACTION_ANIMATOR( r );
+
+
+
+
+
+
+
+
 			DESTROY_ANIMATOR_WITHOUT_SPRITE(r);
 
 			START_ANIMATOR(bvbrar, baron, mpa, GetGameTime() );

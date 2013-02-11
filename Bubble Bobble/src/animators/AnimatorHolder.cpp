@@ -62,6 +62,12 @@ void AnimatorHolder :: Display(Bitmap at){
 	
 }
 
+void AnimatorHolder::TimeShiftAnimators(timestamp_t addTime){
+	for(int i=0;i<running.size();++i){
+		running[i]->TimeShift(addTime);
+	}
+}
+
 
 std::vector<Animator*> AnimatorHolder:: GetAnimators(enum animatorType_t type){
 	std::vector<Animator*> animators;

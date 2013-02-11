@@ -256,3 +256,13 @@ bool InputManageHandling::OnKeySelect(void){
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	return true;
 }
+
+bool InputManageHandling::OnKeyP(void){
+	if(true){
+		
+	}
+	else{
+	
+	}
+	return true;
+}
