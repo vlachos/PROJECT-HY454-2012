@@ -70,7 +70,32 @@
 				for (unsigned int j=0; j<TILE_LAYER_STAGE_WIDTH; ++j){
 					indexStage >> nextInteger;
 					map[i][j] = nextInteger;
-
+/*
+					if (map[i][j] == 0){
+					tilesSolidity[i][j][BBUp] = 0;
+					tilesSolidity[i][j][BBLeft] = 0;
+					tilesSolidity[i][j][BBDown] = 0;
+					tilesSolidity[i][j][BBRight] = 0;
+					}
+					else if(map[i][j] < SMALL_BRICK_THRESHOLD){
+					tilesSolidity[i][j][BBUp] = 0;
+					tilesSolidity[i][j][BBLeft] = 1;
+					tilesSolidity[i][j][BBDown] = 1;
+					tilesSolidity[i][j][BBRight] = 1;
+					}
+					else if(map[i][j] < BIG_BRICK_THRESHOLD){
+					tilesSolidity[i][j][BBUp] = 1;
+					tilesSolidity[i][j][BBLeft] = 1;
+					tilesSolidity[i][j][BBDown] = 1;
+					tilesSolidity[i][j][BBRight] = 1;
+					}
+					else{
+					tilesSolidity[i][j][BBUp] = 0;
+					tilesSolidity[i][j][BBLeft] = 0;
+					tilesSolidity[i][j][BBDown] = 0;
+					tilesSolidity[i][j][BBRight] = 0;
+					}
+*/
 					sldtyStage >> nextInteger;
 					tilesSolidity[i][j][BBUp] = nextInteger;
 					sldtyStage >> nextInteger;

@@ -17,7 +17,9 @@
 			riverQueue.push_front(new Sprite(GetX(), GetY(),IsGravityAddicted(),film,GetActionLayer(),GoesLeft()));
 
 	}
-	RiverSprite::~RiverSprite() {  }
+	RiverSprite::~RiverSprite() {
+		riverQueue.clear();
+	}
 
 
 	////////// access to queue

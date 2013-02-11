@@ -4,17 +4,17 @@
   
   <stage stageNum="1">
 
-    <BubXY x="50" y="400" gravityAddict = "true" FildID = "BubWalk" goesLeft = "false"/>
-    <BobXY x="430" y="400" gravityAddict = "true" FildID = "BubWalk" goesLeft = "true"/>
+    <BubXY x="50" y="399" gravityAddict = "true" FildID = "BubWalk" goesLeft = "false"/>
+    <BobXY x="430" y="399" gravityAddict = "true" FildID = "BubWalk" goesLeft = "true"/>
 
     <ZenChanXY>
-      <ZenChan x="400" y="95" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "false"/>
-      <ZenChan x="370" y="255" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "false"/>
+      <ZenChan x="400" y="79" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "false"/>
+      <ZenChan x="370" y="239" gravityAddict = "true" FildID = "ZenChanWalk" goesLeft = "false"/>
     </ZenChanXY>
 
     <MightaXY>
-      <Mighta x="300" y="175" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "false"/>
-      <Mighta x="250" y="255" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "true"/>
+      <Mighta x="300" y="159" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "false"/>
+      <Mighta x="250" y="239" gravityAddict = "true" FildID = "MightaWalk" goesLeft = "true"/>
     </MightaXY>  
 
     <PowerUpXY>

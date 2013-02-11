@@ -5,6 +5,7 @@
 #include "Metrics.h"
 #include "utilities.h"
 #include <map>
+#include <vector>
 
 #define MAX_ROW_LETTER 32
 #define MAX_SCORE_DIGITS 8
@@ -37,15 +38,15 @@ class ScoreBoard{
 		~ScoreBoard();
 
 	private:
-		Coordinates aboveScores[MAX_ROW_LETTER];
-		Coordinates scores[MAX_ROW_LETTER];
+		std::vector<Rect> aboveScores;
+		std::vector<Rect> scores;
 
 	private:
 		void GenerateScoreLettersXY(unsigned int startIndex, std::string scoreStr, FontColor_t color);
 		void GenerateAboveScoreLettersXY(unsigned int startIndex, std::string aboveScoreStr, FontColor_t color);
 		void GenerateScoreBoardInfo(int bubScore, int highScore, int bobScore);
 		std::string ScoreToString(int score);
-		void DisplayLetter(Bitmap at, int destX, int destY, Coordinates coord);
+		void DisplayLetter(Bitmap at, int destX, int destY, Rect rect);
 
 	public:
 		void DisplayScoreBoard (Bitmap at, int bubScore, int highScore, int bobScore);

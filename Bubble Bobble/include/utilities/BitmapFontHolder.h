@@ -17,7 +17,7 @@
 #define DISTANCE_BETWEEN_LETTERS_W 18
 #define LETTER_OFFSET(c) DISTANCE_BETWEEN_LETTERS_W*(c - FONT_START)
 
-typedef std::map<unsigned char, Coordinates> FontMap_t;// key=letter , value= x,y in sprite bitmap
+typedef std::map<unsigned char, Rect> FontMap_t;// key=letter , value= x,y in sprite bitmap
 
 enum FontColor_t{white, green, blue, red, yellow };
 typedef std::map<FontColor_t, FontMap_t> FontColorMap_t; 
@@ -40,7 +40,6 @@ class BitmapFontHolder {
 
 	public:
 		static Rect GetLetterRect(unsigned char c, FontColor_t color);
-		static Coordinates GetLetterXY(unsigned char c, FontColor_t color);
 		static Bitmap GetFontsBitmap(void);
 
 	private:

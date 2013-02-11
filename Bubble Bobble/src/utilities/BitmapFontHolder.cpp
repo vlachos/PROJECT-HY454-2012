@@ -2,7 +2,7 @@
 #include "BitmapLoader.h"
 #include "PathNames.h"
 
-typedef std::pair<unsigned char, Coordinates> BitLetterPair;
+typedef std::pair<unsigned char, Rect> BitLetterPair;
 typedef std::pair<FontColor_t, FontMap_t> FontPair;
 
 
@@ -37,19 +37,13 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 		Dim _y = animFilm->GetFrameBox(FONT_FRAME_BOX).GetY();
 
 		for (unsigned int i=FONT_START; i<=FONT_END; ++i){
-			aLettersMap.insert(BitLetterPair((unsigned char)i, Coordinates(_x+LETTER_OFFSET(i), _y)) );
+			aLettersMap.insert(BitLetterPair((unsigned char)i, Rect(_x+LETTER_OFFSET(i), _y, LETTER_W, LETTER_H)) );
 		}
 	}
 
 
 	//////////// accessors
 	Rect BitmapFontHolder::GetLetterRect(unsigned char c, FontColor_t color){
-		Coordinates coord = fontsMap.find(color)->second.find(c)->second;
-		return Rect(coord.first, coord.second, LETTER_W, LETTER_H);
-	}
-
-	Coordinates BitmapFontHolder::GetLetterXY(unsigned char c, FontColor_t color){
-		DASSERT( FONT_START <= c  && c <= FONT_END );
 		return fontsMap.find(color)->second.find(c)->second;
 	}
 
@@ -59,10 +53,10 @@ typedef std::pair<FontColor_t, FontMap_t> FontPair;
 	//////////// display
 	void BitmapFontHolder::DisplayLetter (Dim destX, Dim destY, FontColor_t color, char letter){
 
-		Coordinates coord = fontsMap.find(color)->second.find(letter)->second;
+		Rect rect = fontsMap.find(color)->second.find(letter)->second;
 
-		al_draw_bitmap_region(fontsBitmap, coord.first, coord.second, LETTER_W, LETTER_H,
-										destX, destY, NULL);
+		al_draw_bitmap_region(fontsBitmap, rect.GetX(), rect.GetY(),
+							  rect.GetWidth(), rect.GetHeigth(), destX, destY, NULL);
 	}
 
 	Bitmap BitmapFontHolder::GetWordBitmap(std::string str, FontColor_t color){

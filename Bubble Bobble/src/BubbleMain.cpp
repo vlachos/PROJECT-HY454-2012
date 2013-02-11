@@ -75,7 +75,6 @@ void BubbleMain::InitGameEngine(){
 	Terrain::SingeltonCreate();
 	BitmapFontHolder::SingletonCreate();
 	InvisibleSprites::SingletonCreate();
-	BubbleLogic::SetBubScore(0);
 	SoundAPI::SingletonCreate("..\\data\\soundtrack");
 	StageStartingAttributesParser::SingletonDestroy();
 	
@@ -93,52 +92,6 @@ void BubbleMain::InitGameEngine(){
 	*/
 
 	redraw = true;
-}
-
-void BubbleMain::InitSprites(void){
-	InitBubblun();
-	InitZenChan();
-	InitMighta();
-}
-
-void BubbleMain::InitBubblun(void){
-	BubbleLogic::SetBubScore(0);
-	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), BubbleLogic::GetBubProfile()->GetStartY(),
-								BubbleLogic::GetBubProfile()->GetStartGravity(), AnimationFilmHolder::GetFilm("BubWalk"),
-								Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());
-
-	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															\
-	BubStandAnimator* animr = new BubStandAnimator();
-	animr->RegistCollitions(sprite);
-	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
-}
-
-void BubbleMain::InitZenChan(void){
-	for (unsigned int i = 0; i < BubbleLogic::GetZenChanNum(); ++i){
-		Sprite* sprite = new Sprite(BubbleLogic::GetZenChanPosXY(i).first, BubbleLogic::GetZenChanPosXY(i).second,
-									BubbleLogic::GetZenChanGravity(i), AnimationFilmHolder::GetFilm("ZenChanWalk"),
-									Terrain::GetActionLayer(), BubbleLogic::GetZenChanDirection(i));	
-
-		FrameRangeAnimation* anim = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															\
-		MightaWalkingAnimator* animr = new MightaWalkingAnimator();
-		sprite->AddStartFallingListener(animr);
-		animr->RegistCollitions(sprite);
-		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
-	}
-}
-
-void BubbleMain::InitMighta(void){
-	for (unsigned int i = 0; i < BubbleLogic::GetMightaNum(); ++i){
-		Sprite* sprite = new Sprite(BubbleLogic::GetMightaPosXY(i).first, BubbleLogic::GetZenChanPosXY(i).second,
-									BubbleLogic::GetMightaGravity(i), AnimationFilmHolder::GetFilm("MightaWalk"),
-									Terrain::GetActionLayer(), BubbleLogic::GetMightaDirection(i));	
-
-		FrameRangeAnimation* anim = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															\
-		ZenChanWalkingAnimator* animr = new ZenChanWalkingAnimator();
-		sprite->AddStartFallingListener(animr);
-		animr->RegistCollitions(sprite);
-		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
-	}
 }
 
 /* Game Loop */
@@ -246,12 +199,6 @@ bool BubbleMain::InputManagement(){
 
 void BubbleMain::AnimationProgress(timestamp_t timeNow){
 	AnimatorHolder::Progress(timeNow);
-	//test prints
-	/*
-	std::cout << "  blasts : " << BubbleLogic::GetBubProfile()->GetTimesBlastedBubble();
-	std::cout << "  Crosses: " << BubbleLogic::GetBubProfile()->GetTimesCrossedStage();
-	std::cout << "  jumps  : " << BubbleLogic::GetBubProfile()->GetTimesJumped();
-	std::cout << "  ponings: " << BubbleLogic::GetBubProfile()->GetTimesPonedBubble() << "\n";*/
 }
 
 void BubbleMain::ArtificialIntelligence(){

@@ -14,7 +14,7 @@ enum BBMovement {BBLeft = -1, BBUp = 0, BBRight = +1, BBDown = +2};
 #define BB_MOVEMENTS 4
 
 #define TILE_LAYER_WIDTH 32
-#define TILE_LAYER_HEIGHT 64
+#define TILE_LAYER_HEIGHT 96
 
 #define TILE_LAYER_STAGE_WIDTH 32
 #define TILE_LAYER_STAGE_HEIGHT 32

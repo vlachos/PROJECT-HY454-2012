@@ -15,6 +15,7 @@
 #include "PowerUpsAnimator.h"
 #include "BarronVonBlubaAnimator.h"
 #include "BubbleLogic.h"
+#include "StageInitializer.h"
 
 #define REGIST_FRUITS_AND_POWER_UPS( spr )																						\
 	CollisionChecker::Register(spr,BananaAnimator_t,BananaAnimator_t,BananaAnimator::OnCollisionWithBub);						\
@@ -82,7 +83,7 @@ void BubAnimatorActions::OnCollisionWithEnemy(Sprite *bub, Sprite *enem, void * 
 	DESTROY_ANIMATOR( _this );
 }
 
-////////////////BubInBubbleAnimator
+///////////////////////////////////BubInBubbleAnimator
 
 BubInBubbleAnimator::BubInBubbleAnimator(){
 	this->SetOnFinish(OnFinishCallback, (void*)this);
@@ -94,41 +95,7 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 
-	Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(),BubbleLogic::GetBubProfile()->GetStartY(),
-								BubbleLogic::GetBubProfile()->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
-								Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());	
-	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															
-	BubStandAnimator* animr = new BubStandAnimator();
-	animr->RegistCollitions(sprite);
-
-	Sprite* sprite2 = new Sprite(200, 79,true,AnimationFilmHolder::GetFilm("MightaWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("MightaWalkLeft");															
-	MightaWalkingAnimator* animr2 = new MightaWalkingAnimator();
-	sprite2->AddStartFallingListener(animr2);
-	animr2->RegistCollitions(sprite2);
-	
-	Sprite* sprite3 = new Sprite(300,79,true,AnimationFilmHolder::GetFilm("ZenChanWalk"), Terrain::GetActionLayer(), true);	
-	FrameRangeAnimation* anim3 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("ZenChanWalkLeft");															
-	ZenChanWalkingAnimator* animr3 = new ZenChanWalkingAnimator();
-	sprite3->AddStartFallingListener(animr3);
-	animr3->RegistCollitions(sprite3);
-
-	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("WaterBubblePeriod");
-	ta->SetTickAction( RiverAnimatorActions::StartWaterBubble, 0 );
-	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
-
-
-	TickAnimation *ta2 = (TickAnimation*) AnimationsParser::GetAnimation("HurryUpStart");
-	ta2->SetTickAction( BaronVonBlubaAnimatorActions::StartHurryUpAnimator, 0 );
-	TimerTickAnimator* ttar2 = new TimerTickAnimator(ta2);
-	ttar2->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
-
-	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
-	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
-	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
-	START_TIME_ANIMATOR(ttar, GetGameTime());
-	START_TIME_ANIMATOR(ttar2, GetGameTime());
+	StageInitializer::InitNextStage();
 }
 
 ////////////////BubStandAnimator
