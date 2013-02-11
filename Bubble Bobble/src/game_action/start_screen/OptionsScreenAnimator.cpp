@@ -8,7 +8,7 @@
 #include "AnimationsParser.h"
 #include "AnimatorHolder.h"
 #include "CollisionChecker.h"
-#include "LetterSprite.h"
+#include "MultiSprite.h"
 
 #define OPTIONS_SCREEN_SELECTOR_OPTION1 210
 #define OPTIONS_SCREEN_SELECTOR_OPTION2 230
@@ -33,7 +33,7 @@ static void StartWordAnimator(const char* word, int x, int y){
 	std::vector<Rect> wordRect = BitmapFontHolder::GetWordRects( std::string(word), white);
 	AnimationFilm* af = new AnimationFilm( BitmapFontHolder::GetFontsBitmap(), wordRect, word);
 	animationFilmHolderLateDestraction.push_back(af);
-	LetterSprite* sprite = new LetterSprite( x, y, false, af, Terrain::GetActionLayer(), true);
+	MultiSprite* sprite = new MultiSprite( x, y, false, af, Terrain::GetActionLayer(), true);
 	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
 	OptionsScreenStaticAnimator* sssamr = new OptionsScreenStaticAnimator();
 

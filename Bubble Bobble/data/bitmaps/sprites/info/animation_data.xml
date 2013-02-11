@@ -35,7 +35,7 @@
     <list  dx="0" dy="-5" delay="30" frame="6"/>
   </BubOpenMouthJump>
   
-  <BubJumpStand type="MovingPathAnimation">
+  <BubJump type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
@@ -53,9 +53,9 @@
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
     <list  dx="0" dy="-5" delay="30" frame="6"/>
-  </BubJumpStand>
+  </BubJump>
 
-  <BubQuickJumpStand type="MovingPathAnimation">
+  <BubQuickJump type="MovingPathAnimation">
     <list  dx="0" dy="-5" delay="15" frame="6"/>
     <list  dx="0" dy="-5" delay="15" frame="6"/>
     <list  dx="0" dy="-5" delay="15" frame="6"/>
@@ -73,52 +73,7 @@
     <list  dx="0" dy="-5" delay="15" frame="6"/>
     <list  dx="0" dy="-5" delay="15" frame="6"/>
     <list  dx="0" dy="-5" delay="15" frame="6"/>
-  </BubQuickJumpStand>
-
-  
-  <BubJumpWalking type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-    <list  dx="0" dy="-5" delay="30" frame="6"/>
-  </BubJumpWalking>
-
-  <BubQuickJumpWalking type="MovingPathAnimation">
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-    <list  dx="0" dy="-5" delay="15" frame="6"/>
-  </BubQuickJumpWalking>
+  </BubQuickJump>
 
   <BubDieByEnemy type="MovingPathAnimation">
     <list  dx="-2" dy="-5" delay="100" frame="0"/>
@@ -482,6 +437,8 @@
   <StartScreenStatic type="MovingAnimation" dx="0" dy="0" delay="500" continue="true"/>
   <StartScreenSelector type="FrameRangeAnimation" dx="0" dy="0" delay="200" continue="true" start="0" end="5"/>
 
+  <BubLifes type="MovingAnimation" dx="0" dy="0" delay="99999" continue="true"/>  
+  
   <exampleforframelist type="FrameListAnimation" dx="0" dy="0" delay="100" continue="true" listSize="3">
     <list id="0" frame="2" />
     <list id="1" frame="1" />

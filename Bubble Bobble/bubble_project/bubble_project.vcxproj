@@ -86,7 +86,7 @@
     <ClCompile Include="..\src\animations\FlashAnimation.cpp" />
     <ClCompile Include="..\src\animations\FrameListAnimation.cpp" />
     <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
-    <ClCompile Include="..\src\animations\LetterSprite.cpp" />
+    <ClCompile Include="..\src\animations\MultiSprite.cpp" />
     <ClCompile Include="..\src\animations\MovingAnimation.cpp" />
     <ClCompile Include="..\src\animations\MovingPathAnimation.cpp" />
     <ClCompile Include="..\src\animations\RiverSprite.cpp" />
@@ -142,7 +142,7 @@
     <ClInclude Include="..\include\animations\FlashAnimation.h" />
     <ClInclude Include="..\include\animations\FrameListAnimation.h" />
     <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />
-    <ClInclude Include="..\include\animations\LetterSprite.h" />
+    <ClInclude Include="..\include\animations\MultiSprite.h" />
     <ClInclude Include="..\include\animations\MovingAnimation.h" />
     <ClInclude Include="..\include\animations\MovingPathAnimation.h" />
     <ClInclude Include="..\include\animations\RiverSprite.h" />

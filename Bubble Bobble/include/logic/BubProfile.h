@@ -39,6 +39,7 @@ class BubProfile{
 		unsigned int timesJumped;
 		unsigned int timesBlastedBubble;
 		unsigned int timesPonedBubble;
+		bool isJumpOnMove;
 
 	public:
 		int GetStartX(void);
@@ -85,8 +86,10 @@ class BubProfile{
 		const std::string GetBubbleBlastAnimation(bool goesLeft);
 		const std::string GetBubWalkAnimation(bool goesLeft);
 		const std::string GetBubOpenMouthWalkAnimation(bool goesLeft);
-		const std::string GetBubJumpStand(void);
-		const std::string GetBubJumpWalking(void);
+		const std::string GetBubJump(void);
+
+		void SetJumpOnMove(bool j);
+		bool IsJumpOnMove(void);
 };
 
 #endif

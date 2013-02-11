@@ -273,6 +273,9 @@ void BubFallingAnimator::OnStopFalling(Sprite * sprite){
 	frtor->RegistCollitions(n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	DESTROY_ANIMATOR( this );
+
+	//logic
+	BubbleLogic::GetBubProfile()->SetJumpOnMove(true);
 }
 
 void BubFallingAnimator::OnOpenMouth(){

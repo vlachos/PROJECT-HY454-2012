@@ -12,7 +12,7 @@
 #include "AnimationsParser.h"
 #include "CollisionChecker.h"
 #include "BitmapLoader.h"
-#include "LetterSprite.h"
+#include "MultiSprite.h"
 #include "SoundAPI.h"
 
 #include "SpritesParser.h"
@@ -31,11 +31,11 @@ namespace StartWordAnimatorDeleter{
 
 }
 
-static void StartWordAnimator(const char* word, int x, int y){
-	std::vector<Rect> wordRect = BitmapFontHolder::GetWordRects( std::string(word), white);
+static void StartWordAnimator(const char* word, int x, int y, FontColor_t color){
+	std::vector<Rect> wordRect = BitmapFontHolder::GetWordRects( std::string(word), color);
 	AnimationFilm* af = new AnimationFilm( BitmapFontHolder::GetFontsBitmap(), wordRect, word);
 	animationFilmHolderLateDestraction.push_back(af);
-	LetterSprite* sprite = new LetterSprite( x, y, false, af, Terrain::GetActionLayer(), true);
+	MultiSprite* sprite = new MultiSprite( x, y, false, af, Terrain::GetActionLayer(), true);
 	MovingAnimation *mpa = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
 	StartScreenStaticAnimator* sssamr = new StartScreenStaticAnimator();
 
@@ -98,11 +98,12 @@ void StartScreenAnimatorActions::StartStartScreen(){
 							);
 	sprite->SetOnDrugs(true);
 	StartScreenStaticAnimator* sssamr = new StartScreenStaticAnimator();
+	START_ANIMATOR(sssamr, sprite, mpa, GetGameTime() );
 
 	MovingAnimation *mpa1 = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
 	Sprite *sprite1 = new Sprite(
 								10,
-								320,
+								340,
 								false,						
 								AnimationFilmHolder::GetFilm( "UOCEmblem" ), 
 								Terrain::GetActionLayer(), 
@@ -110,8 +111,7 @@ void StartScreenAnimatorActions::StartStartScreen(){
 							);
 	sprite1->SetOnDrugs(true);
 	StartScreenStaticAnimator* sssamr1 = new StartScreenStaticAnimator();
-
-
+	START_ANIMATOR(sssamr1, sprite1, mpa1, GetGameTime() );
 
 	FrameRangeAnimation *mpa2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("StartScreenSelector");
 	Sprite *sprite2 = new Sprite(
@@ -124,16 +124,19 @@ void StartScreenAnimatorActions::StartStartScreen(){
 							);
 	sprite2->SetOnDrugs(true);
 	StartScreenSelectorAnimator* sssamr2 = new StartScreenSelectorAnimator();
-
-	StartWordAnimator("START GAME", 210, 220);
-	StartWordAnimator("OPTIONS", 210, 240);
-	StartWordAnimator("EXIT", 210, 260);
-
-
-	START_ANIMATOR(sssamr, sprite, mpa, GetGameTime() );
-	START_ANIMATOR(sssamr1, sprite1, mpa1, GetGameTime() );
 	START_ANIMATOR(sssamr2, sprite2, mpa2, GetGameTime() );
 
+	StartWordAnimator("START GAME", 210, 220, white);
+	StartWordAnimator("OPTIONS", 210, 240, white);
+	StartWordAnimator("EXIT", 210, 260, white);
+
+	StartWordAnimator("CREATORS:", 180, 320, red);
+	StartWordAnimator("JAPOSTOL", 340, 320, red);
+	StartWordAnimator("VLACHOS", 348, 340, red);
+	StartWordAnimator("AKYRIAK", 348, 360, red);
+
+	StartWordAnimator("    CSD UOC", 128, 390, white);
+	StartWordAnimator(" COURSE - HY454", 120, 420, white);
 }
 
 

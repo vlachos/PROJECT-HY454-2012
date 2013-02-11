@@ -64,7 +64,7 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 
 	Sprite* newSprite = _this->GetSprite();
 	newSprite->ClearListeners();
-	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubJumpWalking());
+	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubJump());
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->RegistCollitions(newSprite);
 	
@@ -81,7 +81,7 @@ static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
 	Sprite* newSprite = _this->GetSprite();
 
 	newSprite->ClearListeners();
-	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubJumpStand() );
+	MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( BubbleLogic::GetBubProfile()->GetBubJump() );
 	BubJumpAnimator* mar = new BubJumpAnimator();
 	mar->RegistCollitions(newSprite);
 
@@ -103,6 +103,7 @@ bool InputManageHandling::OnKeyUp(void){
 		retVal = CheckDyDirectionWalking(bub);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
+		BubbleLogic::GetBubProfile()->SetJumpOnMove(false);
 		retVal = CheckDyDirectionStand(bub);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(startScreenSelectorAnimator_t)).empty()){
@@ -121,7 +122,6 @@ bool InputManageHandling::OnKeyUp(void){
 			selector->GoUp();
 		}
 	}
-
 	return retVal;
 }
 
@@ -159,18 +159,21 @@ bool InputManageHandling::OnKeyLeft(void){
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
 		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
-		bja->GetSprite()->Move(-2,0);
+		BubbleLogic::GetBubProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(-2,0):
+													   bja->GetSprite()->Move(-1,0);
 		bja->GetSprite()->SetGoesLeft(true);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpOpenMouthAnimator_t)).empty()){
 		BubJumpOpenMouthAnimator *bja=(BubJumpOpenMouthAnimator *)bub.front();
-		bja->GetSprite()->Move(-2,0);
+		BubbleLogic::GetBubProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(-2,0):
+													   bja->GetSprite()->Move(-1,0);
 		bja->GetSprite()->SetGoesLeft(true);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
 		BubFallingAnimator *bja=(BubFallingAnimator *)bub.front();
+		BubbleLogic::GetBubProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(-2,0):
+													   bja->GetSprite()->Move(-1,0);
 		bja->GetSprite()->SetGoesLeft(true);
-		bja->GetSprite()->Move(-2,0);
 	}
 
 	return retVal;
@@ -188,18 +191,21 @@ bool InputManageHandling::OnKeyRight(void){
 	}else 
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
 		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
-		bja->GetSprite()->Move(2,0);
+		BubbleLogic::GetBubProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(2,0):
+													   bja->GetSprite()->Move(1,0);
 		bja->GetSprite()->SetGoesLeft(false);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpOpenMouthAnimator_t)).empty()){
 		BubJumpOpenMouthAnimator *bja=(BubJumpOpenMouthAnimator *)bub.front();
-		bja->GetSprite()->Move(2,0);
+		BubbleLogic::GetBubProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(2,0):
+													   bja->GetSprite()->Move(1,0);
 		bja->GetSprite()->SetGoesLeft(false);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
 		BubFallingAnimator *bja=(BubFallingAnimator *)bub.front();
+		BubbleLogic::GetBubProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(2,0):
+													   bja->GetSprite()->Move(1,0);
 		bja->GetSprite()->SetGoesLeft(false);
-		bja->GetSprite()->Move(2,0);
 	}
 
 	return retVal;

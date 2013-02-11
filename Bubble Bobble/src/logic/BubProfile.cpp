@@ -20,6 +20,7 @@
 		timesJumped = 0;
 		timesBlastedBubble = 0;
 		timesPonedBubble = 0;
+		isJumpOnMove = true;
 	}
 	BubProfile::BubProfile(){
 		score = -1;
@@ -36,6 +37,7 @@
 		timesJumped = 0;
 		timesBlastedBubble = 0;
 		timesPonedBubble = 0;
+		isJumpOnMove = false;
 	}
 	///////// destructor
 	BubProfile::~BubProfile(){
@@ -52,6 +54,7 @@
 		timesJumped = 0;
 		timesBlastedBubble = 0;
 		timesPonedBubble = 0;
+		isJumpOnMove = false;
 	}
 
 	void BubProfile::InitBlastAnimationMap(void){}
@@ -162,12 +165,10 @@
 		return std::string();
 	}
 
-	const std::string BubProfile::GetBubJumpStand(void) {
-		if (!hasRedShoes)	return "BubJumpStand";
-		else				return "BubQuickJumpStand";
+	const std::string BubProfile::GetBubJump(void) {
+		if (!hasRedShoes)	return "BubJump";
+		else				return "BubQuickJump";
 	}
 
-	const std::string BubProfile::GetBubJumpWalking(void) {
-		if (!hasRedShoes)	return "BubJumpWalking";
-		else				return "BubQuickJumpWalking";
-	}
+	void BubProfile::SetJumpOnMove(bool j) { isJumpOnMove = j; }
+	bool BubProfile::IsJumpOnMove(void) { return isJumpOnMove; }

@@ -75,3 +75,6 @@
 		ttar2->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 		START_TIME_ANIMATOR(ttar2, GetGameTime());
 	}
+
+	void StageInitializer::InitScoreBoard(void) {  }
+	void StageInitializer::InitBubLifes(void) {  }

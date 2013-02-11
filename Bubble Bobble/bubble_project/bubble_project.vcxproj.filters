@@ -228,9 +228,6 @@
     <ClCompile Include="..\src\game_action\start_screen\OptionsScreenAnimator.cpp">
       <Filter>Source Files\game_action\start_screen</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\animations\LetterSprite.cpp">
-      <Filter>Source Files\animations</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\parsers\SpritesAttributeParser.cpp">
       <Filter>Source Files\parsers</Filter>
     </ClCompile>
@@ -248,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="..\src\game_action\StageInitializer.cpp">
       <Filter>Source Files\game_action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\animations\MultiSprite.cpp">
+      <Filter>Source Files\animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -401,9 +401,6 @@
     <ClInclude Include="..\include\game_action\start_screen\OptionsScreenAnimator.h">
       <Filter>Header Files\game_action\start_screen</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\animations\LetterSprite.h">
-      <Filter>Header Files\animations</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\parsers\SpritesAttributeParser.h">
       <Filter>Header Files\parsers</Filter>
     </ClInclude>
@@ -424,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="..\include\game_action\StageInitializer.h">
       <Filter>Header Files\game_action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\MultiSprite.h">
+      <Filter>Header Files\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
