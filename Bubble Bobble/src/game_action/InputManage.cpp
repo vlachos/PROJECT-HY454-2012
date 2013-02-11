@@ -258,11 +258,14 @@ bool InputManageHandling::OnKeySelect(void){
 }
 
 bool InputManageHandling::OnKeyP(void){
-	if(true){
-		
+	if ( !BubbleLogic::IsGamePaused() ){
+		BubbleLogic::SetTimeBeforePause( GetGameTime() );
+		BubbleLogic::SetGamePaused(true);
 	}
 	else{
-	
+		AnimatorHolder::TimeShiftAnimators(BubbleLogic::GetTimeBeforePause());
+		BubbleLogic::SetTimeBeforePause( 0);
+		BubbleLogic::SetGamePaused(false);
 	}
 	return true;
 }

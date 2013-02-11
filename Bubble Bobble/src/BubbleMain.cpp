@@ -84,13 +84,6 @@ void BubbleMain::InitGameEngine(){
 	SoundAPI::PlaySoundContinue(SoundAPI::soundKind_enterYourInitials_t, true);
 	StartScreenAnimatorActions::StartStartScreen();
 
-	/*
-	TickAnimation *ta = (TickAnimation*) AnimationsParser::GetAnimation("HurryUpStart");
-	ta->SetTickAction( BaronVonBlubaAnimatorActions::StartHurryUpAnimator, 0 );
-	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
-	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
-	*/
-
 	redraw = true;
 }
 
@@ -106,7 +99,7 @@ void BubbleMain::ManageGameLoop(){
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 			timestamp_t nowTime = GetCurrTime();
 			Rendering();
-			if(true){//////////////if not paused
+			if( !BubbleLogic::IsGamePaused() ){
 				if(!InputManagement())
 					break;
 				AnimationProgress(nowTime);
@@ -159,42 +152,9 @@ bool BubbleMain::InputManagement(){
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_Z)){
 		retVal = InputManageHandling::OnKeySelect();
-
-
-		/*
-		std::vector<Animator*> zen;
-
-		if(!(zen = AnimatorHolder::GetAnimators(zenChanWalkAnimator_t)).empty()){
-
-			ZenChanWalkingAnimator* _this = (ZenChanWalkingAnimator*) zen.front();
-			DASSERT( _this->GetAnimation() && _this->GetSprite() );
-			REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-			Sprite* newSprite = _this->GetSprite();
-			newSprite->ClearListeners();
-			MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( "ZenChanJump" );
-			ZenChanJumpAnimator* mar = new ZenChanJumpAnimator();
-			mar->RegistCollitions(newSprite);
-	
-			START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
-			DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
-		}else
-		if(!(zen = AnimatorHolder::GetAnimators(mightaWalkAnimator_t)).empty()){
-
-			MightaWalkingAnimator* _this = (MightaWalkingAnimator*) zen.front();
-			DASSERT( _this->GetAnimation() && _this->GetSprite() );
-			REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-			Sprite* newSprite = _this->GetSprite();
-			newSprite->ClearListeners();
-			MovingPathAnimation * ma = (MovingPathAnimation*) AnimationsParser::GetAnimation( "MightaJump" );
-			MightaJumpAnimator* mar = new MightaJumpAnimator();
-			mar->RegistCollitions(newSprite);
-	
-			START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
-			DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
-		}
-		*/
+	}
+	if(al_key_down(&keyState, ALLEGRO_KEY_P)){
+		retVal = InputManageHandling::OnKeyP();
 	}
 	return retVal;
 }

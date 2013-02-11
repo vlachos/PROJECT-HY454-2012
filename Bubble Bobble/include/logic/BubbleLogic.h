@@ -2,6 +2,7 @@
 #define BUBBLELOGIC_H
 
 #include "BubProfile.h"
+#include "Animator.h"
 #include "Metrics.h"
 #include <vector>
 
@@ -13,6 +14,8 @@ class BubbleLogic {
 	private:
 		static int stageLevel;
 		static bool gameIsPaused;
+		static timestamp_t timeBeforePause;
+
 		static Points highScore;
 
 		static BubProfile* bub;
@@ -55,6 +58,9 @@ class BubbleLogic {
 
 		static void SetGamePaused(bool p);
 		static bool IsGamePaused(void);
+
+		static void SetTimeBeforePause(timestamp_t t);
+		static timestamp_t GetTimeBeforePause(void);
 
 		static BubProfile* GetBubProfile(void);
 		static BubProfile* GetBobProfile(void);

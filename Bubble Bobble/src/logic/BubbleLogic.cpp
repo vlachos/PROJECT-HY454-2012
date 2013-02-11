@@ -11,6 +11,8 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 	int BubbleLogic::stageLevel;
 	bool BubbleLogic::gameIsPaused;
+	timestamp_t BubbleLogic::timeBeforePause;
+
 	BubProfile* BubbleLogic::bub;
 	BubProfile* BubbleLogic::bob;
 
@@ -46,6 +48,8 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::SingletonCreate(void){
 		stageLevel = 1;
 		gameIsPaused = false;
+		timeBeforePause = 0;
+
 		SpritesAttributeParser::SingletonCreate("..\\data\\bitmaps\\sprites\\info\\sprites_attributes_data.xml");
 
 		highScore = 0;
@@ -101,6 +105,8 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::SetGamePaused(bool p) { gameIsPaused = p; }
 	bool BubbleLogic::IsGamePaused(void) { return gameIsPaused; }
 
+	void BubbleLogic::SetTimeBeforePause(timestamp_t t) { timeBeforePause = t; }
+	timestamp_t BubbleLogic::GetTimeBeforePause(void) { return timeBeforePause; }
 
 	///////////// BUBBLUN
 	BubProfile* BubbleLogic::GetBubProfile(void) { return bub; }
