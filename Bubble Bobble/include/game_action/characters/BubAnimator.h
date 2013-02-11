@@ -8,6 +8,7 @@
 
 namespace BubAnimatorActions{
 	extern void OnCollisionWithEnemy(Sprite*, Sprite*, void*);
+	extern void OnCollisionWithFire(Sprite*, Sprite*, void*);
 }
 
 class BubInBubbleAnimator : public MovingPathAnimator{
@@ -127,6 +128,30 @@ class BubDieFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFa
 
 	public:
 		BubDieFallingAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubDieFallingAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		void OnStopFalling(Sprite * sprite);
+};
+
+class BubDieByFireAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
+	public:
+		BubDieByFireAnimator();
+
+		enum animatorType_t GetAnimatorType(void)
+			{ return bubDieAnimator_t; }
+
+		void RegistCollitions(Sprite*);
+		static void OnFinishCallback(Animator*, void*);
+		void OnStartFalling(Sprite * sprite);
+};
+
+class BubDieByFireFallingAnimator : public MovingAnimator, public Sprite::SpriteStopFallingListener{
+
+	public:
+		BubDieByFireFallingAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return bubDieFallingAnimator_t; }

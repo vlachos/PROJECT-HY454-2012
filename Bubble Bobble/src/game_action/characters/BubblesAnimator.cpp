@@ -702,7 +702,7 @@ void MightaMovingFireBallAnimator::RegistCollitions(Sprite* spr){
 	for(unsigned int i=0; i<ibd.size(); ++i){
 		CollisionChecker::Register(spr, ibd[i].sprite, this, OnCollisionWithWall);
 	}
-	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithFire);
 }
 
 void MightaMovingFireBallAnimator::OnCollisionWithWall(Sprite *ball, Sprite *wall, void * args){

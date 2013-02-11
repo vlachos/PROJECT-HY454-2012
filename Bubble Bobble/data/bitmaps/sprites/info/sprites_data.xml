@@ -103,7 +103,6 @@
     <bbox x = "240" y = "181" w="32" h="32" />
   </BubInBubble>
 
-
   <ZenChanWalk  w="16" h="16">
     <bbox x="6" y="246" />
     <bbox x="24" y="245"  />
