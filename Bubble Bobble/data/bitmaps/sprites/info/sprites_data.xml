@@ -331,7 +331,14 @@
     <bbox x="400" y="1429"/>
     <bbox x="418" y="1429"/>
     <bbox x="435" y="1429"/>
-  </SelecterOption>  
-  
+  </SelecterOption>
 
+  <BubLifes w="16" h="16">
+    <bbox x="604" y ="1285"/>
+  </BubLifes>
+
+  <BobLifes w="16" h="16">
+    <bbox x="615" y ="1285"/>
+  </BobLifes>  
+  
 </sprites>

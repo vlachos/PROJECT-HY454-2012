@@ -437,6 +437,7 @@
   <StartScreenStatic type="MovingAnimation" dx="0" dy="0" delay="500" continue="true"/>
   <StartScreenSelector type="FrameRangeAnimation" dx="0" dy="0" delay="200" continue="true" start="0" end="5"/>
 
+  <ScoreBoard type="MovingAnimation" dx="0" dy="0" delay="999999" continue="true"/>
   <BubLifes type="MovingAnimation" dx="0" dy="0" delay="99999" continue="true"/>  
   
   <exampleforframelist type="FrameListAnimation" dx="0" dy="0" delay="100" continue="true" listSize="3">

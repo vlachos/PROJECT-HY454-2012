@@ -76,5 +76,8 @@
 		START_TIME_ANIMATOR(ttar2, GetGameTime());
 	}
 
-	void StageInitializer::InitScoreBoard(void) {  }
-	void StageInitializer::InitBubLifes(void) {  }
+	void StageInitializer::InitScoreBoard(void){
+	}
+	void StageInitializer::InitBubLifes(void){
+
+	}

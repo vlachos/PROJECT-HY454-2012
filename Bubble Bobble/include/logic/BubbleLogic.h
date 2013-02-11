@@ -12,6 +12,7 @@ class BubbleLogic {
 
 	private:
 		static int stageLevel;
+		static bool gameIsPaused;
 		static Points highScore;
 
 		static BubProfile* bub;
@@ -48,7 +49,12 @@ class BubbleLogic {
 
 	public:
 
+		static void SetStageLevel(int aLevel);
+		static void IncrStageLevel(void);
 		static int GetStageLevel(void);
+
+		static void SetGamePaused(bool p);
+		static bool IsGamePaused(void);
 
 		static BubProfile* GetBubProfile(void);
 		static BubProfile* GetBobProfile(void);
