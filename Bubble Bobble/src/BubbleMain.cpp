@@ -203,6 +203,10 @@ bool BubbleMain::InputManagement(){
 		retVal = InputManageHandling::OnKeySpace();
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_Z)){
+		retVal = InputManageHandling::OnKeySelect();
+
+
+		/*
 		std::vector<Animator*> zen;
 
 		if(!(zen = AnimatorHolder::GetAnimators(zenChanWalkAnimator_t)).empty()){
@@ -235,6 +239,7 @@ bool BubbleMain::InputManagement(){
 			START_ANIMATOR( mar, newSprite, ma, GetGameTime() );
 			DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 		}
+		*/
 	}
 	return retVal;
 }

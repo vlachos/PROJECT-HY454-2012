@@ -8,7 +8,7 @@ extern bool OnKeyDown(void);
 extern bool OnKeyLeft(void);
 extern bool OnKeyRight(void);
 extern bool OnKeySpace(void);
-
+extern bool OnKeySelect(void);
 
 }
 

@@ -21,7 +21,6 @@
 /////////////////////////static functions
 
 static bool CheckDxDirectionWalking(const std::vector<Animator*>& bub, bool direction){
-	DASSERT( bub.size()==1 );
 	BubWalkingAnimator* bubWalk = (BubWalkingAnimator*) bub.front();
 	offset_t offset = bubWalk->GetAnimation()->GetDx();
 	DASSERT( offset!=0 );
@@ -34,7 +33,6 @@ static bool CheckDxDirectionWalking(const std::vector<Animator*>& bub, bool dire
 }
 
 static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direction){
-	DASSERT( bub.size()==1 );
 	BubStandAnimator* _this = (BubStandAnimator*) bub.front();
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
@@ -60,7 +58,6 @@ static bool CheckDxDirectionStand(const std::vector<Animator*>& bub, bool direct
 }
 
 static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
-	DASSERT( bub.size()==1 );
 	BubWalkingAnimator* _this = (BubWalkingAnimator*) bub.front();
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
@@ -77,7 +74,6 @@ static bool CheckDyDirectionWalking(const std::vector<Animator*>& bub){
 }
 
 static bool CheckDyDirectionStand(const std::vector<Animator*>& bub){
-	DASSERT( bub.size()==1 );
 	BubStandAnimator* _this = (BubStandAnimator*) bub.front();
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
@@ -113,7 +109,6 @@ bool InputManageHandling::OnKeyUp(void){
 		timestamp_t nowTime;
 		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
 			oldTime = nowTime;
-			DASSERT(bub.size() == 1);
 			StartScreenSelectorAnimator* selector = (StartScreenSelectorAnimator*) bub.front();
 			selector->GoUp();
 		}
@@ -122,7 +117,6 @@ bool InputManageHandling::OnKeyUp(void){
 		timestamp_t nowTime;
 		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
 			oldTime = nowTime;
-			DASSERT(bub.size() == 1);
 			OptionsScreenSelectorAnimator* selector = (OptionsScreenSelectorAnimator*) bub.front();
 			selector->GoUp();
 		}
@@ -138,7 +132,6 @@ bool InputManageHandling::OnKeyDown(void){
 		timestamp_t nowTime;
 		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
 			oldTime = nowTime;
-			DASSERT(bub.size() == 1);
 			StartScreenSelectorAnimator* selector = (StartScreenSelectorAnimator*) bub.front();
 			selector->GoDown();
 		}
@@ -147,7 +140,6 @@ bool InputManageHandling::OnKeyDown(void){
 		timestamp_t nowTime;
 		if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
 			oldTime = nowTime;
-			DASSERT(bub.size() == 1);
 			OptionsScreenSelectorAnimator* selector = (OptionsScreenSelectorAnimator*) bub.front();
 			selector->GoDown();
 		}
@@ -166,19 +158,16 @@ bool InputManageHandling::OnKeyLeft(void){
 		retVal = CheckDxDirectionStand(bub, true);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
 		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
 		bja->GetSprite()->Move(-2,0);
 		bja->GetSprite()->SetGoesLeft(true);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpOpenMouthAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
 		BubJumpOpenMouthAnimator *bja=(BubJumpOpenMouthAnimator *)bub.front();
 		bja->GetSprite()->Move(-2,0);
 		bja->GetSprite()->SetGoesLeft(true);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
 		BubFallingAnimator *bja=(BubFallingAnimator *)bub.front();
 		bja->GetSprite()->SetGoesLeft(true);
 		bja->GetSprite()->Move(-2,0);
@@ -198,19 +187,16 @@ bool InputManageHandling::OnKeyRight(void){
 		retVal = CheckDxDirectionStand(bub, false);
 	}else 
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
 		BubJumpAnimator *bja=(BubJumpAnimator *)bub.front();
 		bja->GetSprite()->Move(2,0);
 		bja->GetSprite()->SetGoesLeft(false);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubJumpOpenMouthAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
 		BubJumpOpenMouthAnimator *bja=(BubJumpOpenMouthAnimator *)bub.front();
 		bja->GetSprite()->Move(2,0);
 		bja->GetSprite()->SetGoesLeft(false);
 	}else
 	if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
-		DASSERT( bub.size()==1 );
 		BubFallingAnimator *bja=(BubFallingAnimator *)bub.front();
 		bja->GetSprite()->SetGoesLeft(false);
 		bja->GetSprite()->Move(2,0);
@@ -229,30 +215,38 @@ bool InputManageHandling::OnKeySpace(void){
 	if( (nowTime = GetCurrTime())>oldTime+START_MENU_SELECTOR_DELAY ){
 		oldTime = nowTime;
 		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
 			( (BubWalkingAnimator*) bub.front() )->OnOpenMouth();
 		}else	
 		if(!(bub = AnimatorHolder::GetAnimators(bubStandAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
 			( (BubStandAnimator*) bub.front() )->OnOpenMouth();
 		}else	
 		if(!(bub = AnimatorHolder::GetAnimators(bubFallingAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
 			( (BubFallingAnimator*) bub.front() )->OnOpenMouth();
 		}else	
 		if(!(bub = AnimatorHolder::GetAnimators(bubJumpAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
 			( (BubJumpAnimator*) bub.front() )->OnOpenMouth();
 		}else	
 		if(!(bub = AnimatorHolder::GetAnimators(startScreenSelectorAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
 			retVal = ( (StartScreenSelectorAnimator*) bub.front() )->PressEnter();
 		}else	
 		if(!(bub = AnimatorHolder::GetAnimators(optionsScreenSelectorAnimator_t)).empty()){
-			DASSERT( bub.size()==1 );
 			retVal = ( (OptionsScreenSelectorAnimator*) bub.front() )->PressEnter();
 		}
 	}
 		
 	return retVal;
+}
+
+
+bool InputManageHandling::OnKeySelect(void){
+
+	Sprite* sprite = new Sprite(BubbleLogic::GetBobProfile()->GetStartX(),BubbleLogic::GetBobProfile()->GetStartY(),
+								BubbleLogic::GetBobProfile()->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
+								Terrain::GetActionLayer(), BubbleLogic::GetBobProfile()->GetStartDirection());	
+	MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															
+	BubStandAnimator* animr = new BubStandAnimator();
+	animr->RegistCollitions(sprite);
+
+	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
+	return true;
 }
