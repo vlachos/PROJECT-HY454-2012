@@ -103,8 +103,14 @@ class ZenChanAngryJumpAnimator : public FrameRangeAnimator{
 };
 ////////////////////////Die Animator is common
 class ZenChanDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
+	private:
+		bool riverDie;
+
 	public:
-		ZenChanDieAnimator();
+		void SetRiverDie(bool die) { riverDie = die; }
+		bool GetRiverDie(void) { return riverDie;}
+
+		ZenChanDieAnimator(void);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return zenChanDieAnimator_t; }
@@ -117,7 +123,13 @@ class ZenChanDieAnimator : public MovingPathAnimator, public Sprite::SpriteStart
 
 class ZenChanDieFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
 
+	private:
+		bool riverDie;
+
 	public:
+		void SetRiverDie(bool die) { riverDie = die; }
+		bool GetRiverDie(void) { return riverDie;}
+
 		ZenChanDieFallingAnimator();
 
 		enum animatorType_t GetAnimatorType(void)

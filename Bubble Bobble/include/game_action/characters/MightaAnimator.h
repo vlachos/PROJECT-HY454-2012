@@ -128,8 +128,14 @@ class MightaAngryThrowFireBallAnimator : public FrameRangeAnimator{
 };
 //////////////////Die Animators are common
 class MightaDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartFallingListener{
+	private:
+		bool riverDie;
+
 	public:
-		MightaDieAnimator();
+		void SetRiverDie(bool die) { riverDie = die; }
+		bool GetRiverDie(void) { return riverDie;}
+
+		MightaDieAnimator(void);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return mightaDieAnimator_t; }
@@ -141,7 +147,13 @@ class MightaDieAnimator : public MovingPathAnimator, public Sprite::SpriteStartF
 
 class MightaDieFallingAnimator : public FrameRangeAnimator, public Sprite::SpriteStopFallingListener{
 
+	private:
+		bool riverDie;
+
 	public:
+		void SetRiverDie(bool die) { riverDie = die; }
+		bool GetRiverDie(void) { return riverDie;}
+
 		MightaDieFallingAnimator();
 
 		enum animatorType_t GetAnimatorType(void)

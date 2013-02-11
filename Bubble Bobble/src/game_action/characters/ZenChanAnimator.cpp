@@ -95,24 +95,6 @@ void ZenChanFallingAnimator::OnStopFalling(Sprite * sprite){
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }
 
-////////////////ZenChanDieFallingAnimtor
-
-ZenChanDieFallingAnimator::ZenChanDieFallingAnimator(){}
-
-void ZenChanDieFallingAnimator::RegistCollitions(Sprite *spr){
-	
-}
-
-void ZenChanDieFallingAnimator::OnStopFalling(Sprite * sprite){
-	DASSERT( sprite == this->GetSprite() );
-	REMOVE_FROM_ACTION_ANIMATOR( this );
-
-	INIT_NEW_INSTANCE_WITH_SPRITE(	MovingPathAnimation, zenStandAnmn, "ZenChanDie",
-					ZenChanDieAnimator, zenStandAnmr, this->GetSprite() );	
-	
-	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
-	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
-}
 
 ////////////////ZenChanJumpAnimator
 ZenChanJumpAnimator::ZenChanJumpAnimator(){
@@ -257,6 +239,7 @@ void ZenChanAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 ////////////////ZenChanDieAnimator////////die for both angry and normal
 ZenChanDieAnimator::ZenChanDieAnimator(){
 	this->SetOnFinish( OnFinishCallback, this );
+	this->SetRiverDie(false);
 }
 
 void ZenChanDieAnimator::RegistCollitions(Sprite *spr){
@@ -270,18 +253,44 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 
 	//logic
-	FruitsAnimators::StartFruitAnimator(5, _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+	if (!_this->GetRiverDie() )
+		FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+	else
+		FruitsAnimators::StartFruitAnimator(5, _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 }
 
 void ZenChanDieAnimator::OnStartFalling(Sprite * sprite){
 	
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
+	bool dieFrom = this->GetRiverDie();
 
 	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenFallAnmn, "ZenChanFalling",
 						ZenChanDieFallingAnimator, zenFallAnmr, this->GetSprite() );
+	zenFallAnmr->SetRiverDie(dieFrom);
 
 	this->GetSprite()->AddStopFallingListener(zenFallAnmr);
 	START_ANIMATOR( zenFallAnmr, this->GetSprite(), zenFallAnmn, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
+}
+
+////////////////ZenChanDieFallingAnimtor
+
+ZenChanDieFallingAnimator::ZenChanDieFallingAnimator(){}
+
+void ZenChanDieFallingAnimator::RegistCollitions(Sprite *spr){
+	
+}
+
+void ZenChanDieFallingAnimator::OnStopFalling(Sprite * sprite){
+	DASSERT( sprite == this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+	bool dieFrom = this->GetRiverDie();
+
+	INIT_NEW_INSTANCE_WITH_SPRITE(	MovingPathAnimation, zenStandAnmn, "ZenChanDie",
+					ZenChanDieAnimator, zenStandAnmr, this->GetSprite() );	
+	zenStandAnmr->SetRiverDie(dieFrom);
+	
+	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }

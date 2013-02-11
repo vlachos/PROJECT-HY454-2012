@@ -281,9 +281,11 @@ void MightaAngryJumpAnimator::OnFinishCallback(Animator* anim, void* args){
 
 
 }
+
 ////////////////MightaDieAnimator
 MightaDieAnimator::MightaDieAnimator(){
 	this->SetOnFinish( OnFinishCallback, (void*)this );
+	this->SetRiverDie(false);
 }
 
 void MightaDieAnimator::RegistCollitions(Sprite *spr){
@@ -296,19 +298,46 @@ void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DESTROY_ANIMATOR( _this );
 
 	//logic
-	FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+	if (!_this->GetRiverDie() )
+		FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+	else
+		FruitsAnimators::StartFruitAnimator(5, _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 }
 
 void MightaDieAnimator::OnStartFalling(Sprite * sprite){
 	
 	DASSERT( sprite == this->GetSprite() );
 	REMOVE_FROM_ACTION_ANIMATOR( this );
+	bool dieFrom = this->GetRiverDie();
 
 	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, zenFallAnmn, "MightaFalling",
 						MightaDieFallingAnimator, zenFallAnmr, this->GetSprite() );
+	zenFallAnmr->SetRiverDie(dieFrom);
 
 	this->GetSprite()->AddStopFallingListener(zenFallAnmr);
 	START_ANIMATOR( zenFallAnmr, this->GetSprite(), zenFallAnmn, GetGameTime() );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
+}
+
+
+////////////////MightaDieFallingAnimtor
+
+MightaDieFallingAnimator::MightaDieFallingAnimator(){}
+
+void MightaDieFallingAnimator::RegistCollitions(Sprite *spr){
+	
+}
+
+void MightaDieFallingAnimator::OnStopFalling(Sprite * sprite){
+	DASSERT( sprite == this->GetSprite() );
+	REMOVE_FROM_ACTION_ANIMATOR( this );
+	bool dieFrom = this->GetRiverDie();
+
+	INIT_NEW_INSTANCE_WITH_SPRITE(	MovingPathAnimation, zenStandAnmn, "MightaDie",
+					MightaDieAnimator, zenStandAnmr, this->GetSprite() );	
+	zenStandAnmr->SetRiverDie(dieFrom);
+
+	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
 	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }
 
@@ -349,25 +378,4 @@ void MightaAngryThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* ar
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 	START_ANIMATOR( mmfa, newSprite, ball, GetGameTime() );
 	DESTROY_ANIMATOR( _this );
-
-
-}
-
-////////////////MightaDieFallingAnimtor
-
-MightaDieFallingAnimator::MightaDieFallingAnimator(){}
-
-void MightaDieFallingAnimator::RegistCollitions(Sprite *spr){
-	
-}
-
-void MightaDieFallingAnimator::OnStopFalling(Sprite * sprite){
-	DASSERT( sprite == this->GetSprite() );
-	REMOVE_FROM_ACTION_ANIMATOR( this );
-
-	INIT_NEW_INSTANCE_WITH_SPRITE(	MovingPathAnimation, zenStandAnmn, "MightaDie",
-					MightaDieAnimator, zenStandAnmr, this->GetSprite() );	
-	
-	START_ANIMATOR( zenStandAnmr, this->GetSprite(), zenStandAnmn, GetGameTime() );
-	DESTROY_ANIMATOR_WITHOUT_SPRITE( this );
 }

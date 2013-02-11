@@ -32,7 +32,7 @@ void RiverAnimatorActions::StartWaterBubble(void* args){
 }
 
 void RiverAnimatorActions::StartRiverAnimator(int x, int y, bool goesLeft){
-	RiverSprite* sprite7 = new RiverSprite(x,y,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), true);	
+	RiverSprite* sprite7 = new RiverSprite(x,y,true,AnimationFilmHolder::GetFilm("RiverHFront"), Terrain::GetActionLayer(), goesLeft);	
 	MovingAnimation* anim7 = (MovingAnimation*) AnimationsParser::GetAnimation("WaterRushLeft");
 	RiverAnimator* animr7 = new RiverAnimator();
 	sprite7->AddStartFallingListener( animr7 );
@@ -61,14 +61,14 @@ void WaterBubbleAnimator::RegistCollitions(Sprite* spr){
 void WaterBubbleAnimator::OnCollisionWithBubFalling(Sprite *bubble, Sprite *bub, void *args){
 	WaterBubbleAnimator* _this = (WaterBubbleAnimator*) args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	RiverAnimatorActions::StartRiverAnimator(bubble->GetX(), bubble->GetY(), bubble->GoesLeft());
+	RiverAnimatorActions::StartRiverAnimator(bubble->GetX(), bubble->GetY(), !bubble->GoesLeft());
 	DESTROY_ANIMATOR( _this );
 }
 
 void WaterBubbleAnimator::OnCollisionWithBubJump(Sprite *bubble, Sprite *bub, void *args){
 	WaterBubbleAnimator* _this = (WaterBubbleAnimator*) args;
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	RiverAnimatorActions::StartRiverAnimator(bubble->GetX(), bubble->GetY(), bubble->GoesLeft());
+	RiverAnimatorActions::StartRiverAnimator(bubble->GetX(), bubble->GetY(), !bubble->GoesLeft());
 	DESTROY_ANIMATOR( _this );
 }
 
@@ -135,6 +135,7 @@ void RiverAnimator::OnCollisionWithZenChan(Sprite * spr1, Sprite * spr2, void* a
 
 	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("ZenChanDie");
 	ZenChanDieAnimator *bda = new ZenChanDieAnimator();
+	bda->SetRiverDie(true);
 	newSprite->AddStartFallingListener(bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime());
 }
@@ -150,6 +151,7 @@ void RiverAnimator::OnCollisionWithMighta(Sprite * spr1, Sprite * spr2, void* ar
 
 	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("MightaDie");
 	MightaDieAnimator *bda = new MightaDieAnimator();
+	bda->SetRiverDie(true);
 	newSprite->AddStartFallingListener(bda);
 	START_ANIMATOR( bda, newSprite, mpa, GetGameTime());
 }
