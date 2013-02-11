@@ -1,9 +1,12 @@
 #include "sprite.h"
 
 void Sprite::Display(Bitmap dest){
-		
-	al_draw_bitmap_region(currFilm->GetBitmap(), frameBox.GetX(), frameBox.GetY(), 
-		frameBox.GetWidth(), frameBox.GetHeigth(), x, y, (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
+	if(isBub==-1)
+		al_draw_bitmap_region(currFilm->GetBitmap(), frameBox.GetX(), frameBox.GetY(), 
+			frameBox.GetWidth(), frameBox.GetHeigth(), x, y, (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
+	else
+		al_draw_bitmap_region(currFilm->GetBitmap(), isBub?frameBox.GetX():frameBox.GetX()+BUB_IMAGE_OFFSET, frameBox.GetY(), 
+			frameBox.GetWidth(), frameBox.GetHeigth(), x, y, (goesLeft?0:ALLEGRO_FLIP_HORIZONTAL));
 }
 
 bool Sprite::IsSolidTerrain(int _x, int _y){

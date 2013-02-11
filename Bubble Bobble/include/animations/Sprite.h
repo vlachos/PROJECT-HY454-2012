@@ -10,6 +10,7 @@
 #include "Sprite.h"
 #include "TileLayer.h"
 
+#define BUB_IMAGE_OFFSET 646
 #define COLLISION_OFFSET 8
 
 class Sprite : public LatelyDestroyable{
@@ -28,7 +29,7 @@ class Sprite : public LatelyDestroyable{
 		byte			frameNo;
 		Rect			frameBox;
 		int				x,y;
-		bool			isVisible, gravityAddicted, isFalling, goesLeft, onDrugs;
+		bool			isBub, isVisible, gravityAddicted, isFalling, goesLeft, onDrugs;
 	protected:
 		const AnimationFilm *	currFilm;
 	private:
@@ -78,6 +79,8 @@ class Sprite : public LatelyDestroyable{
 		void SetGoesLeft( bool _goesLeft ) { goesLeft = _goesLeft; }
 		void SetOnDrugs(bool b) { onDrugs = b; }
 		bool IsOnDrugs() { return onDrugs; }
+		void SetIsBub(bool b) { isBub = b; }
+		bool IsBub() { return isBub; }
 		const TileLayer * GetActionLayer(void) { return tileLayer; }
 		const AnimationFilm* GetFilm(void) { return currFilm; }
 		bool CollisionCheck( Sprite * s );
@@ -109,6 +112,7 @@ class Sprite : public LatelyDestroyable{
 			frameNo = currFilm->GetTotalFrames();
 			SetFrame(0);
 			onDrugs = false;
+			isBub = -1;
 		}
 };
 

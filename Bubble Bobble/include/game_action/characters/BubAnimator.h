@@ -107,6 +107,7 @@ class BubJumpOpenMouthAnimator : public MovingPathAnimator{
 		static void OnFinishCallback(Animator*, void*);
 		MovingPathAnimation* GetJumpAnimation();
 		int					 GetIndex();
+		bool isBub;
 	private:
 		MovingPathAnimation* jumpAnimation;
 		int index;
