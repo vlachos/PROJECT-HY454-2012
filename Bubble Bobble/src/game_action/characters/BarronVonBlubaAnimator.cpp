@@ -1,3 +1,4 @@
+#include "BarronVonBlubaAnimator.h"
 #include "GameActionUtilities.h"
 #include "MemoryManage.h"
 #include "AnimationsParser.h"
@@ -5,16 +6,16 @@
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
 #include "CollisionChecker.h"
-#include "BarronVonBlubaAnimator.h"
 #include "BubblesAnimator.h"
 #include "TickAnimation.h"
 #include "TimerTickAnimator.h"
+#include "BubAnimator.h"
 
 void BaronVonBlubaAnimatorActions::StartBaronVonBludaAnimator(void* args){
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaRushRight");
 	Sprite *sprite = new Sprite(
-								50,
-								100,
+								10,
+								1,
 								false,						
 								AnimationFilmHolder::GetFilm( "BaronVonBlubba" ), 
 								Terrain::GetActionLayer(), 
@@ -56,8 +57,13 @@ void HurryUpAnimator::OnFinishCallback(Animator* anim, void* args){
 }
 
 ////////////////BaronVonBlubaStandAnimator
-BaronVonBlubaStandAnimator::BaronVonBlubaStandAnimator(){
-	this->SetOnFinish(OnFinishCallback, this);
+
+BaronVonBlubaStandAnimator::BaronVonBlubaStandAnimator(direction prdir){
+	prevDirection = prdir;
+}
+
+void BaronVonBlubaStandAnimator::RegistCollitions(Sprite* spr){
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void BaronVonBlubaStandAnimator::OnCollisionWithEnemy(Sprite* s1, Sprite* s2, void* args){
@@ -66,11 +72,14 @@ void BaronVonBlubaStandAnimator::OnCollisionWithEnemy(Sprite* s1, Sprite* s2, vo
 	DESTROY_ANIMATOR(_this);
 }
 
-void BaronVonBlubaStandAnimator::OnFinishCallback(Animator* animr, void* args){}
-
 ////////////////BaronVonBlubaRushAnimator
+
 BaronVonBlubaRushAnimator::BaronVonBlubaRushAnimator(){
 	this->SetOnFinish(OnFinishCallback, this);
+}
+
+void BaronVonBlubaRushAnimator::RegistCollitions(Sprite* spr){
+	CollisionChecker::Register(spr,bubStandAnimator_t,bubJumpAnimator_t,BubAnimatorActions::OnCollisionWithEnemy);
 }
 
 void BaronVonBlubaRushAnimator::OnCollisionWithEnemy(Sprite* s1, Sprite* s2, void* args){
@@ -83,20 +92,30 @@ void BaronVonBlubaRushAnimator::OnFinishCallback(Animator* animr, void* args){
 	DASSERT( animr &&  animr == args);
 	BaronVonBlubaRushAnimator* _this = (BaronVonBlubaRushAnimator*)args;
 	DASSERT( _this->GetAnimation() && _this->GetSprite());
-
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-	/*
-	INIT_NEW_INSTANCE_WITH_SPRITE(	FrameRangeAnimation, baronStandAnmn, "BarronVonBlubaStand",
-						BaronVonBlubaStandAnimator, baronStandAnmr, _this->GetSprite() );
 
-	baronStandAnmr->SetOnFinish(BaronVonBlubaStandAnimator::OnFinishCallback, 0);
+	Sprite* nSprite = _this->GetSprite();
+	nSprite->ClearListeners();
+	MovingAnimation* man = (MovingAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaStand");
+	BaronVonBlubaStandAnimator::direction dir;
+	const PathEntry animPath = _this->GetAnimation()->GetPath().front();
+	if( animPath.x>0 )
+		dir = BaronVonBlubaStandAnimator::direction_rigth_t;
+	else
+	if(animPath.x<0)
+		dir = BaronVonBlubaStandAnimator::direction_left_t;
+	else
+	if(animPath.y>0)
+		dir = BaronVonBlubaStandAnimator::direction_down_t;
+	else
+	if(animPath.y<0)
+		dir = BaronVonBlubaStandAnimator::direction_up_t;
+	else
+		DASSERT(false);
 
-	//collision register
+	BaronVonBlubaStandAnimator* vvbsar = new BaronVonBlubaStandAnimator(dir);
+	START_ANIMATOR( vvbsar, nSprite, man, GetGameTime() );
 
-	START_ANIMATOR( baronStandAnmr, _this->GetSprite(), baronStandAnmn, GetGameTime() );*/
-	DESTROY_ANIMATOR(_this );
+	DESTROY_ANIMATOR_WITHOUT_SPRITE( _this );
 }
 
-void BaronVonBlubaRushAnimator::RegistCollitions(Sprite* spr){
-
-}

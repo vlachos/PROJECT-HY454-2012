@@ -1,7 +1,7 @@
 #ifndef BARONVONBLUBAANIMATOR_H
 #define BARONVONBLUBAANIMATOR_H
 
-#include "FrameRangeAnimator.h"
+#include "MovingAnimator.h"
 #include "MovingPathAnimator.h"
 #include "Sprite.h"
 
@@ -20,14 +20,21 @@ class HurryUpAnimator : public MovingPathAnimator{
 		static void OnFinishCallback(Animator*, void*);
 };
 
-class BaronVonBlubaStandAnimator : public FrameRangeAnimator{
+class BaronVonBlubaStandAnimator : public MovingAnimator{
 	public:
-		BaronVonBlubaStandAnimator();
+		typedef enum _direction{
+			direction_up_t,
+			direction_down_t,
+			direction_left_t,
+			direction_rigth_t
+		}direction;
+		BaronVonBlubaStandAnimator(direction);
 
 		enum animatorType_t GetAnimatorType(void)
 			{ return baronVonBlubaStandAnimator_t; }
+		void RegistCollitions(Sprite* spr);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
-		static void OnFinishCallback(Animator*, void*);
+		direction prevDirection;
 };
 
 
@@ -36,7 +43,7 @@ class BaronVonBlubaRushAnimator : public MovingPathAnimator{
 		BaronVonBlubaRushAnimator();
 
 		enum animatorType_t GetAnimatorType(void)
-			{ return baronVonBlubaStandAnimator_t; }
+			{ return baronVonBlubaRushAnimator_t; }
 		void RegistCollitions(Sprite* spr);
 		static void OnCollisionWithEnemy(Sprite *, Sprite *, void *);
 		static void OnFinishCallback(Animator*, void*);

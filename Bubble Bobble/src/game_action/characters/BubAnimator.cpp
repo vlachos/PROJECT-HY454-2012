@@ -13,6 +13,7 @@
 #include "InvisibleSprites.h"
 #include "FruitsAnimator.h"
 #include "PowerUpsAnimator.h"
+#include "BarronVonBlubaAnimator.h"
 #include "BubbleLogic.h"
 
 #define REGIST_FRUITS_AND_POWER_UPS( spr )																						\
@@ -117,10 +118,17 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	TimerTickAnimator* ttar = new TimerTickAnimator(ta);
 	ttar->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 
+
+	TickAnimation *ta2 = (TickAnimation*) AnimationsParser::GetAnimation("HurryUpStart");
+	ta2->SetTickAction( BaronVonBlubaAnimatorActions::StartHurryUpAnimator, 0 );
+	TimerTickAnimator* ttar2 = new TimerTickAnimator(ta2);
+	ttar2->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
+
 	START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	START_ANIMATOR( animr3, sprite3, anim3, GetGameTime() );
 	START_TIME_ANIMATOR(ttar, GetGameTime());
+	START_TIME_ANIMATOR(ttar2, GetGameTime());
 }
 
 ////////////////BubStandAnimator

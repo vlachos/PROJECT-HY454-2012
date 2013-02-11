@@ -7,6 +7,7 @@ namespace ArtificialIntelligence{
 	extern void HandleMighta();
 	extern void HandleAngryMighta();
 	extern void HandleAngryZenChan();
+	extern void HandleBarronVonBluba();
 	extern void HandleRiver();
 }
 

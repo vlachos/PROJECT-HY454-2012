@@ -254,6 +254,7 @@ void BubbleMain::ArtificialIntelligence(){
 	ArtificialIntelligence::HandleMighta();
 	ArtificialIntelligence::HandleAngryZenChan();
 	ArtificialIntelligence::HandleAngryMighta();
+	ArtificialIntelligence::HandleBarronVonBluba();
 	ArtificialIntelligence::HandleRiver();
 }
 

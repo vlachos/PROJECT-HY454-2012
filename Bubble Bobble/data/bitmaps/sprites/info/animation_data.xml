@@ -354,7 +354,7 @@
     <list  dx="0" dy="0" delay="100" frame="7"/><!-->
   </MightaDie>
 
-  <BarronVonBlubaStand type="FrameRangeAnimation" dx="0" dy="0" delay="100" continue="true" start="0" end="1"  />
+  <BarronVonBlubaStand type="MovingAnimation" dx="0" dy="0" delay="200" continue="true"/>
 
   <BarronVonBlubaRushRight type="MovingPathAnimation">
     <list  dx="3" dy="0" delay="100" frame="0"/>
@@ -437,7 +437,7 @@
   <WaterRushRight type="MovingAnimation" dx="+16" dy="0" delay="40" continue="true"/>
   <WaterRushLeft type="MovingAnimation" dx="-16" dy="0" delay="40" continue="true"/>
 
-  <WaterBubblePeriod type="TickAnimation" repetitions="100" delay="3000"/>
+  <WaterBubblePeriod type="TickAnimation" repetitions="100" delay="10000"/>
   
   <HurryUp type="MovingPathAnimation">
     <list  dx="0" dy="15" delay="200" frame="0"/>
@@ -474,8 +474,8 @@
     <list  dx="0" dy="-15" delay="200" frame="0"/>
   </ScoreLabel>
 
-  <HurryUpStart type="TickAnimation" repetitions="1" delay="2000"/>
-  <BarronVonBlubaStart type="TickAnimation" repetitions="1" delay="4000"/>
+  <HurryUpStart type="TickAnimation" repetitions="1" delay="1000"/>
+  <BarronVonBlubaStart type="TickAnimation" repetitions="1" delay="1000"/>
   <BubBubbleExpired type="TickAnimation" repetitions="1" delay="4000"/>
   <BubPigBubbleExpired type="TickAnimation" repetitions="1" delay="2000"/>
 

@@ -55,6 +55,7 @@ enum animatorType_t {
 	mightaAngryJumpAnimator_t,
 	mightaAngryThrowFireBallAnimator_t,
 	mightaThrowFireBallAnimator_t,
+	baronVonBlubaRushAnimator_t,
 	baronVonBlubaStandAnimator_t,
 	zenChanDieAnimator_t,
 	mightaDieAnimator_t,
