@@ -52,7 +52,7 @@ Timer timer = NULL;
 ALLEGRO_EVENT ev;
 KeyBoardState keyState;
 
-const float FPS = 30;
+const float FPS = 50;
 bool redraw = true;
 
 namespace BubbleMain{

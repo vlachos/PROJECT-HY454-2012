@@ -26,7 +26,7 @@
 		Sprite* sprite = new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), BubbleLogic::GetBubProfile()->GetStartY(),
 									BubbleLogic::GetBubProfile()->GetStartGravity(), AnimationFilmHolder::GetFilm("BubWalk"),
 									Terrain::GetActionLayer(), BubbleLogic::GetBubProfile()->GetStartDirection());
-
+		sprite->SetIsBub(true);
 		MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");
 		BubStandAnimator* animr = new BubStandAnimator();
 		animr->RegistCollitions(sprite);
