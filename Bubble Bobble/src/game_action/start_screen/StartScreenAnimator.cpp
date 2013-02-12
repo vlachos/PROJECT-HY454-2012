@@ -19,7 +19,7 @@
 #include "AnimationFilm.h"
 #include "BitmapLoader.h"
 
-static std::list<AnimationFilm*>				animationFilmHolderLateDestraction;
+static std::list<AnimationFilm*>	animationFilmHolderLateDestraction;
 
 namespace StartWordAnimatorDeleter{
 

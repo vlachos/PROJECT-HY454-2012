@@ -333,11 +333,19 @@
     <bbox x="435" y="1429"/>
   </SelecterOption>
 
-  <BubLifes w="16" h="16">
+  <BubLifes w="8" h="8">
+    <bbox x="604" y ="1285"/>
+    <bbox x="604" y ="1285"/>
+    <bbox x="604" y ="1285"/>
+    <bbox x="604" y ="1285"/>
     <bbox x="604" y ="1285"/>
   </BubLifes>
 
-  <BobLifes w="16" h="16">
+  <BobLifes w="8" h="8">
+    <bbox x="615" y ="1285"/>
+    <bbox x="615" y ="1285"/>
+    <bbox x="615" y ="1285"/>
+    <bbox x="615" y ="1285"/>
     <bbox x="615" y ="1285"/>
   </BobLifes>  
   

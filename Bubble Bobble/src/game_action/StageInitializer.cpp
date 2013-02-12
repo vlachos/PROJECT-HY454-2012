@@ -3,6 +3,7 @@
 #include "AnimatorHolder.h"
 #include "AnimationsParser.h"
 #include "Sprite.h"
+#include "MultiSprite.h"
 #include "Terrain.h"
 #include "BubAnimator.h"
 #include "MightaAnimator.h"
@@ -19,6 +20,7 @@
 		InitZenChan();
 		InitMighta();
 		InitTickAnimators();
+		InitBubLifes();
 	}
 
 	void StageInitializer::InitBubblun(void){
@@ -76,8 +78,11 @@
 		START_TIME_ANIMATOR(ttar2, GetGameTime());
 	}
 
-	void StageInitializer::InitScoreBoard(void){
-	}
 	void StageInitializer::InitBubLifes(void){
+		MultiSprite* sprite = new MultiSprite(32, 432, false, AnimationFilmHolder::GetFilm("BubLifes"),
+												Terrain::GetActionLayer(), true);
 
+		MovingAnimation *anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubLifes");
+		MovingAnimator* animr = new MovingAnimator();
+		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	}

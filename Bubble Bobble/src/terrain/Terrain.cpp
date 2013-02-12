@@ -34,7 +34,7 @@ TileLayer* Terrain::GetActionLayer(){
 
 void Terrain::DisplayTerrain(Bitmap at){
 	actionLayer->Display(at);
-	if (BubbleLogic::GetStageLevel() != 0){
+	if (BubbleLogic::GetBubProfile()->GetScore() != -1){
 		scores->DisplayScoreBoard(at,	BubbleLogic::GetBubProfile()->GetScore(),
 										BubbleLogic::GetHighScore(),
 										BubbleLogic::GetBobProfile()->GetScore() );

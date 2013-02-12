@@ -8,7 +8,6 @@ namespace StageInitializer {
 	extern void InitZenChan(void);
 	extern void InitMighta(void);
 	extern void InitTickAnimators(void);
-	extern void InitScoreBoard(void);
 	extern void InitBubLifes(void);
 };
 

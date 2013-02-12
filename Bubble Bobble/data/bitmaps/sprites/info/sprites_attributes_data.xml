@@ -2,7 +2,7 @@
 
 <Attributes>
 
-  <BubStartingLifes v = "3"/>
+  <BubStartingLifes v = "5"/>
 
   <MaximumNumberOfBubbles v = "30"/>
 
