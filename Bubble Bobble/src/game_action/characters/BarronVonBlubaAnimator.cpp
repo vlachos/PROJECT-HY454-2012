@@ -10,6 +10,7 @@
 #include "TickAnimation.h"
 #include "TimerTickAnimator.h"
 #include "BubAnimator.h"
+#include "SoundAPI.h"
 
 void BaronVonBlubaAnimatorActions::StartBaronVonBludaAnimator(void* args){
 	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaRushRight");
@@ -25,6 +26,7 @@ void BaronVonBlubaAnimatorActions::StartBaronVonBludaAnimator(void* args){
 	BaronVonBlubaRushAnimator* bvbrar = new BaronVonBlubaRushAnimator();
 	bvbrar->RegistCollitions(sprite);
 	START_ANIMATOR(bvbrar, sprite, mpa, GetGameTime() );
+	SoundAPI::PlaySoundOnce(SoundAPI::soundKind_booAppears_t, false);
 }
 
 void BaronVonBlubaAnimatorActions::StartHurryUpAnimator(void* args){
@@ -34,6 +36,7 @@ void BaronVonBlubaAnimatorActions::StartHurryUpAnimator(void* args){
 	MovingPathAnimation* mpa = (MovingPathAnimation*)AnimationsParser::GetAnimation("HurryUp");
 	HurryUpAnimator* hua = new HurryUpAnimator();
 	START_ANIMATOR( hua, newSprite, mpa, GetGameTime() );
+	SoundAPI::PlaySoundContinue(SoundAPI::soundKind_ingameMusicHurryUp_t, true);
 }
 
 ////////////////////////HurryUpAnimator

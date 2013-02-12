@@ -16,7 +16,7 @@
 #include "BarronVonBlubaAnimator.h"
 #include "BubbleLogic.h"
 #include "StageInitializer.h"
-
+#include "SoundAPI.h"
 
 
 #define REGIST_FRUITS_AND_POWER_UPS( spr )																						\
@@ -126,6 +126,7 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	DESTROY_ANIMATOR( _this );
 
 	StageInitializer::InitNextStage();
+	SoundAPI::PlaySoundContinue(SoundAPI::soundKind_ingameMusic_t, false);
 }
 
 ////////////////BubStandAnimator
