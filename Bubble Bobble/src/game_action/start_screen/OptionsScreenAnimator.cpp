@@ -9,6 +9,8 @@
 #include "AnimatorHolder.h"
 #include "CollisionChecker.h"
 #include "MultiSprite.h"
+#include "SoundAPI.h"
+#include "BubbleLogic.h"
 
 #define OPTIONS_SCREEN_SELECTOR_OPTION1 210
 #define OPTIONS_SCREEN_SELECTOR_OPTION2 230
@@ -28,6 +30,11 @@ namespace OptionsDeleteAnimationFilm{
 	};
 
 }
+
+char * option1 = "MUSIC ON";
+char * option2 = "WALK SLOW";
+char * option3 = "BUBBLE SPEED SLOW";
+char * option4 = "BLAST POWER SLOW";
 
 static void StartWordAnimator(const char* word, int x, int y){
 	std::vector<Rect> wordRect = BitmapFontHolder::GetWordRects( std::string(word), white);
@@ -64,7 +71,7 @@ void OptionsScreenAnimatorActions::CleanUpOptionsScreen(){
 	animationFilmHolderLateDestraction.clear();
 }
 
-void OptionsScreenAnimatorActions::StartOptionsScreen(){
+void OptionsScreenAnimatorActions::StartOptionsScreen(int y){
 	MovingAnimation *mpa1 = (MovingAnimation*) AnimationsParser::GetAnimation("StartScreenStatic");
 	Sprite *sprite1 = new Sprite(
 								10,
@@ -80,7 +87,7 @@ void OptionsScreenAnimatorActions::StartOptionsScreen(){
 	FrameRangeAnimation *mpa2 = (FrameRangeAnimation*) AnimationsParser::GetAnimation("StartScreenSelector");
 	Sprite *sprite2 = new Sprite(
 								170,
-								210,
+								y,
 								false,						
 								AnimationFilmHolder::GetFilm( "SelecterOption" ), 
 								Terrain::GetActionLayer(), 
@@ -89,10 +96,10 @@ void OptionsScreenAnimatorActions::StartOptionsScreen(){
 	sprite2->SetOnDrugs(true);
 	OptionsScreenSelectorAnimator* sssamr2 = new OptionsScreenSelectorAnimator();
 
-	StartWordAnimator("OPTION 1", 210, 220);
-	StartWordAnimator("OPTION 2", 210, 240);
-	StartWordAnimator("OPTION 3", 210, 260);
-	StartWordAnimator("OPTION 4", 210, 280);
+	StartWordAnimator(option1, 210, 220);
+	StartWordAnimator(option2, 210, 240);
+	StartWordAnimator(option3, 210, 260);
+	StartWordAnimator(option4, 210, 280);
 	StartWordAnimator("BACK", 210, 300);
 
 	START_ANIMATOR(sssamr1, sprite1, mpa1, GetGameTime() );
@@ -123,22 +130,54 @@ void OptionsScreenSelectorAnimator::GoDown(){
 
 bool OptionsScreenSelectorAnimator::PressEnter(){
 	bool retVal = true;
+	int y = 210;
 	DASSERT( this->GetSprite() && this->GetAnimation() );
 	switch(this->GetSprite()->GetY()){
-		case OPTIONS_SCREEN_SELECTOR_OPTION1:	
+		case OPTIONS_SCREEN_SELECTOR_OPTION1:	if(!strcmp(option1, "MUSIC ON")) {
+													SoundAPI::mute(true);
+													option1 = "MUSIC OFF";
+												}else{
+													SoundAPI::mute(false);
+													option1 = "MUSIC ON";
+													SoundAPI::PlaySoundContinue(SoundAPI::soundKind_enterYourInitials_t, true);
+												}
 												break;
-		case OPTIONS_SCREEN_SELECTOR_OPTION2:		
+		case OPTIONS_SCREEN_SELECTOR_OPTION2:	if(!strcmp(option2, "WALK SLOW")) {
+													option2 = "WALK FAST";
+													BubbleLogic::GetBobProfile()->SetRedShoes(true);
+												}else{
+													option2 = "WALK SLOW";
+													BubbleLogic::GetBobProfile()->SetRedShoes(false);
+												}
+												y = 230;
 												break;
-		case OPTIONS_SCREEN_SELECTOR_OPTION3:	
+		case OPTIONS_SCREEN_SELECTOR_OPTION3:	if(!strcmp(option3, "BUBBLE SPEED SLOW")) {
+													option3 = "BUBBLE SPEED FAST";
+													BubbleLogic::GetBobProfile()->SetBlueSwt(true);
+												}else{
+													option3 = "BUBBLE SPEED SLOW";
+													BubbleLogic::GetBobProfile()->SetBlueSwt(false);
+												}
+												y = 250;
 												break;
-		case OPTIONS_SCREEN_SELECTOR_OPTION4:	
+		case OPTIONS_SCREEN_SELECTOR_OPTION4:	if(!strcmp(option4, "BLAST POWER SLOW")) {
+													option4 = "BLAST POWER FAST";
+													BubbleLogic::GetBobProfile()->SetPurpleSwt(true);
+												}else{
+													option4 = "BLAST POWER SLOW";
+													BubbleLogic::GetBobProfile()->SetPurpleSwt(false);
+												}
+												y = 270;
 												break;
 		case OPTIONS_SCREEN_SELECTOR_BACK:		OptionsScreenAnimatorActions::CleanUpOptionsScreen();
 												StartScreenAnimatorActions::StartStartScreen();
-												break;
+												return true;
 
 		default:							DASSERT(false);
 	}
+
+	OptionsScreenAnimatorActions::CleanUpOptionsScreen();
+	OptionsScreenAnimatorActions::StartOptionsScreen(y);
 
 	return retVal;
 }

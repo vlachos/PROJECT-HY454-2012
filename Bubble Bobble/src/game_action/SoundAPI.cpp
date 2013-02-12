@@ -11,6 +11,7 @@ SoundAPI*						SoundAPI::singletonPtr;
 std::string						SoundAPI::SoundsFilePath;
 std::vector<ALLEGRO_SAMPLE*>	SoundAPI::sounds;
 ALLEGRO_SAMPLE_ID				SoundAPI::spl_id;
+bool 							SoundAPI::muted;
 
 namespace SoundAPIFileName{
 	const char* soundAPI_FileName[] = {
@@ -37,6 +38,7 @@ SoundAPI::SoundAPI(const char * path){
 	al_reserve_samples(2);
 	spl_id._id = -1;
 	spl_id._index = -1;
+	muted = false;
 }
 
 SoundAPI::~SoundAPI(){
@@ -49,16 +51,33 @@ SoundAPI::~SoundAPI(){
 	SoundsFilePath.clear();
 }
 
-bool SoundAPI::PlaySoundOnce(soundKinds kind, bool stopPrev){
-	if(spl_id._id!=-1 && stopPrev)
+void SoundAPI::mute(bool on){
+	muted = on;
+	if(muted){
+	if(spl_id._id!=-1)
 		al_stop_sample(&spl_id);
-	spl_id._id = kind;
-	return al_play_sample(sounds[ (unsigned int) kind ], 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, &spl_id);
+	}
+}
+bool SoundAPI::isMuteds(){
+	return muted;
+}
+
+bool SoundAPI::PlaySoundOnce(soundKinds kind, bool stopPrev){
+	if(!muted){
+		if(spl_id._id!=-1 && stopPrev)
+			al_stop_sample(&spl_id);
+		spl_id._id = kind;
+		return al_play_sample(sounds[ (unsigned int) kind ], 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, &spl_id);
+	}
+		return false;
 }
 
 bool SoundAPI::PlaySoundContinue(soundKinds kind, bool stopPrev){
-	if(spl_id._id!=-1 && stopPrev)
-		al_stop_sample(&spl_id);
-	spl_id._id = kind;
-	return al_play_sample(sounds[ (unsigned int) kind ], 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, &spl_id);
+	if(!muted){
+		if(spl_id._id!=-1 && stopPrev)
+			al_stop_sample(&spl_id);
+		spl_id._id = kind;
+		return al_play_sample(sounds[ (unsigned int) kind ], 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, &spl_id);
+	}
+		return false;
 }

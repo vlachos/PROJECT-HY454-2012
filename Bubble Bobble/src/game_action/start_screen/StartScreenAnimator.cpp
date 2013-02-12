@@ -171,7 +171,7 @@ bool StartScreenSelectorAnimator::PressEnter(){
 												StartScreenAnimatorActions::StartGame();
 												break;
 		case START_SCREEN_SELECTOR_OPTIONS:		StartScreenAnimatorActions::CleanUpStartScreen();
-												OptionsScreenAnimatorActions::StartOptionsScreen();
+												OptionsScreenAnimatorActions::StartOptionsScreen(210);
 												break;
 		case START_SCREEN_SELECTOR_EXIT:			retVal = false;
 												break;

@@ -6,7 +6,7 @@
 
 namespace OptionsScreenAnimatorActions{
 	extern void CleanUpOptionsScreen();
-	extern void StartOptionsScreen();
+	extern void StartOptionsScreen(int y);
 }
 
 class OptionsScreenStaticAnimator : public MovingAnimator{

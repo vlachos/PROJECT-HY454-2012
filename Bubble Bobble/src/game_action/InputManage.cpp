@@ -406,15 +406,13 @@ bool InputManageHandling::OnKeySpace(void){
 		oldTime = nowTime;
 
 		if(!(bub = AnimatorHolder::GetAnimators(startScreenSelectorAnimator_t)).empty()){
-			( (StartScreenSelectorAnimator*) bub.front() )->PressEnter();
-			return true;
+			return ( (StartScreenSelectorAnimator*) bub.front() )->PressEnter();
 		}else	
 		if(!(bub = AnimatorHolder::GetAnimators(optionsScreenSelectorAnimator_t)).empty()){
 			( (OptionsScreenSelectorAnimator*) bub.front() )->PressEnter();
-			return true;
 		}
 	}
-	return false;
+	return true;
 }
 
 

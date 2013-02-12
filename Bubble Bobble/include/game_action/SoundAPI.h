@@ -27,12 +27,15 @@ class SoundAPI{
 		
 		static  bool PlaySoundOnce(soundKinds kind, bool stopPrev);
 		static  bool PlaySoundContinue(soundKinds kind, bool stopPrev);
+		static  void mute(bool on);
+		static	bool isMuteds();
 
 	private:
 		static SoundAPI*					singletonPtr;
 		static std::string					SoundsFilePath;
 		static std::vector<ALLEGRO_SAMPLE*> sounds;
 		static ALLEGRO_SAMPLE_ID			spl_id;
+		static bool							muted;
 
 		struct DeleteAttribute{
 			void operator()(ALLEGRO_SAMPLE* sample){

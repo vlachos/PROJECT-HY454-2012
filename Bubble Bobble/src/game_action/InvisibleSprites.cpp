@@ -149,16 +149,16 @@ InvisibleSprites::InvisibleSprites(){
 	}
 
 	box.clear();
-	box.push_back( Rect(0, 0,42, 2) );
+	box.push_back( Rect(0, 0,62, 2) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround2");
-	spr = new Sprite( 320, 450, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 310, 450, false, af, Terrain::GetActionLayer(), true);
 	animationFilmHolderLateDestraction.push_back(af);
 	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround2 ) );
 
 	box.clear();
-	box.push_back( Rect(0, 0, 42, 2) );
+	box.push_back( Rect(0, 0, 62, 2) );
 	af = new AnimationFilm(0, box, "invisibleDriver_wrapAround1");
-	spr = new Sprite( 158, 450, false, af, Terrain::GetActionLayer(), true);
+	spr = new Sprite( 148, 450, false, af, Terrain::GetActionLayer(), true);
 	animationFilmHolderLateDestraction.push_back(af);
 	wrapAroundDrivers.push_back( InvisibleDrivers( spr, InvisibleDrivererWrapAround1 ) );
 
