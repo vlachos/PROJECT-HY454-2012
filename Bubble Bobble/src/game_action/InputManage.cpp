@@ -424,11 +424,11 @@ bool InputManageHandling::OnKeySelect(){
 
 bool InputManageHandling::OnKeyP(void){
 	if ( !BubbleLogic::IsGamePaused() ){
-		BubbleLogic::SetTimeBeforePause( GetGameTime() );
+		BubbleLogic::SetTimeBeforePause( GetCurrTime() );
 		BubbleLogic::SetGamePaused(true);
 	}
 	else{
-		AnimatorHolder::TimeShiftAnimators(BubbleLogic::GetTimeBeforePause());
+		AnimatorHolder::TimeShiftAnimators(GetCurrTime() - BubbleLogic::GetTimeBeforePause() );
 		BubbleLogic::SetTimeBeforePause( 0);
 		BubbleLogic::SetGamePaused(false);
 	}

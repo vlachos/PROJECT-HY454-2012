@@ -45,14 +45,13 @@
 #include <allegro5\allegro_acodec.h>
 
 Display display = NULL;
-Bitmap palette = NULL;
 EventQueue event_queue = NULL;
 Timer timer = NULL;
 
 ALLEGRO_EVENT ev;
 KeyBoardState keyState;
 
-const float FPS = 50;
+const float FPS = 70;
 bool redraw = true;
 
 namespace BubbleMain{
@@ -69,7 +68,7 @@ namespace BubbleMain{
 
 	extern void ManageGameLoop(void);
 
-	extern void Rendering(void);
+	extern void Rendering(timestamp_t nowTime);
 	extern bool InputManagement(void);
 	extern void AnimationProgress(timestamp_t timeNow);
 	extern void ArtificialIntelligence(void);

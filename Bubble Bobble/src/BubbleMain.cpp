@@ -18,14 +18,6 @@ bool BubbleMain::InitAllegro(){
 		al_destroy_timer(timer);
 		return false;
 	}
-
-	palette = al_create_bitmap(SCREEN_WINDOW_WIDTH, SCREEN_WINDOW_HEIGHT);
-	if(!palette) {
-		al_show_native_message_box(NULL, "Error", NULL, "failed to create bouncer bitmap!\n", NULL, NULL);
-		al_destroy_display(display);
-		al_destroy_timer(timer);
-		return false;
-	}
 	al_set_window_position(display, 0, 0);
 
 	al_install_keyboard();
@@ -35,7 +27,6 @@ bool BubbleMain::InitAllegro(){
 		al_show_native_message_box(NULL, "Error", NULL, "failed to initialize audio!\n", NULL, NULL);
 		al_destroy_display(display);
 		al_destroy_timer(timer);
-		fprintf(stderr, "failed to initialize audio!\n");
 		return false;
 	}
 
@@ -43,14 +34,12 @@ bool BubbleMain::InitAllegro(){
 		al_show_native_message_box(NULL, "Error", NULL, "failed to initialize audio codecs!\n", NULL, NULL);
 		al_destroy_display(display);
 		al_destroy_timer(timer);
-		fprintf(stderr, "failed to initialize audio codecs!\n");
 		return false;
 	}
 
 	event_queue = al_create_event_queue();
 	if(!event_queue) {
 		al_show_native_message_box(NULL, "Error", NULL, "failed to create event_queue!\n", NULL, NULL);
-		al_destroy_bitmap(palette);
 		al_destroy_display(display);
 		al_destroy_timer(timer);
 		return false;
@@ -95,20 +84,26 @@ void BubbleMain::ManageGameLoop(){
 	while (1){
 		al_wait_for_event(event_queue, &ev);
 		al_get_keyboard_state(&keyState);
-
+		timestamp_t max=0;
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 			timestamp_t nowTime = GetCurrTime();
-			Rendering();
+			Rendering(nowTime);
 			if( !BubbleLogic::IsGamePaused() ){
-				if(!InputManagement())
-					break;
+			if(!InputManagement())
+				break;
 				AnimationProgress(nowTime);
 				ArtificialIntelligence();
 				CollisionChecking();
 				CommitDestructions();
 				FPSCalculation();
 				SystemLoopDispatching();
-				SetGameTime(GetGameTime() + ( nowTime - GetGameTime()));
+				timestamp_t diff = ( nowTime - GetGameTime());
+				if(diff>max){
+					max=diff;
+				}
+				std::cout<<"gl: "<<diff<<"\n";
+				
+				SetGameTime(GetGameTime() + diff);
 			}
 		}
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -117,17 +112,15 @@ void BubbleMain::ManageGameLoop(){
 	}
 }
 
-void BubbleMain::Rendering(){
+void BubbleMain::Rendering(timestamp_t nowTime){
 
 	if(al_is_event_queue_empty(event_queue)) {
-		al_set_target_bitmap(palette);
+
 		al_clear_to_color(BB_BLACK);
 
-		Terrain::DisplayTerrain(palette);
-		AnimatorHolder::Display(palette);
+		Terrain::DisplayTerrain(al_get_backbuffer(display), nowTime);
+		AnimatorHolder::Display(al_get_backbuffer(display));
 
-		al_set_target_bitmap(al_get_backbuffer(display));
-		al_draw_bitmap(palette, 0, 0, 0);
 		al_flip_display();
 	}
 }
@@ -220,7 +213,6 @@ void BubbleMain::GameOver(){
 	SoundAPI::SingletonDestroy();
 	DestructionManager::Commit();
 
-	al_destroy_bitmap(palette);
 	al_destroy_timer(timer);
 	al_destroy_display(display);
 	al_destroy_event_queue(event_queue);

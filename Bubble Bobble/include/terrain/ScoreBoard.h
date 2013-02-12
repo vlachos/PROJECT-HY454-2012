@@ -2,6 +2,7 @@
 #define	SCOREBOARD_H
 
 #include "BitmapFontHolder.h"
+#include "TileLayer.h"
 #include "Metrics.h"
 #include "utilities.h"
 #include <map>
@@ -38,17 +39,17 @@ class ScoreBoard{
 		~ScoreBoard();
 
 	private:
-		std::vector<Rect> aboveScores;
-		std::vector<Rect> scores;
+		Rect aboveScores[TILE_LAYER_STAGE_WIDTH];
+		Rect scores[TILE_LAYER_STAGE_WIDTH];
 
 	private:
 		void GenerateScoreLettersXY(unsigned int startIndex, std::string scoreStr, FontColor_t color);
 		void GenerateAboveScoreLettersXY(unsigned int startIndex, std::string aboveScoreStr, FontColor_t color);
-		void GenerateScoreBoardInfo(int bubScore, int highScore, int bobScore);
 		std::string ScoreToString(int score);
 		void DisplayLetter(Bitmap at, int destX, int destY, Rect rect);
 
 	public:
+		void GenerateScoreBoardInfo(int bubScore, int highScore, int bobScore);
 		void DisplayScoreBoard (Bitmap at, int bubScore, int highScore, int bobScore);
 
 };

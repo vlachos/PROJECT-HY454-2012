@@ -7,22 +7,15 @@
 #include <algorithm>
 
 	/////////// Constructor / Destructor
-	ScoreBoard::ScoreBoard()  {
-		aboveScores.reserve(MAX_ROW_LETTER);
-		scores.reserve(MAX_ROW_LETTER);
-	}
-
-	ScoreBoard::~ScoreBoard() {
-		aboveScores.clear();
-		scores.clear();
-	}
+	ScoreBoard::ScoreBoard() {  }
+	ScoreBoard::~ScoreBoard() {  }
 
 
 	void ScoreBoard::GenerateScoreLettersXY(unsigned int startIndex, std::string scoreStr, FontColor_t color) {
 		DASSERT(scoreStr.length()+startIndex <= MAX_ROW_LETTER);
 		
 		for (unsigned int i=startIndex; i < scoreStr.length()+startIndex; ++i){
-			scores.push_back (BitmapFontHolder::GetLetterRect(scoreStr.at(i-startIndex), color) );
+			scores[i] (BitmapFontHolder::GetLetterRect(scoreStr.at(i-startIndex), color) );
 		}
 	}
 
@@ -30,8 +23,27 @@
 		DASSERT(aboveScoreStr.length()+startIndex <= MAX_ROW_LETTER);
 		
 		for (unsigned int i=startIndex; i < aboveScoreStr.length()+startIndex; ++i){
-			aboveScores.push_back (BitmapFontHolder::GetLetterRect(aboveScoreStr.at(i-startIndex), color) );
+			aboveScores[i] (BitmapFontHolder::GetLetterRect(aboveScoreStr.at(i-startIndex), color) );
 		}
+	}
+
+	/////////// integer to string
+	std::string ScoreBoard::ScoreToString(int score){
+		unsigned int d1 = 1, d2 = 10;
+		std::string scoreStr = "";
+		std::stringstream ss;
+		ss << score;
+		for (unsigned i = 0; i < MAX_SCORE_DIGITS - ss.str().length(); ++i){
+			scoreStr.append(" ");
+		}
+		scoreStr.append(ss.str());
+		return scoreStr;
+	}
+
+	void ScoreBoard::DisplayLetter(Bitmap at, int destX, int destY, Rect rect){
+
+		al_draw_bitmap_region(BitmapFontHolder::GetFontsBitmap(), rect.GetX(), rect.GetY(),
+							  rect.GetWidth(), rect.GetHeigth(), destX, destY, NULL);
 	}
 
 
@@ -67,34 +79,11 @@
 	}
 
 
-	/////////// integer to string
-	std::string ScoreBoard::ScoreToString(int score){
-		unsigned int d1 = 1, d2 = 10;
-		std::string scoreStr = "";
-		std::stringstream ss;
-		ss << score;
-		for (unsigned i = 0; i < MAX_SCORE_DIGITS - ss.str().length(); ++i){
-			scoreStr.append(" ");
-		}
-		scoreStr.append(ss.str());
-		return scoreStr;
-	}
-
-	void ScoreBoard::DisplayLetter(Bitmap at, int destX, int destY, Rect rect){
-
-		al_draw_bitmap_region(BitmapFontHolder::GetFontsBitmap(), rect.GetX(), rect.GetY(),
-							  rect.GetWidth(), rect.GetHeigth(), destX, destY, NULL);
-	}
-
 	void ScoreBoard::DisplayScoreBoard(Bitmap at, int bubScore, int highScore, int bobScore){
 		DASSERT(at == al_get_target_bitmap() );
-
-		GenerateScoreBoardInfo(bubScore, highScore, bobScore);
 
 		for (unsigned int i=0; i < MAX_ROW_LETTER; ++i){
 			DisplayLetter(at, i*LETTER_W, 0, aboveScores[i]);
 			DisplayLetter(at, i*LETTER_W, LETTER_H, scores[i]);
 		}
-		aboveScores.clear();
-		scores.clear();
 	}

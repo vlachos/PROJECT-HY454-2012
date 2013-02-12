@@ -1,6 +1,8 @@
 #include "Terrain.h"
 #include "BubbleLogic.h"
 
+#define SCOREBOARD_DELAY 2000
+
 Terrain* Terrain::terrain;
 TileLayer* Terrain::actionLayer;
 ScoreBoard* Terrain::scores;
@@ -32,13 +34,21 @@ TileLayer* Terrain::GetActionLayer(){
 	return Terrain::actionLayer;
 }
 
-void Terrain::DisplayTerrain(Bitmap at){
+void Terrain::DisplayTerrain(Bitmap at, timestamp_t nowTime){
 	actionLayer->Display(at);
-	if (BubbleLogic::GetBubProfile()->GetScore() != -1){
+
+	static timestamp_t oldTime = -1;
+//	if ( nowTime > oldTime + SCOREBOARD_DELAY ){
+	//	oldTime = nowTime;
+		scores->GenerateScoreBoardInfo(BubbleLogic::GetBubProfile()->GetScore(),
+										BubbleLogic::GetHighScore(),
+										BubbleLogic::GetBobProfile()->GetScore() );
+	//}
+
+	if (BubbleLogic::GetBubProfile()->GetScore() != -1)
 		scores->DisplayScoreBoard(at,	BubbleLogic::GetBubProfile()->GetScore(),
 										BubbleLogic::GetHighScore(),
 										BubbleLogic::GetBobProfile()->GetScore() );
-	}
 }
 
 void Terrain::SingeltonCleanUp(){

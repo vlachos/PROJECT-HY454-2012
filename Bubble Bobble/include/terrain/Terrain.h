@@ -4,6 +4,7 @@
 #include "TileBitmap.h"
 #include "TileLayer.h"
 #include "ScoreBoard.h"
+#include "Animator.h"
 
 class Terrain {
 
@@ -21,7 +22,7 @@ class Terrain {
 
 	public:
 		static TileLayer* GetActionLayer();
-		static void DisplayTerrain(Bitmap at);
+		static void DisplayTerrain(Bitmap at, timestamp_t nowTime);
 
 	public:
 		static void SingeltonCleanUp(); 
