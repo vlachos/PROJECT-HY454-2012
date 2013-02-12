@@ -46,4 +46,14 @@
 		BubbleLogic::GetBubProfile()->SetEnemiesKilledOnPon(0);																	\
 	}
 
+#define SCROLL_IF_NO_ENEMIES();																			\
+	if (AnimatorHolder::GetAnimators(zenChanStandAnimator_t, mightaThrowFireBallAnimator_t).empty() &&	\
+		AnimatorHolder::GetAnimators(BananaAnimator_t, WaterMelonAnimator_t).empty() &&					\
+		AnimatorHolder::GetAnimators(BlueDiamondAnimator_t, PurpleSweetAnimator_t).empty() &&			\
+		AnimatorHolder::GetAnimators(zenChanInBubble_t, mightaInBubbleHighAngry_t).empty()				\
+		){													\
+		BubbleLogic::IncrStageLevel();						\
+		StageInitializer::ScrollToNextStage();				\
+	}														\
+
 #endif

@@ -138,10 +138,12 @@ void BubBubbleBlastOffAnimator::RegistCollitions(Sprite *spr){
 	CollisionChecker::RegisterPair( spr,  mightaStandAnimator_t, mightaStandAnimator_t, this, OnCollisionWithMightaStand);
 	CollisionChecker::RegisterPair( spr,  mightaFallingAnimator_t, mightaFallingAnimator_t, this, OnCollisionWithMightaFalling);
 	CollisionChecker::RegisterPair( spr,  mightaJumpAnimator_t, mightaJumpAnimator_t, this, OnCollisionWithMightaJump);
+	CollisionChecker::RegisterPair( spr,  mightaThrowFireBallAnimator_t, mightaThrowFireBallAnimator_t, this, OnCollisionWithMightaThrowFireBall);
 	CollisionChecker::RegisterPair( spr,  mightaAngryStandAnimator_t, mightaAngryStandAnimator_t, this, OnCollisionWithMightaAngryStand);
 	CollisionChecker::RegisterPair( spr,  mightaAngryWalkAnimator_t, mightaAngryWalkAnimator_t, this, OnCollisionWithMightaAngryWalking);
 	CollisionChecker::RegisterPair( spr,  mightaAngryFallingAnimator_t, mightaAngryFallingAnimator_t, this, OnCollisionWithMightaAngryFalling);
 	CollisionChecker::RegisterPair( spr,  mightaAngryJumpAnimator_t, mightaAngryJumpAnimator_t, this, OnCollisionWithMightaAngryJump);
+	CollisionChecker::RegisterPair( spr,  mightaAngryThrowFireBallAnimator_t, mightaAngryThrowFireBallAnimator_t, this, OnCollisionWithMightaAngryThrowFireBall);
 }
 
 
@@ -257,7 +259,7 @@ void BubBubbleBlastOffAnimator::OnCollisionWithZenChanAngryJump(Sprite *bubble, 
 	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_ZEN_CHAN(ZenChanAngryJumpAnimator, bubble, enemy, args  );
 }
 
-////////////////////////////////
+////////////////////////////////  MIghta Collisions
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaStand(Sprite *bubble, Sprite *enemy, void *args){
 	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaStandAnimator, bubble, enemy, args  );
@@ -275,6 +277,10 @@ void BubBubbleBlastOffAnimator::OnCollisionWithMightaJump(Sprite *bubble, Sprite
 	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaJumpAnimator, bubble, enemy, args  );
 }
 
+void BubBubbleBlastOffAnimator::OnCollisionWithMightaThrowFireBall(Sprite *bubble, Sprite *enemy, void *args){
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaThrowFireBallAnimator, bubble, enemy, args  );
+}
+
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryStand(Sprite *bubble, Sprite *enemy, void *args){
 	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryStandAnimator, bubble, enemy, args  );
 }
@@ -289,6 +295,10 @@ void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryFalling(Sprite *bubble
 
 void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryJump(Sprite *bubble, Sprite *enemy, void *args){
 	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryJumpAnimator, bubble, enemy, args  );
+}
+
+void BubBubbleBlastOffAnimator::OnCollisionWithMightaAngryThrowFireBall(Sprite *bubble, Sprite *enemy, void *args){
+	BUB_BUBBLE_BLAST_OFF_COLLITION_WITH_MIGHTA(MightaAngryThrowFireBallAnimator, bubble, enemy, args  );
 }
 
 /////////////////////////////BubBubbleAnimator

@@ -76,16 +76,16 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 		SpritesAttributeParser::SingletonDestroy();
 
-		bub = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) ) );
-		bob = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) ) );
-
+		bub = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBubStartingAttribute(-1) ) );
+		bob = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBobStartingAttribute(-1) ) );
+		InitStageStartingAttributes();
 		srand((unsigned)time(0));
 	}
 
 	void BubbleLogic::InitStageStartingAttributes(void){
 
-		bob->SetStartingAttributes(StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) );
 		bub->SetStartingAttributes(StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) );
+		bob->SetStartingAttributes(StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) );
 
 		std::list<StartingAttributes_t> StartingAttributes = StageStartingAttributesParser::GetPowerUpStartingAttribute(stageLevel);
 		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){

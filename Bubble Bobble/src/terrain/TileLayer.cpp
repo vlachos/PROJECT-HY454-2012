@@ -227,7 +227,7 @@
 
 	bool TileLayer::CanScroll (VertScroll v) const{
 		return	((int)viewWindow.GetY()) >= -((int)v) &&
-				((int)viewWindow.GetY()) + ((int) v) + ((int)viewWindow.GetHeigth()) <= TILE_LAYER_HEIGHT;
+				((int)viewWindow.GetY()) + ((int) v) + ((int)viewWindow.GetHeigth()) <= (TILE_LAYER_HEIGHT-LAST_STAGE_ROW_OFFSET);
 		return false;
 	}
 

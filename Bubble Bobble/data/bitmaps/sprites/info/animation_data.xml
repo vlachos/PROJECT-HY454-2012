@@ -335,6 +335,17 @@
     <list  dx="0" dy="+2" delay="60" frame="1"/>
     <list  dx="0" dy="+2" delay="60" frame="0"/>
     <list  dx="0" dy="+2" delay="60" frame="1"/>
+    <list  dx="0" dy="+2" delay="60" frame="0"/>
+    <list  dx="0" dy="+2" delay="60" frame="1"/>
+    <list  dx="0" dy="+2" delay="60" frame="0"/>
+    <list  dx="0" dy="+2" delay="60" frame="1"/>
+    <list  dx="0" dy="+2" delay="60" frame="0"/>
+    <list  dx="0" dy="+2" delay="60" frame="1"/>
+    <list  dx="0" dy="+2" delay="60" frame="0"/>
+    <list  dx="0" dy="+2" delay="60" frame="1"/>
+    <list  dx="0" dy="+2" delay="60" frame="0"/>
+    <list  dx="0" dy="+2" delay="60" frame="1"/>
+
   </BarronVonBlubaRushUp>
 
   <BarronVonBlubaRushLeft type="MovingPathAnimation">
@@ -348,9 +359,30 @@
     <list  dx="-2" dy="0" delay="60" frame="1"/>
     <list  dx="-2" dy="0" delay="60" frame="0"/>
     <list  dx="-2" dy="0" delay="60" frame="1"/>
+    <list  dx="-2" dy="0" delay="60" frame="0"/>
+    <list  dx="-2" dy="0" delay="60" frame="1"/>
+    <list  dx="-2" dy="0" delay="60" frame="0"/>
+    <list  dx="-2" dy="0" delay="60" frame="1"/>
+    <list  dx="-2" dy="0" delay="60" frame="0"/>
+    <list  dx="-2" dy="0" delay="60" frame="1"/>
+    <list  dx="-2" dy="0" delay="60" frame="0"/>
+    <list  dx="-2" dy="0" delay="60" frame="1"/>
+    <list  dx="-2" dy="0" delay="60" frame="0"/>
+    <list  dx="-2" dy="0" delay="60" frame="1"/>
+
   </BarronVonBlubaRushLeft>
 
   <BarronVonBlubaRushDown type="MovingPathAnimation">
+    <list  dx="0" dy="-2" delay="60" frame="0"/>
+    <list  dx="0" dy="-2" delay="60" frame="1"/>
+    <list  dx="0" dy="-2" delay="60" frame="0"/>
+    <list  dx="0" dy="-2" delay="60" frame="1"/>
+    <list  dx="0" dy="-2" delay="60" frame="0"/>
+    <list  dx="0" dy="-2" delay="60" frame="1"/>
+    <list  dx="0" dy="-2" delay="60" frame="0"/>
+    <list  dx="0" dy="-2" delay="60" frame="1"/>
+    <list  dx="0" dy="-2" delay="60" frame="0"/>
+    <list  dx="0" dy="-2" delay="60" frame="1"/>
     <list  dx="0" dy="-2" delay="60" frame="0"/>
     <list  dx="0" dy="-2" delay="60" frame="1"/>
     <list  dx="0" dy="-2" delay="60" frame="0"/>
@@ -365,6 +397,14 @@
 
   
   <EnemyAgryBubble type="MovingPathAnimation">
+    <list  dx="0" dy="-5" delay="200" frame="0"/>
+    <list  dx="0" dy="-5" delay="200" frame="1"/>
+    <list  dx="0" dy="5" delay="200" frame="2"/>
+    <list  dx="0" dy="5" delay="200" frame="0"/>
+    <list  dx="0" dy="5" delay="200" frame="1"/>
+    <list  dx="0" dy="-5" delay="200" frame="2"/>
+    <list  dx="0" dy="5" delay="200" frame="0"/>
+    <list  dx="0" dy="-5" delay="200" frame="1"/>
     <list  dx="0" dy="-5" delay="200" frame="0"/>
     <list  dx="0" dy="-5" delay="200" frame="1"/>
     <list  dx="0" dy="5" delay="200" frame="2"/>
@@ -430,7 +470,7 @@
   </ScoreLabel>
 
   <HurryUpStart type="TickAnimation" repetitions="1" delay="30000"/>
-  <BarronVonBlubaStart type="TickAnimation" repetitions="1" delay="40000"/>
+  <BarronVonBlubaStart type="TickAnimation" repetitions="1" delay="35000"/>
   <BubBubbleExpired type="TickAnimation" repetitions="1" delay="20000"/>
   <BubPigBubbleExpired type="TickAnimation" repetitions="1" delay="2000"/>
 

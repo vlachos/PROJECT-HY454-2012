@@ -6,7 +6,7 @@
 #include "AnimationsParser.h"
 #include "Terrain.h"
 #include "AnimationFilmHolder.h"
-
+#include "StageInitializer.h"
 
 typedef void (*FruitSelector_t)(int x, int y);
 
@@ -118,6 +118,8 @@ void BananaAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetBananaPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBananaAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void BananaAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -127,6 +129,8 @@ void BananaAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 
@@ -146,6 +150,8 @@ void OrangeAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetOrangePoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubOrangeAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void OrangeAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -155,6 +161,8 @@ void OrangeAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+	
+	SCROLL_IF_NO_ENEMIES();
 }
 
 /////////////PeachAnimator
@@ -173,6 +181,8 @@ void PeachAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetPeachPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubPeachAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void PeachAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -182,6 +192,8 @@ void PeachAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+	
+	SCROLL_IF_NO_ENEMIES();
 }
 
 /////////////WaterMelonAnimator
@@ -200,6 +212,8 @@ void WaterMelonAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *ar
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetWaterMelonPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubWaterMelonAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void WaterMelonAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -209,6 +223,8 @@ void WaterMelonAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+	
+	SCROLL_IF_NO_ENEMIES();
 }
 
 ////////////BlueDiamondAnimator
@@ -227,6 +243,8 @@ void BlueDiamondAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetBlueDiamondPoints());
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBlueDiamondAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void BlueDiamondAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -236,4 +254,6 @@ void BlueDiamondAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+
+	SCROLL_IF_NO_ENEMIES();
 }

@@ -10,10 +10,7 @@ extern bool OnKeyRight(void);
 extern bool OnKeySpace(void);
 extern bool OnKeySelect(void);
 extern bool OnKeyP(void);
-extern bool OnKeyUp();
-extern bool OnKeyDown();
-extern bool OnKeySpace();
-extern bool OnKeySelect();
+extern bool OnKeyTab(void);
 
 extern bool OnBubKeyUp();
 extern bool OnBubKeyLeft();

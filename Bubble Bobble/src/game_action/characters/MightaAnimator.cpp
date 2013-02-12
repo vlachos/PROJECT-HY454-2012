@@ -11,6 +11,7 @@
 #include "BubbleLogic.h"
 #include "BubblesAnimator.h"
 #include "RiverAnimator.h"
+#include "StageInitializer.h"
 
 
 
@@ -302,6 +303,8 @@ void MightaDieAnimator::OnFinishCallback(Animator* anim, void* args){
 		FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 	else
 		FruitsAnimators::StartFruitAnimator(5, _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void MightaDieAnimator::OnStartFalling(Sprite * sprite){
@@ -361,7 +364,7 @@ void MightaAngryThrowFireBallAnimator::OnFinishCallback(Animator* anim, void* ar
 	Sprite *n_sprite=new Sprite(_this->GetSprite()->GetX(),_this->GetSprite()->GetY(),
 		_this->GetSprite()->IsGravityAddicted(),AnimationFilmHolder::GetFilm("MightaAngry"), 
 						Terrain::GetActionLayer(), _this->GetSprite()->GoesLeft());
-	std::cout<<"sdvsv\n";
+
 	FrameRangeAnimation *ball=(FrameRangeAnimation*)AnimationsParser::GetAnimation(_this->GetSprite()->GoesLeft()?"MightaMovingFireBallLeft":"MightaMovingFireBallRight");
 	Sprite *newSprite=new Sprite(_this->GetSprite()->GoesLeft()?(_this->GetSprite()->GetX()-35):(_this->GetSprite()->GetX()+35),
 		_this->GetSprite()->GetY(),false,AnimationFilmHolder::GetFilm("MightaBubble"), 

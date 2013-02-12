@@ -35,10 +35,12 @@ class BubBubbleBlastOffAnimator: public FrameRangeAnimator{
 		static void OnCollisionWithMightaWalking(Sprite *, Sprite *, void *);
 		static void OnCollisionWithMightaFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithMightaJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaThrowFireBall(Sprite*, Sprite*, void*);
 		static void OnCollisionWithMightaAngryStand(Sprite *, Sprite *, void *);
 		static void OnCollisionWithMightaAngryWalking(Sprite *, Sprite *, void *);
 		static void OnCollisionWithMightaAngryFalling(Sprite *, Sprite *, void *);
 		static void OnCollisionWithMightaAngryJump(Sprite *, Sprite *, void *);
+		static void OnCollisionWithMightaAngryThrowFireBall(Sprite*, Sprite*, void*);
 };
 
 class BubBubbleAnimator: public FrameRangeAnimator{

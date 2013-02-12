@@ -14,9 +14,11 @@
 #include "MightaAnimator.h"
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
+#include "StageInitializer.h"
 
 #define START_MENU_SELECTOR_DELAY 200
 #define PAUSE_DELAY 500
+#define CHANGE_STAGE_DELAY 7000
 #define BLAST_DELAY 400
 #define BLAST_QUICK_DELAY 200
 
@@ -442,6 +444,19 @@ bool InputManageHandling::OnKeyP(void){
 			BubbleLogic::SetTimeBeforePause( 0);
 			BubbleLogic::SetGamePaused(false);
 		}
+	}
+	return true;
+}
+
+
+bool InputManageHandling::OnKeyTab(void){
+	static timestamp_t oldTime = -1;
+
+	timestamp_t nowTime;
+	if( (nowTime = GetCurrTime())>oldTime + CHANGE_STAGE_DELAY ){
+		oldTime = nowTime;
+		BubbleLogic::IncrStageLevel();
+		StageInitializer::ScrollToNextStage();
 	}
 	return true;
 }

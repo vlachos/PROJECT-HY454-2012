@@ -20,9 +20,6 @@
 
 
 	void StageInitializer::InitNextStage(void){
-
-		BubbleLogic::InitStageStartingAttributes();
-
 		InitBubblun();
 		InitZenChan();
 		InitMighta();
@@ -83,6 +80,12 @@
 		TimerTickAnimator* ttar2 = new TimerTickAnimator(ta2);
 		ttar2->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
 		START_TIME_ANIMATOR(ttar2, GetGameTime());
+
+		TickAnimation *ta3 = (TickAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaStart");
+		ta3->SetTickAction( BaronVonBlubaAnimatorActions::StartBaronVonBludaAnimator, 0 );
+		TimerTickAnimator* ttar3 = new TimerTickAnimator(ta3);
+		ttar3->SetOnFinish(BubblesAnimatorActions::OnTickTimerFinishCallback, 0);
+		START_TIME_ANIMATOR(ttar3, GetGameTime());
 	}
 
 	void StageInitializer::InitBubLifes(void){
@@ -93,9 +96,9 @@
 		MovingAnimator* animr = new MovingAnimator();
 		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	}
-
+	
 	void StageInitializer::ScrollToNextStage(void){
-		/*
+		
 		std::vector<Animator*> allAnimr = AnimatorHolder::GetAnimators(	bubStandAnimator_t,
 																			optionsScreenSelectorAnimator_t);
 		for (unsigned int i=0; i < allAnimr.size(); ++i ){
@@ -103,7 +106,7 @@
 			AnimatorHolder::Cancel( allAnimr[i] );
 		}
 		CollisionChecker::Clear();
-		*/
+
 		MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BubInBubble");
 		Sprite *sprite = new Sprite(
 									250,

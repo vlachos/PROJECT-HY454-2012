@@ -177,14 +177,14 @@ bool BubbleMain::InputManagement(){
 				return false;
 		}
 
-		if(al_key_down(&keyState, ALLEGRO_KEY_Z))
+		if(al_key_down(&keyState, ALLEGRO_KEY_2)){
 			InputManageHandling::OnKeySelect();
-
+		}
 		if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
 			InputManageHandling::OnKeyDown();
 		}
-		if(al_key_down(&keyState, ALLEGRO_KEY_Z)){
-			retVal = InputManageHandling::OnKeySelect();
+		if(al_key_down(&keyState, ALLEGRO_KEY_TAB)){
+			retVal = InputManageHandling::OnKeyTab();
 		}
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_P)){

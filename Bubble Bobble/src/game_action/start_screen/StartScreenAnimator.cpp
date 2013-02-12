@@ -69,7 +69,6 @@ void StartScreenAnimatorActions::CleanUpStartScreen(){
 }
 
 void StartScreenAnimatorActions::StartGame(){
-	StageInitializer::InitNextStage();
 	StageInitializer::ScrollToNextStage();
 }
 

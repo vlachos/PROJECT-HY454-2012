@@ -127,7 +127,9 @@ void BubInBubbleAnimator::OnFinishCallback(Animator* anmr, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 	DESTROY_ANIMATOR( _this );
 
+	std::cout << "Stage Num:  "<< BubbleLogic::GetStageLevel() << "\n";
 	StageInitializer::InitNextStage();
+
 	SoundAPI::PlaySoundContinue(SoundAPI::soundKind_ingameMusic_t, false);
 }
 
@@ -594,9 +596,10 @@ void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
 								AnimationFilmHolder::GetFilm("BubWalk"), 
 								Terrain::GetActionLayer(),
 								BubbleLogic::GetBubProfile()->GetStartDirection());
+
 	n_sprite->SetIsBub(_this->GetSprite()->IsBub());
+
 	BubStandAnimator *frtor=new BubStandAnimator();
-	frtor->RegistCollitions(n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 
 	DESTROY_ANIMATOR( _this );
@@ -687,7 +690,6 @@ void BubDieByFireAnimator::OnFinishCallback(Animator* anim, void* args){
 								BubbleLogic::GetBubProfile()->GetStartDirection());
 	n_sprite->SetIsBub(_this->GetSprite()->IsBub());
 	BubStandAnimator *frtor=new BubStandAnimator();
-	frtor->RegistCollitions(n_sprite);
 	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
 
 	DESTROY_ANIMATOR( _this );

@@ -4,14 +4,12 @@
 #include "CollisionChecker.h"
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
-#include "MovingPathAnimation.h"
 #include "ZenChanAnimator.h"
 #include "MightaAnimator.h"
 #include "AnimationsParser.h"
 #include "AnimatorHolder.h"
 #include "BubblesAnimator.h"
 #include "InvisibleSprites.h"
-
 
 void RiverAnimatorActions::StartWaterBubble(void* args){
 
@@ -90,7 +88,14 @@ void RiverAnimator::RegistCollitions(RiverSprite* rSpr){
 	CollisionChecker::Register(rSpr, mightaStandAnimator_t,mightaJumpAnimator_t,RiverAnimator::OnCollisionWithMighta);
 }
 
-void RiverAnimator::OnFinishCallback(Animator* anmr, void* args) {  }
+void RiverAnimator::OnFinishCallback(Animator* anmr, void* args) {
+//	DASSERT( anim && args);
+	RiverAnimator * _this = (RiverAnimator*)args;
+//	DASSERT( _this->GetAnimation() && _this->GetSprite() && anim ==_this );
+	REMOVE_FROM_ACTION_ANIMATOR(_this);
+	
+	DESTROY_ANIMATOR( _this );
+}
 
 void RiverAnimator::OnStartFalling(Sprite* spr){
 	DASSERT( spr == this->GetSprite() );

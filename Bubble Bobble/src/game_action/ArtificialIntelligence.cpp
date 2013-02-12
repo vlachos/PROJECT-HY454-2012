@@ -18,7 +18,7 @@ void ArtificialIntelligence::HandleZenChan(){
 	std::vector<Animator*> zenChan;
 
 	if(!(zenChan = AnimatorHolder::GetAnimators(zenChanWalkAnimator_t)).empty()){
-		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubStandAnimator_t, bubWalkAnimator_t);
+		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubWalkAnimator_t, bubJumpAnimator_t);
 
 		for(unsigned int i = 0; i<zenChan.size(); ++i){
 			ZenChanWalkingAnimator* r = (ZenChanWalkingAnimator*) zenChan[i];
@@ -68,7 +68,7 @@ void ArtificialIntelligence::HandleMighta(){
 	std::vector<Animator*> mighta;
 
 	if(!(mighta = AnimatorHolder::GetAnimators(mightaWalkAnimator_t)).empty()){
-		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubStandAnimator_t, bubWalkAnimator_t);
+		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubWalkAnimator_t, bubJumpAnimator_t);
 		std::vector<Animator*> ball = AnimatorHolder::GetAnimators(mightaMovingFireBallAnimator_t);
 
 		for(unsigned int i = 0; i<mighta.size(); ++i){
@@ -132,7 +132,7 @@ void ArtificialIntelligence::HandleAngryZenChan(){
 	std::vector<Animator*> zenChan;
 
 	if(!(zenChan = AnimatorHolder::GetAnimators(zenChanAngryWalkAnimator_t)).empty()){
-		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubStandAnimator_t, bubWalkAnimator_t);
+		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubWalkAnimator_t, bubJumpAnimator_t);
 
 		for(unsigned int i = 0; i<zenChan.size(); ++i){
 			ZenChanAngryWalkingAnimator* r = (ZenChanAngryWalkingAnimator*) zenChan[i];
@@ -182,7 +182,7 @@ void ArtificialIntelligence::HandleAngryMighta(){
 	std::vector<Animator*> mighta;
 
 	if(!(mighta = AnimatorHolder::GetAnimators(mightaAngryWalkAnimator_t)).empty()){
-		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubStandAnimator_t, bubWalkAnimator_t);
+		std::vector<Animator*> anim = AnimatorHolder::GetAnimators(bubWalkAnimator_t, bubJumpAnimator_t);
 		std::vector<Animator*> ball = AnimatorHolder::GetAnimators(mightaMovingFireBallAnimator_t);
 
 		for(unsigned int i = 0; i<mighta.size(); ++i){
@@ -270,7 +270,7 @@ void ArtificialIntelligence::HandleBarronVonBluba(){
 			const int offset = 30;
 			MovingPathAnimation *mpa;
 			Sprite * bub = ((MovingAnimator*)anim.front())->GetSprite();
-			if(baron->GetX() + offset  < bub->GetX() ){
+			if(baron->GetX() + offset  <= bub->GetX() ){
 				if(r->prevDirection == BaronVonBlubaStandAnimator::direction_up_t || 
 					r->prevDirection == BaronVonBlubaStandAnimator::direction_down_t){
 						mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaRushRight");
@@ -290,7 +290,7 @@ void ArtificialIntelligence::HandleBarronVonBluba(){
 				else
 					mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaRushDown");
 			}else
-			if(baron->GetY() > bub->GetY() ){
+			if(baron->GetY() >= bub->GetY() ){
 				if(r->prevDirection == BaronVonBlubaStandAnimator::direction_left_t || 
 					r->prevDirection == BaronVonBlubaStandAnimator::direction_rigth_t){
 						mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BarronVonBlubaRushUp");

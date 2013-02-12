@@ -7,6 +7,7 @@
 #include "AnimationsParser.h"
 #include "AnimationFilmHolder.h"
 #include "Terrain.h"
+#include "StageInitializer.h"
 
 void powerUpsAnimatorStart::startRedShoesAnimator(){
 	Sprite* sprite = new Sprite(															
@@ -85,6 +86,8 @@ void RedShoesAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubRedShoesAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void RedShoesAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -94,6 +97,8 @@ void RedShoesAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 
@@ -108,14 +113,14 @@ void YellowSweetAnimator::RegistCollitions(Sprite* sprite){
 
 void YellowSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
-	std::cout << "AEJNFAELFNAEFNAEF:NAF:NF:EMNFA:EFMNE:MN:FMNA:MNE:F\n";
 
 	YellowSweetAnimator * _this = (YellowSweetAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubYellowSwtAcquired();
-	BubbleLogic::GetBubProfile()->SetYellowSwt(true);
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void YellowSweetAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -125,6 +130,8 @@ void YellowSweetAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 /////////////BlueSweetAnimator
@@ -143,6 +150,8 @@ void BlueSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *arg
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubBlueSwtAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void BlueSweetAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -152,6 +161,8 @@ void BlueSweetAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 /////////////PurpleSweetAnimator
@@ -170,6 +181,8 @@ void PurpleSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubPurpleSwtAcquired();
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void PurpleSweetAnimator::OnFinishCallback(Animator* anim, void* args){
@@ -179,4 +192,5 @@ void PurpleSweetAnimator::OnFinishCallback(Animator* anim, void* args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	
 	DESTROY_ANIMATOR( _this );
+	SCROLL_IF_NO_ENEMIES();
 }

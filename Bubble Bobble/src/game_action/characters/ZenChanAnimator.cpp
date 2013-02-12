@@ -10,9 +10,7 @@
 #include "FruitsAnimator.h"
 #include "BubbleLogic.h"
 #include "RiverAnimator.h"
-#include <string>
-
-
+#include "StageInitializer.h"
 
 //////////////////////////////////////////////////////ZenChanAnimators//////////////////////////////////////////////
 
@@ -258,6 +256,8 @@ void ZenChanDieAnimator::OnFinishCallback(Animator* anim, void* args){
 		FruitsAnimators::StartFruitAnimator(BubbleLogic::GetFruitType(), _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
 	else
 		FruitsAnimators::StartFruitAnimator(5, _this->GetSprite()->GetX(), _this->GetSprite()->GetY());
+
+	SCROLL_IF_NO_ENEMIES();
 }
 
 void ZenChanDieAnimator::OnStartFalling(Sprite * sprite){

@@ -123,20 +123,25 @@ std::list<StartingAttributes_t> StageStartingAttributesParser::GetMightaStarting
 }
 
 StartingAttributes_t StageStartingAttributesParser::GetBubStartingAttribute(unsigned int stageNum){
-	--stageNum;
-	DASSERT( stageNum<attributes.size() );
-	std::list<StartingAttributes_t> bub = attributes[stageNum]["BubXY"];
-	DASSERT(bub.size()==1);
-	return bub.front();
+	if (stageNum != -1){
+		--stageNum;
+		DASSERT( stageNum<attributes.size() );
+		std::list<StartingAttributes_t> bub = attributes[stageNum]["BubXY"];
+		DASSERT(bub.size()==1);
+		return bub.front();
+	}
+	else return StartingAttributes_t();
 }
 
 StartingAttributes_t StageStartingAttributesParser::GetBobStartingAttribute(unsigned int stageNum){
-	std::cout << "stage: "<<stageNum;
-	--stageNum;
-	//DASSERT( stageNum<attributes.size() );
-	std::list<StartingAttributes_t> bob = attributes[stageNum]["BobXY"];
-	DASSERT(bob.size()==1);
-	return bob.front();
+	if (stageNum != -1){
+		--stageNum;
+		DASSERT( stageNum<attributes.size() );
+		std::list<StartingAttributes_t> bob = attributes[stageNum]["BobXY"];
+		DASSERT(bob.size()==1);
+		return bob.front();
+	}
+	else return StartingAttributes_t();
 }
 
 std::list<StartingAttributes_t> StageStartingAttributesParser::GetPowerUpStartingAttribute(unsigned int stageNum){
