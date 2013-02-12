@@ -151,7 +151,6 @@ static bool _OnKeyLeft(bool bubId){
 				else
 					BubbleLogic::GetBobProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(-2,0):
 													   bja->GetSprite()->Move(-1,0);
-				bja->GetSprite()->Move(-2,0);
 				bja->GetSprite()->SetGoesLeft(true);
 				return true;
 			}																				
@@ -167,7 +166,6 @@ static bool _OnKeyLeft(bool bubId){
 				else
 					BubbleLogic::GetBobProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(-2,0):
 													   bja->GetSprite()->Move(-1,0);
-				bja->GetSprite()->Move(-2,0);
 				bja->GetSprite()->SetGoesLeft(true);
 				return true;
 			}																				
@@ -184,7 +182,6 @@ static bool _OnKeyLeft(bool bubId){
 					BubbleLogic::GetBobProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(-2,0):
 													   bja->GetSprite()->Move(-1,0);
 				bja->GetSprite()->SetGoesLeft(true);
-				bja->GetSprite()->Move(-2,0);
 				return true;
 			}																				
 		}
@@ -220,7 +217,6 @@ static bool _OnKeyRight(bool bubId){
 				else
 					BubbleLogic::GetBobProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(2,0):
 													   bja->GetSprite()->Move(1,0);
-				bja->GetSprite()->Move(2,0);
 				bja->GetSprite()->SetGoesLeft(false);
 				return true;
 			}																				
@@ -236,7 +232,6 @@ static bool _OnKeyRight(bool bubId){
 				else
 					BubbleLogic::GetBobProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(2,0):
 													   bja->GetSprite()->Move(1,0);
-				bja->GetSprite()->Move(2,0);
 				bja->GetSprite()->SetGoesLeft(false);
 				return true;
 			}																				
@@ -253,7 +248,6 @@ static bool _OnKeyRight(bool bubId){
 					BubbleLogic::GetBobProfile()->IsJumpOnMove() ? bja->GetSprite()->Move(2,0):
 													   bja->GetSprite()->Move(1,0);
 				bja->GetSprite()->SetGoesLeft(false);
-				bja->GetSprite()->Move(2,0);
 				return true;
 			}																				
 		}
