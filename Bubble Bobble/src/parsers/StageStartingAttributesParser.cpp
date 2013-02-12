@@ -56,8 +56,9 @@ StageStartingAttributesParser::StageStartingAttributesParser(const char * path){
 	positionMap posMap;
 	for(rapidxml::xml_node<>* stagesIterate = rootNode->first_node(); stagesIterate; stagesIterate = stagesIterate->next_sibling()){
 		int currStage = GetGetIntAtrr( stagesIterate, "stageNum" );
-		DASSERT( currStage == ++stages);
-
+		++stages;
+		DASSERT( currStage == stages);
+		
 		attrMap.clear();
 		posMap.clear();
 

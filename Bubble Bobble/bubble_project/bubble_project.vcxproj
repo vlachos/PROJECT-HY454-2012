@@ -83,6 +83,7 @@
     <ClCompile Include="..\src\animations\AnimationFilm.cpp" />
     <ClCompile Include="..\src\animations\AnimationFilmHolder.cpp" />
     <ClCompile Include="..\src\animations\BitmapLoader.cpp" />
+    <ClCompile Include="..\src\animations\BubLifesSprite.cpp" />
     <ClCompile Include="..\src\animations\FlashAnimation.cpp" />
     <ClCompile Include="..\src\animations\FrameListAnimation.cpp" />
     <ClCompile Include="..\src\animations\FrameRangeAnimation.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="..\include\animations\AnimationFilm.h" />
     <ClInclude Include="..\include\animations\AnimationFilmHolder.h" />
     <ClInclude Include="..\include\animations\BitmapLoader.h" />
+    <ClInclude Include="..\include\animations\BubLifesSprite.h" />
     <ClInclude Include="..\include\animations\FlashAnimation.h" />
     <ClInclude Include="..\include\animations\FrameListAnimation.h" />
     <ClInclude Include="..\include\animations\FrameRangeAnimation.h" />

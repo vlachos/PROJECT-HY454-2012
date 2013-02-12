@@ -249,6 +249,9 @@
     <ClCompile Include="..\src\animations\MultiSprite.cpp">
       <Filter>Source Files\animations</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\animations\BubLifesSprite.cpp">
+      <Filter>Source Files\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\utilities\Metrics.h">
@@ -423,6 +426,9 @@
       <Filter>Header Files\game_action</Filter>
     </ClInclude>
     <ClInclude Include="..\include\animations\MultiSprite.h">
+      <Filter>Header Files\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\animations\BubLifesSprite.h">
       <Filter>Header Files\animations</Filter>
     </ClInclude>
   </ItemGroup>

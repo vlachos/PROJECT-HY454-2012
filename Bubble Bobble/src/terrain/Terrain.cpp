@@ -45,7 +45,7 @@ void Terrain::DisplayTerrain(Bitmap at, timestamp_t nowTime){
 										BubbleLogic::GetBobProfile()->GetScore() );
 	//}
 
-	if (BubbleLogic::GetBubProfile()->GetScore() != -1)
+	if (BubbleLogic::GetBubProfile()->GetScore() != -2)
 		scores->DisplayScoreBoard(at,	BubbleLogic::GetBubProfile()->GetScore(),
 										BubbleLogic::GetHighScore(),
 										BubbleLogic::GetBobProfile()->GetScore() );

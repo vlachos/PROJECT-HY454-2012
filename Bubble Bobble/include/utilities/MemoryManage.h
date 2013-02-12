@@ -6,7 +6,8 @@
 
 //will add gui effect in future
 
-#define DASSERT( sent ) assert( sent )
+#define DASSERT( sent ) 
+//assert( sent )
 
 template <class T> void unullify (T*& p) 
 	{ p = (T*) 0;}

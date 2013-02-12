@@ -1,5 +1,5 @@
-#ifndef MultiSprite_H
-#define MultiSprite_H
+#ifndef MULTISPRITE_H
+#define MULTISPRITE_H
 
 #include "Sprite.h"
 

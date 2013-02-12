@@ -412,15 +412,24 @@ bool InputManageHandling::OnKeySpace(void){
 }
 
 
-bool InputManageHandling::OnKeySelect(){
-	if(BubbleLogic::GetBobProfile()->GetScore()==-1){
-		BubbleLogic::GetBobProfile()->SetScore(0);
-		Sprite* sprite = new Sprite(BubbleLogic::GetBobProfile()->GetStartX(),BubbleLogic::GetBobProfile()->GetStartY(),
-									BubbleLogic::GetBobProfile()->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
+bool InputManageHandling::OnKeySelect(bool isbub){
+	BubProfile *prof;
+	isbub? prof = BubbleLogic::GetBubProfile() : prof = BubbleLogic::GetBobProfile() ;
+
+	if(prof->GetScore()==-1){
+		prof->SetScore(0);
+		prof->IncrLifes();
+		prof->IncrLifes();
+		prof->IncrLifes();
+		prof->IncrLifes();
+		prof->IncrLifes();
+
+		Sprite* sprite = new Sprite(prof->GetStartX(),BubbleLogic::GetBobProfile()->GetStartY(),
+									prof->GetStartGravity(),AnimationFilmHolder::GetFilm("BubWalk"),
 									Terrain::GetActionLayer(), BubbleLogic::GetBobProfile()->GetStartDirection());	
 		MovingAnimation* anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubStand");															
 		BubStandAnimator* animr = new BubStandAnimator();
-		sprite->SetIsBub(false);
+		sprite->SetIsBub(isbub?true:false);
 		animr->RegistCollitions(sprite);
 
 		START_ANIMATOR( animr, sprite, anim, GetGameTime() );

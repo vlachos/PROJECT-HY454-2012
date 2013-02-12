@@ -33,7 +33,40 @@
 
 //////////////////////////static functions
 
+static void AfterDieProcedure(BubDieAnimator* _this){
+	bool currLifes = -1;
+	BubProfile* currProfile;
+	_this->GetSprite()->IsBub()? currProfile = BubbleLogic::GetBubProfile():
+								 currProfile = BubbleLogic::GetBobProfile();
 
+	if (currProfile->GetLifes() > 1){
+
+		MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
+		Sprite *n_sprite=new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), 
+									BubbleLogic::GetBubProfile()->GetStartY(),
+									BubbleLogic::GetBubProfile()->GetStartGravity(),
+									AnimationFilmHolder::GetFilm("BubWalk"), 
+									Terrain::GetActionLayer(),
+									BubbleLogic::GetBubProfile()->GetStartDirection());
+
+
+			n_sprite->SetIsBub(_this->GetSprite()->IsBub());
+			BubStandAnimator *frtor=new BubStandAnimator();
+			START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+
+		////// refresh bub profile
+		currProfile->SetScore(currProfile->GetScore() / 2);
+		currProfile->DecrLifes();	
+	}
+	else{
+		currProfile->SetScore(-1);
+		currProfile->DecrLifes();
+	}
+	currProfile->SetYellowSwt(false);
+	currProfile->SetBlueSwt(false);
+	currProfile->SetPurpleSwt(false);
+	currProfile->SetRedShoes(false);
+}
 
 static void startBubBubbleAnimator(Sprite* sprite){
 
@@ -588,39 +621,9 @@ void BubDieAnimator::OnFinishCallback(Animator* anim, void* args){
 	DASSERT( _this->GetAnimation() && _this->GetSprite() );
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
-
-	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
-	Sprite *n_sprite=new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), 
-								BubbleLogic::GetBubProfile()->GetStartY(),
-								BubbleLogic::GetBubProfile()->GetStartGravity(),
-								AnimationFilmHolder::GetFilm("BubWalk"), 
-								Terrain::GetActionLayer(),
-								BubbleLogic::GetBubProfile()->GetStartDirection());
-
-	n_sprite->SetIsBub(_this->GetSprite()->IsBub());
-
-	BubStandAnimator *frtor=new BubStandAnimator();
-	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	AfterDieProcedure(_this);
 
 	DESTROY_ANIMATOR( _this );
-
-	////// refresh bub profile
-	if(!n_sprite->IsBub()){
-		BubbleLogic::SetBobScore(BubbleLogic::GetBobProfile()->GetScore() / 2 );
-		BubbleLogic::GetBobProfile()->DecrLifes();
-		BubbleLogic::GetBobProfile()->SetYellowSwt(false);
-		BubbleLogic::GetBobProfile()->SetBlueSwt(false);
-		BubbleLogic::GetBobProfile()->SetPurpleSwt(false);
-		BubbleLogic::GetBobProfile()->SetRedShoes(false);
-	}
-	else{
-		BubbleLogic::SetBubScore(BubbleLogic::GetBubProfile()->GetScore() / 2 );
-		BubbleLogic::GetBubProfile()->DecrLifes();
-		BubbleLogic::GetBubProfile()->SetYellowSwt(false);
-		BubbleLogic::GetBubProfile()->SetBlueSwt(false);
-		BubbleLogic::GetBubProfile()->SetPurpleSwt(false);
-		BubbleLogic::GetBubProfile()->SetRedShoes(false);
-	}
 }
 
 void BubDieAnimator::OnStartFalling(Sprite * sprite){
@@ -681,36 +684,9 @@ void BubDieByFireAnimator::OnFinishCallback(Animator* anim, void* args){
 
 	REMOVE_FROM_ACTION_ANIMATOR( _this );
 
-	MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
-	Sprite *n_sprite=new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), 
-								BubbleLogic::GetBubProfile()->GetStartY(),
-								BubbleLogic::GetBubProfile()->GetStartGravity(),
-								AnimationFilmHolder::GetFilm("BubWalk"), 
-								Terrain::GetActionLayer(),
-								BubbleLogic::GetBubProfile()->GetStartDirection());
-	n_sprite->SetIsBub(_this->GetSprite()->IsBub());
-	BubStandAnimator *frtor=new BubStandAnimator();
-	START_ANIMATOR( frtor, n_sprite, fra, GetGameTime() );
+	AfterDieProcedure(_this);
 
 	DESTROY_ANIMATOR( _this );
-
-	////// refresh bub profile
-	if(!n_sprite->IsBub()){
-		BubbleLogic::SetBobScore(BubbleLogic::GetBobProfile()->GetScore() / 2 );
-		BubbleLogic::GetBobProfile()->DecrLifes();
-		BubbleLogic::GetBobProfile()->SetYellowSwt(false);
-		BubbleLogic::GetBobProfile()->SetBlueSwt(false);
-		BubbleLogic::GetBobProfile()->SetPurpleSwt(false);
-		BubbleLogic::GetBobProfile()->SetRedShoes(false);
-	}
-	else{
-		BubbleLogic::SetBubScore(BubbleLogic::GetBubProfile()->GetScore() / 2 );
-		BubbleLogic::GetBubProfile()->DecrLifes();
-		BubbleLogic::GetBubProfile()->SetYellowSwt(false);
-		BubbleLogic::GetBubProfile()->SetBlueSwt(false);
-		BubbleLogic::GetBubProfile()->SetPurpleSwt(false);
-		BubbleLogic::GetBubProfile()->SetRedShoes(false);
-	}
 }
 
 void BubDieByFireAnimator::OnStartFalling(Sprite * sprite){

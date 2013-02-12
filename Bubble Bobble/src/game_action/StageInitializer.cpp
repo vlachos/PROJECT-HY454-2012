@@ -4,7 +4,7 @@
 #include "CollisionChecker.h"
 #include "AnimationsParser.h"
 #include "Sprite.h"
-#include "MultiSprite.h"
+#include "BubLifesSprite.h"
 #include "ScrollingAnimator.h"
 #include "ScrollingAnimation.h"
 #include "Terrain.h"
@@ -89,12 +89,20 @@
 	}
 
 	void StageInitializer::InitBubLifes(void){
-		MultiSprite* sprite = new MultiSprite(32, 432, false, AnimationFilmHolder::GetFilm("BubLifes"),
+		BubLifesSprite* sprite = new BubLifesSprite(32, 432, false, AnimationFilmHolder::GetFilm("BubLifes"),
 												Terrain::GetActionLayer(), true);
 
 		MovingAnimation *anim = (MovingAnimation*) AnimationsParser::GetAnimation("BubLifes");
 		MovingAnimator* animr = new MovingAnimator();
 		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
+
+		BubLifesSprite* sprite2 = new BubLifesSprite(360, 432, false, AnimationFilmHolder::GetFilm("BobLifes"),
+												Terrain::GetActionLayer(), true);
+		sprite2->SetIsBub(false);
+
+		MovingAnimation *anim2 = (MovingAnimation*) AnimationsParser::GetAnimation("BubLifes");
+		MovingAnimator* animr2 = new MovingAnimator();
+		START_ANIMATOR( animr2, sprite2, anim2, GetGameTime() );
 	}
 	
 	void StageInitializer::ScrollToNextStage(void){

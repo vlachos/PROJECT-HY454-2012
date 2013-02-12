@@ -78,6 +78,12 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 
 		bub = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBubStartingAttribute(-1) ) );
 		bob = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBobStartingAttribute(-1) ) );
+		bub->SetScore(-2);
+		bob->DecrLifes();
+		bob->DecrLifes();
+		bob->DecrLifes();
+		bob->DecrLifes();
+		bob->DecrLifes();
 		InitStageStartingAttributes();
 		srand((unsigned)time(0));
 	}
@@ -85,6 +91,7 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 	void BubbleLogic::InitStageStartingAttributes(void){
 
 		bub->SetStartingAttributes(StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) );
+		bub->SetScore(-1);
 		bob->SetStartingAttributes(StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) );
 
 		std::list<StartingAttributes_t> StartingAttributes = StageStartingAttributesParser::GetPowerUpStartingAttribute(stageLevel);

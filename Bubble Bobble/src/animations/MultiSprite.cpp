@@ -1,9 +1,7 @@
 #include "MultiSprite.h"
 
 MultiSprite::MultiSprite(int _x, int _y, bool _gravityAddicted, const AnimationFilm * film, const TileLayer * _tileLayer, bool goesLeft):
-					Sprite(_x, _y, _gravityAddicted, film,  _tileLayer, goesLeft){
-
-}
+					Sprite(_x, _y, _gravityAddicted, film,  _tileLayer, goesLeft) {  }
 
 
 void MultiSprite::Display(Bitmap dest){

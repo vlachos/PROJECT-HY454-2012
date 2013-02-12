@@ -169,8 +169,9 @@ bool BubbleMain::InputManagement(){
 			InputManageHandling::OnBobKeySpace();
 		}
 
-		if(al_key_down(&keyState, ALLEGRO_KEY_Z))
-			InputManageHandling::OnKeySelect();
+		if(al_key_down(&keyState, ALLEGRO_KEY_1)){
+			InputManageHandling::OnKeySelect(true);
+		}
 
 		if(al_key_down(&keyState, ALLEGRO_KEY_ENTER)){
 			if(!InputManageHandling::OnKeySpace())
@@ -178,7 +179,7 @@ bool BubbleMain::InputManagement(){
 		}
 
 		if(al_key_down(&keyState, ALLEGRO_KEY_2)){
-			InputManageHandling::OnKeySelect();
+			InputManageHandling::OnKeySelect(false);
 		}
 		if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
 			InputManageHandling::OnKeyDown();
