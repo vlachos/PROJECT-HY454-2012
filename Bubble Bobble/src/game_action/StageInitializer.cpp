@@ -17,7 +17,7 @@
 #include "TimerTickAnimator.h"
 #include "TickAnimation.h"
 #include "GameActionUtilities.h"
-
+#include "SoundAPI.h"
 
 	void StageInitializer::InitNextStage(void){
 		InitBubblun();
@@ -106,7 +106,7 @@
 	}
 	
 	void StageInitializer::ScrollToNextStage(void){
-		
+		SoundAPI::PlaySoundOnce(SoundAPI::soundKind_theStoryBegin_t, true);
 		std::vector<Animator*> allAnimr = AnimatorHolder::GetAnimators(	bubStandAnimator_t,
 																			optionsScreenSelectorAnimator_t);
 		for (unsigned int i=0; i < allAnimr.size(); ++i ){

@@ -153,7 +153,6 @@ bool StartScreenSelectorAnimator::PressEnter(){
 	DASSERT( this->GetSprite() && this->GetAnimation() );
 	switch(this->GetSprite()->GetY()){
 		case START_SCREEN_SELECTOR_START_GAME:	StartScreenAnimatorActions::CleanUpStartScreen();
-												SoundAPI::PlaySoundOnce(SoundAPI::soundKind_theStoryBegin_t, true);
 												StartScreenAnimatorActions::StartGame();
 												break;
 		case START_SCREEN_SELECTOR_OPTIONS:		StartScreenAnimatorActions::CleanUpStartScreen();
