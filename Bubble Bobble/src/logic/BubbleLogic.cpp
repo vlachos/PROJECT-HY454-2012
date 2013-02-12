@@ -75,11 +75,17 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		blustedBubblesForPurpleSwt = SpritesAttributeParser::GetAttribute("PurpleSweetConditionBlustedBubblesNeeded");
 
 		SpritesAttributeParser::SingletonDestroy();
-	
-		
-		
+
 		bub = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) ) );
 		bob = DNEWCLASS(BubProfile, ( startingLifes, StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) ) );
+
+		srand((unsigned)time(0));
+	}
+
+	void BubbleLogic::InitStageStartingAttributes(void){
+
+		bob->SetStartingAttributes(StageStartingAttributesParser::GetBobStartingAttribute(stageLevel) );
+		bub->SetStartingAttributes(StageStartingAttributesParser::GetBubStartingAttribute(stageLevel) );
 
 		std::list<StartingAttributes_t> StartingAttributes = StageStartingAttributesParser::GetPowerUpStartingAttribute(stageLevel);
 		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){
@@ -95,7 +101,6 @@ typedef std::pair<unsigned int, std::string> fruitPair;
 		for(std::list<StartingAttributes_t>::const_iterator ci = StartingAttributes.begin(); ci!=StartingAttributes.end(); ++ci){
 			mightaPosXY.push_back( (*ci) );
 		}
-		srand((unsigned)time(0));
 	}
 
 	void BubbleLogic::SetStageLevel(int aLevel) { stageLevel = aLevel; }

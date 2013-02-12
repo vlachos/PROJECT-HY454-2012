@@ -267,7 +267,7 @@ static bool _OnKeySpace(bool bubId){
 
 	if (bubId) hasYellowSwt = BubbleLogic::GetBubProfile()->GetYellowSwt();
 	else hasYellowSwt = BubbleLogic::GetBobProfile()->GetYellowSwt();
-	std::cout << "Yellow Sweet :    " << hasYellowSwt << "\n";
+	std::cout << "Yellow Sweet :    " << hasYellowSwt << BubbleLogic::GetBobProfile()->GetYellowSwt() << BubbleLogic::GetBubProfile()->GetYellowSwt() <<"\n";
 	if ( nowTime > (bubId ? bubOldTime : bobOldTime) + (!hasYellowSwt ? BLAST_DELAY : BLAST_QUICK_DELAY) ){
 		bubId ? bubOldTime = nowTime : bobOldTime = nowTime;
 

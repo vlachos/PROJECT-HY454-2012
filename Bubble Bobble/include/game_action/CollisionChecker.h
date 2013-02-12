@@ -71,6 +71,7 @@ class CollisionChecker{
 		}
 
 	public:
+		static void Clear(void);
 		static void	SingletonCleanUp (void);
 
 };

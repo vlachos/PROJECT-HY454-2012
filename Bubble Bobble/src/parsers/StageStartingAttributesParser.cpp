@@ -131,8 +131,9 @@ StartingAttributes_t StageStartingAttributesParser::GetBubStartingAttribute(unsi
 }
 
 StartingAttributes_t StageStartingAttributesParser::GetBobStartingAttribute(unsigned int stageNum){
+	std::cout << "stage: "<<stageNum;
 	--stageNum;
-	DASSERT( stageNum<attributes.size() );
+	//DASSERT( stageNum<attributes.size() );
 	std::list<StartingAttributes_t> bob = attributes[stageNum]["BobXY"];
 	DASSERT(bob.size()==1);
 	return bob.front();

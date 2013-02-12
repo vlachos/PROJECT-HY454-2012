@@ -81,7 +81,6 @@ enum animatorType_t {
 	startScreenSelectorAnimator_t,
 	optionsScreenStaticAnimator_t,
 	optionsScreenSelectorAnimator_t,
-	
 };
 
 class Animator : public LatelyDestroyable{

@@ -264,8 +264,7 @@ void CollisionChecker::Cancel (Sprite* s1, Sprite* s2){
 	}
 }
 
+void CollisionChecker::Clear(void) { CollisionChecker::CollisionPairs.clear(); }
 
-void CollisionChecker::SingletonCleanUp(){
-	delete Checker;
-}
+void CollisionChecker::SingletonCleanUp(void) { delete Checker; }
 

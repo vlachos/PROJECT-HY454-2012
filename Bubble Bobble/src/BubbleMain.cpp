@@ -99,10 +99,10 @@ void BubbleMain::ManageGameLoop(){
 				FPSCalculation();
 				SystemLoopDispatching();
 				timestamp_t diff = ( nowTime - GetGameTime());
-				if(diff>max){
-					max=diff;
+				if(diff > max){
+					max = diff;
 				}
-				std::cout<<"gl: "<<diff<<"\n";
+				//std::cout<<"gl: "<<diff<<"\n";
 				
 				SetGameTime(GetGameTime() + diff);
 			}

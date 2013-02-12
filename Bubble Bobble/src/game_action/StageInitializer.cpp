@@ -1,9 +1,12 @@
 #include "StageInitializer.h"
 #include "BubbleLogic.h"
 #include "AnimatorHolder.h"
+#include "CollisionChecker.h"
 #include "AnimationsParser.h"
 #include "Sprite.h"
 #include "MultiSprite.h"
+#include "ScrollingAnimator.h"
+#include "ScrollingAnimation.h"
 #include "Terrain.h"
 #include "BubAnimator.h"
 #include "MightaAnimator.h"
@@ -15,7 +18,11 @@
 #include "TickAnimation.h"
 #include "GameActionUtilities.h"
 
+
 	void StageInitializer::InitNextStage(void){
+
+		BubbleLogic::InitStageStartingAttributes();
+
 		InitBubblun();
 		InitZenChan();
 		InitMighta();
@@ -86,3 +93,31 @@
 		MovingAnimator* animr = new MovingAnimator();
 		START_ANIMATOR( animr, sprite, anim, GetGameTime() );
 	}
+
+	void StageInitializer::ScrollToNextStage(void){
+		/*
+		std::vector<Animator*> allAnimr = AnimatorHolder::GetAnimators(	bubStandAnimator_t,
+																			optionsScreenSelectorAnimator_t);
+		for (unsigned int i=0; i < allAnimr.size(); ++i ){
+			AnimatorHolder::MarkAsSuspended( allAnimr[i] );
+			AnimatorHolder::Cancel( allAnimr[i] );
+		}
+		CollisionChecker::Clear();
+		*/
+		MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BubInBubble");
+		Sprite *sprite = new Sprite(
+									250,
+									30,
+									false,						
+									AnimationFilmHolder::GetFilm( "BubInBubble" ), 
+									Terrain::GetActionLayer(), 
+									false
+								);
+		sprite->SetOnDrugs(true);
+		BubInBubbleAnimator* bibamr = new BubInBubbleAnimator();
+		START_ANIMATOR(bibamr, sprite, mpa, GetGameTime() );	
+
+		ScrollingAnimation* scrlAnim = new ScrollingAnimation();
+		ScrollingAnimator* scrlAnimr = new ScrollingAnimator();
+		START_ANIMATOR(scrlAnimr, Terrain::GetActionLayer(), scrlAnim, GetGameTime() );
+}

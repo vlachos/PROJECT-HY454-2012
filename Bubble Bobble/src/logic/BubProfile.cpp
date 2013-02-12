@@ -59,7 +59,13 @@
 
 	void BubProfile::InitBlastAnimationMap(void){}
 
+
 	///////// starting attributes
+	void BubProfile::SetStartingAttributes(StartingAttributes_t startAttr){
+		startXY = startAttr.first;
+		startGravity = startAttr.second.first;
+		startDirection = startAttr.second.second;
+	}
 	int BubProfile::GetStartX(void) { return startXY.first; }
 	int BubProfile::GetStartY(void) { return startXY.second; }
 	bool BubProfile::GetStartDirection(void) { return startDirection; }

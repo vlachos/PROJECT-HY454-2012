@@ -108,11 +108,14 @@ void YellowSweetAnimator::RegistCollitions(Sprite* sprite){
 
 void YellowSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	DASSERT( Bub && Fruit && args);
+	std::cout << "AEJNFAELFNAEFNAEF:NAF:NF:EMNFA:EFMNE:MN:FMNA:MNE:F\n";
+
 	YellowSweetAnimator * _this = (YellowSweetAnimator*)args;
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
 	BubbleLogic::BubYellowSwtAcquired();
+	BubbleLogic::GetBubProfile()->SetYellowSwt(true);
 }
 
 void YellowSweetAnimator::OnFinishCallback(Animator* anim, void* args){

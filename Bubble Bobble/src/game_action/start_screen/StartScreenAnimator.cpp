@@ -19,6 +19,8 @@
 #include "AnimationFilm.h"
 #include "BitmapLoader.h"
 
+#include "StageInitializer.h"
+
 static std::list<AnimationFilm*>	animationFilmHolderLateDestraction;
 
 namespace StartWordAnimatorDeleter{
@@ -67,23 +69,8 @@ void StartScreenAnimatorActions::CleanUpStartScreen(){
 }
 
 void StartScreenAnimatorActions::StartGame(){
-	MovingPathAnimation *mpa = (MovingPathAnimation*) AnimationsParser::GetAnimation("BubInBubble");
-	Sprite *sprite = new Sprite(
-								250,
-								30,
-								false,						
-								AnimationFilmHolder::GetFilm( "BubInBubble" ), 
-								Terrain::GetActionLayer(), 
-								false
-							);
-	sprite->SetOnDrugs(true);
-	BubInBubbleAnimator* bibamr = new BubInBubbleAnimator();
-	START_ANIMATOR(bibamr, sprite, mpa, GetGameTime() );
-
-	ScrollingAnimation* scrlAnim = new ScrollingAnimation();
-	ScrollingAnimator* scrlAnimr = new ScrollingAnimator();
-	START_ANIMATOR(scrlAnimr, Terrain::GetActionLayer(), scrlAnim, GetGameTime() );
-
+	StageInitializer::InitNextStage();
+	StageInitializer::ScrollToNextStage();
 }
 
 void StartScreenAnimatorActions::StartStartScreen(){

@@ -42,6 +42,7 @@ class BubProfile{
 		bool isJumpOnMove;
 
 	public:
+		void SetStartingAttributes(StartingAttributes_t startAttr);
 		int GetStartX(void);
 		int GetStartY(void);
 		bool GetStartDirection(void);

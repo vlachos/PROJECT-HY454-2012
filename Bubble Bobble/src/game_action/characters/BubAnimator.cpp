@@ -33,6 +33,8 @@
 
 //////////////////////////static functions
 
+
+
 static void startBubBubbleAnimator(Sprite* sprite){
 
 	std::vector<Animator*> bubbles = AnimatorHolder::GetAnimators(bubBubbleAnimator_t);

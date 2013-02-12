@@ -10,6 +10,7 @@ class BubbleLogic {
 
 	public:
 		static void SingletonCreate(void);
+		static void InitStageStartingAttributes(void);
 
 	private:
 		static int stageLevel;

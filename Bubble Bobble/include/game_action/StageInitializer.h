@@ -9,6 +9,7 @@ namespace StageInitializer {
 	extern void InitMighta(void);
 	extern void InitTickAnimators(void);
 	extern void InitBubLifes(void);
+	extern void ScrollToNextStage(void);
 };
 
 #endif
