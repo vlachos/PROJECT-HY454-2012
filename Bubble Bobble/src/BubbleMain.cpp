@@ -87,10 +87,11 @@ void BubbleMain::ManageGameLoop(){
 		timestamp_t max=0;
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 			timestamp_t nowTime = GetCurrTime();
+
 			Rendering(nowTime);
-			if( !BubbleLogic::IsGamePaused() ){
 			if(!InputManagement())
 				break;
+			if( !BubbleLogic::IsGamePaused() ){
 				AnimationProgress(nowTime);
 				ArtificialIntelligence();
 				CollisionChecking();
@@ -128,42 +129,45 @@ void BubbleMain::Rendering(timestamp_t nowTime){
 bool BubbleMain::InputManagement(){
 	bool retVal = true;
 
-	if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
-		InputManageHandling::OnKeyUp();
+	if (!BubbleLogic::IsGamePaused()){
+
+		if(al_key_down(&keyState, ALLEGRO_KEY_UP)){
+			InputManageHandling::OnKeyUp();
 			retVal = InputManageHandling::OnBubKeyUp();
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
-		retVal = InputManageHandling::OnBubKeyRight();	
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
-		retVal = InputManageHandling::OnBubKeyLeft();
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
-		InputManageHandling::OnKeySpace();
-			InputManageHandling::OnBubKeySpace();
-	}
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_RIGHT)){
+			retVal = InputManageHandling::OnBubKeyRight();	
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_LEFT)){
+			retVal = InputManageHandling::OnBubKeyLeft();
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_SPACE)){
+			InputManageHandling::OnKeySpace();
+				InputManageHandling::OnBubKeySpace();
+		}
 
-	if(al_key_down(&keyState, ALLEGRO_KEY_W)){
-		retVal = InputManageHandling::OnBobKeyUp();
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_D)){
-		retVal = InputManageHandling::OnBobKeyRight();	
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_A)){
-		retVal = InputManageHandling::OnBobKeyLeft();
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_S)){
-		InputManageHandling::OnBobKeySpace();
-	}
+		if(al_key_down(&keyState, ALLEGRO_KEY_W)){
+			retVal = InputManageHandling::OnBobKeyUp();
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_D)){
+			retVal = InputManageHandling::OnBobKeyRight();	
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_A)){
+			retVal = InputManageHandling::OnBobKeyLeft();
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_S)){
+			InputManageHandling::OnBobKeySpace();
+		}
 
-	if(al_key_down(&keyState, ALLEGRO_KEY_Z))
-		InputManageHandling::OnKeySelect();
+		if(al_key_down(&keyState, ALLEGRO_KEY_Z))
+			InputManageHandling::OnKeySelect();
 
-	if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
-		InputManageHandling::OnKeyDown();
-	}
-	if(al_key_down(&keyState, ALLEGRO_KEY_Z)){
-		retVal = InputManageHandling::OnKeySelect();
+		if(al_key_down(&keyState, ALLEGRO_KEY_DOWN)){
+			InputManageHandling::OnKeyDown();
+		}
+		if(al_key_down(&keyState, ALLEGRO_KEY_Z)){
+			retVal = InputManageHandling::OnKeySelect();
+		}
 	}
 	if(al_key_down(&keyState, ALLEGRO_KEY_P)){
 		retVal = InputManageHandling::OnKeyP();

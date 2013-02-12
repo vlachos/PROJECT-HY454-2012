@@ -16,6 +16,9 @@
 #include "Terrain.h"
 
 #define START_MENU_SELECTOR_DELAY 200
+#define PAUSE_DELAY 500
+#define BLAST_DELAY 400
+#define BLAST_QUICK_DELAY 200
 
 
 /////////////////////////static functions
@@ -263,11 +266,20 @@ static bool _OnKeyRight(bool bubId){
 static bool _OnKeySpace(bool bubId){
 	bool retVal = true;
 	std::vector<Animator*> bub;
+	bool hasYellowSwt = false;
+	static timestamp_t bubOldTime = -1;
+	static timestamp_t bobOldTime = -1;
+	timestamp_t nowTime = GetGameTime();
+
+	if (bubId) hasYellowSwt = BubbleLogic::GetBubProfile()->GetYellowSwt();
+	else hasYellowSwt = BubbleLogic::GetBobProfile()->GetYellowSwt();
+	std::cout << "Yellow Sweet :    " << hasYellowSwt << "\n";
+	if ( nowTime > (bubId ? bubOldTime : bobOldTime) + (!hasYellowSwt ? BLAST_DELAY : BLAST_QUICK_DELAY) ){
+		bubId ? bubOldTime = nowTime : bobOldTime = nowTime;
 
 		if(!(bub = AnimatorHolder::GetAnimators(bubWalkAnimator_t)).empty()){
 			for(std::vector<Animator*>::const_iterator ci = bub.begin(); ci!=bub.end(); ++ci){	
 				if( ( (BubWalkingAnimator*) *ci )->GetSprite()->IsBub() == bubId ){		
-
 
 					( (BubWalkingAnimator*) *ci )->OnOpenMouth();									
 					return true;																
@@ -301,7 +313,7 @@ static bool _OnKeySpace(bool bubId){
 			}
 		}
 	
-		
+	}
 	return false;
 }
 
@@ -423,14 +435,21 @@ bool InputManageHandling::OnKeySelect(){
 }
 
 bool InputManageHandling::OnKeyP(void){
-	if ( !BubbleLogic::IsGamePaused() ){
-		BubbleLogic::SetTimeBeforePause( GetCurrTime() );
-		BubbleLogic::SetGamePaused(true);
-	}
-	else{
-		AnimatorHolder::TimeShiftAnimators(GetCurrTime() - BubbleLogic::GetTimeBeforePause() );
-		BubbleLogic::SetTimeBeforePause( 0);
-		BubbleLogic::SetGamePaused(false);
+	static timestamp_t oldTime = -1;
+
+	timestamp_t nowTime;
+	if( (nowTime = GetCurrTime())>oldTime + PAUSE_DELAY ){
+		oldTime = nowTime;
+
+		if ( !BubbleLogic::IsGamePaused() ){
+			BubbleLogic::SetTimeBeforePause( GetCurrTime() );
+			BubbleLogic::SetGamePaused(true);
+		}
+		else{
+			AnimatorHolder::TimeShiftAnimators(GetCurrTime() - BubbleLogic::GetTimeBeforePause() );
+			BubbleLogic::SetTimeBeforePause( 0);
+			BubbleLogic::SetGamePaused(false);
+		}
 	}
 	return true;
 }
