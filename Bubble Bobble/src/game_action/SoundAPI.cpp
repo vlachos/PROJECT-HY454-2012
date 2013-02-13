@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-#define SOUNDAPI_FILENAMESIZE 10
+#define SOUNDAPI_FILENAMESIZE 5
 
 SoundAPI*						SoundAPI::singletonPtr;
 std::string						SoundAPI::SoundsFilePath;
@@ -15,15 +15,15 @@ bool 							SoundAPI::muted;
 
 namespace SoundAPIFileName{
 	const char* soundAPI_FileName[] = {
-		"bubble-bobble-01-amiga-credits.WAV",
-		"bubble-bobble-02-ecran-titre.WAV",
+		/*"bubble-bobble-01-amiga-credits.WAV",
+		"bubble-bobble-02-ecran-titre.WAV",*/
 		"bubble-bobble-03-the-story-begin.WAV",
 		"bubble-bobble-04-ingame-music.WAV",
 		"bubble-bobble-05-boo-appears.WAV",
 		"bubble-bobble-06-ingame-music-hurry-up.WAV",
-		"bubble-bobble-07-all-letters-e.x.t.e.n.d.WAV",
+		/*"bubble-bobble-07-all-letters-e.x.t.e.n.d.WAV",
 		"bubble-bobble-08-e.x.t.e.n.d-bonus-life.WAV",
-		"bubble-bobble-10-game-over.WAV",
+		"bubble-bobble-10-game-over.WAV",*/
 		"bubble-bobble-11-enter-your-initials.WAV"
 	};
 }

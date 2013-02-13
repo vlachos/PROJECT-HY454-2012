@@ -8,15 +8,15 @@
 class SoundAPI{
 	public:
 		typedef enum _soundKinds{
-			soundKind_amigaCredits_t,
-			soundKind_ecranTitre_t,
+			/*soundKind_amigaCredits_t,
+			soundKind_ecranTitre_t,*/
 			soundKind_theStoryBegin_t,
 			soundKind_ingameMusic_t,
 			soundKind_booAppears_t,
 			soundKind_ingameMusicHurryUp_t,
-			soundKind_allLettersExtend_t,
+			/*soundKind_allLettersExtend_t,
 			soundKind_extendBonusLife_t,
-			soundKind_gameOver_t,
+			soundKind_gameOver_t,*/
 			soundKind_enterYourInitials_t
 		}soundKinds;
 		
