@@ -1,3 +1,6 @@
+#Oloi ALLEGRO5 san enviroment variable sta windows.
+
+
 # sxetika me ta names twn classes
 
 class:  ThisIsAnExample

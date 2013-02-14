@@ -70,7 +70,9 @@
 				for (unsigned int j=0; j<TILE_LAYER_STAGE_WIDTH; ++j){
 					indexStage >> nextInteger;
 					map[i][j] = nextInteger;
-/*
+					
+/*					// usefull for producing the solidity info from the index map ! ! ! 
+
 					if (map[i][j] == 0){
 					tilesSolidity[i][j][BBUp] = 0;
 					tilesSolidity[i][j][BBLeft] = 0;
