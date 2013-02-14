@@ -42,12 +42,12 @@ static void AfterDieProcedure(BubDieAnimator* _this){
 	if (currProfile->GetLifes() > 1){
 
 		MovingAnimation *fra= (MovingAnimation*)AnimationsParser::GetAnimation("BubStand");
-		Sprite *n_sprite=new Sprite(BubbleLogic::GetBubProfile()->GetStartX(), 
-									BubbleLogic::GetBubProfile()->GetStartY(),
-									BubbleLogic::GetBubProfile()->GetStartGravity(),
+		Sprite *n_sprite=new Sprite(currProfile->GetStartX(), 
+									currProfile->GetStartY(),
+									currProfile->GetStartGravity(),
 									AnimationFilmHolder::GetFilm("BubWalk"), 
 									Terrain::GetActionLayer(),
-									BubbleLogic::GetBubProfile()->GetStartDirection());
+									currProfile->GetStartDirection());
 
 
 			n_sprite->SetIsBub(_this->GetSprite()->IsBub());

@@ -85,7 +85,9 @@ void RedShoesAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubRedShoesAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubRedShoesAcquired():
+								 BubbleLogic::BobRedShoesAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
@@ -118,7 +120,9 @@ void YellowSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubYellowSwtAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubYellowSwtAcquired():
+								 BubbleLogic::BobYellowSwtAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
@@ -149,7 +153,9 @@ void BlueSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *arg
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubBlueSwtAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubBlueSwtAcquired():
+								 BubbleLogic::BobBlueSwtAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
@@ -180,7 +186,9 @@ void PurpleSweetAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), 100);
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubPurpleSwtAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubPurpleSwtAcquired():
+								 BubbleLogic::BobPurpleSwtAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }

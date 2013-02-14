@@ -117,7 +117,9 @@ void BananaAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetBananaPoints());
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubBananaAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubBananaAcquired():
+								 BubbleLogic::BobBananaAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
@@ -149,8 +151,9 @@ void OrangeAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetOrangePoints());
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubOrangeAcquired();
 
+	_this->GetSprite()->IsBub()? BubbleLogic::BubOrangeAcquired():
+								 BubbleLogic::BobOrangeAcquired();
 	SCROLL_IF_NO_ENEMIES();
 }
 
@@ -180,7 +183,9 @@ void PeachAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *args){
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetPeachPoints());
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubPeachAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubPeachAcquired():
+								 BubbleLogic::BobPeachAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
@@ -211,7 +216,9 @@ void WaterMelonAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *ar
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetWaterMelonPoints());
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubWaterMelonAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubWaterMelonAcquired():
+								 BubbleLogic::BobWaterMelonAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
@@ -242,7 +249,9 @@ void BlueDiamondAnimator::OnCollisionWithBub(Sprite *Bub, Sprite *Fruit, void *a
 	REMOVE_FROM_ACTION_ANIMATOR(_this);
 	FruitsAnimators::StartScoreLabel( _this->GetSprite()->GetX(), _this->GetSprite()->GetY(), BubbleLogic::GetBlueDiamondPoints());
 	DESTROY_ANIMATOR( _this );
-	BubbleLogic::BubBlueDiamondAcquired();
+
+	_this->GetSprite()->IsBub()? BubbleLogic::BubBlueDiamondAcquired():
+								 BubbleLogic::BobBlueDiamondAcquired();
 
 	SCROLL_IF_NO_ENEMIES();
 }
